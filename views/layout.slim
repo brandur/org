@@ -1,0 +1,36 @@
+doctype 5
+
+html lang='en'
+  head
+    title= @title ? @title : "brandur.org"
+
+    meta content='text/html; charset=utf-8' http-equiv='Content-Type'
+
+    link href='/articles.atom' rel='alternate' title="brandur.org" type='application/atom+xml'
+
+    link href="/assets/#{BrandurOrg::Config.release}/app.css" media="screen" rel="stylesheet" type="text/css"
+    script src="/assets/#{BrandurOrg::Config.release}/app.js" type="text/javascript"
+
+    / Enable HTML5 styling for the bane of the Internet
+    /[ if lt IE 9 ]
+      script src="//html5shim.googlecode.com/svn/trunk/html5.js"
+
+    /== render :slim, :"_analytics", layout: false
+
+    link href='//fonts.googleapis.com/css?family=Raleway:100|&amp;subset=latin' rel='stylesheet' type='text/css' 
+
+  body
+    #wrapper
+      /header
+        | brandur.org
+        | &nbsp;&nbsp;&nbsp;&nbsp;
+        | articles
+        |  ** 
+        | books
+        |  ** 
+        | talks
+        |  ** 
+        | twitter
+      #content
+        == yield
+      footer
