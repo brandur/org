@@ -19,6 +19,10 @@ module BrandurOrg
       set :views, Config.root + "/views"
     end
 
+    get "/the-old-man" do
+      slim :"articles/the-old-man"
+    end
+
     ARTICLES.each do |slug, _|
       get "/#{slug}" do
         @article = ARTICLES[slug]
