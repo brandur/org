@@ -2,35 +2,53 @@ require 'digest/md5'
 
 module BrandurOrg
   class Articles < Sinatra::Base
-    # hashes are sorted in 1.9+ (and this one is reverse published order)
-    ARTICLES = Hash[Dir["#{Config.root}/articles/**/*.rb"].map { |article|
-      slug    = File.basename(article, ".rb")
-      attrs   = Kernel.eval(File.read(article))
-      content = File.read("#{Config.root}/articles/#{slug}.md")
-      [slug, attrs.merge({
-        content:          MarkdownHelper.render(content),
-        digest:           Digest::MD5.hexdigest(content),
-        last_modified_at: File.new(article).mtime.utc,
-        slug:             slug,
-      })]
-    }.sort_by { |_, article| article[:published_at] }.reverse]
+    @@articles = {}
+
+    def self.article(route, metadata={}, &block)
+      slug = route.gsub(/^\/*/, "")
+      metadata.merge!({
+        last_modified_at: Time.now,
+        slug: slug,
+      })
+      @@articles[route] = metadata
+      get(route, &block)
+    end
+
+    def render_article
+      article = @@articles[request.path_info]
+      last_modified(article[:last_modified_at]) if Config.production?
+      @title = article[:title]
+      content = yield
+      etag(Digest::SHA1.hexdigest(content)) if Config.production?
+      content
+    end
 
     configure do
       set :views, Config.root + "/views"
     end
 
-    get "/the-old-man" do
-      slim :"articles/the-old-man"
+    get "/archive" do
+      @articles = @@articles.values.sort_by { |a| a[:published_at] }.reverse
+      slim :archive
     end
 
-    ARTICLES.each do |slug, _|
-      get "/#{slug}" do
-        @article = ARTICLES[slug]
-        if Config.production?
-          last_modified(@article[:last_modified_at])
-          etag(@article[:digest])
-        end
-        slim :article
+    article "/service-stubs", {
+      location:     "San Francisco",
+      published_at: Time.parse("2013-04-19T07:46:40-07:00"),
+      title:        "SOA and Service Stubs",
+    } do
+      render_article do
+        slim :"articles/service-stubs"
+      end
+    end
+
+    article "/the-old-man", {
+      location:     "San Francisco",
+      published_at: Time.parse("2013-04-19T07:46:40-07:00"),
+      title:        "The Old Man",
+    } do
+      render_article do
+        slim :"articles/the-old-man"
       end
     end
   end

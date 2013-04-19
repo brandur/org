@@ -6,8 +6,7 @@ $stdout.sync = true
 
 Slim::Engine.set_default_options format: :html5, pretty: true
 
-#DB = Sequel.connect(ENV["DATABASE_URL"] ||
-#  raise("missing_environment=DATABASE_URL"))
+Slim::Embedded.default_options[:markdown] = { :fenced_code_blocks => true, :superscript => true }
 
 require "./lib/brandur_org"
 
