@@ -6,7 +6,12 @@ $stdout.sync = true
 
 # configuration
 Slim::Engine.set_default_options format: :html5, pretty: true
-Slim::Embedded.default_options[:markdown] = { fenced_code_blocks: true }
+Slim::Embedded.default_options[:markdown] = {
+  fenced_code_blocks: true,
+  strikethrough:      true,
+  superscript:        true,
+  tables:             true,
+}
 
 require "./lib/brandur_org"
 

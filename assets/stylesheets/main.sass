@@ -12,8 +12,12 @@ body
   background: #fff
   color: #000
   font-family: $serif
-  font-size: 20px
+  font-size: 16px
   line-height: 1.6em
+  margin: 40px 50px
+
+h1, h2, h3, h4
+  margin: 30px 0
 
 h1
   font-family: raleway, $sans_serif
@@ -40,12 +44,57 @@ pre
   margin: 40px 0
   margin-left: 40px
 
-.intro
-  font-size: 24px
-  line-height: 1.7em
-  margin-bottom: 30px
-  max-width: 800px
+#meta
+  float: left
+  margin: 0 50px
+  width: 200px
 
-.row
-  margin: 0 100px
-  max-width: 800px
+  .divider
+    border-bottom: 1px solid #dedede
+
+  #title
+    margin: 40px 0
+
+    h1
+      margin: 0
+
+  #person
+    margin: 40px 0
+
+    img
+      border-radius: 50px
+      margin: 0 0 20px 0
+      text-align: center
+      vertical-align: middle
+
+    p#name
+      color: #336699
+      font-family: $sans_serif
+      font-size: 18px
+      font-weight: 600
+      line-height: 1.4em
+      margin: 0
+
+    p#about
+      font-size: 13px
+      font-style: italic
+      font-weight: 100
+      line-height: 1.4em
+      margin: 0
+
+  #attributes
+    margin: 40px 0
+
+    p
+      color: #336699
+      font-size: 13px
+      font-style: italic
+      line-height: 1.4em
+      margin: 0
+
+      span.value
+        font-family: $sans_serif
+
+#content
+  float: left
+  max-width: 680px

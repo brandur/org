@@ -14,10 +14,14 @@ module BrandurOrg
       get(route, &block)
     end
 
+    def pjax?
+      !!(request.env["X-PJAX"] || request.env["HTTP_X_PJAX"])
+    end
+
     def render_article
-      article = @@articles[request.path_info]
-      last_modified(article[:last_modified_at]) if Config.production?
-      @title = article[:title]
+      @article = @@articles[request.path_info]
+      last_modified(@article[:last_modified_at]) if Config.production?
+      @title = @article[:title]
       content = yield
       etag(Digest::SHA1.hexdigest(content)) if Config.production?
       content
@@ -38,7 +42,7 @@ module BrandurOrg
       title:        "SOA and Service Stubs",
     } do
       render_article do
-        slim :"articles/service-stubs"
+        slim :"articles/service-stubs", layout: !pjax?
       end
     end
 
@@ -48,7 +52,7 @@ module BrandurOrg
       title:        "The Old Man",
     } do
       render_article do
-        slim :"articles/the-old-man"
+        slim :"articles/the-old-man", layout: !pjax?
       end
     end
   end
