@@ -6,6 +6,7 @@ module BrandurOrg
       @assets = Sprockets::Environment.new do |env|
         Slides.log :assets, path: path
 
+        env.append_path(path + "/fonts")
         env.append_path(path + "/images")
         env.append_path(path + "/javascripts")
         env.append_path(path + "/stylesheets")
@@ -31,6 +32,13 @@ module BrandurOrg
       get "/assets/:image.#{format}" do |image|
         content_type("image/#{format}")
         respond_with_asset(@assets["#{image}.#{format}"])
+      end
+    end
+
+    %w{woff}.each do |format|
+      get "/assets/:font.#{format}" do |font|
+        content_type("font/#{format}")
+        respond_with_asset(@assets["#{font}.#{format}"])
       end
     end
 

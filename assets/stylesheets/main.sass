@@ -1,6 +1,12 @@
 $sans_serif: "helvetica neue", helvetica, arial, geneva, sans-serif
 $serif: georgia, serif
 
+@font-face
+  font-family: 'Raleway'
+  font-style: normal
+  font-weight: 200
+  src: local('Raleway ExtraLight'), local('Raleway-ExtraLight'), url(/assets/raleway-extralight.woff) format('woff')
+
 a
   color: #000
   text-decoration: underline
@@ -13,17 +19,25 @@ body
   color: #000
   font-family: $serif
   font-size: 16px
-  line-height: 1.6em
+  line-height: 1.7em
   margin: 40px 50px
 
 h1, h2, h3, h4
+  font-family: raleway, $sans_serif
+  font-weight: 200
   margin: 30px 0
 
 h1
-  font-family: raleway, $sans_serif
   font-size: 50px
-  font-weight: 200
   line-height: 1.2em
+
+h2
+  border-bottom: 1px solid #dedede
+  font-size: 25px
+  padding-bottom: 16px
+
+h3
+  font-size: 20px
 
 article
   max-width: 600px
@@ -31,10 +45,10 @@ article
 header
   margin: 20px 0
 
-nav
-  font-size: 12px
-
 p
+  hyphens: auto
+  -moz-hyphens: auto
+  -webkit-hyphens: auto
   margin: 20px 0
 
 pre
@@ -44,16 +58,22 @@ pre
   margin: 40px 0
   margin-left: 40px
 
+.clear
+  clear: both
+
+.row
+  margin: 0
+  max-width: 900px
+
 #meta
-  float: left
-  margin: 0 50px
-  width: 200px
+  nav
+    margin: 40px 0
 
   .divider
     border-bottom: 1px solid #dedede
 
   #title
-    margin: 40px 0
+    margin: 0 0 40px 0
 
     h1
       margin: 0
@@ -93,8 +113,24 @@ pre
       margin: 0
 
       span.value
-        font-family: $sans_serif
 
 #content
-  float: left
-  max-width: 680px
+
+  nav
+    margin: 40px 0
+
+    ul
+
+      li
+        float: left
+        font-size: 14px
+        text-align: center
+        text-transform: uppercase
+        width: 25%
+
+        a
+          //color: #336699
+          //text-decoration: none
+
+          &:hover
+            //text-decoration: underline
