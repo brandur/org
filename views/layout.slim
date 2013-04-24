@@ -21,7 +21,7 @@ html lang='en'
 
   body
     #wrapper.row
-      #meta.col_3
+      #meta.col_4
         #title
           h1= @title
         .divider
@@ -30,20 +30,21 @@ html lang='en'
           img src="/assets/brandur.jpg"
           p#name Brandur
           p#about Platform engineer at Heroku.
-          nav
-            ul
-              li
-                a href="/articles" Articles
-              li
-                a href="/talks" Talks
-              li
-                a href="/twitter" Twitter
-              li
-                a href="/books" Books
+        .divider
+        nav
+          ul
+            li
+              a href="/articles" Articles
+            li
+              a href="/talks" Talks
+            li
+              a href="/twitter" Twitter
+            li
+              a href="/books" Books
         .divider
         #attributes
           p.value Published on <span class="value">#{@article[:published_at].strftime("%B %e, %Y")}</span> from <span class="value">#{@article[:location]}</a>.
-      #content.col_9.last
+      #content.col_8.last
         == yield
         nav
           ul
