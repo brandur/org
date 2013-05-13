@@ -1,4 +1,5 @@
-$sans_serif: "helvetica neue", helvetica, arial, geneva, sans-serif
+//$sans_serif: "helvetica neue", helvetica, arial, geneva, sans-serif
+$sans_serif: helvetica, arial, geneva, sans-serif
 $serif: georgia, serif
 
 @font-face
@@ -23,13 +24,13 @@ body
   margin: 40px 50px
 
 h1, h2, h3, h4
-  font-family: raleway, $sans_serif
-  font-weight: 200
+  font-family: $sans_serif
+  font-weight: 400
   margin: 30px 0
 
 h1
-  font-size: 50px
-  line-height: 1.2em
+  font-size: 60px
+  line-height: 1.1em
 
 h2
   border-bottom: 1px solid #cdcdcd
@@ -71,10 +72,6 @@ header
         margin: 0 10px 0 0
         text-transform: uppercase
 
-#wrapper
-  margin: 0 auto
-  max-width: 800px
-
 #meta
   nav
     margin: 40px 0
@@ -82,13 +79,6 @@ header
 
   .divider
     border-bottom: 1px solid #cdcdcd
-
-  #title
-    margin: 0 0 40px 0
-    text-align: center
-
-    h1
-      margin: 0
 
   #person
     margin: 40px 0
@@ -115,19 +105,8 @@ header
       line-height: 1.4em
       margin: 0
 
-  #attributes
-    margin: 40px 0
-
-    p
-      color: #336699
-      font-size: 13px
-      font-style: italic
-      line-height: 1.4em
-      margin: 0
-
-      span.value
-
 #content
+  max-width: 650px
 
   nav
     margin: 40px 0
@@ -157,17 +136,14 @@ header
     line-height: 2em
 
   #title
-    margin: 0 auto
     max-width: 40%
-    text-align: center
 
   #attributes
     margin: 40px 0
-    text-align: center
 
     p
       color: #336699
-      font-size: 13px
+      font-size: 11px
       font-style: italic
       line-height: 1.4em
       margin: 0

@@ -1,8 +1,6 @@
-.intro
-  markdown:
-    A number of modern software development shops are adopting a development paradigm around [service-oriented architecture](http://en.wikipedia.org/wiki/Service-oriented_architecture) (SOA) in hopes of avoiding the classic problem of the monolithic codebase that brings development velocity to a grinding halt. This includes us at Heroku, where the underlying kernel that supports the Heroku platform is fundamentally decomposed into a number of backend services, each of which having a well-defined set of responsibilities, and a team to operate it. It's been a hugely effective technique, and provides significant advantages around each component's speed of development and deployment.
-
 markdown:
+  A number of modern software development shops are adopting a development paradigm around [service-oriented architecture](http://en.wikipedia.org/wiki/Service-oriented_architecture) (SOA) in hopes of avoiding the classic problem of the monolithic codebase that brings development velocity to a grinding halt. This includes us at Heroku, where the underlying kernel that supports the Heroku platform is fundamentally decomposed into a number of backend services, each of which having a well-defined set of responsibilities, and a team to operate it. It's been a hugely effective technique, and provides significant advantages around each component's speed of development and deployment.
+
   Despite us being happily well-invested in this architectural approach, SOA has a number of downsides, one of the foremost being that running a single application in isolation becomes difficult because it relies on so many external services.
 
   A fairly traditional solution for us has been to stub these services at a high-level to avoid making remote calls during development and testing. Here are some real examples from our codebase of what these _service stubs_ looked like:
