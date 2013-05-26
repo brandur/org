@@ -1,0 +1,7 @@
+ul.list
+  - @articles.each do |article|
+    li
+      a href="/#{article[:slug]}"
+        = article[:title]
+      span.meta
+        = article[:published_at].strftime("%B %e, %Y")

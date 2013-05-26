@@ -31,9 +31,10 @@ module BrandurOrg
       set :views, Config.root + "/views"
     end
 
-    get "/archive" do
+    get "/articles" do
+      @title = "Articles"
       @articles = @@articles.values.sort_by { |a| a[:published_at] }.reverse
-      slim :archive
+      slim :articles
     end
 
     article "/service-stubs", {

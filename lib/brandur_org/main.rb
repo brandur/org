@@ -9,6 +9,7 @@ module BrandurOrg
       mount BrandurOrg::Articles
       mount BrandurOrg::Assets
       mount BrandurOrg::Books
+      mount BrandurOrg::Talks
       mount BrandurOrg::Twitter
       run BrandurOrg::Default
     }
