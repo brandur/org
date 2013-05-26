@@ -8,6 +8,8 @@ module BrandurOrg
     run Sinatra::Router.new {
       mount BrandurOrg::Articles
       mount BrandurOrg::Assets
+      mount BrandurOrg::Books
+      mount BrandurOrg::Twitter
       run BrandurOrg::Default
     }
   end
