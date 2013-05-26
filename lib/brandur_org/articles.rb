@@ -43,7 +43,7 @@ module BrandurOrg
       title:        "SOA and Service Stubs",
     } do
       render_article do
-        slim :"articles/service-stubs", layout: !pjax?
+        slim :"articles/generic", layout: !pjax?
       end
     end
   end
