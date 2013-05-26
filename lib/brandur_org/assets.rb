@@ -19,25 +19,21 @@ module BrandurOrg
     end
 
     get "/assets/:release/app.css" do
-      content_type("text/css")
       respond_with_asset(@assets["app.css"])
     end
 
     get "/assets/:release/app.js" do
-      content_type("application/javascript")
       respond_with_asset(@assets["app.js"])
     end
 
     %w{jpg png}.each do |format|
       get "/assets/:image.#{format}" do |image|
-        content_type("image/#{format}")
         respond_with_asset(@assets["#{image}.#{format}"])
       end
     end
 
     %w{woff}.each do |format|
       get "/assets/:font.#{format}" do |font|
-        content_type("font/#{format}")
         respond_with_asset(@assets["#{font}.#{format}"])
       end
     end
@@ -46,6 +42,7 @@ module BrandurOrg
 
     def respond_with_asset(asset)
       cache_control(:public, max_age: 2592000)
+      content_type(asset.content_type)
       last_modified(asset.mtime.utc) if Config.production?
       asset
     end
