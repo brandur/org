@@ -33,7 +33,7 @@ html lang='en'
           == yield
       .col_3.last
         .content
-          nav#side
+          nav.mobile-hide#side
             ul
               li
                 a href="/articles" Articles
@@ -47,25 +47,28 @@ html lang='en'
             p#avatar
               img src="/assets/brandur.jpg"
             p <span class="attribute">Brandur.</span> Platform engineer at Heroku. Ruby, APIs, Vim, Tmux, fixed gear riding, longboarding, and metal.
-            p
-              span.attribute Published
-              br
-              = @article[:published_at].strftime("%B %e, %Y")
-            p
-              span.attribute Location
-              br
-              = @article[:location]
+            - if @article
+              p
+                span.attribute Published
+                br
+                = @article[:published_at].strftime("%B %e, %Y")
+            - if @article && @article[:location]
+              p
+                span.attribute Location
+                br
+                = @article[:location]
     .divider
     footer
       .row
-        .pre_3.col_9.last
-          nav
-            ul
-              li
-                a href="/articles" Articles
-              li
-                a href="/talks" Talks
-              li
-                a href="/twitter" Twitter
-              li
-                a href="/books" Books
+        //.col_9.suf_3.last
+        .col_12.last
+          .content
+            nav#footer
+              a href="/articles" Articles
+              | &nbsp;&nbsp;|&nbsp;&nbsp;
+              a href="/talks" Talks
+              | &nbsp;&nbsp;|&nbsp;&nbsp;
+              a href="/twitter" Twitter
+              | &nbsp;&nbsp;|&nbsp;&nbsp;
+              a href="/books" Books
+            p.stamp brandur.org
