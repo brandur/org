@@ -32,8 +32,20 @@ html lang='en'
         .content
           == yield
       .col_3.last
-        .content
-          nav.mobile-hide#side
+        .content.mobile-only
+          #about
+            - if @article
+              p
+                span.attribute Published
+                br
+                = @article[:published_at].strftime("%B %e, %Y")
+            - if @article && @article[:location]
+              p
+                span.attribute Location
+                br
+                = @article[:location]
+        .content.mobile-hide
+          nav#side
             ul
               li
                 a href="/articles" Articles
