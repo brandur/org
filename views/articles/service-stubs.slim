@@ -1,9 +1,9 @@
 markdown:
-  A number of modern software development shops are adopting a development paradigm around [service-oriented architecture](http://en.wikipedia.org/wiki/Service-oriented_architecture) (SOA) in hopes of avoiding the classic problem of the monolithic codebase that brings development velocity to a grinding halt. This includes us at Heroku, where the underlying kernel that supports the Heroku platform is fundamentally decomposed into a number of backend services, each of which having a well-defined set of responsibilities, and a team to operate it. It's been a hugely effective technique, and provides significant advantages around each component's speed of development and deployment.
+  [Service-oriented architecture](http://en.wikipedia.org/wiki/Service-oriented_architecture) (SOA) is a popular technique at a number of software development shops these days, each trying to avoid the age-old problem of the monolithic codebase. This includes us at Heroku, where the underlying kernel that supports the Heroku platform is fundamentally decomposed into a number of backend services, each of which having a well-defined set of responsibilities, and a team to operate it.
 
   Despite us being happily well-invested in this architectural approach, SOA has a number of downsides, one of the foremost being that running a single application in isolation becomes difficult because it relies on so many external services.
 
-  A fairly traditional solution for us has been to stub these services at a high-level to avoid making remote calls during development and testing. Here are some real examples from our codebase of what these _service stubs_ looked like:
+  A traditional solution for us has been to stub these services at a high-level to avoid making remote calls during development and testing. Here are some real examples from our codebase of what these service stubs looked like:
 
   ``` ruby
   # Logplex stub
@@ -23,11 +23,17 @@ markdown:
 
   # Process management service stub
   return ServiceApi::MockHandler.new("https://psmgr.heroku-\#{name}.com") unless psmgr_url
+
+  # Resource provisioning
+  def api_calls_enabled?
+    Utils.in_cloud? || RAILS_ENV == 'test' || ENV['API_CALLS_ENABLED'] # OMG HACK
+  end
+  response = handler.install(app, user, options) if api_calls_enabled?
   ```
 
   ## Progression
 
-  Implementations varied as more services were added over time, and generally became more sophisticated as we learned the downsides of particular approaches and iterated on them. This progression eventually led to the Rack service stubs we use today, and which are detailed in the next section.
+  Implementations varied as more services were added over time, and generally became more sophisticated as we learned the downsides of particular approaches and iterated on them. This progression eventually led to the _Rack service stubs_ we use today, and which are detailed in the next section.
 
   The starting point was to simply use a stubbing framework for testing to stub out any methods that make a call to a remote service:
 
@@ -222,9 +228,11 @@ markdown:
   18:20:38 paymentsstub.1     | == Sinatra/1.3.5 has taken the stage on 4109 for development with backup from WEBrick
   18:20:38 psmgrstub.1        | == Sinatra/1.3.5 has taken the stage on 4107 for development with backup from WEBrick
   18:20:38 maestrostub.1      | == Sinatra/1.3.5 has taken the stage on 4105 for development with backup from WEBrick
-  18:20:38 yobukostub.1       | == Sinatra/1.3.5 has taken the stage on 4113 for development with backup from WEBrick
+  18:20:38 yobukostub.1       | == Sinatra/1.3.5 has taken the stage on 4114 for development with backup from WEBrick
   18:20:38 logplexstub.1      | == Sinatra/1.3.5 has taken the stage on 4104 for development with backup from WEBrick
   18:20:38 vaultstub.1        | == Sinatra/1.3.5 has taken the stage on 4112 for development with backup from WEBrick
+  18:20:38 vaultusagestub.1   | == Sinatra/1.3.5 has taken the stage on 4113 for development with backup from WEBrick
+  18:20:38 zendeskssostub.1   | == Sinatra/1.3.5 has taken the stage on 4115 for development with backup from WEBrick
   ````
 
   A working example of this project is available at [brandur/service-stub-example](https://github.com/brandur/service-stub-example).
