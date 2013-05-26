@@ -22,17 +22,39 @@ html lang='en'
   body
     header
       .row
-        .col_3
-        .col_9.last
-          #title
-            h1= @title
-          #attributes
-            p Published on <span class="value">#{@article[:published_at].strftime("%B %e, %Y")}</span> from <span class="value">#{@article[:location]}</a>.
+        .col_9.suf_3.last
+          .content
+            #title
+              h1= @title
     .divider
     .row
-      .pre_3.col_9.last
-        #content
+      .col_9
+        .content
           == yield
+      .col_3.last
+        .content
+          nav#side
+            ul
+              li
+                a href="/articles" Articles
+              li
+                a href="/talks" Talks
+              li
+                a href="/twitter" Twitter
+              li
+                a href="/books" Books
+          #about
+            p#avatar
+              img src="/assets/brandur.jpg"
+            p <span class="attribute">Brandur.</span> Platform engineer at Heroku. Ruby, APIs, Vim, Tmux, fixed gear riding, longboarding, and metal.
+            p
+              span.attribute Published
+              br
+              = @article[:published_at].strftime("%B %e, %Y")
+            p
+              span.attribute Location
+              br
+              = @article[:location]
     .divider
     footer
       .row

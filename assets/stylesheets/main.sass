@@ -21,13 +21,16 @@ body
   font-size: 16px
   line-height: 1.7em
 
+em
+  font-style: italic
+
 h1, h2, h3, h4
   font-family: $sans_serif
   font-weight: 400
   margin: 30px 0
 
 h1
-  font-size: 60px
+  font-size: 100px
   line-height: 1.1em
 
 h2
@@ -37,6 +40,11 @@ h2
 
 h3
   font-size: 20px
+
+nav#side
+  border-left: 5px solid #cdcdcd
+  padding: 0 0 0 10px
+  margin: 0 0 20px 0
 
 p
   hyphens: auto
@@ -52,23 +60,29 @@ pre
   margin: 40px 0
   margin-left: 40px
 
+strong
+  font-weight: bold
+
+.content
+  margin: 30px 40px
+
 .divider
   border-bottom: 1px solid #cdcdcd
-  margin: 50px 0
+  margin: 30px 0
 
 .row
-  max-width: 1100px
+  max-width: 1000px
 
 header
   font-size: 12px
   margin: 40px 50px
 
   #attributes
-    margin: 40px 0
+    margin: 30px 0
 
     p
-      color: #336699
-      font-size: 11px
+      color: #9a9a9a
+      font-size: 12px
       font-style: italic
       line-height: 1.4em
       margin: 0
@@ -78,13 +92,28 @@ header
     span
       margin: 0 8px 0 0
 
-  #title
-    max-width: 320px
-
-#content
-  margin: 40px 50px
+#about
+  margin: 0 auto
+  max-width: 240px
 
   p
+    font-size: 12px
+    font-style: italic
+    line-height: 1.5em
+
+  .attribute
+    font-family: $sans_serif
+    font-style: normal
+    font-weight: bold
+
+  p#avatar
+    margin: 40px 0
+    text-align: center
+
+    img
+      border-radius: 50px
+      -moz-border-radius: 50px
+      -webkit-border-radius: 50px
 
 footer
   margin: 40px 50px
