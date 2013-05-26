@@ -20,22 +20,30 @@ html lang='en'
     /link href='//fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css' 
 
   body
-    #content
-      #title
-        h1= @title
-      #attributes
-        p.value Published on <span class="value">#{@article[:published_at].strftime("%B %e, %Y")}</span> from <span class="value">#{@article[:location]}</a>.
-      .divider
-      == yield
-      nav
-        ul
-          li
-            a href="/articles" Articles
-          li
-            a href="/talks" Talks
-          li
-            a href="/twitter" Twitter
-          li
-            a href="/books" Books
-          .clear
+    header
+      .row
+        .col_3
+        .col_9.last
+          #title
+            h1= @title
+          #attributes
+            p Published on <span class="value">#{@article[:published_at].strftime("%B %e, %Y")}</span> from <span class="value">#{@article[:location]}</a>.
+    .divider
+    .row
+      .pre_3.col_9.last
+        #content
+          == yield
+    .divider
     footer
+      .row
+        .pre_3.col_9.last
+          nav
+            ul
+              li
+                a href="/articles" Articles
+              li
+                a href="/talks" Talks
+              li
+                a href="/twitter" Twitter
+              li
+                a href="/books" Books
