@@ -39,7 +39,7 @@ module BrandurOrg
 
     article "/service-stubs", {
       location:     "San Francisco",
-      published_at: Time.parse("2013-04-19T07:46:40-07:00"),
+      published_at: Time.parse("Sat May 25 20:49:02 PDT 2013"),
       title:        "SOA and Service Stubs",
     } do
       render_article do
