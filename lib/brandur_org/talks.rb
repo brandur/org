@@ -6,7 +6,7 @@ module BrandurOrg
 
     get "/talks" do
       @title = "Talks"
-      slim :talks
+      slim :talks, layout: !pjax?
     end
   end
 end

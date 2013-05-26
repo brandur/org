@@ -34,7 +34,7 @@ module BrandurOrg
     get "/articles" do
       @title = "Articles"
       @articles = @@articles.values.sort_by { |a| a[:published_at] }.reverse
-      slim :articles
+      slim :articles, layout: !pjax?
     end
 
     article "/service-stubs", {
