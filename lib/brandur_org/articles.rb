@@ -37,6 +37,11 @@ module BrandurOrg
       slim :articles, layout: !pjax?
     end
 
+    get "/articles.atom" do
+      @articles = @@articles.values.sort_by { |a| a[:published_at] }.reverse
+      builder :articles
+    end
+
     article "/service-stubs", {
       location:     "San Francisco",
       published_at: Time.parse("Sat May 25 20:49:02 PDT 2013"),
