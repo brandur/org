@@ -46,15 +46,5 @@ module BrandurOrg
         slim :"articles/service-stubs", layout: !pjax?
       end
     end
-
-    article "/the-old-man", {
-      location:     "San Francisco",
-      published_at: Time.parse("2013-04-19T07:46:40-07:00"),
-      title:        "The Old Man",
-    } do
-      render_article do
-        slim :"articles/the-old-man", layout: !pjax?
-      end
-    end
   end
 end
