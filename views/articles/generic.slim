@@ -1,1 +1,20 @@
-== Tilt.new("./views/articles/" + @article[:slug] + ".md", Slim::Embedded.default_options[:markdown]).render
+== render :slim, :"_header", layout: false
+.row
+  .pre_2.col_7
+    .content
+      == Tilt.new("./views/articles/" + @article[:slug] + ".md", Slim::Embedded.default_options[:markdown]).render
+  .col_3.last
+    .content.mobile-only
+      #about
+        - if @article
+          p
+            span.attribute Published
+            br
+            = @article[:published_at].strftime("%B %e, %Y")
+        - if @article && @article[:location]
+          p
+            span.attribute Location
+            br
+            = @article[:location]
+    == render :slim, :"_side", layout: false
+== render :slim, :"_footer", layout: false

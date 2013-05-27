@@ -1,0 +1,26 @@
+.content.mobile-hide
+  nav#side
+    ul
+      li
+        a href="/articles" Articles
+      li
+        a href="/talks" Talks
+      li
+        a href="/twitter" Twitter
+      li
+        a href="/books" Books
+  #about
+    p#avatar
+      a href="https://twitter.com/brandur"
+        img src="/assets/brandur.jpg"
+    p <span class="attribute"><a href="https://twitter.com/brandur">@brandur.</a></span> Platform engineer at Heroku. Ruby, APIs, Vim, Tmux, fixed gear riding, longboarding, and metal.
+    - if @article
+      p
+        span.attribute Published
+        br
+        = @article[:published_at].strftime("%B %e, %Y")
+    - if @article && @article[:location]
+      p
+        span.attribute Location
+        br
+        = @article[:location]

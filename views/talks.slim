@@ -1,7 +1,12 @@
-ul.list
-  li
-    a href="https://composable.herokuapp.com"
-      | Post-Rails? Composable Applications with a First-class API
-    span.meta
-      | September 20, 2012
-    p Delivered at Frozen Rails 2012 in Helsinki. Talks about the techniques used to break down Heroku's Rails monolith into a number of composed services and how this abstraction benefited the company by producing leaner codebases, smaller teams, and better separations of concerns.
+== render :slim, :"_header", layout: false
+.row
+  .pre_2.col_7.suf_3.last
+    .content
+      ul.list
+        li
+          a href="https://composable.herokuapp.com"
+            | Post-Rails? Composable Applications with a First-class API
+          span.meta
+            | September 20, 2012
+          p Delivered at Frozen Rails 2012 in Helsinki. Talks about the techniques used to break down Heroku's Rails monolith into a number of composed services and how this abstraction benefited the company by producing leaner codebases, smaller teams, and better separations of concerns.
+== render :slim, :"_footer", layout: false
