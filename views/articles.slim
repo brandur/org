@@ -1,6 +1,6 @@
 ul.list
   - @articles.each do |article|
-    - if !article[:type]
+    - if !article[:source]
       li
         a href="/#{article[:slug]}"
           = article[:title]

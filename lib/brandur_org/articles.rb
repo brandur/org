@@ -32,19 +32,17 @@ module BrandurOrg
     end
 
     get "/articles" do
-      @title = "Articles"
       @articles = @@articles.values.sort_by { |a| a[:published_at] }.reverse
-      res = Excon.get("https://brandur-org-black-swan.herokuapp.com/events",
+      res = Excon.get("#{Config.events_url}/events",
         expects: 200,
         headers: { "Accept" => "application/json" },
         query: { "type" => "blog" })
-p res.body
       @articles += MultiJson.decode(res.body).map { |article|
         {
           published_at: Time.parse(article["occurred_at"]),
           slug:         article["slug"],
+          source:       "Mutelight",
           title:        article["content"],
-          type:         :secondary,
         }
       }
       slim :articles, layout: !pjax?
