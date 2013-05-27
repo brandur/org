@@ -34,12 +34,35 @@ module BrandurOrg
     get "/articles" do
       @title = "Articles"
       @articles = @@articles.values.sort_by { |a| a[:published_at] }.reverse
+      res = Excon.get("https://brandur-org-black-swan.herokuapp.com/events",
+        expects: 200,
+        headers: { "Accept" => "application/json" },
+        query: { "type" => "blog" })
+p res.body
+      @articles += MultiJson.decode(res.body).map { |article|
+        {
+          published_at: Time.parse(article["occurred_at"]),
+          slug:         article["slug"],
+          title:        article["content"],
+          type:         :secondary,
+        }
+      }
       slim :articles, layout: !pjax?
     end
 
     get "/articles.atom" do
       @articles = @@articles.values.sort_by { |a| a[:published_at] }.reverse
       builder :articles
+    end
+
+    article "/request-ids", {
+      location:     "San Francisco",
+      published_at: Time.parse("Sat May 25 20:49:02 PDT 2013"),
+      title:        "Request IDs",
+    } do
+      render_article do
+        slim :"articles/generic", layout: !pjax?
+      end
     end
 
     article "/service-stubs", {

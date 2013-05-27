@@ -11,6 +11,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    excon (0.22.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
     hike (1.2.1)
@@ -66,6 +67,7 @@ PLATFORMS
 DEPENDENCIES
   builder
   coffee-script
+  excon
   pg
   puma
   rack

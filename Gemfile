@@ -2,6 +2,7 @@ source :rubygems
 
 gem "builder"
 gem "coffee-script"
+gem "excon"
 gem "pg"
 gem "puma"
 gem "rack"
