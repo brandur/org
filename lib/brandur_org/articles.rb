@@ -14,21 +14,12 @@ module BrandurOrg
       get(route, &block)
     end
 
-    def pjax?
-      !!(request.env["X-PJAX"] || request.env["HTTP_X_PJAX"])
-    end
-
-    def render_article
-      @article = @@articles[request.path_info]
-      last_modified(@article[:last_modified_at]) if Config.production?
-      @title = @article[:title]
-      content = yield
-      etag(Digest::SHA1.hexdigest(content)) if Config.production?
-      content
-    end
-
     configure do
       set :views, Config.root + "/views"
+    end
+
+    before do
+      log :access_info, pjax: pjax?
     end
 
     get "/articles" do
@@ -71,6 +62,29 @@ module BrandurOrg
       render_article do
         slim :"articles/generic", layout: !pjax?
       end
+    end
+
+    private
+
+    def pjax?
+      !!(request.env["X-PJAX"] || request.env["HTTP_X_PJAX"])
+    end
+
+    def log(action, data={}, &block)
+      data.merge!({
+        app:        "brandur-org",
+        request_id: env["REQUEST_IDS"],
+      })
+      Slides.log(action, data, &block)
+    end
+
+    def render_article
+      @article = @@articles[request.path_info]
+      last_modified(@article[:last_modified_at]) if Config.production?
+      @title = @article[:title]
+      content = yield
+      etag(Digest::SHA1.hexdigest(content)) if Config.production?
+      content
     end
   end
 end

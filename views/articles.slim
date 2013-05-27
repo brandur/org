@@ -7,13 +7,13 @@ section
           - @articles.each do |article|
             - if !article[:source]
               li
-                a href="/#{article[:slug]}"
+                a href="/#{article[:slug]}" data-pjax="#container"
                   = article[:title]
                 span.meta
                   = article[:published_at].strftime("%B %e, %Y")
             - else
               li.secondary
-                a href="#{article[:slug]}"
+                a href="#{article[:slug]}" data-pjax="#container"
                   = article[:title]
                 span.meta
                   = article[:published_at].strftime("%B %e, %Y")
