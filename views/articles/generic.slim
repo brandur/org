@@ -2,7 +2,8 @@
 .row
   .pre_2.col_7
     .content
-      == Tilt.new("./views/articles/" + @article[:slug] + ".md", Slim::Embedded.default_options[:markdown]).render
+      article
+        == Tilt.new("./views/articles/" + @article[:slug] + ".md", Slim::Embedded.default_options[:markdown]).render
   .col_3.last
     .content.mobile-only
       #about

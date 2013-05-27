@@ -1,19 +1,20 @@
 == render :slim, :"_header", layout: false
-.row
-  .pre_2.col_7.suf_3.last
-    .content
-      ul.list
-        - @articles.each do |article|
-          - if !article[:source]
-            li
-              a href="/#{article[:slug]}"
-                = article[:title]
-              span.meta
-                = article[:published_at].strftime("%B %e, %Y")
-          - else
-            li.secondary
-              a href="#{article[:slug]}"
-                = article[:title]
-              span.meta
-                = article[:published_at].strftime("%B %e, %Y")
+section
+  .row
+    .pre_2.col_7.suf_3.last
+      .content
+        ul.list
+          - @articles.each do |article|
+            - if !article[:source]
+              li
+                a href="/#{article[:slug]}"
+                  = article[:title]
+                span.meta
+                  = article[:published_at].strftime("%B %e, %Y")
+            - else
+              li.secondary
+                a href="#{article[:slug]}"
+                  = article[:title]
+                span.meta
+                  = article[:published_at].strftime("%B %e, %Y")
 == render :slim, :"_footer", layout: false
