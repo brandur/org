@@ -22,7 +22,14 @@ module BrandurOrg
       log :access_info, pjax: pjax?
     end
 
+    helpers do
+      def pjax?
+        !!(request.env["X-PJAX"] || request.env["HTTP_X_PJAX"])
+      end
+    end
+
     get "/articles" do
+      @title = "Articles"
       @articles = @@articles.values.sort_by { |a| a[:published_at] }.reverse
       res = Excon.get("#{Config.events_url}/events",
         expects: 200,
@@ -65,10 +72,6 @@ module BrandurOrg
     end
 
     private
-
-    def pjax?
-      !!(request.env["X-PJAX"] || request.env["HTTP_X_PJAX"])
-    end
 
     def log(action, data={}, &block)
       data.merge!({

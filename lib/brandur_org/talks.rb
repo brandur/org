@@ -4,14 +4,15 @@ module BrandurOrg
       set :views, Config.root + "/views"
     end
 
-    get "/talks" do
-      slim :talks, layout: !pjax?
+    helpers do
+      def pjax?
+        !!(request.env["X-PJAX"] || request.env["HTTP_X_PJAX"])
+      end
     end
 
-    private
-
-    def pjax?
-      !!(request.env["X-PJAX"] || request.env["HTTP_X_PJAX"])
+    get "/talks" do
+      @title = "Talks"
+      slim :talks, layout: !pjax?
     end
   end
 end
