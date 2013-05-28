@@ -1,6 +1,6 @@
 - if pjax?
   title= @title
-== render :slim, :"_header", layout: false
+== render :slim, :"_header", layout: false, locals: { title: @title }
 .row
   .pre_2.col_7
     .content

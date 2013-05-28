@@ -3,4 +3,5 @@ header
     .col_3.suf_9.last
       .content
         #title
-          h1= @title
+          - if title
+            h1= title
