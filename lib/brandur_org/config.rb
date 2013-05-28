@@ -10,6 +10,10 @@ module BrandurOrg
       %w{1 true yes}.include?(env("FORCE_SSL"))
     end
 
+    def google_analytics_id
+      env("GOOGLE_ANALYTICS_ID")
+    end
+
     def production?
       env("RACK_ENV") == "production"
     end
