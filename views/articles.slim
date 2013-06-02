@@ -1,9 +1,9 @@
 - if pjax?
   title= @title
 == render :slim, :"_header", layout: false, locals: { title: nil }
-section
+section.articles
   .row
-    .pre_2.col_7.suf_3.last
+    .col_12.last
       .content
         ul.list
           - @articles.each do |article|
@@ -13,6 +13,9 @@ section
                   = article[:title]
                 span.meta
                   = article[:published_at].strftime("%B %e, %Y")
+                - if article[:hook]
+                  p.hook= article[:hook]
+                .divider
             - else
               li.secondary
                 a href="#{article[:slug]}" data-pjax="#container"

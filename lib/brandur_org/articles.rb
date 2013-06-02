@@ -52,6 +52,9 @@ module BrandurOrg
     end
 
     article "/request-ids", {
+      hook: <<-eos,
+We use a simple pattern to track any given request by injecting a particular key into all the logging events that it produces.
+      eos
       location:     "San Francisco",
       published_at: Time.parse("Sat May 25 20:49:02 PDT 2013"),
       title:        "Request IDs",
@@ -62,6 +65,9 @@ module BrandurOrg
     end
 
     article "/service-stubs", {
+      hook: <<-eos,
+How we take the pain out of developing for service-oriented architecture and keep development on every project fast and efficient.
+      eos
       location:     "San Francisco",
       published_at: Time.parse("Sat May 25 20:49:02 PDT 2013"),
       title:        "SOA and Service Stubs",
