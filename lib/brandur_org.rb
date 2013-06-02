@@ -1,5 +1,6 @@
 require_relative "brandur_org/config"
 require_relative "brandur_org/markdown_helper"
+require_relative "brandur_org/simple_cache"
 
 require_relative "brandur_org/articles"
 require_relative "brandur_org/books"

@@ -30,19 +30,10 @@ module BrandurOrg
 
     get "/articles" do
       @title = "Articles"
-      @articles = @@articles.values.sort_by { |a| a[:published_at] }.reverse
-      res = Excon.get("#{Config.events_url}/events",
-        expects: 200,
-        headers: { "Accept" => "application/json" },
-        query: { "type" => "blog" })
-      @articles += MultiJson.decode(res.body).map { |article|
-        {
-          published_at: Time.parse(article["occurred_at"]),
-          slug:         article["slug"],
-          source:       "Mutelight",
-          title:        article["content"],
-        }
-      }
+      @articles = @@articles.values
+      @articles += mutelight_articles
+      @articles.sort_by! { |a| a[:published_at] }
+      @articles.reverse!
       slim :articles, layout: !pjax?
     end
 
@@ -85,6 +76,24 @@ How we take the pain out of developing for service-oriented architecture and kee
         request_id: env["REQUEST_IDS"],
       })
       Slides.log(action, data, &block)
+    end
+
+    def mutelight_articles
+      SimpleCache.get(:mutelight_articles, Time.now + 60) do
+        log :caching, key: :mutelight_articles
+        res = Excon.get("#{Config.events_url}/events",
+          expects: 200,
+          headers: { "Accept" => "application/json" },
+          query: { "type" => "blog" })
+        MultiJson.decode(res.body).map { |article|
+          {
+            published_at: Time.parse(article["occurred_at"]),
+            slug:         article["slug"],
+            source:       "Mutelight",
+            title:        article["content"],
+          }
+        }
+      end
     end
 
     def render_article
