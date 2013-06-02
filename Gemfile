@@ -22,6 +22,7 @@ gem "uglifier"
 gem "yui-compressor"
 
 group :development, :test do
+  gem "debugger"
   gem "rack-test"
   gem "rr"
   gem "turn"
