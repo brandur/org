@@ -4,7 +4,7 @@ It's key to have powerful techniques at your disposable to gain introspection an
 
 ## Request IDs
 
-Based on the same ideas the [troubleshooting technique that Amazon uses for route 53](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResponseHeader_RequestID.html), and a very lightweight alternative to something like [Twitter's Zipkin](http://engineering.twitter.com/2012/06/distributed-systems-tracing-with-zipkin.html), the request ID is a way of grouping all the information associated with a given request, even as that request makes its way across a distributed architecture. The benefits are two-fold:
+A very lightweight alternative to something like [Twitter's Zipkin](http://engineering.twitter.com/2012/06/distributed-systems-tracing-with-zipkin.html), and based on the same ideas as the [troubleshooting technique that Amazon uses for route 53](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResponseHeader_RequestID.html), request IDs are a way of grouping all the information associated with a given request, even as that request makes its way across a distributed architecture. The benefits are two-fold:
 
 * Provides a tagging mechanism for events that are produced, so that a full report of what occurred and timing in every component touched can be generated.
 * Exposes an identifier to users, both internal and external, which can be used to track down specific issues that they're running into.
