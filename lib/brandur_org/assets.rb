@@ -27,7 +27,7 @@ module BrandurOrg
     end
 
     %w{jpg png}.each do |format|
-      get "/assets/:image.#{format}" do |image|
+      get "/assets/*.#{format}" do |image|
         respond_with_asset(@assets["#{image}.#{format}"])
       end
     end
@@ -41,6 +41,7 @@ module BrandurOrg
     private
 
     def respond_with_asset(asset)
+      halt(404) unless asset
       cache_control(:public, max_age: 2592000)
       content_type(asset.content_type)
       last_modified(asset.mtime.utc) if Config.production?
