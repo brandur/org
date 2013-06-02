@@ -6,7 +6,12 @@ This pattern has had the benefits of faster development, smaller and more focuse
 
 ## Request IDs
 
-We use a simple pattern to track any given request by injecting a particular key into all the logging events that it produces. A simplified version the middleware that kicks this off might look like this:
+Based on the same ideas the [request IDs that Amazon uses for route 53](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResponseHeader_RequestID.html), the request ID is a way of grouping all the information associated with a given request, even as that request makes its way across a distributed architecture. The benefits are two-fold:
+
+* Provides a tagging mechanism for events produced by the system, so that a full report of what occurred in every component of the system can be generated.
+* Exposes an identifier to users, both internal and external, which can be used to track down specific issues that they're running into.
+
+In practice, the request ID is a UUID that's generated at the beginning of a request and stored for its duration. Here's a simple Rack middleware that does this job:
 
 ``` ruby
 class Middleware::Instruments
@@ -46,11 +51,22 @@ Our apps are all configured to drain their log streams to Splunk, which provides
 9d5ccdbe-6a5c-4da7-8762-8fb627a020a4
 ```
 
+## Heroku's Request IDs
+
+Heroku's routing layer can [generate a request ID]() automatically, which allows platform-generated logging events to be tagged in as well. Rather than generating them yourself, these IDs can be accessed through an incoming header:
+
+``` ruby
+def log(action, data={})
+  data.merge!(request_id: request.env["HTTP_HEROKU_REQUEST_ID"])
+  ...
+end
+```
+
 ## Composing Request IDs
 
 Request IDs provide a convenient mechanism for digging into a single request for any given app, but so far they're not much help when it comes to a number of composed apps that are constantly making calls to each other.
 
-We take the concept a step further by having apps that make calls to other apps inject their own request ID via a request header. 
+We take the concept a step further by having apps that make calls to other apps inject their own request ID via a request header.
 
 ``` ruby
 api = Excon.new("https://api.heroku.com", headers: {
@@ -83,9 +99,9 @@ app=api response status=201 elapsed=0.005 request_id=9d5ccdbe...,4edef22b...
 app=id response status=200 elapsed=0.010 request_id=4edef22b...
 ```
 
-A Splunk query based on the top-level request ID will yield logging events from all composed apps.
+A Splunk query based on the top-level request ID will yield logging events from all composed apps. Note that although we use Splunk here, alternatives like Papertrail will do the same job.
 
-<div class="attachment"><img src="//d2tk6nxes1806g.cloudfront.net/request-ids/splunk-search.png"></div>
+<div class="attachment"><img src="/assets/request-ids/splunk-search.png"></div>
 
 ## Tweaks
 
@@ -125,6 +141,8 @@ curl -i https://api.example.com/hello
 Request-ID: 9d5ccdbe-6a5c-4da7-8762-8fb627a020a4
 ...
 ```
+
+Heroku's new [V3 platform API]() includes a request ID in the respones with every request.
 
 ### Storing Request ID in a Request Store
 

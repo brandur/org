@@ -48,7 +48,7 @@ We use a simple pattern to track any given request by injecting a particular key
       eos
       location:     "San Francisco",
       published_at: Time.parse("Sat May 25 20:49:02 PDT 2013"),
-      title:        "Request IDs",
+      title:        "Tracking Request IDs",
     } do
       render_article do
         slim :"articles/generic", layout: !pjax?
@@ -57,7 +57,7 @@ We use a simple pattern to track any given request by injecting a particular key
 
     article "/service-stubs", {
       hook: <<-eos,
-How we take the pain out of developing for service-oriented architecture and keep development on every project fast and efficient.
+How we build minimal, platform deployable, Rack service stubs to take the pain out of developing applications that depend on an extensive service-oriented architecture.
       eos
       location:     "San Francisco",
       published_at: Time.parse("Sat May 25 20:49:02 PDT 2013"),
