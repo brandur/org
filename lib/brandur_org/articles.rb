@@ -31,6 +31,7 @@ module BrandurOrg
     get "/articles" do
       @title = "Articles"
       @articles = @@articles.values
+      @articles.select! { |a| a[:published_at] <= Time.now }
       @articles += mutelight_articles
       @articles.sort_by! { |a| a[:published_at] }
       @articles.reverse!
@@ -38,7 +39,10 @@ module BrandurOrg
     end
 
     get "/articles.atom" do
-      @articles = @@articles.values.sort_by { |a| a[:published_at] }.reverse
+      @articles = @@articles.values
+      @articles.select! { |a| a[:published_at] <= Time.now }
+      @articles.sort_by! { |a| a[:published_at] }
+      @articles.reverse!
       builder :articles
     end
 
@@ -47,7 +51,7 @@ module BrandurOrg
 A simple pattern for tracing requests across a service-oriented architecture by injecting a UUID into the events that they produce.
       eos
       location:     "San Francisco",
-      published_at: Time.parse("Sat May 25 20:49:02 PDT 2013"),
+      published_at: Time.parse("Sun Jun  2 10:21:43 PDT 2013"),
       title:        "Tracing Request IDs",
     } do
       render_article do
@@ -60,7 +64,7 @@ A simple pattern for tracing requests across a service-oriented architecture by 
 How we build minimal, platform deployable, Rack service stubs to take the pain out of developing applications that depend on an extensive service-oriented architecture.
       eos
       location:     "San Francisco",
-      published_at: Time.parse("Sat May 25 20:49:02 PDT 2013"),
+      published_at: Time.parse("Sun Jun  3 10:22:11 PDT 2013"),
       title:        "SOA and Service Stubs",
     } do
       render_article do
@@ -80,24 +84,29 @@ How we build minimal, platform deployable, Rack service stubs to take the pain o
 
     def mutelight_articles
       SimpleCache.get(:mutelight_articles, Time.now + 60) do
-        log :caching, key: :mutelight_articles
-        res = Excon.get("#{Config.events_url}/events",
-          expects: 200,
-          headers: { "Accept" => "application/json" },
-          query: { "type" => "blog" })
-        MultiJson.decode(res.body).map { |article|
-          {
-            published_at: Time.parse(article["occurred_at"]),
-            slug:         article["slug"],
-            source:       "Mutelight",
-            title:        article["content"],
+        begin
+          log :caching, key: :mutelight_articles
+          res = Excon.get("#{Config.events_url}/events",
+            expects: 200,
+            headers: { "Accept" => "application/json" },
+            query: { "type" => "blog" })
+          MultiJson.decode(res.body).map { |article|
+            {
+              published_at: Time.parse(article["occurred_at"]),
+              slug:         article["slug"],
+              source:       "Mutelight",
+              title:        article["content"],
+            }
           }
-        }
+        rescue Excon::Errors::Error
+          []
+        end
       end
     end
 
     def render_article
       @article = @@articles[request.path_info]
+      halt(404) unless @article[:published_at] <= Time.now
       last_modified(@article[:last_modified_at]) if Config.production?
       @title = @article[:title]
       content = yield
