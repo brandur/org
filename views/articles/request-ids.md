@@ -51,7 +51,7 @@ Our apps are all configured to drain their log streams to Splunk, which provides
 
 ## Heroku's Request IDs
 
-Heroku's routing layer can [generate a request ID]() automatically, which allows platform-generated logging events to be tagged in as well. Rather than generating them yourself, these IDs can be accessed through an incoming header:
+Heroku's routing layer can [generate a request ID](https://devcenter.heroku.com/articles/http-request-id) automatically, which allows platform-generated logging events to be tagged in as well. Rather than generating them yourself, these IDs can be accessed through an incoming header:
 
 ``` ruby
 def log(action, data={})
@@ -140,7 +140,7 @@ Request-ID: 9d5ccdbe-6a5c-4da7-8762-8fb627a020a4
 ...
 ```
 
-Heroku's new [V3 platform API]() includes a request ID in the respones with every request.
+Heroku's new [V3 platform API](https://devcenter.heroku.com/articles/platform-api-reference#request-id) includes a request ID in the respones with every request.
 
 ### Storing Request ID in a Request Store
 
