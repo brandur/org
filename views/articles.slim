@@ -15,7 +15,7 @@ section.articles
                   = article[:published_at].strftime("%B %e, %Y")
                 - if article[:hook]
                   p.hook= article[:hook]
-                .divider
+                .divider-short
             - else
               li.secondary
                 a href="#{article[:slug]}" data-pjax="#container"
