@@ -1,14 +1,12 @@
-Traditionally, and like many companies, we've followed the common Rails convention of keeping our API coupled to our web components in what other companies have called their "MonoRail", but what we've always referred to fondly as _Core_. Almost a year ago, we started to split out the brunt of our web views into a project called [Dashboard](https://dashboard.heroku.com), and which today has become the de facto way of managing Heroku accounts and apps online.
+Log into Heroku's [Dashboard](https://dashboard.heroku.com) and you'll hit three different components that work together to usher you in and show you an app list, run a `git push heroku master` and that number is more like six. These kinds of service-oriented patterns produce all kinds of logistical benefits, but debugging such a system at production scale can get messy.
 
-More recently, being strong believers in this [SOA] pattern of collapsing larger applications into smaller ones that have a strong sense of purpose and do their particular job very well, we broke out even more of Core's remaining web views into a project called [ID](https://id.heroku.com) that provides management of a Heroku identity including signup, login, password reset, and OAuth 2 compatible endpoints. Like Dashboard, ID delegates its heavy lifting to the (now much more trim) Core that provides the platform's underpinning API.
-
-This pattern has had the benefits of faster development, smaller and more focused teams on each individual project, and more manageable codebases, but as a side effect increased the complexity of debugging any given user action that could interact with a number of services in our backend. For example, a user who isn't logged in and who makes a request to Dashboard will have supporting requests routed through both ID and API on their behalf. How does an operator track what's going on across so many distributed components?
+It's key to have powerful techniques at your disposable to gain introspection and track down bugs in your production system. A simple one that's tremendously useful even on its own, is the use of request IDs to trace requests as they thread themselves through a set of composed components.
 
 ## Request IDs
 
-Based on the same ideas the [request IDs that Amazon uses for route 53](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResponseHeader_RequestID.html), the request ID is a way of grouping all the information associated with a given request, even as that request makes its way across a distributed architecture. The benefits are two-fold:
+Based on the same ideas the [troubleshooting technique that Amazon uses for route 53](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResponseHeader_RequestID.html), the request ID is a way of grouping all the information associated with a given request, even as that request makes its way across a distributed architecture. The benefits are two-fold:
 
-* Provides a tagging mechanism for events produced by the system, so that a full report of what occurred in every component of the system can be generated.
+* Provides a tagging mechanism for events that are produced, so that a full report of what occurred and timing in every component touched can be generated.
 * Exposes an identifier to users, both internal and external, which can be used to track down specific issues that they're running into.
 
 In practice, the request ID is a UUID that's generated at the beginning of a request and stored for its duration. Here's a simple Rack middleware that does this job:

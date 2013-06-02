@@ -44,11 +44,11 @@ module BrandurOrg
 
     article "/request-ids", {
       hook: <<-eos,
-We use a simple pattern to track any given request by injecting a particular key into all the logging events that it produces.
+A simple pattern for tracing requests across a service-oriented architecture by injecting a UUID into the events that they produce.
       eos
       location:     "San Francisco",
       published_at: Time.parse("Sat May 25 20:49:02 PDT 2013"),
-      title:        "Tracking Request IDs",
+      title:        "Tracing Request IDs",
     } do
       render_article do
         slim :"articles/generic", layout: !pjax?
