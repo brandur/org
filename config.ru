@@ -13,6 +13,6 @@ Slim::Embedded.default_options[:markdown] = {
   tables:             true,
 }
 
-require "./lib/brandur_org"
+require "./lib/org"
 
-run BrandurOrg::Main
+run Org::Main

@@ -1,4 +1,4 @@
-module BrandurOrg
+module Org
   module Config
     extend self
 

@@ -1,6 +1,6 @@
 require "thread"
 
-module BrandurOrg
+module Org
   class SimpleCache
     @@cache = {}
     @@mutex = Mutex.new

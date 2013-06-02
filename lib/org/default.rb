@@ -1,4 +1,4 @@
-module BrandurOrg
+module Org
   class Default < Sinatra::Base
     get "/" do
       redirect to("/articles")

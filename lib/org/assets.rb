@@ -1,4 +1,4 @@
-module BrandurOrg
+module Org
   class Assets < Sinatra::Base
     def initialize(*args)
       super

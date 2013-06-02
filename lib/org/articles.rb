@@ -1,6 +1,6 @@
 require 'digest/md5'
 
-module BrandurOrg
+module Org
   class Articles < Sinatra::Base
     @@articles = {}
 

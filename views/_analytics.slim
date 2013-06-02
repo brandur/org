@@ -1,7 +1,7 @@
-- if BrandurOrg::Config.google_analytics_id
+- if Org::Config.google_analytics_id
   javascript:
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '#{BrandurOrg::Config.google_analytics_id}']);
+    _gaq.push(['_setAccount', '#{Org::Config.google_analytics_id}']);
     _gaq.push(['_trackPageview']);
     (function() {
       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

@@ -1,4 +1,4 @@
-module BrandurOrg
+module Org
   class Talks < Sinatra::Base
     configure do
       set :views, Config.root + "/views"
