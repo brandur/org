@@ -8,7 +8,7 @@
         - if @article[:hook]
           p.hook= @article[:hook]
           .divider-short
-        == Tilt.new("./views/articles/" + @article[:slug] + ".md", Slim::Embedded.default_options[:markdown]).render
+        == Tilt.new("./articles/" + @article[:slug] + ".md", Slim::Embedded.default_options[:markdown]).render
   .col_3.last
     == render :slim, :"_side", layout: false
 == render :slim, :"_footer", layout: false
