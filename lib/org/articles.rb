@@ -46,6 +46,18 @@ module Org
       builder :articles
     end
 
+    article "/monolith", {
+      hook: <<-eos,
+      eos
+      location:     "San Francisco",
+      published_at: Time.parse("Sun Jun  2 19:21:43 PDT 2013"),
+      title:        "Slaying the Monolith",
+    } do
+      render_article do
+        slim :"articles/generic", layout: !pjax?
+      end
+    end
+
     article "/request-ids", {
       hook: <<-eos,
 A simple pattern for tracing requests across a service-oriented architecture by injecting a UUID into the events that they produce.
