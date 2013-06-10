@@ -40,7 +40,7 @@ The starting point was to simply use a stubbing framework for testing to stub ou
 Logplex.stub(:create_token)
 ```
 
-This approach will gets tests passing, but couples your tests to the interface of the service handler, and prevents the handler itself from being exercised. What if handlers could be written that knew how to mock themselves?
+This approach will get tests passing, but couples your tests to the interface of the service handler, and prevents the handler itself from being exercised. What if handlers could be written that knew how to mock themselves?
 
 ``` ruby
 Addons::Client.mock! if ENV["RACK_ENV"] == "test"
