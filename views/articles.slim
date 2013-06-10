@@ -12,6 +12,7 @@ section.articles
                 a href="/#{article[:slug]}" data-pjax="#container"
                   = article[:title]
                 span.meta
+                  |  
                   = article[:published_at].strftime("%B %e, %Y")
                 - if article[:hook]
                   p.hook= article[:hook]
@@ -21,5 +22,6 @@ section.articles
                 a href="#{article[:slug]}" data-pjax="#container"
                   = article[:title]
                 span.meta
+                  |  
                   = article[:published_at].strftime("%B %e, %Y")
 == render :slim, :"_footer", layout: false
