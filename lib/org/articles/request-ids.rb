@@ -10,7 +10,7 @@ A simple pattern for tracing requests across a service-oriented architecture by 
       title:        "Tracing Request IDs",
     } do
       render_article do
-        slim :"articles/generic", layout: !pjax?
+        slim :"articles/signature", layout: !pjax?
       end
     end
   end

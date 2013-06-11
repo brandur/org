@@ -10,7 +10,7 @@ How we build minimal, platform deployable, Rack service stubs to take the pain o
       title:        "SOA and Service Stubs",
     } do
       render_article do
-        slim :"articles/generic", layout: !pjax?
+        slim :"articles/signature", layout: !pjax?
       end
     end
   end
