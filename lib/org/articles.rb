@@ -46,32 +46,6 @@ module Org
       builder :articles
     end
 
-    article "/request-ids", {
-      hook: <<-eos,
-A simple pattern for tracing requests across a service-oriented architecture by injecting a UUID into the events that they produce.
-      eos
-      location:     "San Francisco",
-      published_at: Time.parse("Sun Jun  2 10:21:43 PDT 2013"),
-      title:        "Tracing Request IDs",
-    } do
-      render_article do
-        slim :"articles/generic", layout: !pjax?
-      end
-    end
-
-    article "/service-stubs", {
-      hook: <<-eos,
-How we build minimal, platform deployable, Rack service stubs to take the pain out of developing applications that depend on an extensive service-oriented architecture.
-      eos
-      location:     "San Francisco",
-      published_at: Time.parse("Sun Jun  3 10:22:11 PDT 2013"),
-      title:        "SOA and Service Stubs",
-    } do
-      render_article do
-        slim :"articles/generic", layout: !pjax?
-      end
-    end
-
     private
 
     def log(action, data={}, &block)
@@ -115,3 +89,5 @@ How we build minimal, platform deployable, Rack service stubs to take the pain o
     end
   end
 end
+
+Dir[File.expand_path(File.dirname(__FILE__) + "/articles/*.rb")].map { |f| puts f;require(f) }
