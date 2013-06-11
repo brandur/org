@@ -27,7 +27,6 @@ module Org
         !!(request.env["X-PJAX"] || request.env["HTTP_X_PJAX"])
       end
     end
-
     get "/articles" do
       @title = "Articles"
       @articles = @@articles.values
@@ -68,7 +67,6 @@ module Org
             {
               published_at: Time.parse(article["occurred_at"]),
               slug:         article["slug"],
-              source:       "Mutelight",
               title:        article["content"],
             }
           }
@@ -90,4 +88,4 @@ module Org
   end
 end
 
-Dir[File.expand_path(File.dirname(__FILE__) + "/articles/*.rb")].map { |f| puts f;require(f) }
+Dir[File.expand_path(File.dirname(__FILE__) + "/articles/*.rb")].map { |f| require(f) }

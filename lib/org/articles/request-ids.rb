@@ -6,6 +6,7 @@ A simple pattern for tracing requests across a service-oriented architecture by 
       eos
       location:     "San Francisco",
       published_at: Time.parse("Sun Jun  2 10:21:43 PDT 2013"),
+      signature:    true,
       title:        "Tracing Request IDs",
     } do
       render_article do
