@@ -1,16 +1,15 @@
-.content
-  #about.mobile-hide
-    p#avatar
-      a href="https://twitter.com/brandur"
-        img src="//www.gravatar.com/avatar/#{Digest::MD5.hexdigest("brandur@heroku.com")}?s=80"
-    p <span class="attribute"><a href="https://twitter.com/brandur">@brandur.</a></span> Platform engineer at Heroku. Ruby, APIs, Vim, Tmux, fixed gear riding, longboarding, and metal.
-    - if @article
-      p
-        span.attribute Published
-        br
-        = @article[:published_at].strftime("%B %e, %Y")
-    - if @article && @article[:location]
-      p
-        span.attribute Location
-        br
-        = @article[:location]
+#about
+  p#avatar
+    a href="https://twitter.com/brandur"
+      img src="//www.gravatar.com/avatar/#{Digest::MD5.hexdigest("brandur@heroku.com")}?s=80"
+  p <span class="attribute"><a href="https://twitter.com/brandur">@brandur.</a></span> Platform engineer at Heroku. Ruby, APIs, Vim, Tmux, fixed gear riding, longboarding, and metal.
+  - if @article
+    p
+      span.attribute Published
+      br
+      = @article[:published_at].strftime("%B %e, %Y")
+  - if @article && @article[:location]
+    p
+      span.attribute Location
+      br
+      = @article[:location]

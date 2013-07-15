@@ -2,33 +2,31 @@
   title= @title
 header
   .row
-    .pre_2.col_8.suf_2.last
-      .content
-        #title
-          #lead
-            a href="/" brandur.org
-            h1 Articles
+    .content
+      #title
+        #lead
+          a href="/" brandur.org
+          h1 Articles
 section.articles
   .row
-    .pre_2.col_8.suf_2.last
-      .content
-        ul.list
-          - @articles.each do |article|
-            - if article[:signature] == true
-              li
-                a href="/#{article[:slug]}" data-pjax="#container"
-                  = article[:title]
-                span.meta
-                  |  
-                  = article[:published_at].strftime("%B %e, %Y")
-                - if article[:hook]
-                  p.hook= article[:hook]
-                .divider-short
-            - else
-              li.secondary
-                a href="#{article[:slug]}" data-pjax="#container"
-                  = article[:title]
-                span.meta
-                  |  
-                  = article[:published_at].strftime("%B %e, %Y")
+    .content
+      ul.list
+        - @articles.each do |article|
+          - if article[:signature] == true
+            li
+              a href="/#{article[:slug]}" data-pjax="#container"
+                = article[:title]
+              span.meta
+                |  
+                = article[:published_at].strftime("%B %e, %Y")
+              - if article[:hook]
+                p.hook= article[:hook]
+              .divider-short
+          - else
+            li.secondary
+              a href="#{article[:slug]}" data-pjax="#container"
+                = article[:title]
+              span.meta
+                |  
+                = article[:published_at].strftime("%B %e, %Y")
 == render :slim, :"_footer", layout: false

@@ -54,7 +54,7 @@ pre
   font-family: Monaco, "Lucida Console", "Bitstream Vera Sans Mono", Courier, monospace
   font-size: 13px
   line-height: 1.4em
-  overflow: auto
+  overflow: visible
   margin: 40px 0
   margin-left: 40px
 
@@ -124,8 +124,6 @@ header
 #about, #toc
   display: block
   font-size: 12px
-  margin:  auto
-  max-width: 500px
 
   p
     font-style: italic
@@ -158,6 +156,22 @@ header
 
 #container
   max-width: 1100px
+
+  .row
+    clear: both
+
+  .content
+    float: left
+    margin: 0 8% 0 15%
+    position: relative
+    width: 57%
+
+  .side
+    display: block
+    float: left
+    margin: 0 4% 0 0
+    width: 16%
+    position: relative
 
 #title
 
@@ -209,7 +223,14 @@ article
 footer
   margin: 40px 50px
 
-@media only screen and (max-width: 480px), only screen and (max-device-width: 480px)
+@media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
 
-  #about
-    display: none
+  #container
+    max-width: 100%
+
+    .content
+      margin: 0 5% !important
+      width: 90% !important
+
+    .side
+      display: none !important

@@ -2,36 +2,21 @@
   title= @title
 header
   .row
-    .pre_2.col_8.suf_2.last
-      .content
-        #title
-          #lead
-            a href="/" brandur.org
-            | &nbsp; &rsaquo; &nbsp;
-            a href="/articles" articles
-          h1= @title
-.row
-  - content = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true), Slim::Embedded.default_options[:markdown]).render(File.read("./articles/" + @article[:slug] + ".md"))
-  .col_3
-    /h2 Navigation
-    /ul
-      li
-        a href="/articles" data-pjax="#container" Articles
-      li
-        a href="/talks" data-pjax="#container" Talks
-      li
-        a href="/twitter" Twitter
-      li
-        a href="/books" Books
-    /.divider-side
-    /== render :slim, :"_toc", locals: { content: content }
-  .pre_2.col_8
     .content
-      article
-        - if @article[:hook]
-          p.hook= @article[:hook]
-          .divider-short
-        == content
-  .col_2.last
-    == render :slim, :"_side", layout: false
+      #title
+        #lead
+          a href="/" brandur.org
+          | &nbsp; &rsaquo; &nbsp;
+          a href="/articles" articles
+        h1= @title
+article
+  .row
+    .content
+      - content = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true), Slim::Embedded.default_options[:markdown]).render(File.read("./articles/" + @article[:slug] + ".md"))
+      - if @article[:hook]
+        p.hook= @article[:hook]
+        .divider-short
+      == content
+    .side
+      == render :slim, :"_side", layout: false
 == render :slim, :"_footer", layout: false
