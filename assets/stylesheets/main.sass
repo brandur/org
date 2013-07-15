@@ -122,7 +122,7 @@ header
       margin: 0 8px 0 0
 
 #about, #toc
-  display: none
+  display: block
   font-size: 12px
   margin:  auto
   max-width: 500px
@@ -209,7 +209,7 @@ article
 footer
   margin: 40px 50px
 
-@media screen and (min-width:480px)
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px)
 
   #about
-    display: block
+    display: none
