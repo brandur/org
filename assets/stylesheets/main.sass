@@ -2,7 +2,7 @@ $sans_serif: helvetica, arial, geneva, sans-serif
 $serif: georgia, serif
 
 $primary: #333
-$secondary: #cdcdcd
+$secondary: #bbb
 
 a
   color: $primary
@@ -122,6 +122,7 @@ header
       margin: 0 8px 0 0
 
 #about, #toc
+  display: none
   font-size: 12px
   margin:  auto
   max-width: 500px
@@ -164,8 +165,15 @@ header
     color: $secondary
     font-family: $sans_serif
     font-size: 14px
-    font-weight: 400
+    font-weight: 100
     margin: 60px 0 0 8px
+
+    a
+      color: $secondary
+      text-decoration: none
+
+      &:hover
+        color: $primary
 
 article
 
@@ -200,3 +208,8 @@ article
 
 footer
   margin: 40px 50px
+
+@media screen and (min-width:480px)
+
+  #about
+    display: block
