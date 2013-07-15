@@ -1,9 +1,16 @@
 - if pjax?
   title= @title
-== render :slim, :"_header", layout: false, locals: { title: nil }
+header
+  .row
+    .pre_2.col_8.suf_2.last
+      .content
+        #title
+          #lead
+            a href="/" brandur.org
+            h1 Talks
 section
   .row
-    .pre_2.col_7.suf_3.last
+    .pre_2.col_8.suf_2.last
       .content
         ul.list
           li

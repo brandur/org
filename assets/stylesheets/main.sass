@@ -1,8 +1,11 @@
 $sans_serif: helvetica, arial, geneva, sans-serif
 $serif: georgia, serif
 
+$primary: #333
+$secondary: #cdcdcd
+
 a
-  color: #000
+  color: $primary
   text-decoration: underline
 
   &:hover
@@ -10,7 +13,7 @@ a
 
 body
   background: #fff
-  color: #000
+  color: $primary
   font-family: $serif
   font-size: 16px
   line-height: 1.7em
@@ -19,6 +22,7 @@ em
   font-style: italic
 
 h1, h2, h3, h4
+  color: #000
   font-family: $sans_serif
   font-weight: 400
   margin: 30px 0
@@ -26,6 +30,7 @@ h1, h2, h3, h4
 h1
   font-size: 100px
   line-height: 1.0em
+  margin: 20px 0 60px 0
 
 h2
   border-bottom: 1px solid #dedede
@@ -39,13 +44,6 @@ nav#footer
   font-size: 13px
   text-align: center
   text-transform: uppercase
-
-p.stamp
-  font-size: 13px
-  text-align: center
-
-  a
-    text-decoration: none
 
 p
   hyphens: auto
@@ -64,15 +62,16 @@ pre
 strong
   font-weight: bold
 
-.content
-  margin: 30px 40px
-
 .divider
-  border-bottom: 1px solid #dedede
+  border-bottom: 1px solid $secondary
+  margin: 30px 0
+
+.divider-side
+  border-bottom: 10px solid #000
   margin: 30px 0
 
 .divider-short
-  border-bottom: 1px solid #dedede
+  border-bottom: 1px solid $secondary
   margin: 30px auto
   width: 80%
 
@@ -93,7 +92,7 @@ strong
     margin-top: 0
 
   .meta
-    color: #9a9a9a
+    color: $secondary
     font-family: $sans_serif
     font-size: 12px
     font-style: italic
@@ -107,18 +106,12 @@ strong
       font-weight: normal
       line-height: 1.7em
 
-.row
-  max-width: 1500px
-
 header
-  font-size: 12px
-  margin: 40px 50px
-
   #attributes
     margin: 30px 0
 
     p
-      color: #9a9a9a
+      color: $secondary
       font-size: 12px
       font-style: italic
       line-height: 1.4em
@@ -129,34 +122,51 @@ header
     span
       margin: 0 8px 0 0
 
-#about
-  margin: 0 auto
+#about, #toc
+  font-size: 12px
+  margin:  auto
   max-width: 500px
 
   p
-    font-size: 14px
     font-style: italic
     line-height: 1.5em
 
-  .attribute
+  h2, .attribute
+    border: 0
+    color: $primary
     font-family: $sans_serif
+    font-size: 13px
     font-style: normal
     font-weight: bold
+    margin: 0
 
     a
+      color: $primary
       text-decoration: none
 
       &:hover
         text-decoration: underline
 
   p#avatar
-    margin: 40px 0
+    //margin: 40px 0
     text-align: center
 
     img
-      border-radius: 60px
-      -moz-border-radius: 60px
-      -webkit-border-radius: 60px
+      border-radius: 40px
+      -moz-border-radius: 40px
+      -webkit-border-radius: 40px
+
+#container
+  max-width: 1100px
+
+#title
+
+  #lead
+    color: $secondary
+    font-family: $sans_serif
+    font-size: 14px
+    font-weight: 400
+    margin: 60px 0 0 8px
 
 article
 
@@ -187,12 +197,7 @@ article
     font-size: 22px
     font-style: italic
     line-height: 1.6em
-    margin: 30px 0
-
-section.articles
-
-  .row
-    max-width: 800px
+    margin: 0 0 30px 0
 
 footer
   margin: 40px 50px

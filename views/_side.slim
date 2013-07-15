@@ -1,10 +1,8 @@
 .content
-  .mobile-only
-    .divider
-  #about
+  #about.mobile-hide
     p#avatar
       a href="https://twitter.com/brandur"
-        img src="//www.gravatar.com/avatar/#{Digest::MD5.hexdigest("brandur@heroku.com")}?s=120"
+        img src="//www.gravatar.com/avatar/#{Digest::MD5.hexdigest("brandur@heroku.com")}?s=80"
     p <span class="attribute"><a href="https://twitter.com/brandur">@brandur.</a></span> Platform engineer at Heroku. Ruby, APIs, Vim, Tmux, fixed gear riding, longboarding, and metal.
     - if @article
       p

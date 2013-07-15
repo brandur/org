@@ -1,13 +1,20 @@
 - if pjax?
   title= @title
-== render :slim, :"_header", layout: false, locals: { title: nil }
+header
+  .row
+    .pre_2.col_8.suf_2.last
+      .content
+        #title
+          #lead
+            a href="/" brandur.org
+            h1 Articles
 section.articles
   .row
-    .col_12.last
+    .pre_2.col_8.suf_2.last
       .content
         ul.list
           - @articles.each do |article|
-            - if !article[:source]
+            - if article[:signature] == true
               li
                 a href="/#{article[:slug]}" data-pjax="#container"
                   = article[:title]

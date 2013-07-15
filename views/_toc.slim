@@ -1,0 +1,26 @@
+#toc
+  h2 Contents
+  ul
+    - last = 2
+    - content.scan(%r{<h([0-9]) id="(.*)">(.*)</h[0-9]>}) do
+      - level = $1.to_i
+      - id = $2
+      - content = $3
+      - close = true
+      - if level < last
+        - (last - level).times do
+          | </ul>
+          | </li>
+      | <li>
+      - if level > last
+        - close = false
+        - (level - last).times do
+          | <ul>
+      a href="##{$2}"== $3
+      - if close
+        | </li>
+      - last = level
+    - if 2 < last
+      - (last - 2).times do
+        | </ul>
+        | </li>
