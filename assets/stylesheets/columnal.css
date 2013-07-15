@@ -361,7 +361,7 @@ Columnal - extras */
 /* COLUMNAL - MOBILE
 ///////////////////////////////////////////// */
 
-@media handheld, only screen and (max-width: 767px) {
+@media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px) {
 	.row, .body, .container {
 	width: 100%;
 	margin-left:0;
