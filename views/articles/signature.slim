@@ -16,6 +16,8 @@ article
       - if @article[:hook]
         p.hook= @article[:hook]
         .divider-short
+  .row
+    .content
       == content
     .side
       == render :slim, :"_side", layout: false
