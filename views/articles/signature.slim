@@ -15,7 +15,11 @@ article
       - content = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true), Slim::Embedded.default_options[:markdown]).render(File.read("./articles/" + @article[:slug] + ".md"))
       - if @article[:hook]
         p.hook= @article[:hook]
-        .divider-short
+        - unless @article[:image]
+          .divider-short
+  - if @article[:image]
+    .vista
+      img src=@article[:image]
   .row
     .content
       == content
