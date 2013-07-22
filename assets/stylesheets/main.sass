@@ -18,6 +18,11 @@ body
   font-size: 16px
   line-height: 1.7em
 
+code
+  background: #f7f7f7
+  border: 1px solid #dedede
+  padding: 2px 4px
+
 em
   font-style: italic
 
@@ -52,6 +57,10 @@ pre
   overflow: visible
   margin: 40px 0
   margin-left: 40px
+
+  code
+    background: transparent
+    border: 0
 
 strong
   font-weight: bold
@@ -187,11 +196,6 @@ header
 
 article
 
-  code
-    background: #f7f7f7
-    border: 1px solid #dedede
-    padding: 2px 4px
-
   ol, ul
 
     li
@@ -232,6 +236,19 @@ footer
     margin: 50px 0
     text-align: center
     text-transform: uppercase
+
+@media (orientation: portrait)
+
+  body
+    font-size: 20px
+
+  h1
+    font-size: 120px
+
+  article
+
+    .hook
+      font-size: 30px
 
 @media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
 
