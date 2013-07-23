@@ -1,0 +1,13 @@
+- if pjax?
+  title= @title
+header
+  .row
+    .content
+      #title
+        #lead
+          a href="/" brandur.org
+section.root
+  ul.articles
+    li Service Stubs
+    li Request IDs
+== render :slim, :"_footer", layout: false

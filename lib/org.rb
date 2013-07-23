@@ -6,6 +6,7 @@ require_relative "org/articles"
 require_relative "org/assets"
 require_relative "org/default"
 require_relative "org/reading"
+require_relative "org/root"
 require_relative "org/talks"
 require_relative "org/twitter"
 

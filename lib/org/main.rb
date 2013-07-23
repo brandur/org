@@ -9,6 +9,7 @@ module Org
       mount Org::Articles
       mount Org::Assets
       mount Org::Reading
+      mount Org::Root
       mount Org::Talks
       mount Org::Twitter
       run Org::Default
