@@ -151,7 +151,7 @@ engineering design goals:
   database connection strings. The scoping system must take this into account.
 * We should provide a very minimal scope that provides basic user information
   and nothing else. This is useful in systems that will use OAuth to identify a
-  user and little else like [Heroku Discussion](https://discussion.heroku.com).
+  user and little else like the [Heroku Forums](https://discussion.heroku.com).
 
 Taking these goals into account, along with the spec and the web's other
 implementations, we came up with a starting point for our scope system which is
