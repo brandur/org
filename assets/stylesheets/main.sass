@@ -3,6 +3,8 @@ $serif: georgia, serif
 
 $primary: #333
 $secondary: #bbb
+//$tertiary: #efefef
+$tertiary: #f7f7f7
 
 a
   color: $primary
@@ -10,6 +12,11 @@ a
 
   &:hover
     text-decoration: none
+
+blockquote
+  border-left: 40px solid $tertiary
+  padding: 0 0 0 20px
+  margin: 0 0 0 20px
 
 body
   background: #fff
@@ -19,7 +26,7 @@ body
   line-height: 1.7em
 
 code
-  background: #f7f7f7
+  background: $tertiary
   border: 1px solid #dedede
   padding: 2px 4px
 
@@ -237,7 +244,7 @@ footer
     text-align: center
     text-transform: uppercase
 
-@media (orientation: portrait)
+@media only screen and (orientation: portrait)
 
   body
     font-size: 20px
