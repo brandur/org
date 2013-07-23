@@ -27,6 +27,7 @@ module Org
         !!(request.env["X-PJAX"] || request.env["HTTP_X_PJAX"])
       end
     end
+
     get "/articles" do
       @title = "Articles"
       @articles = @@articles.values
