@@ -8,7 +8,7 @@ module Org
     run Sinatra::Router.new {
       mount Org::Articles
       mount Org::Assets
-      mount Org::Books
+      mount Org::Reading
       mount Org::Talks
       mount Org::Twitter
       run Org::Default
