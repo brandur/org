@@ -13,12 +13,10 @@ module Org
       slim :"quotes/favors"
     end
 
-=begin
-    get "/kubla-khan" do
+    get "/that-sunny-dome" do
       @title = "Kubla Khan"
-      slim :"quotes/kubla-khan"
+      slim :"quotes/that-sunny-dome"
     end
-=end
 
     get "/lies" do
       @title = "Lies"
