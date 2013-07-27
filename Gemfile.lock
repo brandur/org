@@ -76,6 +76,7 @@ DEPENDENCIES
   coffee-script
   debugger
   excon
+  multi_json
   pg
   puma
   rack

@@ -3,6 +3,7 @@ source :rubygems
 gem "builder"
 gem "coffee-script"
 gem "excon"
+gem "multi_json"
 gem "pg"
 gem "puma"
 gem "rack"
