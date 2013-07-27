@@ -7,6 +7,7 @@ module Org
           links: [
             { rel: "articles",        href: "#{request.url}articles" },
             { rel: "favors",          href: "#{request.url}favors" },
+            { rel: "humans",          href: "#{request.url}humans.txt" },
             { rel: "lies",            href: "#{request.url}lies" },
             { rel: "reading",         href: "#{request.url}reading" },
             { rel: "talks",           href: "#{request.url}talks" },
