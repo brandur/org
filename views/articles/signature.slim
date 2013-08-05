@@ -10,9 +10,9 @@ header
           a href="/articles" articles
         h1= @title
 article
+  - content = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true), Slim::Embedded.default_options[:markdown]).render(File.read("./articles/" + @article[:slug] + ".md"))
   .row
     .content
-      - content = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true), Slim::Embedded.default_options[:markdown]).render(File.read("./articles/" + @article[:slug] + ".md"))
       - if @article[:hook]
         p.hook= @article[:hook]
         - unless @article[:image]

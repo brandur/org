@@ -1,12 +1,17 @@
 - if pjax?
   title= @title
 header
-  .row
-    .col12
-      h1.generic= @title
-.row
-  .col_12
+  .row-generic
     .content
-      article
-        == Tilt.new("./articles/" + @article[:slug] + ".md", Slim::Embedded.default_options[:markdown]).render
+      #title
+        #lead
+          a href="/" brandur.org
+          | &nbsp; &rsaquo; &nbsp;
+          a href="/articles" musings
+        h1.generic= @title
+article
+  - content = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true), Slim::Embedded.default_options[:markdown]).render(File.read("./articles/" + @article[:slug] + ".md"))
+  .row-generic
+    .content
+      == content
 == render :slim, :"_footer", layout: false
