@@ -37,14 +37,14 @@ section.books
           - display = distance_of_time_in_words(Time.parse(book["occurred_at"]))
           = display ? "finished #{display} ago" : Time.parse(book["occurred_at"]).getlocal.strftime('%b %e, %Y %H:%M')
 section.articles
-  h2 Reading
+  h2 Links
   ul
-    - @articles.each do |article|
+    - @links.each do |link|
       li
-        a href="#{article["content"]}"= article["metadata"]["title"]
+        a href="#{link["content"]}"= link["metadata"]["title"]
         | &nbsp;
         span.meta
-          - uri = URI.parse(article["content"])
+          - uri = URI.parse(link["content"])
           = uri.host.gsub(/^www\./, "")
 .clear
 == render :slim, :"_footer", layout: false

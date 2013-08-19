@@ -25,9 +25,9 @@ module Org
         }, pretty: true)
       else
         @body_class = "index"
-        @articles = BlackSwanClient.new.get_events("readability")
         @books    = BlackSwanClient.new.get_events("goodreads")
         @essays   = Articles.articles
+        @links    = BlackSwanClient.new.get_events("readability")
         @photos   = BlackSwanClient.new.get_events("flickr", limit: 15).
           reject { |p| p["metadata"]["medium_width"] != "500" }[0, 5]
         @tweets   = BlackSwanClient.new.get_events("twitter", limit: 30).
