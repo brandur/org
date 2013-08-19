@@ -1,0 +1,50 @@
+section.essays
+  h2 Essays
+  ul
+    - @essays.each do |essay|
+      li
+        a href="/#{essay[:slug]}" data-pjax="#container"= essay[:title]
+        p= essay[:hook]
+section.photos
+  h2 Photos
+  ul
+    - @photos.each do |photo|
+      li
+        a href="http://flickr.com/photos/brandurleach/#{photo["slug"]}"
+          img src=photo["metadata"]["medium_image"]
+section.tweets
+  h2 Twitter
+  ul
+    - @tweets.each do |tweet|
+      li
+        == content_to_html(tweet["content"])
+        | &nbsp;
+        span.meta
+          a href="https://twitter.com/brandur/statuses/#{tweet["slug"]}"
+            - display = distance_of_time_in_words(Time.parse(tweet["occurred_at"]))
+            = display ? "#{display} ago" : Time.parse(tweet["occurred_at"]).getlocal.strftime('%b %e, %Y %H:%M')
+section.books
+  h2 Books
+  ul
+    - @books.each do |book|
+      li
+        em
+          a href="http://www.google.com/search?tbo=p&tbm=bks&q=isbn:#{book["slug"]}"= book["metadata"]["title"]
+        |  by #{book["metadata"]["author"]}
+        | &nbsp;
+        span.meta
+          | #{book["metadata"]["num_pages"]} pages; 
+          - display = distance_of_time_in_words(Time.parse(book["occurred_at"]))
+          = display ? "finished #{display} ago" : Time.parse(book["occurred_at"]).getlocal.strftime('%b %e, %Y %H:%M')
+section.articles
+  h2 Reading
+  ul
+    - @articles.each do |article|
+      li
+        a href="#{article["content"]}"= article["metadata"]["title"]
+        | &nbsp;
+        span.meta
+          - uri = URI.parse(article["content"])
+          = uri.host.gsub(/^www\./, "")
+.clear
+== render :slim, :"_footer", layout: false

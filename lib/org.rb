@@ -1,6 +1,11 @@
+require_relative "org/black_swan_client"
 require_relative "org/config"
 require_relative "org/markdown_helper"
 require_relative "org/simple_cache"
+
+require_relative "org/helpers/common"
+require_relative "org/helpers/goodreads"
+require_relative "org/helpers/twitter"
 
 require_relative "org/articles"
 require_relative "org/assets"

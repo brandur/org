@@ -1,0 +1,74 @@
+$sans_serif: helvetica, arial, geneva, sans-serif
+$serif: georgia, serif
+
+$secondary: #bbb
+
+body.index
+  font-size: 13px
+
+  h2
+    color: $secondary
+    font-family: $sans_serif
+    font-size: 13px
+    font-weight: bold
+    margin: 10px 0
+    text-transform: uppercase
+
+  section.articles, section.books, section.tweets
+    float: left
+    margin: 30px 50px
+    width: 250px
+
+    li
+      margin: 10px 0
+
+    .meta
+      color: $secondary
+      font-family: $sans_serif
+      font-size: 12px
+      font-weight: normal
+
+      a, a:hover, a:visited
+        color: $secondary
+        text-decoration: none
+
+  section.articles
+
+  section.books
+
+  section.essays
+    float: left
+    margin: 30px 50px
+    width: 300px
+
+    a
+      font-family: $sans_serif
+      font-size: 40px
+      line-height: 1.1em
+      text-decoration: none
+
+    li
+      margin-bottom: 40px
+
+  section.photos
+    float: left
+    margin: 30px 50px
+    width: 500px
+
+    img
+      border-radius: 10px
+      margin: 5px 0
+      width: 500px
+
+  section.tweets
+
+@media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
+
+  body.index
+
+    h2
+
+    section.articles, section.books, section.essays, section.photos, section.tweets
+      float: none
+      margin: 30px 50px
+      width: auto

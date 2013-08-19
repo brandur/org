@@ -1,5 +1,13 @@
 module Org
   class Default < Sinatra::Base
+    configure do
+      set :views, Config.root + "/views"
+    end
+
+    helpers Helpers::Common
+    helpers Helpers::Goodreads
+    helpers Helpers::Twitter
+
     get "/" do
       if json?
         content_type :json
@@ -16,7 +24,15 @@ module Org
           ]
         }, pretty: true)
       else
-        redirect to("/articles")
+        @body_class = "index"
+        @articles = BlackSwanClient.new.get_events("readability")
+        @books    = BlackSwanClient.new.get_events("goodreads")
+        @essays   = Articles.articles
+        @photos   = BlackSwanClient.new.get_events("flickr", limit: 15).
+          reject { |p| p["metadata"]["medium_width"] != "500" }[0, 5]
+        @tweets   = BlackSwanClient.new.get_events("twitter", limit: 30).
+          reject { |t| t["metadata"]["reply"] == "true" }[0, 10]
+        slim :"index"
       end
     end
 

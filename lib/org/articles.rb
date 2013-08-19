@@ -14,6 +14,14 @@ module Org
       get(route, &block)
     end
 
+    def self.articles
+      articles = @@articles.values
+      articles.select! { |a| a[:published_at] <= Time.now }
+      articles.sort_by! { |a| a[:published_at] }
+      articles.reverse!
+      articles
+    end
+
     configure do
       set :views, Config.root + "/views"
     end
@@ -60,11 +68,7 @@ module Org
       SimpleCache.get(:mutelight_articles, Time.now + 60) do
         begin
           log :caching, key: :mutelight_articles
-          res = Excon.get("#{Config.events_url}/events",
-            expects: 200,
-            headers: { "Accept" => "application/json" },
-            query: { "type" => "blog" })
-          MultiJson.decode(res.body).map { |article|
+          BlackSwanClient.new.get_events("blog").map { |article|
             {
               published_at: Time.parse(article["occurred_at"]),
               slug:         article["slug"],
