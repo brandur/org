@@ -24,7 +24,6 @@ module Org
           ]
         }, pretty: true)
       else
-        @body_class = "index"
         @books    = BlackSwanClient.new.get_events("goodreads")
         @essays   = Articles.articles
         @links    = BlackSwanClient.new.get_events("readability")

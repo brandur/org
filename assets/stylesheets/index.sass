@@ -3,8 +3,8 @@ $serif: georgia, serif
 
 $secondary: #bbb
 
-body.index
-  font-size: 13px
+.index
+  font-size: 14px
 
   h2
     color: $secondary
@@ -14,10 +14,10 @@ body.index
     margin: 10px 0
     text-transform: uppercase
 
-  section.articles, section.books, section.tweets
+  section.books, section.links, section.tweets
     float: left
-    margin: 30px 50px
-    width: 250px
+    margin: 30px 30px
+    width: 300px
 
     li
       margin: 10px 0
@@ -33,12 +33,8 @@ body.index
         text-decoration: none
 
   section.articles
-
-  section.books
-
-  section.essays
     float: left
-    margin: 30px 50px
+    margin: 30px 30px
     width: 300px
 
     a
@@ -50,9 +46,13 @@ body.index
     li
       margin-bottom: 40px
 
+  section.books
+
+  section.links
+
   section.photos
     float: left
-    margin: 30px 50px
+    margin: 30px 30px
     width: 500px
 
     img
@@ -64,11 +64,11 @@ body.index
 
 @media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
 
-  body.index
+  .index
 
     h2
 
-    section.articles, section.books, section.essays, section.photos, section.tweets
+    section.articles, section.books, section,links, section.photos, section.tweets
       float: none
       margin: 30px 50px
       width: auto
