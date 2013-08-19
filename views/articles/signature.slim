@@ -5,9 +5,7 @@ header
     .content
       #title
         #lead
-          a href="/" brandur.org
-          | &nbsp; &rsaquo; &nbsp;
-          a href="/articles" articles
+          a href="/articles" Articles
         h1= @title
 article
   - content = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true), Slim::Embedded.default_options[:markdown]).render(File.read("./articles/" + @article[:slug] + ".md"))
