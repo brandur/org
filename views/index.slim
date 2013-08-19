@@ -25,7 +25,7 @@
               - display = distance_of_time_in_words(Time.parse(tweet["occurred_at"]))
               = display ? "#{display} ago" : Time.parse(tweet["occurred_at"]).getlocal.strftime('%b %e, %Y %H:%M')
   section.books
-    h2 Books
+    h2 Reading
     ul
       - @books.each do |book|
         li
