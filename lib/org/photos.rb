@@ -12,7 +12,7 @@ module Org
 
     get "/photos" do
       @title = "Photos"
-      @photos = cache(:photos) {
+      @photos = cache(:photos, expires_at: Time.now + 300) {
         BlackSwanClient.new.get_events("flickr", limit: 100).
           reject { |p| p["metadata"]["medium_width"] != "500" }
       }

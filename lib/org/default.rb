@@ -31,7 +31,7 @@ module Org
         @links    = cache(:readability) {
           BlackSwanClient.new.get_events("readability")
         }
-        @photos   = cache(:flickr) {
+        @photos   = cache(:flickr, expires_at: Time.now + 300) {
           BlackSwanClient.new.get_events("flickr", limit: 15).
             reject { |p| p["metadata"]["medium_width"] != "500" }[0, 5]
         }

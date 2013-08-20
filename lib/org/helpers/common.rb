@@ -1,7 +1,7 @@
 module Org::Helpers
   module Common
-    def cache(key)
-      Org::SimpleCache.get(key, Time.now + 60) do
+    def cache(key, options={})
+      Org::SimpleCache.get(key, options[:expires_at] || (Time.now + 60)) do
         begin
           log :caching, key: key
           yield
