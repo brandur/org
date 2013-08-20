@@ -1,5 +1,16 @@
 module Org::Helpers
   module Common
+    def cache(key)
+      Org::SimpleCache.get(key, Time.now + 60) do
+        begin
+          log :caching, key: key
+          yield
+        rescue Excon::Errors::Error
+          []
+        end
+      end
+    end
+
     # only works up to one year
     def distance_of_time_in_words(from_time, to_time=Time.now)
       distance_in_minutes = (((to_time - from_time).abs)/60).round
@@ -21,10 +32,22 @@ module Org::Helpers
       end
     end
 
+    def log(action, data={}, &block)
+      data.merge!({
+        app:        "brandur-org",
+        request_id: env["REQUEST_IDS"],
+      })
+      Slides.log(action, data, &block)
+    end
+
     def number_with_delimiter(number)
       parts = number.to_s.to_str.split(".")
       parts[0].gsub!(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{","}")
       parts.join(".")
+    end
+
+    def pjax?
+      !!(request.env["X-PJAX"] || request.env["HTTP_X_PJAX"])
     end
   end
 end

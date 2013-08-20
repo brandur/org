@@ -9,6 +9,7 @@ module Org
       mount Org::Articles
       mount Org::Assets
       mount Org::Humans
+      mount Org::Photos
       mount Org::Quotes
       mount Org::Reading
       mount Org::Talks

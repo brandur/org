@@ -26,14 +26,10 @@ module Org
       set :views, Config.root + "/views"
     end
 
+    helpers Helpers::Common
+
     before do
       log :access_info, pjax: pjax?
-    end
-
-    helpers do
-      def pjax?
-        !!(request.env["X-PJAX"] || request.env["HTTP_X_PJAX"])
-      end
     end
 
     get "/articles" do
@@ -55,14 +51,6 @@ module Org
     end
 
     private
-
-    def log(action, data={}, &block)
-      data.merge!({
-        app:        "brandur-org",
-        request_id: env["REQUEST_IDS"],
-      })
-      Slides.log(action, data, &block)
-    end
 
     def mutelight_articles
       SimpleCache.get(:mutelight_articles, Time.now + 60) do

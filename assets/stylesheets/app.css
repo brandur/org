@@ -2,5 +2,6 @@
  *= require "_reset"
  *= require "main"
  *= require "index"
+ *= require "photos"
  *= require "quotes"
 */
