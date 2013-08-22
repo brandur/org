@@ -53,20 +53,14 @@ module Org
     private
 
     def mutelight_articles
-      SimpleCache.get(:mutelight_articles, Time.now + 60) do
-        begin
-          log :caching, key: :mutelight_articles
-          BlackSwanClient.new.get_events("blog").map { |article|
-            {
-              published_at: Time.parse(article["occurred_at"]),
-              slug:         article["slug"],
-              title:        article["content"],
-            }
+      DB[:events].reverse_order(:occurred_at).filter(type: "blog").limit(10).
+        map { |article|
+          {
+            published_at: article[:occurred_at],
+            slug:         article[:slug],
+            title:        article[:content],
           }
-        rescue Excon::Errors::Error
-          []
-        end
-      end
+        }
     end
 
     def render_article

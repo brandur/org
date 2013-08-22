@@ -24,21 +24,14 @@ module Org
           ]
         }, pretty: true)
       else
-        @books    = cache(:goodreads) {
-          BlackSwanClient.new.get_events("goodreads")
-        }
+        events = DB[:events].reverse_order(:occurred_at)
+        @books    = events.filter(type: "goodreads").limit(10).all
         @essays   = Articles.articles
-        @links    = cache(:readability) {
-          BlackSwanClient.new.get_events("readability")
-        }
-        @photos   = cache(:flickr, expires_at: Time.now + 300) {
-          BlackSwanClient.new.get_events("flickr", limit: 15).
-            reject { |p| p["metadata"]["medium_width"] != "500" }[0, 5]
-        }
-        @tweets   = cache(:twitter) {
-          BlackSwanClient.new.get_events("twitter", limit: 30).
-            reject { |t| t["metadata"]["reply"] == "true" }[0, 10]
-        }
+        @links    = events.filter(type: "readability").limit(10).all
+        @photos   = events.filter(type: "flickr").
+          filter("metadata -> 'medium_width' = '500'").limit(5)
+        @tweets   = events.filter(type: "twitter").
+          filter("metadata -> 'reply' = 'false'").limit(10)
         slim :"index"
       end
     end

@@ -1,16 +1,5 @@
 module Org::Helpers
   module Common
-    def cache(key, options={})
-      Org::SimpleCache.get(key, options[:expires_at] || (Time.now + 60)) do
-        begin
-          log :caching, key: key
-          yield
-        rescue Excon::Errors::Error
-          []
-        end
-      end
-    end
-
     # only works up to one year
     def distance_of_time_in_words(from_time, to_time=Time.now)
       distance_in_minutes = (((to_time - from_time).abs)/60).round

@@ -5,8 +5,8 @@
     ul
       - @photos.each do |photo|
         li
-          a href="http://flickr.com/photos/brandurleach/#{photo["slug"]}"
-            img src=photo["metadata"]["medium_image"].gsub(/^http:/, "https:")
+          a href="http://flickr.com/photos/brandurleach/#{photo[:slug]}"
+            img src=photo[:metadata][:medium_image].gsub(/^http:/, "https:")
   section.articles
     h2
       a href="/articles" Articles
@@ -21,12 +21,12 @@
     ul
       - @tweets.each do |tweet|
         li
-          == content_to_html(tweet["content"])
+          == content_to_html(tweet[:content])
           | &nbsp;
           span.meta
-            a href="https://twitter.com/brandur/statuses/#{tweet["slug"]}"
-              - display = distance_of_time_in_words(Time.parse(tweet["occurred_at"]))
-              = display ? "#{display} ago" : Time.parse(tweet["occurred_at"]).getlocal.strftime('%b %e, %Y %H:%M')
+            a href="https://twitter.com/brandur/statuses/#{tweet[:slug]}"
+              - display = distance_of_time_in_words(tweet[:occurred_at])
+              = display ? "#{display} ago" : tweet[:occurred_at].getlocal.strftime('%b %e, %Y %H:%M')
   section.books
     h2
       a href="/reading" Reading
@@ -34,22 +34,22 @@
       - @books.each do |book|
         li
           em
-            a href="http://www.google.com/search?tbo=p&tbm=bks&q=isbn:#{book["slug"]}"= book["metadata"]["title"]
-          |  by #{book["metadata"]["author"]}
+            a href="http://www.google.com/search?tbo=p&tbm=bks&q=isbn:#{book[:slug]}"= book[:metadata][:title]
+          |  by #{book[:metadata][:author]}
           | &nbsp;
           span.meta
-            | #{book["metadata"]["num_pages"]} pages; 
-            - display = distance_of_time_in_words(Time.parse(book["occurred_at"]))
-            = display ? "finished #{display} ago" : Time.parse(book["occurred_at"]).getlocal.strftime('%b %e, %Y %H:%M')
+            | #{book[:metadata][:num_pages]} pages; 
+            - display = distance_of_time_in_words(book[:occurred_at])
+            = display ? "finished #{display} ago" : book[:occurred_at].getlocal.strftime('%b %e, %Y %H:%M')
   section.links
     h2 Links
     ul
       - @links.each do |link|
         li
-          a href="#{link["content"]}"= link["metadata"]["title"]
+          a href="#{link[:content]}"= link[:metadata][:title]
           | &nbsp;
           span.meta
-            - uri = URI.parse(link["content"])
+            - uri = URI.parse(link[:content])
             = uri.host.gsub(/^www\./, "")
   .clear
   == render :slim, :"_footer", layout: false

@@ -2,8 +2,8 @@ module Org
   module Config
     extend self
 
-    def events_url
-      env!("EVENTS_URL")
+    def black_swan_database_url
+      env!("BLACK_SWAN_DATABASE_URL")
     end
 
     def force_ssl?
