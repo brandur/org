@@ -1,26 +1,21 @@
 - if pjax?
   title= @title
-header
-  - if @article[:image]
-    .vista
-      img src=@article[:image]
-  .row
-    .content
-      #title
-        #lead
-          a href="/articles" Articles
-        h1= @title
-article
-  - content = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true), Slim::Embedded.default_options[:markdown]).render(File.read("./articles/" + @article[:slug] + ".md"))
-  .row
-    .content
+- if @article[:image]
+  .vista style="background-image: url('#{@article[:image]}')"
+    /img src=@article[:image]
+.backdrop
+  .content
+    #title
+      #lead
+        a href="/articles" Articles
+      h1= @title
+    article
+      - content = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true), Slim::Embedded.default_options[:markdown]).render(File.read("./articles/" + @article[:slug] + ".md"))
       - if @article[:hook]
         p.hook= @article[:hook]
         - unless @article[:image]
           .divider-short
-  .row
-    .content
       == content
-    .side
+    /.side
       == render :slim, :"_side", layout: false
 == render :slim, :"_footer", layout: false

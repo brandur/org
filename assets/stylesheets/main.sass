@@ -91,25 +91,23 @@ strong
   margin: 30px auto
   width: 80%
 
-.row
-  clear: both
-  max-width: 1200px
-
 .row-generic
   clear: both
   max-width: 1000px
 
-.content
+.backdrop
   background: #fff
-  float: left
   margin: 0 8% 0 15%
-  padding: 30px 40px
-  position: relative
-  width: 57%
+  max-width: 750px
+  padding: 30px 0
+
+.content
+  float: none
+  margin: 0 40px
 
 .side
   display: block
-  float: left
+  //float: left
   margin: 0 4% 0 0
   width: 16%
   position: relative
@@ -146,28 +144,10 @@ strong
       line-height: 1.7em
 
 .vista
-  margin: 0 0 -200px 0
-
-  img
-    clear: both
-    display: block
-    width: 100%
-
-header
-  #attributes
-    margin: 30px 0
-
-    p
-      color: $secondary
-      font-size: 12px
-      font-style: italic
-      line-height: 1.4em
-      margin: 0
-
-      span.value
-
-    span
-      margin: 0 8px 0 0
+  background-repeat: no-repeat
+  background-size: cover
+  height: 350px
+  margin: 0 0 -220px 0
 
 #about, #toc
   font-size: 12px
@@ -253,13 +233,18 @@ footer
 
 @media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
 
+  h1, h2, h3, h4
+    hyphens: auto
+    -moz-hyphens: auto
+    -webkit-hyphens: auto
+
   pre
     overflow: auto
 
   #container
     max-width: 100%
 
-    .content
+    .backdrop
       margin: 0 8%
       width: 84%
 
