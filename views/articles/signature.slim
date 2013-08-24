@@ -1,6 +1,9 @@
 - if pjax?
   title= @title
 header
+  - if @article[:image]
+    .vista
+      img src=@article[:image]
   .row
     .content
       #title
@@ -15,9 +18,6 @@ article
         p.hook= @article[:hook]
         - unless @article[:image]
           .divider-short
-  - if @article[:image]
-    .vista
-      img src=@article[:image]
   .row
     .content
       == content
