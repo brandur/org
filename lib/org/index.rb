@@ -36,10 +36,6 @@ module Org
       end
     end
 
-    not_found do
-      404
-    end
-
     private
 
     def json?
