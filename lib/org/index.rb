@@ -17,9 +17,11 @@ module Org
             { rel: "favors",          href: "#{request.url}favors" },
             { rel: "humans",          href: "#{request.url}humans.txt" },
             { rel: "lies",            href: "#{request.url}lies" },
+            { rel: "photos",          href: "#{request.url}photos" },
             { rel: "reading",         href: "#{request.url}reading" },
             { rel: "talks",           href: "#{request.url}talks" },
             { rel: "that-sunny-dome", href: "#{request.url}that-sunny-dome" },
+            { rel: "tenets",          href: "#{request.url}tenets" },
             { rel: "twitter",         href: "#{request.url}twitter" },
           ]
         }, pretty: true)

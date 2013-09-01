@@ -15,6 +15,7 @@ module Org
       mount Org::Quotes
       mount Org::Reading
       mount Org::Talks
+      mount Org::Tenets
       mount Org::Twitter
       run Org::Default
     }

@@ -15,6 +15,7 @@ require_relative "org/photos"
 require_relative "org/quotes"
 require_relative "org/reading"
 require_relative "org/talks"
+require_relative "org/tenets"
 require_relative "org/twitter"
 
 require_relative "org/main"
