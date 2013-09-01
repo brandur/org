@@ -1,6 +1,7 @@
 /*
  *= require "_reset"
  *= require "main"
+ *= require "about"
  *= require "index"
  *= require "photos"
  *= require "quotes"

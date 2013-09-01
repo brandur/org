@@ -1,0 +1,11 @@
+- if pjax?
+  title= @title
+.top-spacing
+.backdrop
+  .content
+    #title
+      h1 About
+    #about
+      img src="/assets/me.jpg"
+      p Brandur is an engineer working at Heroku.
+== render :slim, :"_footer", layout: false

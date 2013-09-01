@@ -6,6 +6,7 @@ module Org
     use Rack::Robots
 
     run Sinatra::Router.new {
+      mount Org::About
       mount Org::Articles
       mount Org::Assets
       mount Org::Humans
