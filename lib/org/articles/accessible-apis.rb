@@ -2,10 +2,10 @@ module Org
   class Articles
     article "/accessible-apis", {
       hook: <<-eos,
-A simple book of patterns on how to make APIs more accessible.
+A set of patterns to make APIs more accessible to developers; lowering the barrier of entry for new users, and easing the maintenance of consuming applications.
       eos
-      location:     "Calgary",
-      published_at: Time.parse("Tue Aug 20 12:16:40 PDT 2013"),
+      location:     "San Francisco",
+      published_at: Time.parse("Sun Sep  1 08:56:44 PDT 2013"),
       signature:    true,
       title:        "Developer Accessible APIs",
     } do
