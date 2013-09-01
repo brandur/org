@@ -1,7 +1,11 @@
 Many providers get users started off on their API by pointing them to an
-extensive set of documents, which often feature examples that can be followed
-through for a quick introduction. Although this is a time-proven technique,
-it's imperfect for a variety of reasons:
+extensive set of documents, designed to help build a conceptual model for those
+users to leverage later when they start to build something with it. Because
+asking users to consume significant documentation upfront is a lot to ask these
+days, a common pattern is to include a set of examples and tutorials to help
+get users up and running as quickly possible. These are effective and
+time-proven techniques, but there's still room for improvement.  Consider these
+problems:
 
 * API behavior must be documented exhaustively as developers have no easy way
   of checking particular cases for themselves. This documentation is expensive
@@ -19,18 +23,21 @@ It's possible to solve some of these problems by ensuring that APIs are
 **developer accessible**, meaning that rather than only optimizing for the case
 of those applications that will be consuming them over the long run, they also
 cater to those developers that are learning the API in order to build new
-products with it.
+products with it. Developers using the API this way will be coming in and
+making manual one-off calls with their tools of choice, before transcribing
+those calls to the more permanent medium of whatever applications they build.
 
 This kind of accessibility isn't just good for jumpstarting new developers
 either. As the existing API economy becomes ever more prominent, we have to
 consider that over a long enough period of time, changes in either clients or
-the APIs themselves will cause breakages. In such situations, we should aim to
-make it as easy as possible for a developer to jump in with their toolkit and
-quickly figure out what's going on so that the problem can be remedied.
+the APIs themselves will inexorably lead to breakages. In such situations, we
+should aim to make it as easy as possible for a developer to jump in with their
+toolkit and quickly figure out what's going on so that the problem can be
+remedied.
 
 Developer accessibility is more of an idea than any particular method, and as
-such there's no definite way of implementing it. That said, here are a number
-of patterns seen in APIs living in the wild that conform to this concept.
+such there's no definite way of implementing it, but a number of patterns that
+we see in the wild can help to illustrate the concept.
 
 ## Patterns
 
@@ -40,7 +47,8 @@ Much of the added complexity around OAuth 1 stems from the extra layer of
 security that was built on top of it. OAuth 2 simply relies on HTTPS to take
 care of this, and the result is a much more usable protocol. While OAuth 1 APIs
 often need to be called through specialized consumer libraries, calls to OAuth
-2 APIs can generally be made with any generic client, including plain old Curl.
+2 APIs can generally be made with any generic client, including plain old Curl,
+which significantly lowers the barrier of entry to an API.
 
 Even Twitter, well known for its restrictive APIs [has an easy way of procuring
 an OAuth 2 access token](https://gist.github.com/brandur/5845931).
