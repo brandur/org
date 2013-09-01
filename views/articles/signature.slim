@@ -18,6 +18,7 @@
         - unless @article[:image]
           .divider-short
       == content
-    /.side
-      == render :slim, :"_side", layout: false
+      .divider-short
+      .info
+        | Published on <strong>#{@article[:published_at].strftime("%B %e, %Y")}</strong> from <strong>#{@article[:location]}</strong>.
 == render :slim, :"_footer", layout: false
