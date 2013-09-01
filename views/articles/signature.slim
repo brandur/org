@@ -3,6 +3,8 @@
 - if @article[:image]
   .vista style="background-image: url('#{@article[:image]}')"
     /img src=@article[:image]
+- else
+  .top-spacing
 .backdrop
   .content
     #title

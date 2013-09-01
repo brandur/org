@@ -2,9 +2,9 @@ $sans_serif: helvetica, arial, geneva, sans-serif
 $serif: georgia, serif
 
 $primary: #333
-$secondary: #dedede
+$secondary: #cdcdcd
 //$tertiary: #efefef
-$tertiary: #f7f7f7
+$tertiary: #dedede
 
 a
   color: $primary
@@ -26,7 +26,7 @@ body
   line-height: 1.7em
 
 code
-  background: $tertiary
+  background: #efefef
   border: 1px solid #dedede
   padding: 2px 4px
 
@@ -40,6 +40,7 @@ h1, h2, h3, h4
 
 h1
   font-size: 100px
+  letter-spacing: -6px
   line-height: 1.0em
   margin: 20px 0 30px 0
 
@@ -79,7 +80,7 @@ strong
   clear: both
 
 .divider
-  border-bottom: 1px solid $secondary
+  border-bottom: 1px solid $tertiary
   margin: 30px 0
 
 .divider-side
@@ -87,7 +88,7 @@ strong
   margin: 30px 0
 
 .divider-short
-  border-bottom: 1px solid $secondary
+  border-bottom: 1px solid $tertiary
   margin: 30px auto
   width: 80%
 
@@ -141,6 +142,9 @@ strong
       font-size: 14px
       font-weight: normal
       line-height: 1.7em
+
+.top-spacing
+  height: 50px
 
 .vista
   background-repeat: no-repeat
@@ -222,13 +226,43 @@ article
     margin: 0 0 30px 0
 
 footer
+  border-bottom: 5px solid #000
   margin: 50px 0 0 0
+  overflow: hidden
+  width: 100%
+
+  #banner
+    background: #000
+    float: left
+    height: 183px
+    width: 10px
+
+  //#social
+    background: #fff
+    border-right: 1px solid $tertiary
+    border-top: 1px solid $tertiary
+    float: left
+    padding: 63px 0
+    text-align: center
+    width: 244px
 
   nav
+    border-top: 1px solid $tertiary
     font-size: 12px
-    margin: 50px 0
+    padding: 13px 0
     text-align: center
     text-transform: uppercase
+
+  #copy
+    border-top: 1px solid $tertiary
+    color: $secondary
+    font-family: $sans_serif
+    font-size: 13px
+    padding: 8px 0
+    text-align: center
+
+    a
+      color: $secondary
 
 @media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
 
