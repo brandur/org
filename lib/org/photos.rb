@@ -13,7 +13,7 @@ module Org
     get "/photos" do
       @title = "Photos"
       @photos = DB[:events].reverse_order(:occurred_at).filter(type: "flickr").
-        filter("metadata -> 'medium_width' = '500'").limit(5)
+        filter("metadata -> 'medium_width' = '500'")
       slim :"photos/index"
     end
 
