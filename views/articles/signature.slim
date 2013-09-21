@@ -12,7 +12,10 @@
         a href="/articles" Articles
       h1= @title
     article
-      - content = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true), Slim::Embedded.default_options[:markdown]).render(File.read("./articles/" + @article[:slug] + ".md"))
+      - path = "./articles/" + @article[:slug] + ".md"
+      - if !File.exists?(path) && !Org::Config.production?
+        - path = "./drafts/" + @article[:slug] + ".md" 
+      - content = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true), Slim::Embedded.default_options[:markdown]).render(File.read(path))
       - if @article[:hook]
         p.hook= @article[:hook]
         - unless @article[:image]
