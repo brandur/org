@@ -76,3 +76,7 @@ module Org
 end
 
 Dir[File.expand_path(File.dirname(__FILE__) + "/articles/*.rb")].map { |f| require(f) }
+
+unless Org::Config.production?
+  Dir[File.expand_path(File.dirname(__FILE__) + "/drafts/*.rb")].map { |f| require(f) }
+end
