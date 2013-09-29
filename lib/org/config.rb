@@ -3,7 +3,12 @@ module Org
     extend self
 
     def black_swan_database_url
-      env!("BLACK_SWAN_DATABASE_URL")
+      url = env!("BLACK_SWAN_DATABASE_URL")
+      if RUBY_PLATFORM == 'java'
+        url = "jdbc:" + url
+      else
+        url
+      end
     end
 
     def force_ssl?
