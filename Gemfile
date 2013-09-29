@@ -1,4 +1,6 @@
-source :rubygems
+source "https://rubygems.org"
+
+ruby "2.0.0"
 
 gem "builder"
 gem "coffee-script"
@@ -29,6 +31,7 @@ end
 platform :jruby do
   gem "gson"
   gem "jdbc-postgres"
+  gem "kramdown"
 end
 
 platform :ruby do
