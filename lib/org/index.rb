@@ -1,12 +1,17 @@
 module Org
   class Index < Sinatra::Base
-    configure do
-      set :views, Config.root + "/views"
-    end
-
     helpers Helpers::Common
     helpers Helpers::Goodreads
     helpers Helpers::Twitter
+
+    before do
+      log :access_info, pjax: pjax?
+      cache_control :public, :must_revalidate, max_age: 3600
+    end
+
+    configure do
+      set :views, Config.root + "/views"
+    end
 
     get "/" do
       if json?

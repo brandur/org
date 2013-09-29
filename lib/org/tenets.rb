@@ -4,6 +4,10 @@ module Org
       set :views, Config.root + "/views"
     end
 
+    before do
+      cache_control :public, :must_revalidate, max_age: 3600
+    end
+
     get "/tenets" do
       slim :"tenets"
     end

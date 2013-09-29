@@ -1,11 +1,17 @@
 module Org
   class Quotes < Sinatra::Base
+    helpers Helpers::Common
+
     configure do
       set :views, Config.root + "/views"
     end
 
     before do
       @body_class = "quote"
+    end
+
+    before do
+      cache_control :public, :must_revalidate, max_age: 3600
     end
 
     get "/favors" do

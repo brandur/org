@@ -6,6 +6,7 @@ module Org
 
     before do
       log :access_info, pjax: pjax?
+      cache_control :public, :must_revalidate, max_age: 3600
     end
 
     helpers Helpers::Common
