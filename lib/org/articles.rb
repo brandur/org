@@ -71,9 +71,18 @@ module Org
       halt(404) unless @article[:published_at] <= Time.now
       last_modified(@article[:last_modified_at]) if Config.production?
       @title = @article[:title]
-      content = yield
-      etag(Digest::SHA1.hexdigest(content)) if Config.production?
-      content
+      render_content
+      data = yield
+      etag(Digest::SHA1.hexdigest(data)) if Config.production?
+      data
+    end
+
+    def render_content
+      path = "./articles/" + @article[:slug] + ".md"
+      if !File.exists?(path) && !Org::Config.production?
+        path = "./drafts/" + @article[:slug] + ".md"
+      end
+      @content = render_markdown(File.read(path))
     end
   end
 end
