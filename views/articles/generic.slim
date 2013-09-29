@@ -10,7 +10,7 @@ header
           a href="/articles" musings
         h1.generic= @title
 article
-  - content = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true), Slim::Embedded.default_options[:markdown]).render(File.read("./articles/" + @article[:slug] + ".md"))
+  - content = Org::MarkdownHelper.render(File.read(path))
   .row-generic
     .content
       == content
