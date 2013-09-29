@@ -3,6 +3,10 @@ module Org
     use Rack::SSL if Config.force_ssl?
     use Rack::Instruments, app: "brandur-org"
     use Rack::Deflater
+    use Rack::Cache,
+      verbose:     true,
+      metastore:   'file:/tmp/cache/meta',
+      entitystore: 'file:/tmp/cache/entity'
     use Rack::Robots
 
     run Sinatra::Router.new {
