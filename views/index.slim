@@ -19,7 +19,7 @@
         - @photos.each do |photo|
           li
             a href="/photos/#{photo[:slug]}"
-              img src=photo[:metadata][:medium_image].gsub(/^http:/, "https:")
+              img src=photo[:metadata]["medium_image"].gsub(/^http:/, "https:")
   /section.tweets
     h2
       a href="/twitter" Twitter
@@ -39,11 +39,11 @@
       - @books.each do |book|
         li
           em
-            a href="http://www.google.com/search?tbo=p&tbm=bks&q=isbn:#{book[:slug]}"= book[:metadata][:title]
-          |  by #{book[:metadata][:author]}
+            a href="http://www.google.com/search?tbo=p&tbm=bks&q=isbn:#{book[:slug]}"= book[:metadata]["title"]
+          |  by #{book[:metadata]["author"]}
           | &nbsp;
           span.meta
-            | #{book[:metadata][:num_pages]} pages; 
+            | #{book[:metadata]["num_pages"]} pages; 
             - display = distance_of_time_in_words(book[:occurred_at])
             = display ? "finished #{display} ago" : book[:occurred_at].getlocal.strftime('%b %e, %Y %H:%M')
   /section.links
@@ -51,7 +51,7 @@
     ul
       - @links.each do |link|
         li
-          a href="#{link[:content]}"= link[:metadata][:title]
+          a href="#{link[:content]}"= link[:metadata]["title"]
           | &nbsp;
           span.meta
             - uri = URI.parse(link[:content])

@@ -5,7 +5,12 @@ module Org
     def black_swan_database_url
       url = env!("BLACK_SWAN_DATABASE_URL")
       if RUBY_PLATFORM == 'java'
-        url = "jdbc:" + url
+        url = URI.parse(url)
+        params = {}
+        params["user"] = url.user if url.user
+        params["password"] = url.password if url.password
+        "jdbc:postgresql://#{url.host}:#{url.port || 5432}#{url.path}?" +
+          params.map { |k, v| "#{k}=#{v}" }.join("&")
       else
         url
       end
