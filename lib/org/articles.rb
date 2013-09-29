@@ -36,7 +36,7 @@ module Org
       @title = "Articles"
       @articles = @@articles.values
       @articles.select! { |a| a[:published_at] <= Time.now }
-      @articles += mutelight_articles
+      #@articles += mutelight_articles
       @articles.sort_by! { |a| a[:published_at] }
       @articles.reverse!
       slim :articles, layout: !pjax?

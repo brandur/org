@@ -10,21 +10,13 @@
       h1 Articles
     ul.list
       - @articles.each do |article|
-        - if article[:signature] == true
-          li
-            a href="/#{article[:slug]}" data-pjax="#container"
-              = article[:title]
-            span.meta
-              |  
-              = article[:published_at].strftime("%B %e, %Y")
-            - if article[:hook]
-              p.hook= article[:hook]
-            .divider-short
-        - else
-          li.secondary
-            a href="#{article[:slug]}" data-pjax="#container"
-              = article[:title]
-            span.meta
-              |  
-              = article[:published_at].strftime("%B %e, %Y")
+        li
+          a href="/#{article[:slug]}" data-pjax="#container"
+            = article[:title]
+          span.meta
+            |  
+            = article[:published_at].strftime("%B %e, %Y")
+          - if article[:hook]
+            p.hook= article[:hook]
+          .divider-short
 == render :slim, :"_footer", layout: false
