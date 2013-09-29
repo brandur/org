@@ -4,6 +4,7 @@ module Org
   class Articles < Sinatra::Base
     @@articles = {}
 
+    helpers Helpers::Common
     helpers Helpers::Markdown
 
     def self.article(route, metadata={}, &block)

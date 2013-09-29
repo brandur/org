@@ -38,5 +38,11 @@ module Org::Helpers
     def pjax?
       !!(request.env["X-PJAX"] || request.env["HTTP_X_PJAX"])
     end
+
+    def slim(*args)
+      log :render_slim do
+        super
+      end
+    end
   end
 end
