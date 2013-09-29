@@ -16,7 +16,7 @@
       - path = "./articles/" + @article[:slug] + ".md"
       - if !File.exists?(path) && !Org::Config.production?
         - path = "./drafts/" + @article[:slug] + ".md" 
-      - content = Org::MarkdownHelper.render(File.read(path))
+      - content = render_markdown(File.read(path))
       - if @article[:hook]
         p.hook= @article[:hook]
         - unless @article[:image]

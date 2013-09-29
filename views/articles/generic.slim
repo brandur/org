@@ -10,7 +10,7 @@ header
           a href="/articles" musings
         h1.generic= @title
 article
-  - content = Org::MarkdownHelper.render(File.read(path))
+  - content = render_markdown(File.read(path))
   .row-generic
     .content
       == content

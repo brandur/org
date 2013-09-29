@@ -1,6 +1,6 @@
-module Org
-  module MarkdownHelper
-    def self.render(str)
+module Org::Helpers
+  module Markdown
+    def render_markdown(str)
       if RUBY_PLATFORM == 'java'
         render_kramdown(str)
       else
@@ -10,11 +10,11 @@ module Org
 
     private
 
-    def self.render_kramdown(str)
+    def render_kramdown(str)
       Kramdown::Document.new(str, input: 'GFM').to_html
     end
 
-    def self.render_redcarpet(str)
+    def render_redcarpet(str)
       renderer = Redcarpet::Markdown.new(
         Redcarpet::Render::HTML.new({
           with_toc_data: true

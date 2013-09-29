@@ -1,8 +1,8 @@
 require_relative "org/config"
-require_relative "org/markdown_helper"
 
 require_relative "org/helpers/common"
 require_relative "org/helpers/goodreads"
+require_relative "org/helpers/markdown"
 require_relative "org/helpers/twitter"
 
 require_relative "org/about"

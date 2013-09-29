@@ -4,6 +4,8 @@ module Org
   class Articles < Sinatra::Base
     @@articles = {}
 
+    helpers Helpers::Markdown
+
     def self.article(route, metadata={}, &block)
       slug = route.gsub(/^\/*/, "")
       metadata.merge!({
