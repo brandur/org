@@ -104,9 +104,14 @@ strong
   background: #fff
   margin: 0 8% 0 15%
   max-width: 750px
+  // Give padding vertically because margin is allowed to collapse with parent
+  // unless you hack it in an ugly way. Margin is given horizontally in
+  // .content.
   padding: 30px 0
 
 .content
+  // Give margin horizontally because padding is allowed to run over in small
+  // pages. Padding is given vertically in .backdrop.
   margin: 0 40px
 
 .flag
@@ -242,12 +247,9 @@ footer
     max-width: 100%
 
     .backdrop
-      margin: 0 15%
-      padding: 0
-      width: 70%
-
-    .content
-      margin: 0
+      margin: 0 8%
+      padding: 30px 0
+      width: 84%
 
     .side
       display: none

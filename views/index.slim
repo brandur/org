@@ -2,22 +2,24 @@
 .top-spacing
 .index
   section.articles
-    h1
-      a href="/articles" Articles
-    ul
-      - @essays.each do |essay|
-        li
-          a href="/#{essay[:slug]}" data-pjax="#container"= essay[:title]
-          p= essay[:hook]
-    .divider-short
+    .content
+      h1
+        a href="/articles" Articles
+      ul
+        - @essays.each do |essay|
+          li
+            a href="/#{essay[:slug]}" data-pjax="#container"= essay[:title]
+            p= essay[:hook]
+      .divider-short
   section.photos
-    h1
-      a href="/photos" Photos
-    ul
-      - @photos.each do |photo|
-        li
-          a href="/photos/#{photo[:slug]}"
-            img src=photo[:metadata][:medium_image].gsub(/^http:/, "https:")
+    .content
+      h1
+        a href="/photos" Photos
+      ul
+        - @photos.each do |photo|
+          li
+            a href="/photos/#{photo[:slug]}"
+              img src=photo[:metadata][:medium_image].gsub(/^http:/, "https:")
   /section.tweets
     h2
       a href="/twitter" Twitter
