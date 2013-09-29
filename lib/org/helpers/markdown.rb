@@ -1,10 +1,14 @@
 module Org::Helpers
   module Markdown
+    include Common
+
     def render_markdown(str)
-      if RUBY_PLATFORM == 'java'
-        render_kramdown(str)
-      else
-        render_redcarpet(str)
+      log :render_markdown do
+        if RUBY_PLATFORM == 'java'
+          render_kramdown(str)
+        else
+          render_redcarpet(str)
+        end
       end
     end
 
