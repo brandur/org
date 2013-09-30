@@ -97,7 +97,7 @@ class WidgetsAPI
 end
 ```
 
-## Idempotence
+## Idempotence and Error Conditions
 
 ``` ruby
 class WidgetsAPI
