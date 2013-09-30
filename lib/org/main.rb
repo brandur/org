@@ -6,7 +6,7 @@ module Org
     use Rack::Cache,
       verbose:     true,
       metastore:   'file:/tmp/cache/meta',
-      entitystore: 'file:/tmp/cache/entity'
+      entitystore: 'file:/tmp/cache/entity' if Config.production?
     use Rack::Robots
 
     run Sinatra::Router.new {
