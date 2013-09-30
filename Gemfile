@@ -33,6 +33,7 @@ platform :jruby do
   gem "gson"
   gem "jdbc-postgres"
   gem "kramdown"
+  gem "therubyrhino"
 end
 
 platform :ruby do
