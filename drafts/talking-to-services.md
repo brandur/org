@@ -1,6 +1,6 @@
 When speaking ot a number of backend services in a SOA formation, it's helpful to start developing patterns to ensure that remote interfaces are accessed in a standard way. This is useful so that these services can be monitored in a generic fashion, and as insurance that enough visibility and debugging data is available for any one of them when the time comes where that data is inevitably required.
 
-Our orchestration component speaks to a dozen backend services to help perform the heavy lifting needed to run the platform. I've extracted a few basic Ruby patterns from its client libraries to demonstrate a few best simple, but powerful ideas that are portable to almost case where an app needs to speak to an HTTP API.
+Our orchestration component speaks to a dozen backend services to help perform the heavy lifting needed to run the platform. I've extracted a few basic Ruby patterns from its client libraries to demonstrate some simple, but powerful ideas that are portable to almost case where an app needs to speak to an HTTP API.
 
 ## Expectations
 
@@ -86,7 +86,7 @@ end
 
 Expanding on the idea of instrumentation above, logging provides some great detail that can be referenced for single requests as needed, but it's a good idea to start producing metrics from theses calls as well to produce aggregate data that provides a window into a service's health, and which can be monitored easily.
 
-Some of the common metrics to monitor are the service's response time, the number of requests that we're making to it, the number of errors coming back to it, and the errors organized by bucket (422s, 500s, and connection errors).
+Some of the common metrics to monitor are the service's response time, the number of requests that we're making to it, the number of errors coming back to it, and the errors organized by bucket (`422s`, `500s`, and connection errors).
 
 ``` ruby
 class WidgetsAPI
