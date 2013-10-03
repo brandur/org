@@ -10,5 +10,11 @@
       h1 About
     #about
       img src="/assets/me.jpg"
-      p No one of particular note, Brandur is a platform engineer working at Heroku.
+      p Platform engineer at Heroku. Interests include Ruby, APIs, Vim, Tmux and terminal productivity, running, fixed gear riding, history, urban design, and metal.
+      h2 Technology
+      markdown:
+        This site is a [Sinatra app](https://github.com/brandur/org) running Ruby 2.0 on top of [the MRI](http://en.wikipedia.org/wiki/Ruby_MRI). It endeavors to provide as fluid of a user experience as possible, and as such makes makes heavy use of [jquery-pjax](https://github.com/defunkt/jquery-pjax) on the frontend and [proper HTTP caching](http://mutelight.org/http-caching) combined with [rack-cache](http://rtomayko.github.io/rack-cache/) on the backend. It is deployed, of course, on Heroku.
+      h2 Design
+      markdown:
+        The design aims to improve readability and emphasize content through typography, whitespace, and clean lines compared [to earlier incarnations of my work](https://mutelight.org). It's responsive in a nod to other people who don't browse the web in full-screen. It wouldn't have been possible without the timeless beauty of [Helvetica](http://en.wikipedia.org/wiki/Helvetica_(film\)).
 == render :slim, :"_footer", layout: false
