@@ -14,6 +14,16 @@ module Org
       cache_control :public, :must_revalidate, max_age: 3600
     end
 
+    get "/accidental" do
+      @title = "Accidental"
+      slim :"quotes/accidental"
+    end
+
+    get "/crying" do
+      @title = "Crying"
+      slim :"quotes/crying"
+    end
+
     get "/favors" do
       @title = "Favors"
       slim :"quotes/favors"

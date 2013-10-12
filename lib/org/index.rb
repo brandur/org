@@ -18,7 +18,9 @@ module Org
         content_type :json
         MultiJson.encode({
           links: [
+            { rel: "accidental",      href: "#{request.url}accidental" },
             { rel: "articles",        href: "#{request.url}articles" },
+            { rel: "crying",          href: "#{request.url}crying" },
             { rel: "favors",          href: "#{request.url}favors" },
             { rel: "humans",          href: "#{request.url}humans.txt" },
             { rel: "lies",            href: "#{request.url}lies" },
