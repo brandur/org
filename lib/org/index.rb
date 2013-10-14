@@ -6,9 +6,6 @@ module Org
 
     before do
       log :access_info, pjax: pjax?
-      # don't return cache control information here (i.e. don't cache) as we
-      # accept multiple format types
-      cache_control :private
     end
 
     configure do
@@ -16,6 +13,10 @@ module Org
     end
 
     get "/" do
+      etag(Digest::SHA1.hexdigest(json?.to_s))
+      # don't cache without revalidation from server (used because this method
+      # returns content based on accept header)
+      cache_control :no_cache
       if json?
         content_type :json
         MultiJson.encode({
