@@ -1,3 +1,5 @@
+require "cgi"
+
 module Org
   module Config
     extend self
@@ -22,6 +24,12 @@ module Org
 
     def google_analytics_id
       env("GOOGLE_ANALYTICS_ID")
+    end
+
+    def librato_url
+      user = CGI.escape(env!("LIBRATO_USER"))
+      token = CGI.escape(env!("LIBRATO_TOKEN"))
+      "https://#{user}:#{token}@metrics-api.librato.com"
     end
 
     def production?
