@@ -1,7 +1,7 @@
 module Org
   Main = Rack::Builder.new do
     use Rack::SSL if Config.force_ssl?
-    use Rack::Instruments, app: "brandur-org"
+    use Org::Instruments
     use Rack::Deflater
     use Rack::Cache,
       verbose:     true,

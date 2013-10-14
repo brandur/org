@@ -18,4 +18,6 @@ require_relative "org/talks"
 require_relative "org/tenets"
 require_relative "org/twitter"
 
+require_relative "org/middleware/instruments"
+
 require_relative "org/main"
