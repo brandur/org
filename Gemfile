@@ -24,6 +24,10 @@ gem "uglifier"
 gem "yui-compressor"
 
 group :development, :test do
+  platform :ruby do
+    gem "debugger"
+  end
+
   gem "rack-test"
   gem "rr"
   gem "turn"
@@ -37,7 +41,6 @@ platform :jruby do
 end
 
 platform :ruby do
-  gem "debugger"
   gem "oj"
   gem "pg"
   gem "redcarpet"
