@@ -14,7 +14,7 @@ GEM
       debugger-ruby_core_source (~> 1.2.3)
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.3)
-    excon (0.22.1)
+    excon (0.27.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     gson (0.6.1-java)
