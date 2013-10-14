@@ -6,7 +6,9 @@ module Org
 
     before do
       log :access_info, pjax: pjax?
-      cache_control :public, :must_revalidate, max_age: 3600
+      # don't return cache control information here (i.e. don't cache) as we
+      # accept multiple format types
+      cache_control :private
     end
 
     configure do
