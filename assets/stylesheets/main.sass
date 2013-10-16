@@ -6,6 +6,9 @@ $secondary: #cdcdcd
 //$tertiary: #efefef
 $tertiary: #dedede
 
+$content_width: 680px
+$content_width_big: 800px
+
 a
   color: $primary
   text-decoration: underline
@@ -96,23 +99,20 @@ strong
   margin: 30px auto
   width: 80%
 
+.hook
+  font-size: 22px
+  font-style: italic
+  line-height: 1.6em
+  margin: 30px 0
+
 .row-generic
   clear: both
   max-width: 1000px
 
-.backdrop
-  background: #fff
-  margin: 0 8% 0 15%
-  max-width: 750px
-  // Give padding vertically because margin is allowed to collapse with parent
-  // unless you hack it in an ugly way. Margin is given horizontally in
-  // .content.
-  padding: 30px 0
-
 .content
-  // Give margin horizontally because padding is allowed to run over in small
-  // pages. Padding is given vertically in .backdrop.
-  margin: 0 40px
+  background: #fff
+  margin: 0 15%
+  max-width: $content_width
 
 .flag
   background-image: linear-gradient(to bottom, #336699 0%, transparent 100%)
@@ -124,7 +124,7 @@ strong
 
 .side
   display: block
-  //float: left
+  float: left
   margin: 0 4% 0 0
   width: 16%
   position: relative
@@ -157,10 +157,22 @@ strong
   height: 50px
 
 .vista
-  background-repeat: no-repeat
-  background-size: cover
-  height: 350px
-  margin: 0 0 -220px 0
+  width: 100%
+
+.vista-overlay
+  position: relative
+
+  #inner
+    bottom: 0
+    margin: 2% 15%
+    position: absolute
+
+    h1, .hook, #lead a
+      color: #fff
+      text-shadow: 0 0 2px #000
+
+    #lead a:hover
+      text-shadow: 0 0 2px #fff
 
 #data-performance-metrics
   height: 150px
@@ -172,6 +184,7 @@ strong
     font-family: $sans_serif
     font-size: 13px
     font-weight: bold
+    margin: 30px 0
     text-transform: uppercase
 
     a
@@ -201,12 +214,6 @@ article
   .attachment
     text-align: center
 
-  .hook
-    font-size: 22px
-    font-style: italic
-    line-height: 1.6em
-    margin: 0 0 30px 0
-
   .info
     font-size: 14px
     font-style: italic
@@ -225,17 +232,6 @@ footer
     text-align: center
     text-transform: uppercase
 
-  //#copy
-    border-top: 1px solid $tertiary
-    color: $secondary
-    font-family: $sans_serif
-    font-size: 13px
-    padding: 8px 0
-    text-align: center
-
-    a
-      color: $secondary
-
 @media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
 
   h1, h2, h3, h4
@@ -246,13 +242,45 @@ footer
   pre
     overflow: auto
 
+  .vista-overlay
+
+    #inner
+      margin: 0 8%
+      position: relative
+      width: 84%
+
+      h1
+        color: #000
+        text-shadow: 0 0 0
+
+      #lead a
+        color: $secondary
+        text-shadow: 0 0 0
+
+        &:hover
+          color: $primary
+          text-shadow: 0 0 0
+
   #container
     max-width: 100%
 
-    .backdrop
+    .content
       margin: 0 8%
-      padding: 30px 0
       width: 84%
 
     .side
       display: none
+
+@media only screen and (min-width: 1800px)
+
+  body
+    font-size: 17px
+
+  .content
+    max-width: $content_width_big
+    line-height: 1.8em
+
+  footer
+
+    nav
+      font-size: 12px
