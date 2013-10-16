@@ -1,23 +1,28 @@
 - if pjax?
   title= @title
 - if @article[:image]
-  .vista style="background-image: url('#{@article[:image]}')"
+  img.vista src=@article[:image] style="width: 100%"
+  .vista-overlay
+    #inner
+      #title
+        #lead
+          a href="/articles" Articles
+        h1= @title
 - else
   .flag
   .top-spacing
-.backdrop
-  .content
+.content
+  - if !@article[:image]
     #title
       #lead
         a href="/articles" Articles
       h1= @title
-    article
-      - if @article[:hook]
-        p.hook= @article[:hook]
-        - unless @article[:image]
-          .divider-short
-      == @content
-      .divider-short
-      .info
-        | Published on <strong>#{@article[:published_at].strftime("%B %e, %Y")}</strong> from <strong>#{@article[:location]}</strong>.
+  - if @article[:hook]
+    p.hook= @article[:hook]
+    .divider-short
+  article
+    == @content
+    .divider-short
+    .info
+      | Published on <strong>#{@article[:published_at].strftime("%B %e, %Y")}</strong> from <strong>#{@article[:location]}</strong>.
 == render :slim, :"_footer", layout: false
