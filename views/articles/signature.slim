@@ -1,21 +1,29 @@
 - if pjax?
   title= @title
 - if @article[:image]
-  .vista style="background-image: url('#{@article[:image]}')"
+  img src=@article[:image] style="width: 100%"
+  .vista
+    #inner
+      #title
+        #lead
+          a href="/articles" Articles
+        h1= @title
+      /- if @article[:hook]
+        p.hook= @article[:hook]
 - else
   .flag
   .top-spacing
 .backdrop
   .content
-    #title
-      #lead
-        a href="/articles" Articles
-      h1= @title
+    - if !@article[:image]
+      #title
+        #lead
+          a href="/articles" Articles
+        h1= @title
+    - if @article[:hook]
+      p.hook= @article[:hook]
+      .divider-short
     article
-      - if @article[:hook]
-        p.hook= @article[:hook]
-        - unless @article[:image]
-          .divider-short
       == @content
       .divider-short
       .info
