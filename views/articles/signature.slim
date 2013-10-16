@@ -13,19 +13,18 @@
 - else
   .flag
   .top-spacing
-.backdrop
-  .content
-    - if !@article[:image]
-      #title
-        #lead
-          a href="/articles" Articles
-        h1= @title
-    - if @article[:hook]
-      p.hook= @article[:hook]
-      .divider-short
-    article
-      == @content
-      .divider-short
-      .info
-        | Published on <strong>#{@article[:published_at].strftime("%B %e, %Y")}</strong> from <strong>#{@article[:location]}</strong>.
+.content
+  - if !@article[:image]
+    #title
+      #lead
+        a href="/articles" Articles
+      h1= @title
+  - if @article[:hook]
+    p.hook= @article[:hook]
+    .divider-short
+  article
+    == @content
+    .divider-short
+    .info
+      | Published on <strong>#{@article[:published_at].strftime("%B %e, %Y")}</strong> from <strong>#{@article[:location]}</strong>.
 == render :slim, :"_footer", layout: false
