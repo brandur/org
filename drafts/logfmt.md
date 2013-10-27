@@ -6,7 +6,7 @@ At its heart, logfmt is just a basic way of displaying key/value pairs in such a
 
     scale type=web dynos=2 app=mutelight user=brandur@mutelight.org
 
-Especially with a bit of practice and colorized output, it's pretty easy for a human being to see what's going on here which is of course a core value for any good logging format. At the same time, building a machine parser for the format is trivial so it's pretty easy for our internal components to ingest logs produced by any other component. [Splunk also recommends the same format under their best practices](http://dev.splunk.com/view/logging-best-practices/SP-CAAADP6) so we can be sure that it can be used to search and analyze all our logs in the long term.
+Especially with a bit of practice and colorized output, it's pretty easy for a human being to see what's going on here which is of course a core value for any good logging format. At the same time, building a machine parser for the format is trivial so any of our internal components can ingest logs produced by any other component. [Splunk also recommends the same format under their best practices](http://dev.splunk.com/view/logging-best-practices/SP-CAAADP6) so we can be sure that it can be used to search and analyze all our logs in the long term.
 
 A few projects from Heroku employees already exist to help parse logfmt in various languages:
 
@@ -32,9 +32,9 @@ Readability isn't compromised too much, and all the developer has to do is dump 
 
 ## Building Context
 
-logfmt also lends itself well to building context around operations. Inside a request for example, as important information becomes available, it can be added to a request-specific app context and added to every log line published by the request. This may not seem immediately useful, but it can be very helpful while debugging in production later, as only a single log line need be found to get a good idea of what's going on.
+logfmt also lends itself well to building context around operations. Inside a request for example, as important information becomes available, it can be added to a request-specific context and included with every log line published by the app. This may not seem immediately useful, but it can be very helpful while debugging in production later, as only a single log line need be found to get a good idea of what's going on.
 
-Take this simple Sinatra for example:
+For instance, consider this simple Sinatra app:
 
 ``` ruby
 def authenticate!
