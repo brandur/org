@@ -1,10 +1,10 @@
-The Internet now has quite a few projects online that reference "logfmt", a logging format that we use internally at Heroku, but so far I haven't been able to find any good posts that given and context or background to logfmt, so I thought I'd provide a bit.
+If you've ever run an app on Heroku, you may have come across log messages produced by the Heroku router and wondered about their untraditional formatting:
 
-<ROUTING HEROKU>
+    at=info method=GET path=/ host=mutelight.org fwd="124.133.52.161" dyno=web.2 connect=4ms service=8ms status=200 bytes=1653
 
-At its heart, logfmt is just a basic way of displaying key/value pairs in such a way that its output is fairly easily readable by a human or a computer, while at the same time not being absolutely optimal for either. It looks something like this:
+This curious format is unofficially known as "logfmt", and at Heroku we've adopted it as a standard to provide some consistency across internal components. I've never been able to find any good posts providing any context or background for logfmt, so I thought I'd do a short write-up.
 
-    scale type=web dynos=2 app=mutelight user=brandur@mutelight.org
+At its core, logfmt is just a basic way of displaying key/value pairs in such a way that its output is fairly easily readable by a human or a computer, while at the same time not being absolutely optimal for either.
 
 Especially with a bit of practice and colorized output, it's pretty easy for a human being to see what's going on here which is of course a core value for any good logging format. At the same time, building a machine parser for the format is trivial so any of our internal components can ingest logs produced by any other component. [Splunk also recommends the same format under their best practices](http://dev.splunk.com/view/logging-best-practices/SP-CAAADP6) so we can be sure that it can be used to search and analyze all our logs in the long term.
 
@@ -26,7 +26,7 @@ An equivalent logfmt line might look this:
 
     level=info stopping_fetchers id=ConsumerFetcherManager-1382721708341 module=kafka.consumer.ConsumerFetcherManager
 
-Readability isn't compromised too much, and all the developer has to do is dump any information that they think is important. Adding another piece of data is no different, just append `num_open_fetchers=3` to the end. The developer also knows that if for any reason they need to generate a statistic on-the-fly like the average number of fetchers still open, they'll easily be able to do that with a simple Splunk query:
+Readability isn't compromised too much, and all the developer has to do is dump any information that they think is important. Adding another piece of data is no different, just append `num_open_fetchers=3` to the end. The developer also knows that if for any reason they need to generate a statistic on-the-fly like the average number of fetchers still open, they'll easily be able to do that with a simple Splunk (or equivalent) query:
 
     stopping_fetchers | stats p50(num_open_fetchers) p95(num_open_fetchers) p99(num_open_fetchers)
 

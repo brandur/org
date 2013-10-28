@@ -5,7 +5,7 @@ module Org
 A logging format used inside Heroku optimal for easy development, consistency, and good legibility for humans and computers.
       eos
       location:     "San Francisco",
-      published_at: Time.parse("Thu Oct 17 15:32:45 PDT 2013"),
+      published_at: Time.parse("Mon Oct 28 09:28:04 PDT 2013"),
       signature:    true,
       title:        "logfmt",
     } do
