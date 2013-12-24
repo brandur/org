@@ -13,12 +13,12 @@ module Org
     end
 
     get "/" do
-      etag(Digest::SHA1.hexdigest(json?.to_s))
       # don't cache without revalidation from server (used because this method
       # returns content based on accept header)
       cache_control :no_cache
       if json?
         content_type :json
+        etag(Digest::SHA1.hexdigest("index-map"))
         MultiJson.encode({
           links: [
             { rel: "accidental",      href: "#{request.url}accidental" },
@@ -44,6 +44,10 @@ module Org
           filter("metadata -> 'medium_width' = '500'").limit(5)
       # @tweets   = events.filter(type: "twitter").
       #   filter("metadata -> 'reply' = 'false'").limit(10)
+        slugs = [@essays.first, @photos.first].
+          map { |e| e[:slug] }.
+          join("-")
+        etag(Digest::SHA1.hexdigest("index-#{slugs}"))
         slim :"index"
       end
     end

@@ -21,6 +21,11 @@ module Org::Helpers
       end
     end
 
+    def etag(value, options={})
+      log(:etag, value: value)
+      super
+    end
+
     def log(action, data={}, &block)
       data.merge!({
         app:        "brandur-org",
