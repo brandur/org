@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.0.0"
+ruby "2.1.0"
 #ruby "2.0.0", engine: "jruby", engine_version: "1.7.4"
 
 gem "builder"
@@ -24,9 +24,9 @@ gem "uglifier"
 gem "yui-compressor"
 
 group :development, :test do
-  platform :ruby do
-    gem "debugger"
-  end
+# platform :ruby do
+#   gem "debugger"
+# end
 
   gem "rack-test"
   gem "rr"
