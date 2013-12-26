@@ -21,6 +21,7 @@ module Org
     get "/photos/:id" do |id|
       @photo = DB[:events].first(slug: id, type: "flickr") || halt(404)
       @title = @photo[:title] || "Photo #{id}"
+      @viewport_width = "1100"
       slim :"photos/show"
     end
   end

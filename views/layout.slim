@@ -6,10 +6,8 @@ html lang='en'
 
     meta content='text/html; charset=utf-8' http-equiv='Content-Type'
 
-    - unless @photo
-      meta name="viewport" content="width=600"
-    - else
-      meta name="viewport" content="width=1100"
+    - @viewport_width ||= 600
+    meta name="viewport" content="width=#{@viewport_width}"
 
     link href='/articles.atom' rel='alternate' title="brandur.org" type='application/atom+xml'
 
