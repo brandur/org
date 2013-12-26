@@ -24,9 +24,9 @@ gem "uglifier"
 gem "yui-compressor"
 
 group :development, :test do
-# platform :ruby do
-#   gem "debugger"
-# end
+  platform :ruby do
+    gem "debugger2"
+  end
 
   gem "rack-test"
   gem "rr"
