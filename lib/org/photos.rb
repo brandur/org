@@ -24,5 +24,26 @@ module Org
       @viewport_width = "1100"
       slim :"photos/show"
     end
+
+    get "/photos/large/:id.jpg" do |id|
+      send_photo(id, "large_image")
+    end
+
+    get "/photos/medium/:id@2x.:extension" do |id, _|
+      send_photo(id, "large_image")
+    end
+
+    get "/photos/medium/:id.:extension" do |id, _|
+      send_photo(id, "medium_image")
+    end
+
+    private
+
+    def send_photo(id, key)
+      @photo = DB[:events].first(slug: id, type: "flickr") || halt(404)
+      res = Excon.get(@photo[:metadata][key], expects: 200)
+      content_type(res.headers["Content-Type"])
+      res.body
+    end
   end
 end
