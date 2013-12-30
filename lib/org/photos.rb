@@ -15,6 +15,7 @@ module Org
       @title = "Photos"
       @photos = DB[:events].reverse_order(:occurred_at).filter(type: "flickr").
         filter("metadata -> 'medium_width' = '500'")
+      @viewport_width = "600"
       slim :"photos/index"
     end
 

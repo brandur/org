@@ -67,12 +67,13 @@ p
   -moz-hyphens: auto
   -webkit-hyphens: auto
   margin: 20px 0
+  overflow: hidden
 
 pre
   font-family: Monaco, "Lucida Console", "Bitstream Vera Sans Mono", Courier, monospace
   font-size: 13px
   line-height: 1.4em
-  overflow: visible
+  overflow: auto
   margin: 40px 0 40px 40px
 
   code
@@ -160,9 +161,12 @@ ol, ul
   height: 50px
 
 .vista
+  background: #000
+  min-height: 450px
   width: 100%
 
 .vista-overlay
+  //min-height: 300px
   position: relative
 
   #inner
@@ -245,6 +249,9 @@ footer
   pre
     overflow: auto
 
+  .vista
+    display: none
+
   .vista-overlay
 
     #inner
@@ -283,6 +290,14 @@ footer
 
   body
     font-size: 17px
+
+  p
+    // so much space! allow code content to just expand across the screen
+    overflow: visible
+
+  pre
+    // so much space! allow code content to just expand across the screen
+    overflow: visible
 
   .content
     max-width: $content_width_big
