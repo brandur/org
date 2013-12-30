@@ -1,7 +1,7 @@
 - if pjax?
   title= @title
 - if @article[:image]
-  img.vista src=@article[:image] style="width: 100%"
+  .vista style="background-image: url('#{@article[:image]}')"
   .vista-overlay
     #inner
       #title
