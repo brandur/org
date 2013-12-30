@@ -26,11 +26,13 @@ module Org
     end
 
     get "/photos/large/:id.jpg" do |id|
-      send_photo(id, "large_image")
+      # at too small of a size there is no large image (it's actually just one
+      # problematic image right now)
+      send_photo(id, "large_image") || send_photo(id, "medium_image")
     end
 
     get "/photos/medium/:id@2x.:extension" do |id, _|
-      send_photo(id, "large_image")
+      send_photo(id, "large_image") || halt(404)
     end
 
     get "/photos/medium/:id.:extension" do |id, _|
@@ -41,6 +43,7 @@ module Org
 
     def send_photo(id, key)
       @photo = DB[:events].first(slug: id, type: "flickr") || halt(404)
+      return nil unless @photo[:metadata][key]
       res = Excon.get(@photo[:metadata][key], expects: 200)
       content_type(res.headers["Content-Type"])
       res.body
