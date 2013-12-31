@@ -38,6 +38,7 @@ module Org
 
     get "/articles" do
       @title = "Articles"
+      @viewport_width = "600"
       @articles = @@articles.values
       @articles.select! { |a| a[:published_at] <= Time.now }
       #@articles += mutelight_articles
