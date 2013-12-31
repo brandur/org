@@ -2,10 +2,10 @@ Against all odds, a very useful usability pattern emerged from the constraints o
 
 It's survived all the way to the present day in our printed mediums as an easily portable unit of text, but it also provides major usability benefits as well. The edges of a page provide convenient points of reference so that readers can easily track their position within a larger document, and often the width of pages are optimized to fit in an eminently readable 50 to 60 characters per line (although too wide for modern uses, even the 8.5" x 11" US Letter was well-suited in this respect back in the day of the typewriter).
 
-The page is also quite beautiful. Print designers have been assembling stunning products for decades that demonstrate emminently fluid layouts and a creative use of space that has yet to be matched in digital design (in my opinion). For example, here's are a few pages from the [italian magazine IL](http://www.behance.net/gallery/RANE/4282199) and the [recent redesign of Transworld Surf](https://www.behance.net/gallery/Transworld-Surf-Redesign/13052023):
+The page is also quite beautiful. Print designers have been assembling stunning products for decades that demonstrate emminently fluid layouts and a creative use of space that has yet to be matched in digital design (in my opinion). For example, here's are a few pages from the [recent redesign of Transworld Surf](https://www.behance.net/gallery/Transworld-Surf-Redesign/13052023) and the [Italian magazine IL](http://www.behance.net/gallery/RANE/4282199):
 
-[![RANE from IL](/assets/death-of-the-page/rane.jpg)](http://www.behance.net/gallery/RANE/4282199)
 [![Transworld Surf](/assets/death-of-the-page/transworld-surf.jpg)](https://www.behance.net/gallery/Transworld-Surf-Redesign/13052023)
+[![RANE from IL](/assets/death-of-the-page/rane.jpg)](http://www.behance.net/gallery/RANE/4282199)
 
 With the rise of the computer pages were adopted into the digital world, albeit in a slightly altered format. Unsurprisingly, the page construct was present in applications like Word and PostScript to build products that would end up on physical paper, but the page also provided a convenient metaphor for the amount of content that could be displayed on a monitor. Page up and down keys appeared to allow users to jump up and down by an entire screen of content. Paging remains the standard navigational paradigm to this day in programs like Vim to allow users efficient access to view and edit their data.
 
