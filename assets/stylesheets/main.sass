@@ -182,10 +182,12 @@ ol, ul
     position: relative
     width: 100%
 
+// Not wrapped in .vista because we need to hide .vista at smaller screen sizes
+// but we'd like to keep .vista-overlay (which contains the title) visible.
 .vista-overlay
   position: relative
 
-  #inner
+  .vista-overlay-inner
     bottom: 0
     margin: 2% 15%
     position: absolute
@@ -270,7 +272,7 @@ footer
 
   .vista-overlay
 
-    #inner
+    .vista-overlay-inner
       margin: 0 8%
       position: relative
       width: 84%
