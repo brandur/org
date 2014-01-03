@@ -8,7 +8,7 @@ module Org
 
     get "/runs" do
       @runs = DB[:events].reverse_order(:occurred_at).filter(type: "strava")
-      last_modified(@runs[0][:occurred_at]) if Config.production?
+      last_modified(@runs.first[:occurred_at]) if Config.production?
       @distance_by_year = distance_by_year(@runs)
       @runs = @runs.limit(10).all
       @title = "Runs"
