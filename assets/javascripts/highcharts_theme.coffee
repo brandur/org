@@ -1,6 +1,6 @@
 fontFamily = "Helvetica, Arial, sans-serif"
 mainColor = '#4477aa'
-lightColor = '#cdcdcd'
+lightColor = '#ababab'
 
 Highcharts.theme =
   credits:

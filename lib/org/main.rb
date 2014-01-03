@@ -19,6 +19,7 @@ module Org
       mount Org::Photos
       mount Org::Quotes
       mount Org::Reading
+      mount Org::Runs
       mount Org::Talks
       mount Org::Tenets
       mount Org::Twitter

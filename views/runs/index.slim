@@ -1,0 +1,57 @@
+- if pjax?
+  title= @title
+.flag
+.top-spacing
+#runs
+  .content
+    #title
+      #lead
+        a href="/" Home
+      h1 Runs
+    - tally = @distance_by_year[Time.now.year] || 0.0
+    p #{tally.round(1)} km ran in #{Time.now.year}, for a projected total of #{(tally / Time.now.yday.to_f * 365).round(1)} km.
+    #data-distance-by-year
+    h2 Last Ten
+    ul.list
+      - @runs.each do |run|
+        li
+          | #{in_km(run[:metadata][:distance].to_f).round(1)} km @ #{pace(run)}/km
+          - if run[:metadata][:location_city]
+            | , #{run[:metadata][:location_city]}
+          span.meta
+            |  
+            = run[:occurred_at].strftime("%B %e, %Y")
+== render :slim, :"_footer", layout: false
+javascript:
+  years = #{MultiJson.encode(@distance_by_year.keys)}
+  kilometers = #{MultiJson.encode(@distance_by_year.values)}
+coffee:
+  $ ->
+    new Highcharts.Chart
+      chart:
+        renderTo: 'data-distance-by-year'
+        defaultSeriesType: 'bar'
+      plotOptions:
+        series:
+          animation: false
+      title:
+        text: null
+      xAxis:
+        categories: years,
+        labels:
+          rotation: -45
+          align: 'right'
+          step: 1
+      yAxis:
+        labels:
+          formatter: ->
+            this.value + ' km'
+        min: 0
+        title:
+          text: null
+      tooltip:
+        formatter: ->
+          this.y.toFixed(1) + ' km '+ ' in ' + this.x
+      series: [
+        { name: 'distance', data: kilometers, color: '#333' },
+      ]
