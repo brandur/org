@@ -7,6 +7,11 @@ module Org
       set :views, Config.root + "/views"
     end
 
+    before do
+      log :access_info, pjax: pjax?
+      cache_control :public, :must_revalidate, max_age: 3600
+    end
+
     get "/runs" do
       @runs = DB[:events].reverse_order(:occurred_at).filter(type: "strava").
         filter("metadata -> 'type' = 'Run'")
