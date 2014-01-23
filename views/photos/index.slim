@@ -12,5 +12,5 @@
       - @photos.each do |photo|
         li
           a href="/photos/#{photo[:slug]}"
-            img src="/photos/medium/#{photo[:slug]}.jpg"
+            img src="/photos/medium/#{photo[:slug]}.jpg" height="#{photo[:metadata][:medium_height]}" width="#{photo[:metadata][:medium_width]}"
 == render :slim, :"_footer", layout: false
