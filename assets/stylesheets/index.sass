@@ -64,12 +64,17 @@ $secondary: #bbb
   section.photos
     float: left
     margin: 30px 30px
-    width: 500px
+
+    .content
 
     img
       //border-radius: 10px
-      margin: 5px 0
+      float: left
+      margin: 5px
       width: 500px
+
+    .extra
+      display: none
 
 @media handheld, only screen and (max-width: 1190px), only screen and (max-device-width: 1190px)
 
@@ -89,3 +94,16 @@ $secondary: #bbb
 
       ul
         text-align: center
+
+@media only screen and (min-width: 1800px)
+
+  .index
+
+    section.photos
+      width: 1020px
+
+      .content
+        max-width: none
+
+      .extra
+        display: inline
