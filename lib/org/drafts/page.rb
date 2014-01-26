@@ -2,7 +2,7 @@ module Org
   class Articles
     article "/page", {
       hook:         <<-eos,
-How the page almost transitioned successfully to the digital world, but is in decline in the modern context of new media. The lessons that we can learn from this age-old design element.
+How the page almost transitioned successfully to the digital world, but is in decline in the modern context of new media. The lessons that we can learn from this age-old design element, and why we should hope for its re-emergence.
       eos
       image:        "/assets/page/page.jpg",
       location:     "Calgary",
