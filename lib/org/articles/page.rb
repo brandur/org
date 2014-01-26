@@ -5,8 +5,8 @@ module Org
 How the page almost transitioned successfully to the digital world, but is in decline in the modern context of new media. The lessons that we can learn from this age-old design element, and why we should hope for its re-emergence.
       eos
       image:        "/assets/page/page.jpg",
-      location:     "Calgary",
-      published_at: Time.parse("Tue Dec 24 07:54:44 PDT 2013"),
+      location:     "San Francisco",
+      published_at: Time.parse("Sun Jan 26 10:56:46 PST 2014"),
       signature:    true,
       title:        "Lamenting the Death of the Page",
       attributions: <<-eos
