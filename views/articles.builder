@@ -9,10 +9,11 @@ xml.feed "xml:lang" => "en-US", :xmlns => "http://www.w3.org/2005/Atom" do
   for article in @articles
     xml.entry do
       xml.title article[:title]
-      xml.content Tilt.new("./views/articles/" + article[:slug] + ".md", Slim::Embedded.default_options[:markdown]).render, type: "html"
+      #xml.content Tilt.new("./articles/" + article[:slug] + ".md", Slim::Embedded.default_options[:markdown]).render, type: "html"
+      xml.content render_content(article)
       xml.published DateTime.parse(article[:published_at].to_s).rfc3339
       xml.updated DateTime.parse(article[:published_at].to_s).rfc3339
-      xml.link href: "https://brandur.org#{article[:slug]}"
+      xml.link href: "https://brandur.org/#{article[:slug]}"
       xml.id "tag:brandur.org,#{article[:published_at].strftime('%F')}:#{article[:slug]}"
       xml.author do
         xml.name "Brandur Leach"
