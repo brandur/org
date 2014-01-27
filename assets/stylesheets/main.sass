@@ -218,6 +218,24 @@ ol, ul
 
 article
 
+  figure
+    clear: both
+    margin: 20px 0
+    position: relative
+
+    img
+      margin: 0
+
+    figcaption
+      font-size: 14px
+      font-style: italic
+      line-height: 1.5em
+      position: absolute
+      left: -140px
+      top: 0
+      text-align: right
+      width: 120px
+
   ol, ul
 
     li
@@ -266,6 +284,18 @@ footer
         margin: 0 3px
 
 @media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
+
+  article
+
+    figure
+
+      figcaption
+        left: 0
+        margin: 20px 0 0 0
+        position: relative
+        text-align: center
+        top: 0
+        width: auto
 
   h1, h2, h3, h4
     hyphens: auto

@@ -4,8 +4,14 @@ It's survived all the way to the present day in our printed mediums as an easily
 
 The page is also quite beautiful. Print designers have been assembling stunning products for decades that demonstrate emminently fluid layouts and a creative use of space that has yet to be matched in digital design (that's my opinion of course). For example, here's are a few pages from the [recent redesign of Transworld Surf](https://www.behance.net/gallery/Transworld-Surf-Redesign/13052023) and the [Italian magazine IL](http://www.behance.net/gallery/RANE/4282199):
 
-[![Transworld Surf](/assets/page/transworld-surf.jpg)](https://www.behance.net/gallery/Transworld-Surf-Redesign/13052023)
-[![RANE from IL](/assets/page/rane.jpg)](http://www.behance.net/gallery/RANE/4282199)
+<figure>
+  <a href="https://www.behance.net/gallery/Transworld-Surf-Redesign/13052023"><img src="/assets/page/transworld-surf.jpg"></a>
+  <figcaption>Late 2011 redesign of the Transworld Surf magazine.</figcaption>
+</figure>
+<figure>
+  <a href="http://www.behance.net/gallery/RANE/4282199"><img src="/assets/page/rane.jpg"></a>
+  <figcaption>Redesign of the RANE, the cultural section of the Italian magazine IL.</figcaption>
+</figure>
 
 With the rise of the computer, pages were adopted into the digital world, even if in a slightly altered format. The page construct is of course present in applications like Word and PostScript to build products that will end up on physical paper, but the page also provided a convenient metaphor for the amount of content that could be displayed on a monitor at any given time. Page up and down keys appeared to allow users to jump up and down by an entire screen of content. To this day, paging remains the standard navigational paradigm in programs like Vim to allow users efficient access to view and edit their data.
 
@@ -19,9 +25,18 @@ As the web browser emerged, the page's convenient constraint on width that helpe
 
 Despite being relegated to the realm of power users, paging remained quite effective for anyone inclined to use it, but the more meteoric rise of JavaScript is finally starting to take its toll on this old usability feature. Anchored headers as depicted in the screenshots below are a common sight these days. They seem innocent enough until you realize that when paging in either direction, the header will hide its own height worth of content, rendering the paging function unusable.
 
-![Anchored Header at FP](/assets/page/fp.png)
-![Anchored Header at Salon](/assets/page/salon.png)
-![Anchored Header at Weekend](/assets/page/weekend.png)
+<figure>
+  <img src="/assets/page/fp.png">
+  <figcaption>JS-anchored header at FP.</figcaption>
+</figure>
+<figure>
+  <img src="/assets/page/salon.png">
+  <figcaption>JS-anchored header at Salon.</figcaption>
+</figure>
+<figure>
+  <img src="/assets/page/weekend.png">
+  <figcaption>JS-anchored header at Weekend.</figcaption>
+</figure>
 
 The more recent development of tablets has also sent pages spiraling toward obsolescence as they're not a native concept in platforms like Android and iOS. In the world of touch-screen portables, not even apps renowned for their well-designed content consuming experiences provide paging mechanisms, leaving users with no option but to "scan and scroll".
 
@@ -29,7 +44,10 @@ The more recent development of tablets has also sent pages spiraling toward obso
 
 There's a class of tablet applications that design their experience around having the user interact with the tablet more like it was a magazine than a PC, and the biggest difference in design is whether the user interacts with the app as if it was a set of pages or a large continuous block. Apps like Flipboard and iOS's Newsstand lead the charge in this area, both of which provide pleasant and efficient interfaces that are outright fun to use.
 
-![Economist on iPad](/assets/page/economist.jpg)
+<figure>
+  <img src="/assets/page/economist.jpg">
+  <figcaption>An article from the Economist on the iPad's Newsstand app.</figcaption>
+</figure>
 
 ## Slowing the Fall
 
