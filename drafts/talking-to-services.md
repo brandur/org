@@ -1,3 +1,10 @@
+While trying to track down a bug last week, I pulled up the logs relevant to the failing request. In this case, Deployhooks was trying to reach out to another service to send a chat notification, but wasn't able to get through. This is what I saw:
+
+```
+2013-10-07T08:53:18.276075+00:00 23.22.68.202 user.notice app[worker.3]:
+app=deployhooks action=hook_run_async status=fail error=RestClient::BadRequest message="400 Bad Request"
+```
+
 When speaking ot a number of backend services in a SOA formation, it's helpful to start developing patterns to ensure that remote interfaces are accessed in a standard way. This is useful so that these services can be monitored in a generic fashion, and as insurance that enough visibility and debugging data is available for any one of them when the time comes where that data is inevitably required.
 
 Our orchestration component speaks to a dozen backend services to help perform the heavy lifting needed to run the platform. I've extracted a few basic Ruby patterns from its client libraries to demonstrate some simple, but powerful ideas that are portable to almost case where an app needs to speak to an HTTP API.
