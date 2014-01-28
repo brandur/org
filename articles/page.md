@@ -5,11 +5,11 @@ It's survived all the way to the present day in our printed mediums as an easily
 The page is also quite beautiful. Print designers have been assembling stunning products for decades that demonstrate emminently fluid layouts and a creative use of space that has yet to be matched in digital design (that's my opinion of course). For example, here's are a few pages from the [recent redesign of Transworld Surf](https://www.behance.net/gallery/Transworld-Surf-Redesign/13052023) and the [Italian magazine IL](http://www.behance.net/gallery/RANE/4282199):
 
 <figure>
-  <a href="https://www.behance.net/gallery/Transworld-Surf-Redesign/13052023"><img src="/assets/page/transworld-surf.jpg"></a>
+  <p><a href="https://www.behance.net/gallery/Transworld-Surf-Redesign/13052023"><img src="/assets/page/transworld-surf.jpg"></a></p>
   <figcaption>Late 2011 redesign of the Transworld Surf magazine.</figcaption>
 </figure>
 <figure>
-  <a href="http://www.behance.net/gallery/RANE/4282199"><img src="/assets/page/rane.jpg"></a>
+  <p><a href="http://www.behance.net/gallery/RANE/4282199"><img src="/assets/page/rane.jpg"></a></p>
   <figcaption>Redesign of the RANE, the cultural section of the Italian magazine IL.</figcaption>
 </figure>
 
@@ -26,15 +26,15 @@ As the web browser emerged, the page's convenient constraint on width that helpe
 Despite being relegated to the realm of power users, paging remained quite effective for anyone inclined to use it, but the more meteoric rise of JavaScript is finally starting to take its toll on this old usability feature. Anchored headers as depicted in the screenshots below are a common sight these days. They seem innocent enough until you realize that when paging in either direction, the header will hide its own height worth of content, rendering the paging function unusable.
 
 <figure>
-  <img src="/assets/page/fp.png">
+  <p><img src="/assets/page/fp.png"></p>
   <figcaption>JS-anchored header at FP.</figcaption>
 </figure>
 <figure>
-  <img src="/assets/page/salon.png">
+  <p><img src="/assets/page/salon.png"></p>
   <figcaption>JS-anchored header at Salon.</figcaption>
 </figure>
 <figure>
-  <img src="/assets/page/weekend.png">
+  <p><img src="/assets/page/weekend.png"></p>
   <figcaption>JS-anchored header at Weekend.</figcaption>
 </figure>
 
