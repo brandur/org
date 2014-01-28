@@ -45,7 +45,7 @@ The more recent development of tablets has also sent pages spiraling toward obso
 There's a class of tablet applications that design their experience around having the user interact with the tablet more like it was a magazine than a PC, and the biggest difference in design is whether the user interacts with the app as if it was a set of pages or a large continuous block. Apps like Flipboard and iOS's Newsstand lead the charge in this area, both of which provide pleasant and efficient interfaces that are outright fun to use.
 
 <figure>
-  <img src="/assets/page/economist.jpg">
+  <p><img src="/assets/page/economist.jpg"></p>
   <figcaption>An article from the Economist on the iPad's Newsstand app.</figcaption>
 </figure>
 
