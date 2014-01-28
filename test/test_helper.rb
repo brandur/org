@@ -22,6 +22,7 @@ unless ENV["TEST_LOGS"] == "true"
 end
 
 DB = Sequel.connect(ENV["BLACK_SWAN_DATABASE_URL"])
+Slim::Embedded.default_options[:markdown] = {}
 
 require_relative "../lib/org"
 
