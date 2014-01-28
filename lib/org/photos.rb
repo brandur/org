@@ -26,7 +26,7 @@ module Org
       slim :"photos/show"
     end
 
-    get "/photos/large/:id.jpg" do |id|
+    get "/photos/large/:id.:extension" do |id, _|
       # at too small of a size there is no large image (it's actually just one
       # problematic image right now)
       send_photo(id, "large_image") || send_photo(id, "medium_image")
