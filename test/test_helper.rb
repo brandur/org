@@ -1,5 +1,7 @@
 ENV["BLACK_SWAN_DATABASE_URL"] = "postgres://localhost/black-swan-development"
 ENV["FORCE_SSL"]               = "false"
+ENV["LIBRATO_TOKEN"]           = "secret"
+ENV["LIBRATO_USER"]            = "org"
 # make sure to set RACK_ENV=test before requiring Sinatra
 ENV["RACK_ENV"]                = "test"
 ENV["RELEASE"]                 = "1"
@@ -26,13 +28,6 @@ Slim::Embedded.default_options[:markdown] = {}
 
 require_relative "../lib/org"
 
-=begin
-# disable Sequel logging in tests because it's extremely verbose
-module ::Sequel
-  class Database
-    def log_yield(sql, args=nil)
-      yield
-    end
-  end
+class MiniTest::Spec
+  include RR::Adapters::TestUnit
 end
-=end

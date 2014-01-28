@@ -1,4 +1,5 @@
 require_relative "org/config"
+require_relative "org/librato"
 
 require_relative "org/helpers/common"
 require_relative "org/helpers/goodreads"
