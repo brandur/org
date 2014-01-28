@@ -19,7 +19,7 @@ summarize the main points presented in the document:
 
 * Scope is specified on either the authorization or token endpoints using the
   parameter `scope`.
-* Scope is expressed as a set of case-sensitive and space-delimited strings.
+* Scope is expressed as a set of _case-sensitive_ and _space-delimited_ strings.
 * The authorization server may override the scope request, in this case it must
   include `scope` in its response to inform a client of their actual scope.
 * When a scope is not specified, the server may either fallback to a
