@@ -1,0 +1,21 @@
+- if pjax?
+  title= @title
+.flag
+.top-spacing
+.twitter
+  .content
+    #title
+      #lead
+        a href="/" Home
+      h1 Twitter
+    - @tweets.each do |year, tweets_by_month|
+      div class="year" id="year-#{year}"
+        h2= year
+        - tweets_by_month.each do |month, tweets|
+          div class="month" id="month-#{month}"
+            h3= month_name(month)
+            ul
+              - tweets.each do |tweet|
+                li
+                  == content_to_html(tweet[:content])
+== render :slim, :"_footer", layout: false

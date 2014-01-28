@@ -38,6 +38,15 @@ module Org::Helpers
       html
     end
 
+    def group_by_month_and_year(tweets)
+      by_year = tweets.group_by { |t| t[:occurred_at].year }
+      by_year_and_month = {}
+      by_year.each do |year, tweets|
+        by_year_and_month[year] = tweets.group_by { |t| t[:occurred_at].month }
+      end
+      by_year_and_month
+    end
+
     def month_name(month_number)
       Time.new(2000, month_number).strftime('%B')
     end
