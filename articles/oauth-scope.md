@@ -8,7 +8,7 @@ One interesting discussion that developed while we were building this out was
 around OAuth scoping, the mechanism that allows OAuth clients to tell an
 authorization server what permissions they'll need on resources they're
 accessing. I thought this might be a good opportunity to talk a little about
-OAuth scoping, what the spec has to say about it, how its implemented elsewhere
+OAuth scoping, what the spec has to say about it, how it's implemented elsewhere
 on the web, and our own design considerations.
 
 ## The Spec
