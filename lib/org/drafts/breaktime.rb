@@ -6,7 +6,7 @@ module Org
       location:     "San Francisco",
       published_at: Time.parse("Thu Jan 30 22:15:17 PST 2014"),
       signature:    true,
-      title:        "Give Me a Break",
+      title:        "BreakTime Classic",
     } do
       render_article do
         slim :"articles/signature", layout: !pjax?
