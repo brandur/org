@@ -9,11 +9,13 @@ BreakTime is a great concept, but its propensity to obscure the top right quadra
 
 This might seem like it would be a pretty rare event, but it happened all the time.
 
-BreakTime also doesn't care whether you're in the middle of a video call, handling a production incident, or deep in the zone. No matter what your current working situation, it will still pull you out to its modal; the choppy transition animation symbolizing its typical callous enthusiasm.
+BreakTime also doesn't care whether you're in the middle of a video call, handling a production incident, or deep in the zone. No matter what your current working situation, it will yank you out to its modal; the choppy transition animation symbolizing its typical callous enthusiasm.
 
-Over time, I eventually found a far less invasive solution. It makes me feel like a luddite, but it manages to keep itself out of my daily work routine while at the same time reminding me that it's time to take a few minutes of R&R.
+Over time, I eventually found a far less invasive solution. It makes me feel like a luddite, but it manages to keep itself out of my daily work routine while at the same time reminding me that it's time to take a few minutes of R&R. As a bonus, I get a beautiful piece of industrial design to decorate my desk, and the warm knowledge that I'm living by the same technology that Magellan used to circumnavigate the globe.
 
 <figure>
   <p><img src="/photos/large/12229569636.jpg"></p>
   <figcaption>BreakTime Classic, or the timeless hourglass.</figcaption>
 </figure>
+
+For those interested, this is a very basic $16 [30 minute black sand hourglass](http://www.amazon.com/Hourglass-Sand-Timer-Minute-Black/dp/B004V4RTXW/) available via Amazon.
