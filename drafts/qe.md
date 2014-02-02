@@ -147,7 +147,7 @@ There you have it! I didn't say that the example wouldn't be extremely contrived
 
 Let's circle back around to the original question: is Bernanke printing money and devaluing the dollar? The answer is an unsatisfying "no, but sort of." As we saw above, when the Fed initiates a QE transaction, they're effectively just replacing one type of asset (a treasury) with another type of asset (reserve), neither of which is usable money. However, if from there the bank goes on to use that reserve to increase their outstanding loans, then through the magnification effect of fractional-reserve banking the total money supply can grow.
 
-But the amount of reserve available to a bank is often not the deciding factor when it comes to to extending loans. The Bank for International Settlements (BIS), a global organization for central banks, had this to say on the matter:
+That said, the amount of reserve available to a bank is often not the deciding factor when it comes to to extending loans. The Bank for International Settlements (BIS), a global organization for central banks, had this to say on the matter:
 
 > In fact, the level of reserves hardly figures in banks’ lending decisions. The amount of credit outstanding is determined by banks’ willingness to supply loans, based on perceived risk-return trade-offs, and by the demand for those loans. The aggregate availability of bank reserves does not constrain the expansion directly.
 
