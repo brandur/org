@@ -29,10 +29,59 @@ Now that we have the backstory in place, let's dive into how QE actually works:
 
 ## Example
 
-Let's throw some numbers into this equation just to illustrate the full effect.
+Let's throw some numbers into this equation just to illustrate the full effect. We're going to examine the balance sheets of the Treasury, the Fed, and the imaginary primary dealer **Bank A** before and after a round of QE.
+
+<table>
+  <tr>
+    <th colspan="2">Treasury</th>
+    <th colspan="2">Fed</th>
+    <th colspan="2">Bank A</th>
+  </tr>
+  <tr>
+    <th>Assets</th>
+    <th>Liabilities</th>
+    <th>Assets</th>
+    <th>Liabilities</th>
+    <th>Assets</th>
+    <th>Liabilities</th>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>$10B public goods</li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li>$10B treasuries</li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li>$6B treasuries</li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li>$6B reserves</li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li>$1B reserves</li>
+        <li>$5B loans</li>
+        <li>$4B treasuries</li>
+      </ul>
+    <td>
+      <ul>
+        <li>$10B deposits</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 1. The Fed announces a purchase of $80B (as of February 2014 that number is more like $85B, but let's simplify this example).
-1. We have 20 primary dealers. Each one sells the Fed $4B of treasuries, including an imagined dealer called **Bank A**.
+1. We have 20 primary dealers. Each one sells the Fed $4B worth of treasuries, including Bank A.
 1. $4B appears in Bank A's credit column with the Fed. This number counts toward the required reserve which the Fed has mandated as part of its role of central bank.
 1. Bank A is now free to lend out this extra money, which could translate into total loans of as much as $40B thanks to the fractional-reserve banking system (or $800B across all the banks). (**B:** fact check)
 
