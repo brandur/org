@@ -6,7 +6,7 @@ What follows is my attempt to explain QE in a pragmatic way, with an example to 
 
 Lets start with the basic and talk about the basic actors involved in the process:
 
-* *United States Department of the Treasury* (or the **Treasury**): the treasury of the US federal government tasked with managing its revenue. The Treasury allows US debt to be purchased by a variety of parties by issuing an instrument called a a _US Treasury security_ (these are often known as **treasuries**)
+* *United States Department of the Treasury* (or the **Treasury**): the treasury of the US federal government tasked with managing its revenue. The Treasury allows US debt to be purchased by a variety of parties by issuing a financial instrument called a a _US Treasury security_ (these are often known as **treasuries**)
 * *Federal Reserve System* (or the **Fed**): the central banking system of the United States. It was created in 1913 as a reaction to an economic panic in 1907 (where the NYSE fell 50% compared to 1906) and tasked by Congress with the responsibilities of maximizing US employment, stabilizing prices, and moderating long-term interest rates. In response to the global financial crisis of 2007-08, it has initiated qualititative easing in an attempt to mitigate the effects of the recession on the US economy. The Fed buys and sells treasuries at auction with its primary dealers.
 * *Primary dealers*: ~20 banks permitted to trade directly with the Fed. When the Fed auctions securities primary dealers are _required_ to participate. The vast majority of treasuries are traded through the primary dealers to other entities worldwide. [Lists of primary dealers](http://en.wikipedia.org/wiki/Primary_dealer#Current_list) are available and include well known names like **BMO**, **Goldman Sachs**, and **JP Morgan**.
 
@@ -26,8 +26,6 @@ Now that we have the backstory in place, let's dive into how QE actually works:
 1. The primary dealers submit offers to sell those treasuries to the Fed (as they required to do as dictated by their primary dealer status).
 1. After the transaction, the primary dealers have now traded the treasuries amongst their assets for a credit that shows up in the books they keep with the Fed.
 1. This credit usually becomes part of that bank's _required reserves_ with the Fed, so they can now proceed to lend out more money than they could before. Fractional reserve banking ensures that whatever amount the reserve increased by is effectively multiplied, and therefore its effect on the money supply has a magnified effect, _but_ the increase in reserve isn't cash itself (remember, its just a credit on the Fed's balance sheet) so the bank has to find liquidity elsewhere if it wants to loan it out.
-
-The money that was created through the transaction with the Fed is effectively multiplied thanks to fractional reserve banking.
 
 ## Example
 
@@ -88,7 +86,7 @@ Let's throw some numbers into this equation just to illustrate the full effect. 
 1. The Fed announces a purchase of $4B worth of treasuries.
 1. In our simplified model, Bank A is the Fed's only primary dealer. It satisfies the Fed's entire demand by selling it $4B of treasuries.
 1. $4B appears in Bank A's credit column with the Fed. This number counts toward the required reserve which the Fed has mandated as part of its role of central bank.
-1. Although not available as cash, Bank A is now sitting on $4B extra worth of reserve. Before QE, it was just satisfying its reserve requirement by holding $1B for its $10B in deposits. After QE, it can now invest or loan out significantly more money if it can get its hands on the cash to do so.
+1. Although not available as cash, Bank A is now sitting on $4B extra worth of reserve. Before QE, it was just satisfying its reserve requirement by holding $1B for its $10B in deposits. After QE, it can now invest or loan out significantly more money if it deems that the prudent course and can get its hands on the cash to do so.
 
 <figure>
   <table>
