@@ -2,7 +2,7 @@ module Org
   class Articles
     article "/sdk", {
       hook:         <<-eos,
-When building an app against an API, do you pull in their SDK or just make raw HTTP calls? Here are a few reasons that I don't want your SDK in production.
+When building an app against an API, do you pull in their SDK or just make raw HTTP calls? Here are a few reasons that I avoid SDKs when I can.
       eos
       location:     "San Francisco",
       published_at: Time.parse("Mon Jan 27 10:36:46 PST 2014"),
