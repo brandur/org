@@ -4,6 +4,7 @@ module Org
       hook:         <<-eos,
 Quantitative easing explained in a pragmatic way (and with examples).
       eos
+      image:        "/assets/qe/qe2.jpg",
       location:     "San Francisco",
       published_at: Time.parse("Thu Jan 30 22:15:17 PST 2014"),
       signature:    true,
