@@ -88,6 +88,57 @@ Let's throw some numbers into this equation just to illustrate the full effect. 
 1. $4B appears in Bank A's credit column with the Fed. This number counts toward the required reserve which the Fed has mandated as part of its role of central bank.
 1. Bank A is now free to lend out this extra money, which could translate into total loans of as much as $40B thanks to the fractional-reserve banking system (or $800B across all the banks). (**B:** fact check)
 
+<figure>
+  <table>
+    <tr>
+      <th colspan="2">Treasury</th>
+      <th colspan="2">Fed</th>
+      <th colspan="2">Bank A</th>
+    </tr>
+    <tr>
+      <th>Assets</th>
+      <th>Liabilities</th>
+      <th>Assets</th>
+      <th>Liabilities</th>
+      <th>Assets</th>
+      <th>Liabilities</th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>$10B public goods</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>$10B treasuries</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li><strong>$10B treasuries</strong></li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li><strong>$10B reserves</strong></li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li><strong>$5B reserves</strong></li>
+          <li>$5B loans</li>
+        </ul>
+      <td>
+        <ul>
+          <li>$10B deposits</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <figcaption>Assets and liabilities of each actor after QE.</figcaption>
+</figure>
+
 Keep in mind that since around September 2012, this has occurred _every month_.
 
 ## Was Money Printed?
