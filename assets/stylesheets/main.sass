@@ -142,10 +142,6 @@ ol, ul
   line-height: 1.6em
   margin: 30px 0
 
-.row-generic
-  clear: both
-  max-width: 1000px
-
 .content
   background: #fff
   margin: 0 15%
@@ -197,6 +193,7 @@ ol, ul
   background: #000
   background-repeat: no-repeat
   background-size: cover
+  margin: 0 0 30px 0
   // assign a min-height for a longer title but shorter device width (this is
   // okay for a title that occupies three lines)
   min-height: 450px
@@ -380,8 +377,22 @@ footer
 
 @media only screen and (min-width: 1800px)
 
+  article
+
+    figure
+
+      // if we active multi-column, we have to deactivate the left margin
+      // positioning of figcaptions
+      figcaption
+        left: 0
+        margin: 20px 0 0 0
+        position: relative
+        text-align: center
+        top: 0
+        width: auto
+
   body
-    font-size: 17px
+    //font-size: 17px
 
   p
     // so much space! allow code content to just expand across the screen
@@ -392,8 +403,15 @@ footer
     overflow: visible
 
   .content
-    max-width: $content_width_big
+    //max-width: $content_width_big
+    max-width: none
     line-height: 1.8em
+    column-gap: 60px
+    column-width: 600px
+    -moz-column-gap: 60px
+    -moz-column-width: 600px
+    -webkit-column-gap: 60px
+    -webkit-column-width: 600px
 
   footer
 
