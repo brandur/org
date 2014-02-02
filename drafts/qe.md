@@ -139,7 +139,7 @@ Let's throw some numbers into this equation just to illustrate the full effect. 
   <figcaption>Assets and liabilities of each actor after QE.</figcaption>
 </figure>
 
-There you have it! I didn't say that the example wouldn't be extremely contrived, but it should be enough to illustrate the basic mechanics at work here.
+There you have it! I didn't say that the example wouldn't be extremely contrived, but it should serve to illustrate the basic mechanics at work here.
 
 ## Is the Fed Printing Money?
 
