@@ -1,6 +1,6 @@
-As QE3 continues to demonstrate that its nickname of QE-Infinity is well-deserved, it's increasingly important that the general public understands how it works and is able to grasp its long term consequences on the financial system. Looking around the web, I was abhored by just how difficult it was to find an explanation of the precise mechanics of QE; as one might expect, [the fed's own sources](http://www.federalreserve.gov/faqs/money_12853.htm) are comically misleading.
+As QE3 continues to demonstrate that its nickname of QE-Infinity is well-deserved, it's increasingly important that the general public understands how it works and is able to grasp its long term consequences on the financial system. Is Bernanke actually printing $85 billion a month? How can that not be causing huge inflationary pressure? Looking around the web, I was abhored by just how difficult it was to find an explanation of the precise mechanics of QE; even the Fed itself [assures us that it's not printing](http://www.federalreserve.gov/faqs/money_12853.htm), but then proceeds to gloss over the details.
 
-What follows is my attempt to explain QE in a pragmatic way, with examples to reinforce the concepts.
+What follows is my attempt to explain QE in a pragmatic way, with an example to reinforce the concepts.
 
 ## Actors
 
@@ -12,20 +12,22 @@ Lets start with the basic and talk about the basic actors involved in the proces
 
 ## Fractional-reserve Banking
 
-Fractional-reserve banking is a form of banking carried out worldwide that's important to understanding the whole story of QE. Under this system, banks retain reserves only equal to the a _fraction_ of the their total deposits, with that fraction's amount being sufficient to satisfy demand for withdrawals. The rest of the money is invested or loaned out.
+Fractional-reserve banking is a form of banking carried out worldwide that's important to understanding the whole story of QE. Under this system, banks retain reserves only equal to the a _fraction_ of the their total deposits, with that fraction's amount being sufficient to satisfy demand for withdrawals. The rest of the money can be invested or loaned out.
 
 Now here's the catch: that loaned money is often re-deposited into another bank, counts towards that new bank's reserves, and can be re-lent. This magnification effect actually allows the total supply of money to grow to a multiple of what was originally issued by the central bank. This is known as the **money multiplier**.
 
 In the US, the Fed stipulates the reserve requirements for US banks and banks operating in US territory, which is the ratio of required reserved to deposits at an institution. For a reasonably large bank (> $79.5M), that ratio is 10%.
 
-## QE, Step by Step
+## QE. Step by Step.
 
 Now that we have the backstory in place, let's dive into how QE actually works:
 
-1. The Fed announces that it will buy $X billion dollars of treasuries.
+1. The Fed announces that it will buy $X billion worth of treasuries.
 1. The primary dealers submit offers to sell those treasuries to the Fed (as they required to do as dictated by their primary dealer status).
 1. After the transaction, the primary dealers have now traded the treasuries amongst their assets for a credit that shows up in the books they keep with the Fed.
-1. This credit usually becomes part of that bank's _required reserves_ with the Fed, so they can now proceed to lend out more money than they could before. The money that was created through the transaction with the Fed is effectively multiplied thanks to fractional reserve banking.
+1. This credit usually becomes part of that bank's _required reserves_ with the Fed, so they can now proceed to lend out more money than they could before. Fractional reserve banking ensures that whatever amount the reserve increased by is effectively multiplied, and therefore its effect on the money supply has a magnified effect, _but_ the increase in reserve isn't cash itself (remember, its just a credit on the Fed's balance sheet) so the bank has to find liquidity elsewhere if it wants to loan it out.
+
+The money that was created through the transaction with the Fed is effectively multiplied thanks to fractional reserve banking.
 
 ## Example
 
@@ -83,10 +85,10 @@ Let's throw some numbers into this equation just to illustrate the full effect. 
   <figcaption>Assets and liabilities of each actor before QE.</figcaption>
 </figure>
 
-1. The Fed announces a purchase of $80B (as of February 2014 that number is more like $85B, but let's simplify this example).
-1. We have 20 primary dealers. Each one sells the Fed $4B worth of treasuries, including Bank A.
+1. The Fed announces a purchase of $4B worth of treasuries.
+1. In our simplified model, Bank A is the Fed's only primary dealer. It satisfies the Fed's entire demand by selling it $4B of treasuries.
 1. $4B appears in Bank A's credit column with the Fed. This number counts toward the required reserve which the Fed has mandated as part of its role of central bank.
-1. Bank A is now free to lend out this extra money, which could translate into total loans of as much as $40B thanks to the fractional-reserve banking system (or $800B across all the banks). (**B:** fact check)
+1. Although not available as cash, Bank A is now sitting on $4B extra worth of reserve. Before QE, it was just satisfying its reserve requirement by holding $1B for its $10B in deposits. After QE, it can now invest or loan out significantly more money if it can get its hands on the cash to do so.
 
 <figure>
   <table>
@@ -139,8 +141,16 @@ Let's throw some numbers into this equation just to illustrate the full effect. 
   <figcaption>Assets and liabilities of each actor after QE.</figcaption>
 </figure>
 
-Keep in mind that since around September 2012, this has occurred _every month_.
+There you have it! I didn't say that the example wouldn't be extremely contrived, but it should be enough to illustrate the basic mechanics at work here.
 
-## Was Money Printed?
+## Is the Fed Printing Money?
 
-Despite the Fed's firm affirmations that no money is printed during the process, the truth is more complicated.
+Let's circle back around to the original question: is Bernanke printing money and devaluing the dollar? The answer is an unsatisfying "no, but sort of." As we saw above, when the Fed initiates a QE transaction, they're effectively just replacing one type of asset (a treasury) with another type of asset (reserve), neither of which is usable money. However, if from there the bank goes on to use that reserve to increase their outstanding loans, then through the magnification effect of fractional-reserve banking the total money supply can grow.
+
+But the amount of reserve available to a bank is often not the deciding factor when it comes to to extending loans. The Bank for International Settlements (BIS), a global organization for central banks, had this to say on the matter:
+
+> In fact, the level of reserves hardly figures in banks’ lending decisions. The amount of credit outstanding is determined by banks’ willingness to supply loans, based on perceived risk-return trade-offs, and by the demand for those loans. The aggregate availability of bank reserves does not constrain the expansion directly.
+
+So in other words, the inflationary pressure here may be no stronger than it would have otherwise been without QE.
+
+## So What Does it Do Then?

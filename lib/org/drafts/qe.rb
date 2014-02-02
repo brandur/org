@@ -2,7 +2,7 @@ module Org
   class Articles
     article "/qe", {
       hook:         <<-eos,
-Quantitative easing explained in a pragmatic way (and with examples).
+Quantitative easing explained in a pragmatic way (and with an example).
       eos
       image:        "/assets/qe/qe2.jpg",
       location:     "San Francisco",
