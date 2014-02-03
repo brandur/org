@@ -6,7 +6,7 @@ What follows is my attempt to explain QE in a pragmatic way, with an example to 
 
 Lets start with the basic and talk about the basic actors involved in the process:
 
-* *United States Department of the Treasury* (or the **Treasury**): the treasury of the US federal government tasked with managing its revenue. The Treasury allows US debt to be purchased by a variety of parties by issuing a financial instrument called a a _US Treasury security_ (these are often known as **treasuries**)
+* *United States Department of the Treasury* (or the **Treasury**): the treasury of the US federal government tasked with managing its revenue. The Treasury allows US debt to be purchased by a variety of parties by issuing a financial instrument called a a _US Treasury security_ (these are often known as **treasuries**, and come in a few different forms which we won't get into).
 * *Federal Reserve System* (or the **Fed**): the central banking system of the United States. It was created in 1913 as a reaction to an economic panic in 1907 (where the NYSE fell 50% compared to 1906) and tasked by Congress with the responsibilities of maximizing US employment, stabilizing prices, and moderating long-term interest rates. In response to the global financial crisis of 2007-08, it has initiated qualititative easing in an attempt to mitigate the effects of the recession on the US economy. The Fed buys and sells treasuries at auction with its primary dealers.
 * *Primary dealers*: ~20 banks permitted to trade directly with the Fed. When the Fed auctions securities, primary dealers are _required_ to participate. The vast majority of treasuries are traded through the primary dealers to other entities worldwide. [Lists of primary dealers](http://en.wikipedia.org/wiki/Primary_dealer#Current_list) are easily available and include well known names like **BMO**, **Goldman Sachs**, and **JP Morgan**.
 
@@ -151,4 +151,4 @@ That said, the amount of reserve available to a bank is often not the deciding f
 
 So in other words, the inflationary pressure here may be no stronger than it would have otherwise been without QE.
 
-## So What Does it Do Then?
+## So What Does QE Do Then?
