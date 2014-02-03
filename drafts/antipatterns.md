@@ -44,6 +44,8 @@ end
 
 The request store is an anti-pattern. Much like the infamous [singleton pattern](http://en.wikipedia.org/wiki/Singleton_pattern), it introduces global state state into its application which in turn makes it more difficult to reason about the dependencies of any given piece of code. Global state can have other side effects too, like making testing more difficult. Globals that initialize themselves implicitly can be hard to set without a great stubbing framework, and will undesirably keep their value across multiple test cases.
 
-Despite all this, from an engineering perspective the side effects of using the request store over time have been extremely minimal.
+This sort of technique is slightly less controversial in the world of dynamic languages, but I think it's safe to say that my highly pattern-oriented colleagues back in the enterprise world would have chastised me for considering the use of global state.
 
-Walking a fine line, if you let abuse seep into the system
+Despite all this, from an engineering perspective the side effects of using the request store over time have been surprisingly minimal. By staying vigilant in making sure that it doesn't creep beyond its originally intended use, the request store becomes a very convenient way to store a few pieces of global state that would otherwise be very awkward to access. It's a fine line though, and it would be easy enough to let abuse seep into the system if members of the team didn't keep each other in check.
+
+Request store isn't an isolated case either. Projects like Rails and Sinatra have been using singleton patterns in places like [managing their database connection](https://github.com/rails/rails/blob/4-0-stable/activerecord/lib/active_record/core.rb#L86-L88) or [delegating DSL methods from the main module](https://github.com/sinatra/sinatra/blob/184fe58ca5879d04fce82fcb190c10f72e1f63bc/lib/sinatra/base.rb#L1988) for years. These uses have probably not been completely painless over the years, but lasting as long as they have is a testament to their success at least on a practical level.
