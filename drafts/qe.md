@@ -8,7 +8,7 @@ Lets start with the basic and talk about the basic actors involved in the proces
 
 * *United States Department of the Treasury* (or the **Treasury**): the treasury of the US federal government tasked with managing its revenue. The Treasury allows US debt to be purchased by a variety of parties by issuing a financial instrument called a a _US Treasury security_ (these are often known as **treasuries**)
 * *Federal Reserve System* (or the **Fed**): the central banking system of the United States. It was created in 1913 as a reaction to an economic panic in 1907 (where the NYSE fell 50% compared to 1906) and tasked by Congress with the responsibilities of maximizing US employment, stabilizing prices, and moderating long-term interest rates. In response to the global financial crisis of 2007-08, it has initiated qualititative easing in an attempt to mitigate the effects of the recession on the US economy. The Fed buys and sells treasuries at auction with its primary dealers.
-* *Primary dealers*: ~20 banks permitted to trade directly with the Fed. When the Fed auctions securities primary dealers are _required_ to participate. The vast majority of treasuries are traded through the primary dealers to other entities worldwide. [Lists of primary dealers](http://en.wikipedia.org/wiki/Primary_dealer#Current_list) are available and include well known names like **BMO**, **Goldman Sachs**, and **JP Morgan**.
+* *Primary dealers*: ~20 banks permitted to trade directly with the Fed. When the Fed auctions securities, primary dealers are _required_ to participate. The vast majority of treasuries are traded through the primary dealers to other entities worldwide. [Lists of primary dealers](http://en.wikipedia.org/wiki/Primary_dealer#Current_list) are easily available and include well known names like **BMO**, **Goldman Sachs**, and **JP Morgan**.
 
 ## Fractional-reserve Banking
 
@@ -25,7 +25,7 @@ Now that we have the backstory in place, let's dive into how QE actually works:
 1. The Fed announces that it will buy $X billion worth of treasuries.
 1. The primary dealers submit offers to sell those treasuries to the Fed (as they required to do as dictated by their primary dealer status). It's important to note that these primary dealers already own the treasuries that they're going to sell (i.e. they're not created).
 1. After the transaction, the primary dealers have now traded the treasuries amongst their assets for a credit that shows up in the books they keep with the Fed.
-1. This credit usually becomes part of that bank's _required reserves_ with the Fed, so they can now proceed to lend out more money than they could before. Fractional reserve banking ensures that whatever amount the reserve increased by is effectively multiplied, and therefore its effect on the money supply has a magnified effect, _but_ the increase in reserve isn't cash itself (remember, its just a credit on the Fed's balance sheet) so the bank has to find liquidity elsewhere if it wants to loan it out.
+1. This credit usually becomes part of that bank's _required reserves_ with the Fed, so they can now proceed to lend out more money than they could before. Fractional reserve banking ensures that whatever amount the reserve increased by is effectively multiplied, and therefore its effect on the money supply has a magnified effect, _but_ the increase in reserve isn't cash itself (remember, it's just a credit on the Fed's balance sheet) so the bank has to find liquidity elsewhere if it wants to loan it out.
 
 ## Example
 
