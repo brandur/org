@@ -23,7 +23,7 @@ In the US, the Fed stipulates the reserve requirements for US banks and banks op
 Now that we have the backstory in place, let's dive into how QE actually works:
 
 1. The Fed announces that it will buy $X billion worth of treasuries.
-1. The primary dealers submit offers to sell those treasuries to the Fed (as they required to do as dictated by their primary dealer status).
+1. The primary dealers submit offers to sell those treasuries to the Fed (as they required to do as dictated by their primary dealer status). It's important to note that these primary dealers already own the treasuries that they're going to sell (i.e. they're not created).
 1. After the transaction, the primary dealers have now traded the treasuries amongst their assets for a credit that shows up in the books they keep with the Fed.
 1. This credit usually becomes part of that bank's _required reserves_ with the Fed, so they can now proceed to lend out more money than they could before. Fractional reserve banking ensures that whatever amount the reserve increased by is effectively multiplied, and therefore its effect on the money supply has a magnified effect, _but_ the increase in reserve isn't cash itself (remember, its just a credit on the Fed's balance sheet) so the bank has to find liquidity elsewhere if it wants to loan it out.
 
@@ -143,9 +143,9 @@ There you have it! I didn't say that the example wouldn't be extremely contrived
 
 ## Is the Fed Printing Money?
 
-Let's circle back around to the original question: is Bernanke printing money and devaluing the dollar? The answer is an unsatisfying "no, but sort of." As we saw above, when the Fed initiates a QE transaction, they're effectively just replacing one type of asset (a treasury) with another type of asset (reserve), neither of which is usable money. However, if from there the bank goes on to use that reserve to increase their outstanding loans, then through the magnification effect of fractional-reserve banking the total money supply can grow.
+Let's circle back around to the original question: is Bernanke printing money and devaluing the dollar? The answer is an unsatisfying "no, but sort of." As we saw above, when the Fed initiates a QE transaction, they're effectively just replacing one type of asset (a treasury) with another type of asset (reserve), neither of which is usable money. However, if from there the bank goes on to use that reserve to increase their outstanding loans, then through the magnification effect of fractional-reserve banking the total money supply can grow (which may result in an inflationary effect).
 
-That said, the amount of reserve available to a bank is often not the deciding factor when it comes to to extending loans. The Bank for International Settlements (BIS), a global organization for central banks, had this to say on the matter:
+That said, the amount of reserve available to a bank is often not the deciding factor when it comes to to extending loans. The Bank for International Settlements (BIS), a global organization for central banks, had this to say about it:
 
 > In fact, the level of reserves hardly figures in banks’ lending decisions. The amount of credit outstanding is determined by banks’ willingness to supply loans, based on perceived risk-return trade-offs, and by the demand for those loans. The aggregate availability of bank reserves does not constrain the expansion directly.
 
