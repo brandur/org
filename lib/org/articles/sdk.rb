@@ -8,6 +8,7 @@ When building an app against a web API, do you pull in their SDK or just make ra
       published_at: Time.parse("Mon Feb  3 06:46:52 PST 2014"),
       signature:    true,
       title:        "Why I Don't Want Your SDK in Production",
+      hn_link:      "https://news.ycombinator.com/item?id=7177887",
     } do
       render_article do
         slim :"articles/signature", layout: !pjax?
