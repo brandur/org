@@ -37,3 +37,11 @@ You can get around this by just vendoring in all your dependencies, but that's t
 It's true that the points above are still possible with SDKs be it through designing pluggable SDKs, monkey patching, or building sophisticated wrappers. The problem is that these SDKs are being shipped from by different companies and different people and will have wildly different conventions and capabilities throughout; all of which need to be examined and learned on a case-by-case basis, and the options above probably won't represent a big time saving compared to just wrapping the HTTP calls yourself and re-using the patterns that you already have.
 
 In summary, thank-you for shipping me your SDK &mdash; I appreciate the gesture immeasurably &mdash; but I'd much rather use your well-designed web API.
+
+## Addendum
+
+_(Added February 5th, 2014)_
+
+Judging by some of the feedback I've received from this article, it seems that I've somewhat miscommunicated my position on SDKs. The key to understand this opinion piece is the _in production_ part of the title, meaning that for my own high traffic service I'd like to be as close to the wire as possible and have the option of opting out of SDKs (and a great API makes that easy).
+
+I certainly acknowledge that SDKs are useful for many purposes, including getting users bootstrapped on a service as quickly as possible and helping to tease bugs out of your API as you spend time building the SDK. I wouldn't ship an API without them.
