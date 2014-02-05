@@ -10,7 +10,7 @@ Quantitative easing explained in a pragmatic way (and with an example).
       signature:    true,
       title:        "Quantitative Easing for Hackers",
       attributions: <<-eos
-Header image by <strong><a href="https://www.flickr.com/photos/67499195@N00/717747166">Eli Christman</a></strong>. Licensed under Creative Commons BY 2.0.
+Header image by <strong><a href="http://www.flickr.com/photos/gammaman/6242455757/">Eli Christman</a></strong>. Licensed under Creative Commons BY 2.0.
       eos
     } do
       render_article do
