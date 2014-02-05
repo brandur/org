@@ -1,6 +1,6 @@
 As QE3 continues to demonstrate that its nickname of QE-Infinity is well-deserved, it's increasingly important that the general public understands how it works and is able to grasp its long term consequences on the financial system. Is Bernanke actually printing $85 billion a month? Does that mean I'll be paying $100 for a loaf of bread by 2020? Looking around the web, I was abhored by just how difficult it was to find an explanation of the precise mechanics of QE; even the Fed itself [assures us that it's not printing](http://www.federalreserve.gov/faqs/money_12853.htm), but then proceeds to gloss over the details.
 
-What follows is my attempt to explain QE in a pragmatic way, with an example to reinforce the concepts.
+What follows is my attempt to explain QE in the simple and pragmatic style of the technical blog posts that I've read over the years (thus "for hackers"). Keep in mind that I'm an enthusiast but not an expert, and [welcome feedback and corrections](mailto:brandur@brandur.org).
 
 ## Actors
 
@@ -12,11 +12,13 @@ Lets start with the basic and talk about the basic actors involved in the proces
 
 ## Fractional-reserve Banking
 
-Fractional-reserve banking is a form of banking carried out worldwide that's important to understanding the whole story of QE. Under this system, banks retain reserves only equal to the a _fraction_ of the their total deposits, with that fraction's amount being sufficient to satisfy demand for withdrawals. The rest of the money can be invested or loaned out.
+[Fractional-reserve banking](http://en.wikipedia.org/wiki/Fractional_reserve_banking) is a form of banking carried out worldwide that's important to understanding the whole story of QE. Under this system, banks retain reserves only equal to the a _fraction_ of the their total deposits, with that fraction's amount being sufficient to satisfy demand for withdrawals. The rest of the money can be invested or loaned out.
 
-Now here's the catch: that loaned money is often re-deposited into another bank, counts towards that new bank's reserves, and can be re-lent. This magnification effect actually allows the total supply of money to grow to a multiple of what was originally issued by the central bank. This is known as the **money multiplier**.
+Now here's the catch: that loaned money is often re-deposited into another bank, counts towards that new bank's reserves, and can be re-lent. This magnification effect actually allows the total supply of money to grow to a multiple of what was originally issued by the central bank. This is known as the **[money multiplier](http://en.wikipedia.org/wiki/Money_multiplier)**.
 
 In the US, the Fed stipulates the reserve requirements for US banks and banks operating in US territory, which is the ratio of required reserved to deposits at an institution. For a reasonably large bank (> $79.5M), that ratio is 10%.
+
+The total reserves plus the total currency in circulation is known as the **[monetary base](http://en.wikipedia.org/wiki/Monetary_base)**.
 
 ## QE. Step by Step.
 
@@ -143,13 +145,13 @@ There you have it! I didn't say that the example wouldn't be extremely contrived
 
 ## Is the Fed Printing Money?
 
-Let's circle back around to the original question: is Bernanke printing money and devaluing the dollar? The answer is an unsatisfying "no, but sort of." As we saw above, when the Fed initiates a QE transaction, they're effectively just replacing one type of asset (a treasury) with another type of asset (reserve), neither of which is usable money. However, if from there the bank goes on to use that reserve to increase their outstanding loans, then through the magnification effect of fractional-reserve banking the total money supply can grow, which edges us ever so slightly closer to that $100 loaf of bread.
+Let's circle back around to the original question: is Bernanke printing money and devaluing the dollar? The answer is an unsatisfying "no, but sort of." As we saw above, when the Fed initiates a QE transaction, they're effectively just replacing one type of asset (a treasury) with another type of asset (reserve), neither of which is usable money. However, if from there the bank goes on to use that reserve to increase their outstanding loans, then through the magnification effect of fractional-reserve banking the total money supply _can_ grow, which might edge us ever so slightly closer to that $100 loaf of bread.
 
 That said, the amount of reserve available to a bank is often not the deciding factor when it comes to to extending loans. The Bank for International Settlements (BIS), a global organization for central banks, had this to say about it:
 
 > In fact, the level of reserves hardly figures in banks’ lending decisions. The amount of credit outstanding is determined by banks’ willingness to supply loans, based on perceived risk-return trade-offs, and by the demand for those loans. The aggregate availability of bank reserves does not constrain the expansion directly.
 
-So in other words, the inflationary pressure here may be no stronger than it would have otherwise been without QE.
+So in other words, the inflationary pressure here may not be that much stronger than it would have otherwise been without QE.
 
 <figure>
   <table>
@@ -175,4 +177,13 @@ So in other words, the inflationary pressure here may be no stronger than it wou
   <figcaption>Monetary base, reserves, and currency in circulation as published by the Fed.</figcaption>
 </figure>
 
-Luckily, we do have some idea as to what's going on as [the Fed tracks the monetary base of the United States](http://www.federalreserve.gov/releases/H3/Current/). The monetary base as of January 2014 is $3,753B, almost a trillion dollars larger than the base of $2,741B in January 2013. That seems like an enormous increase, but if you compare the total reserves of January 2014 ($2,582B) to that of January 2013 ($1,637B) you'll notice that this number is also almost a trillion dollars larger, indicating that the increase in reserves is almost entirely responsible for the overall increase to the monetary base. The fact that these reserves are not actually in circulation means that their effect on inflation is likely much lower than one might expect.
+Luckily, we do have some idea as to what's going on as [the Fed tracks the monetary base of the United States](http://www.federalreserve.gov/releases/H3/Current/). The monetary base as of January 2014 is $3,753B, almost a trillion dollars larger than the base of $2,741B in January 2013. That seems like an enormous increase, but if you compare the total reserves of January 2014 ($2,582B) to that of January 2013 ($1,637B) you'll notice that this number is also almost a trillion dollars larger, showing that the increase in reserves is almost entirely responsible for the overall increase to the monetary base. Those reserves not actually being in circulation means that their effect on inflation is lower than one might expect.
+
+## Other Effects
+
+The Fed's purchase of large numbers of treasuries is enough to push down the **yields** on all government bonds, making them a less attractive investment. This shifts the risk curve and leads investors towards assets like stocks and corporate bonds, pushing the price of those assets higher. These increased prices leads to a **[wealth effect](http://en.wikipedia.org/wiki/Wealth_effect)**, meaning that the increase in perceived wealth improves confidence and leads to more spending, thus stimulating the economy. The effectiveness of this strategy is also difficult to measure directly, but we can observe the price increases in many types of assets over the last few years.
+
+## References
+
+* [Why quantitative easing isn't printing money](http://www.cnbc.com/id/100760150)
+* [What is the purpose of QE?](http://www.ritholtz.com/blog/2012/12/what-is-the-purpose-of-qe/)
