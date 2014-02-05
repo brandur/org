@@ -151,4 +151,28 @@ That said, the amount of reserve available to a bank is often not the deciding f
 
 So in other words, the inflationary pressure here may be no stronger than it would have otherwise been without QE.
 
+<figure>
+  <table>
+    <tr>
+      <th>Month</th>
+      <th>Total monetary base</th>
+      <th>Total reserves</th>
+      <th>Currency in curculation</th>
+    </tr>
+    <tr>
+      <td>January 2013</td>
+      <td>$2,741B</td>
+      <td>$1,637B</td>
+      <td>$1,159B</td>
+    </tr>
+    <tr>
+      <td>January 2014</td>
+      <td>$3,753B</td>
+      <td>$2,582B</td>
+      <td>$1,227B</td>
+    </tr>
+  </table>
+  <figcaption>Monetary base, reserves, and currency in circulation as published by the Fed.</figcaption>
+</figure>
+
 Luckily, we do have some idea as to what's going on as [the Fed tracks the monetary base of the United States](http://www.federalreserve.gov/releases/H3/Current/). The monetary base as of January 2014 is $3,753B, almost a trillion dollars larger than the base of $2,741B in January 2013. That seems like an enormous increase, but if you compare the total reserves of January 2014 ($2,582B) to that of January 2013 ($1,637B) you'll notice that this number is also almost a trillion dollars larger, indicating that the increase in reserves is almost entirely responsible for the overall increase to the monetary base. The fact that these reserves are not actually in circulation means that their effect on inflation is likely much lower than one might expect.
