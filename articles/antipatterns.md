@@ -22,7 +22,7 @@ class Middleware::RequestStore
 end
 ```
 
-I usually take it a bit further in a larger application, where it's been my habit to extend the original pattern so that we inventory exactly what's supposed to be in there, making it more difficult to accidentally create opaque dependencies by mixing data in randomly:
+I usually take it a bit further in a larger application, where it's been my habit to extend the original pattern so that we inventory exactly what it's supposed to contain, making it more difficult to accidentally create opaque dependencies by mixing data in randomly:
 
 ``` ruby
 module RequestStore
