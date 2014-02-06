@@ -42,7 +42,7 @@ end
 
 ## The Anti-pattern
 
-Much like the infamous [singleton pattern](http://en.wikipedia.org/wiki/Singleton_pattern), the request store introduces global state into its application which in turn makes it more difficult to reason about the dependencies of any given piece of code. Global state can have other side effects too, like making testing more difficult; globals that initialize themselves implicitly can be hard to set without a great stubbing framework, and will keep their value across multiple test cases, surprising behavior for anyone not expecting it.
+Much like the infamous [singleton pattern](http://en.wikipedia.org/wiki/Singleton_pattern), the request store introduces global state into its application, which in turn makes it more difficult to reason about the dependencies of any given piece of code. Global state can have other side effects too, like making testing more difficult; globals that initialize themselves implicitly can be hard to set without a great stubbing framework, and will keep their value across multiple test cases, surprising behavior for anyone not expecting it.
 
 This sort of technique is slightly less controversial in the world of dynamic languages, but I think it's safe to say that my highly pattern-oriented colleagues back in the enterprise world would have chastised me for considering the use of global state of any kind. Instead, they'd strongly prefer the use of a dependency injection framework to make certain information accessible from anywhere in an app.
 
