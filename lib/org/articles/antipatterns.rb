@@ -2,7 +2,7 @@ module Org
   class Articles
     article "/antipatterns", {
       hook: <<-eos,
-When the use an anti-pattern is considered beneficial.
+When the use of an anti-pattern is considered beneficial.
       eos
       location:     "San Francisco",
       published_at: Time.parse("Thu Feb  6 07:31:37 PST 2014"),
