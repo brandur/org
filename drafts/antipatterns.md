@@ -1,4 +1,4 @@
-In [Tracing Request IDs](/request-ids), I briefly talked about the possibility of making a request ID easily available from anywhere in an app through a pattern known as the _request store_. The request store is a very simple construct that stores data into Ruby's thread-local context:
+In [Tracing Request IDs](/request-ids), I briefly talked about the possibility of making a request ID easily available from anywhere in an app through a pattern called the [_request store_](https://github.com/steveklabnik/request_store). It's a simple construct that stores data into Ruby's thread-local context:
 
 ``` ruby
 # request store that keys a hash to the current thread
@@ -9,7 +9,7 @@ module RequestStore
 end
 ```
 
-A simple middleware is then inserted into the app which makes sure that all context that was added to the store is cleared between requests:
+Middleware is then used in an app which makes sure that all context that was added to the store is cleared between requests:
 
 ``` ruby
 class Middleware::RequestStore
@@ -22,7 +22,7 @@ class Middleware::RequestStore
 end
 ```
 
-In a larger application, it's been my habit to extend the original pattern a bit so that we inventory exactly what's supposed to be in there, and makes it more difficult to create opaque dependencies by mixing data in randomly:
+I usually take it a bit further In a larger application, where it's been my habit to extend the original pattern so that we inventory exactly what's supposed to be in there, making it more difficult to accidentally create opaque dependencies by mixing data in randomly:
 
 ``` ruby
 module RequestStore
@@ -42,12 +42,12 @@ end
 
 ## The Anti-pattern
 
-The request store is an anti-pattern. Much like the infamous [singleton pattern](http://en.wikipedia.org/wiki/Singleton_pattern), it introduces global state state into its application which in turn makes it more difficult to reason about the dependencies of any given piece of code. Global state can have other side effects too, like making testing more difficult. Globals that initialize themselves implicitly can be hard to set without a great stubbing framework, and will undesirably keep their value across multiple test cases.
+Much like the infamous [singleton pattern](http://en.wikipedia.org/wiki/Singleton_pattern), the request store introduces global state into its application which in turn makes it more difficult to reason about the dependencies of any given piece of code. Global state can have other side effects too, like making testing more difficult; globals that initialize themselves implicitly can be hard to set without a great stubbing framework, and will keep their value across multiple test cases, surprising behavior for anyone not expecting it.
 
-This sort of technique is slightly less controversial in the world of dynamic languages, but I think it's safe to say that my highly pattern-oriented colleagues back in the enterprise world would have chastised me for considering the use of global state.
+This sort of technique is slightly less controversial in the world of dynamic languages, but I think it's safe to say that my highly pattern-oriented colleagues back in the enterprise world would have chastised me for considering the use of global state of any kind. Instead, they'd strongly prefer the use of a dependency injection framework to make certain information accessible from anywhere in an app.
 
-Despite all this, from an engineering perspective the side effects of using the request store over time have been surprisingly minimal. By staying vigilant in making sure that it doesn't creep beyond its originally intended use, the request store becomes a very convenient way to store a few pieces of global state that would otherwise be very awkward to access. But it's a fine line, and it would be easy enough to let abuse seep into the system if members of the team didn't keep each other in check.
+Despite all this, from an engineering perspective the side effects of using the request store over time have been minimal. By staying vigilant in making sure that it doesn't creep beyond its originally intended use, the request store becomes a very convenient way to store a few pieces of global state that would otherwise be very awkward to access. It's a fine line however, and it would be easy enough to let abuse seep into the system if members of the team didn't keep each other in check.
 
-Request store isn't an isolated case either. Projects like Rails and Sinatra have been using singleton patterns in places like [managing their database connection](https://github.com/rails/rails/blob/4-0-stable/activerecord/lib/active_record/core.rb#L86-L88) or [delegating DSL methods from the main module](https://github.com/sinatra/sinatra/blob/184fe58ca5879d04fce82fcb190c10f72e1f63bc/lib/sinatra/base.rb#L1988) for years. These uses have probably not been completely painless over the years, but lasting as long as they have is a testament to their success at least on a practical level.
+The request store isn't an isolated case either. Projects like Rails and Sinatra have been using global patterns in places like [managing their database connection](https://github.com/rails/rails/blob/4-0-stable/activerecord/lib/active_record/core.rb#L86-L88) or [delegating DSL methods from the main module](https://github.com/sinatra/sinatra/blob/184fe58ca5879d04fce82fcb190c10f72e1f63bc/lib/sinatra/base.rb#L1988) for as long as they've existed. These uses may have caused some grief for somebody over the years, but lasting as long as they have is a testament to their success at least on a practical level.
 
-As long as anti-patterns can continue to show positive productivity results and to cause minimal harm, I'll keep using them. Even if that decision is academically unsound.
+As long as anti-patterns can continue to show positive productivity results and to cause minimal harm, I'll keep using them.
