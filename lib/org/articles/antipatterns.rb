@@ -5,7 +5,7 @@ module Org
 When the use an anti-pattern is considered beneficial.
       eos
       location:     "San Francisco",
-      published_at: Time.parse("Mon Feb  3 09:45:04 PST 2014"),
+      published_at: Time.parse("Thu Feb  6 07:31:37 PST 2014"),
       signature:    true,
       title:        "Healthy Anti-patterns",
     } do
