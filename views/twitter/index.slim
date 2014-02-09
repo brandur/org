@@ -42,6 +42,7 @@
 javascript:
   var tweetCountByMonthCategories = #{{MultiJson.encode(@tweet_count_by_month.map { |k, v| k.strftime("%b '%y") })}}
   var tweetCountByMonthData       = #{{MultiJson.encode(@tweet_count_by_month.map { |k, v| v })}}
+
 coffee:
   $ ->
     new Highcharts.Chart

@@ -15,14 +15,14 @@ module Org
     get "/twitter" do
       @tweets = DB[:events].reverse_order(:occurred_at).filter(type: "twitter")
 
+      last_modified(@tweets.first[:occurred_at]) if Config.production?
+
       @tweet_count              = @tweets.
         filter("metadata -> 'reply' = 'false'").count
       @tweet_count_with_replies = @tweets.count
 
       @tweets = @tweets.filter("metadata -> 'reply' = 'false'") \
         if params[:with_replies] != "true"
-
-      last_modified(@tweets.first[:occurred_at]) if Config.production?
 
       @tweets = @tweets.all
       @tweet_count_by_month = count_by_month(@tweets)
