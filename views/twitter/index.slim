@@ -34,7 +34,8 @@
                   == content_to_html(tweet[:content])
                   span.meta
                     a href="https://twitter.com/brandur/statuses/#{tweet[:slug]}" rel="nofollow"
-                      | #{distance_of_time_in_words(tweet[:occurred_at])} ago
+                      - display = distance_of_time_in_words(tweet[:occurred_at])
+                      = display ? "#{display} ago" : tweet[:occurred_at].getlocal.strftime('%b %e, %Y %H:%M')
 == render :slim, :"_footer", layout: false
 
 javascript:
