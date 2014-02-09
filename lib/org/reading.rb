@@ -24,7 +24,8 @@ module Org
       @books_count = @books.count
 
       @books = @books.all
-      @book_count_by_year = count_by_year(@books)
+      @book_count_by_year, @page_count_by_year =
+        count_books_and_pages_by_year(@books)
       @books = @books.group_by { |b| b[:occurred_at].year }
 
       @title = "Reading"

@@ -1,13 +1,20 @@
 module Org::Helpers
   module Reading
-    def count_by_year(books)
+    def count_books_and_pages_by_year(books)
       book_count_by_year = {}
+      page_count_by_year = {}
+
       books.reverse.each do |b|
         year = Time.new(b[:occurred_at].year)
+
         book_count_by_year[year] ||= 0
         book_count_by_year[year] += 1
+
+        page_count_by_year[year] ||= 0
+        page_count_by_year[year] += b[:metadata][:num_pages].to_i
       end
-      book_count_by_year
+
+      [book_count_by_year, page_count_by_year]
     end
 
     def format_isbn13(isbn)

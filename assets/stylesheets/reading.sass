@@ -15,8 +15,10 @@ $content_width: 680px
   .content
     max-width: none
 
-  #data-books-by-year
-    height: 300px
+  #data-books-by-year, #data-pages-by-year
+    float: left
+    height: 250px
+    width: 49%
 
   #tweets
     max-width: $content_width
@@ -28,3 +30,12 @@ $content_width: 680px
 
         .meta
           color: $secondary
+
+@media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
+
+  .reading
+
+    #data-books-by-year, #data-pages-by-year
+      float: none
+      margin: 0
+      width: 100%
