@@ -5,6 +5,7 @@
  *= require "index"
  *= require "photos"
  *= require "quotes"
+ *= require "reading"
  *= require "runs"
  *= require "tenets"
  *= require "twitter"

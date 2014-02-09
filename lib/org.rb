@@ -2,8 +2,8 @@ require_relative "org/config"
 require_relative "org/librato"
 
 require_relative "org/helpers/common"
-require_relative "org/helpers/goodreads"
 require_relative "org/helpers/markdown"
+require_relative "org/helpers/reading"
 require_relative "org/helpers/runs"
 require_relative "org/helpers/twitter"
 

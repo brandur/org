@@ -1,0 +1,61 @@
+- if pjax?
+  title= @title
+.flag
+.top-spacing
+.reading
+  .content
+    #title
+      #lead
+        a href="/" Home
+      h1 Reading
+    p #{number_with_delimiter(@books_count)} books.
+    #data-books-by-year
+    #tweets
+      - @books.each do |year, books|
+        div class="year" id="year-#{year}"
+          h2= year
+          ul
+            - books.each do |book|
+              li
+                em
+                  a href="http://www.google.com/search?tbo=p&tbm=bks&q=isbn:#{book[:slug]}"= book[:metadata][:title]
+                |  by #{book[:metadata][:author]};
+                | &nbsp;
+                | #{book[:metadata][:num_pages]} pages; 
+                | ISBN13: 
+                a href="http://www.google.com/search?tbo=p&tbm=bks&q=isbn:#{book[:slug]}"= format_isbn13(book[:slug])
+                | ; 
+                span.meta 
+                  - display = distance_of_time_in_words(book[:occurred_at])
+                  = display ? "finished #{display} ago" : book[:occurred_at].getlocal.strftime('%b %e, %Y %H:%M')
+== render :slim, :"_footer", layout: false
+
+javascript:
+  var bookCountByYearCategories = #{{MultiJson.encode(@book_count_by_year.map { |k, v| k.strftime("%Y") })}}
+  var bookCountByYearData       = #{{MultiJson.encode(@book_count_by_year.map { |k, v| v })}}
+
+coffee:
+  $ ->
+    new Highcharts.Chart
+      chart:
+        renderTo: 'data-books-by-year'
+        defaultSeriesType: 'bar'
+      plotOptions:
+        series:
+          animation: false
+      title:
+        text: null
+      xAxis:
+        categories: bookCountByYearCategories
+        title:
+          text: null
+      yAxis:
+        min: 0
+        title:
+          text: null
+      tooltip:
+        formatter: ->
+          this.y + (if this.y != 1 then ' books read' else ' book read') + ' in ' + this.x
+      series: [
+        { name: 'Books', data: bookCountByYearData, color: '#333' }
+      ]
