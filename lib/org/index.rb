@@ -1,7 +1,7 @@
 module Org
   class Index < Sinatra::Base
     helpers Helpers::Common
-    helpers Helpers::Goodreads
+    helpers Helpers::Reading
     helpers Helpers::Twitter
 
     before do
