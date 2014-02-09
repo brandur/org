@@ -1,13 +1,19 @@
 $sans_serif: helvetica, arial, geneva, sans-serif
+$serif: georgia, serif
 
+$primary: #333
 $secondary: #cdcdcd
+$tertiary: #dedede
+$quaternary: #f5f5f5
+
+$content_width: 680px
 
 .twitter
   font-size: 14px
   line-height: 1.5em
 
   .content
-    //max-width: 1000px
+    max-width: none
     position: relative
 
   #data-tweets-by-month
@@ -40,38 +46,32 @@ $secondary: #cdcdcd
             &:visited
               color: $secondary
 
-  .month
-    margin: 40px 0
-    //-moz-column-count: auto
-    //-webkit-column-count: auto
-    //column-count: auto
-    //-moz-column-gap: 30px
-    //-webkit-column-gap: 30px
-    //column-gap: 30px
-    //-moz-column-width: 300px
-    //-webkit-column-width: 300px
-    //column-width: 300px
+  #tweets
+    max-width: $content_width
 
-    ul
+    .month
+      margin: 40px 0
 
-      li
-        margin: 10px 0
+      ul
 
-        .meta
-          font-family: $sans_serif
-          font-size: 12px
-          margin: 0 0 0 5px
+        li
+          margin: 10px 0
 
-          a
-            color: $secondary
-            text-decoration: none
+          .meta
+            font-family: $sans_serif
+            font-size: 12px
+            margin: 0 0 0 5px
 
-            &:hover,
+            a
               color: $secondary
-              text-decoration: underline
+              text-decoration: none
 
-            &:visited
-              color: $secondary
+              &:hover,
+                color: $secondary
+                text-decoration: underline
+
+              &:visited
+                color: $secondary
 
 @media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
 
@@ -79,3 +79,10 @@ $secondary: #cdcdcd
 
     #toc
       display: none
+
+@media only screen and (min-width: 1800px)
+
+  .twitter
+
+    #tweet
+      max-width: none

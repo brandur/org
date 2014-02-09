@@ -22,20 +22,21 @@
               - tweets_by_month.each do |month, _|
                 li
                   a href="#year-#{month}"= month_name(month)
-    - @tweets.each do |year, tweets_by_month|
-      div class="year" id="year-#{year}"
-        h2= year
-        - tweets_by_month.each do |month, tweets|
-          div class="month" id="month-#{month}"
-            h3= month_name(month)
-            ul
-              - tweets.each do |tweet|
-                li
-                  == content_to_html(tweet[:content])
-                  span.meta
-                    a href="https://twitter.com/brandur/statuses/#{tweet[:slug]}" rel="nofollow"
-                      - display = distance_of_time_in_words(tweet[:occurred_at])
-                      = display ? "#{display} ago" : tweet[:occurred_at].getlocal.strftime('%b %e, %Y %H:%M')
+    #tweets
+      - @tweets.each do |year, tweets_by_month|
+        div class="year" id="year-#{year}"
+          h2= year
+          - tweets_by_month.each do |month, tweets|
+            div class="month" id="month-#{month}"
+              h3= month_name(month)
+              ul
+                - tweets.each do |tweet|
+                  li
+                    == content_to_html(tweet[:content])
+                    span.meta
+                      a href="https://twitter.com/brandur/statuses/#{tweet[:slug]}" rel="nofollow"
+                        - display = distance_of_time_in_words(tweet[:occurred_at])
+                        = display ? "#{display} ago" : tweet[:occurred_at].getlocal.strftime('%b %e, %Y %H:%M')
 == render :slim, :"_footer", layout: false
 
 javascript:
