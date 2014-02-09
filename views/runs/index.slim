@@ -22,9 +22,10 @@
             |  
             = run[:occurred_at].strftime("%B %e, %Y")
 == render :slim, :"_footer", layout: false
+
 javascript:
-  years = #{MultiJson.encode(@distance_by_year.keys)}
-  kilometers = #{MultiJson.encode(@distance_by_year.values)}
+  var years = #{MultiJson.encode(@distance_by_year.keys)}
+  var kilometers = #{MultiJson.encode(@distance_by_year.values)}
 coffee:
   $ ->
     new Highcharts.Chart

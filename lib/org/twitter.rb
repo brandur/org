@@ -23,8 +23,11 @@ module Org
         if params[:with_replies] != "true"
 
       last_modified(@tweets[0][:occurred_at]) if Config.production?
+
       @tweets = @tweets.all
+      @tweet_count_by_month = count_by_month(@tweets)
       @tweets = group_by_month_and_year(@tweets)
+
       @title = "Twitter"
       slim :"twitter/index"
     end

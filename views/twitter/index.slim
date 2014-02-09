@@ -12,6 +12,7 @@
       p #{number_with_delimiter(@tweet_count)} tweets, and <a href="/twitter?with_replies=true">#{number_with_delimiter(@tweet_count_with_replies)} including replies</a>.
     - else
       p <a href="/twitter">#{number_with_delimiter(@tweet_count)} tweets</a>, and #{number_with_delimiter(@tweet_count_with_replies)} including replies.
+    #data-tweets-by-month
     #toc
       ul
         - @tweets.each do |year, tweets_by_month|
@@ -35,3 +36,34 @@
                     a href="https://twitter.com/brandur/statuses/#{tweet[:slug]}" rel="nofollow"
                       | #{distance_of_time_in_words(tweet[:occurred_at])} ago
 == render :slim, :"_footer", layout: false
+
+javascript:
+  var tweetCountByMonthCategories = #{{MultiJson.encode(@tweet_count_by_month.map { |k, v| k.strftime("%b '%y") })}}
+  var tweetCountByMonthData       = #{{MultiJson.encode(@tweet_count_by_month.map { |k, v| v })}}
+coffee:
+  $ ->
+    new Highcharts.Chart
+      chart:
+        renderTo: 'data-tweets-by-month'
+        defaultSeriesType: 'line'
+      plotOptions:
+        series:
+          animation: false
+      title:
+        text: null
+      xAxis:
+        categories: tweetCountByMonthCategories
+        labels:
+          rotation: -45
+          align: 'right'
+          step: 2
+      yAxis:
+        min: 0
+        title:
+          text: null
+      tooltip:
+        formatter: ->
+          this.y + (if this.y != 1 then ' tweets' else ' tweet') + ' in ' + this.x
+      series: [
+        { name: 'Tweets', data: tweetCountByMonthData, color: '#333' }
+      ]

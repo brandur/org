@@ -36,6 +36,17 @@ module Org::Helpers
       end
 
       html
+
+    end
+
+    def count_by_month(tweets)
+      tweet_count_by_month = {}
+      tweets.reverse.each do |t|
+        month = Time.new(t[:occurred_at].year, t[:occurred_at].month)
+        tweet_count_by_month[month] ||= 0
+        tweet_count_by_month[month] += 1
+      end
+      tweet_count_by_month
     end
 
     def group_by_month_and_year(tweets)
