@@ -14,13 +14,22 @@ $content_width: 680px
 
   .content
     max-width: none
+    position: relative
+
+  #charts
+    overflow: hidden
 
   #data-books-by-year, #data-pages-by-year
     float: left
     height: 250px
     width: 49%
 
-  #tweets
+  #toc
+    margin: 0 30px 0 0
+    position: absolute
+    left: -120px
+
+  #books
     max-width: $content_width
 
     ul
@@ -30,6 +39,8 @@ $content_width: 680px
 
         .meta
           color: $secondary
+          font-family: $sans_serif
+          font-size: 12px
 
 @media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
 
@@ -39,3 +50,13 @@ $content_width: 680px
       float: none
       margin: 0
       width: 100%
+
+    #toc
+      display: none
+
+@media only screen and (min-width: 1800px)
+
+  .reading
+
+    #books
+      max-width: none

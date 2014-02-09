@@ -9,9 +9,16 @@
         a href="/" Home
       h1 Reading
     p #{number_with_delimiter(@books_count)} books.
-    #data-books-by-year.chart
-    #data-pages-by-year.chart
-    #tweets
+    #charts
+      #data-books-by-year.chart
+      #data-pages-by-year.chart
+      .clear
+    #toc
+      ul
+        - @books.each do |year, _|
+          li
+            a href="#year-#{year}"= year
+    #books
       - @books.each do |year, books|
         div class="year" id="year-#{year}"
           h2= year
