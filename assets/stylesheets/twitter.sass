@@ -1,20 +1,69 @@
+$sans_serif: helvetica, arial, geneva, sans-serif
+
+$secondary: #cdcdcd
+
 .twitter
+  font-size: 14px
+  line-height: 1.5em
 
   .content
-    max-width: 1000px
+    //max-width: 1000px
+
+  #toc
+    float: left
+    margin: 0 30px 0 0
+
+    ul
+
+      ul
+        margin: 10px
+
+        li
+          color: $secondary
+          font-family: $sans_serif
+          font-size: 12px
+          line-height: 1.4em
+
+          a
+            color: $secondary
+            text-decoration: none
+
+            &:hover,
+              color: $secondary
+              text-decoration: underline
+
+            &:visited
+              color: $secondary
 
   .month
-    -moz-column-count: auto
-    -webkit-column-count: auto
-    column-count: auto
-    -moz-column-gap: 30px
-    -webkit-column-gap: 30px
-    column-gap: 30px
-    -moz-column-width: 300px
-    -webkit-column-width: 300px
-    column-width: 300px
+    margin: 40px 0
+    //-moz-column-count: auto
+    //-webkit-column-count: auto
+    //column-count: auto
+    //-moz-column-gap: 30px
+    //-webkit-column-gap: 30px
+    //column-gap: 30px
+    //-moz-column-width: 300px
+    //-webkit-column-width: 300px
+    //column-width: 300px
 
     ul
 
       li
         margin: 10px 0
+
+        .meta
+          font-family: $sans_serif
+          font-size: 12px
+          margin: 0 0 0 5px
+
+          a
+            color: $secondary
+            text-decoration: none
+
+            &:hover,
+              color: $secondary
+              text-decoration: underline
+
+            &:visited
+              color: $secondary
