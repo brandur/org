@@ -27,8 +27,11 @@ module Org::Helpers
       )
 
       # Redcarpet now allows a new renderer to be defined. This would be better.
-      renderer.render(str).
+      html = renderer.render(str).
         gsub /<code class="(\w+)">/, %q|<code class="language-\1">|
+
+      # replaces quotes with correct curly equivalents, etc.
+      Redcarpet::Render::SmartyPants.render(html)
     end
   end
 end
