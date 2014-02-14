@@ -23,7 +23,7 @@
         - @photos.each_with_index do |photo, i|
           li
             a href="/photos/#{photo[:slug]}"
-              img src="/photos/medium/#{photo[:slug]}.jpg" height="#{photo[:metadata][:medium_height]}" width="#{photo[:metadata][:medium_width]}" class="#{i >= 5 ? "extra" : ""}"
+              img src="/photos/medium/#{photo[:slug]}.jpg" height="#{photo[:metadata][:medium_height]}" width="#{photo[:metadata][:medium_width]}" class="#{i >= 6 ? "extra" : ""}"
       .clear
 .clear
 == render :slim, :"_footer", layout: false
