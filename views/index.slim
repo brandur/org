@@ -1,9 +1,7 @@
 .flag
 .top-spacing
 .index
-  /section.about
-    .content
-  section.articles
+  section.about-and-articles
     .content
       h1
         a href="/about" About
@@ -27,41 +25,5 @@
             a href="/photos/#{photo[:slug]}"
               img src="/photos/medium/#{photo[:slug]}.jpg" height="#{photo[:metadata][:medium_height]}" width="#{photo[:metadata][:medium_width]}" class="#{i >= 5 ? "extra" : ""}"
       .clear
-  /section.tweets
-    h2
-      a href="/twitter" Twitter
-    ul
-      - @tweets.each do |tweet|
-        li
-          == content_to_html(tweet[:content])
-          | &nbsp;
-          span.meta
-            a href="https://twitter.com/brandur/statuses/#{tweet[:slug]}"
-              - display = distance_of_time_in_words(tweet[:occurred_at])
-              = display ? "#{display} ago" : tweet[:occurred_at].getlocal.strftime('%b %e, %Y %H:%M')
-  /section.books
-    h2
-      a href="/reading" Reading
-    ul
-      - @books.each do |book|
-        li
-          em
-            a href="http://www.google.com/search?tbo=p&tbm=bks&q=isbn:#{book[:slug]}"= book[:metadata]["title"]
-          |  by #{book[:metadata]["author"]}
-          | &nbsp;
-          span.meta
-            | #{book[:metadata]["num_pages"]} pages; 
-            - display = distance_of_time_in_words(book[:occurred_at])
-            = display ? "finished #{display} ago" : book[:occurred_at].getlocal.strftime('%b %e, %Y %H:%M')
-  /section.links
-    h2 Links
-    ul
-      - @links.each do |link|
-        li
-          a href="#{link[:content]}"= link[:metadata]["title"]
-          | &nbsp;
-          span.meta
-            - uri = URI.parse(link[:content])
-            = uri.host.gsub(/^www\./, "")
 .clear
 == render :slim, :"_footer", layout: false

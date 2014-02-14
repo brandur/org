@@ -37,13 +37,9 @@ module Org
         }, pretty: true)
       else
         events = DB[:events].reverse_order(:occurred_at)
-      # @books    = events.filter(type: "goodreads").limit(10).all
         @essays   = Articles.articles
-      # @links    = events.filter(type: "readability").limit(10).all
         @photos   = events.filter(type: "flickr").
           filter("metadata -> 'medium_width' = '500'").limit(10)
-      # @tweets   = events.filter(type: "twitter").
-      #   filter("metadata -> 'reply' = 'false'").limit(10)
         slugs = [@essays.first, @photos.first].
           map { |e| e[:slug] }.
           join("-")
