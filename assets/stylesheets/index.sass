@@ -24,6 +24,12 @@ $secondary: #bbb
 
   .content
     margin: 0
+    column-gap: initial
+    column-width: initial
+    -moz-column-gap: initial
+    -moz-column-width: initial
+    -webkit-column-gap: initial
+    -webkit-column-width: initial
 
   section.about-and-articles
     float: left
@@ -53,7 +59,10 @@ $secondary: #bbb
       margin: 5px
       width: 500px
 
-    .extra
+    .photo-col1
+      display: none
+
+    .photo-col2
       display: none
 
 @media handheld, only screen and (max-width: 1190px), only screen and (max-device-width: 1190px)
@@ -87,5 +96,25 @@ $secondary: #bbb
       .content
         max-width: none
 
-      .extra
+      .photo-col1
+        display: inline
+
+      .photo-col2
+        display: none
+
+// and an even greater scale factor accommodate a third line of images
+@media only screen and (min-width: 2400px)
+
+  .index
+
+    section.photos
+      width: 1570px
+
+      .content
+        max-width: none
+
+      .photo-col1
+        display: inline
+
+      .photo-col2
         display: inline
