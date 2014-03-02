@@ -177,7 +177,7 @@ So in other words, the inflationary pressure here may not be that much stronger 
   <figcaption>Monetary base, reserves, and currency in circulation as published by the Fed.</figcaption>
 </figure>
 
-Luckily, we do have some idea as to what's going on as [the Fed tracks the monetary base of the United States](http://www.federalreserve.gov/releases/H3/Current/). The monetary base as of January 2014 is $3,753B, almost a trillion dollars larger than the base of $2,741B in January 2013. That seems like an enormous increase, but if you compare the total reserves of January 2014 ($2,582B) to that of January 2013 ($1,637B) you'll notice that this number is also almost a trillion dollars larger, showing that the increase in reserves is almost entirely responsible for the overall increase to the monetary base. Those reserves not actually being in circulation means that their effect on inflation is lower than one might expect.
+Luckily, we do have some idea as to what's going on as [the Fed tracks the monetary base of the United States](http://www.federalreserve.gov/releases/H3/Current/). The monetary base as of January 2014 is $3,753B, almost a trillion dollars larger than the base of $2,741B in January 2013. That seems like an enormous increase, but if you compare the total reserves of January 2014 ($2,582B) to that of January 2013 ($1,637B) you'll notice that this number is also almost a trillion dollars larger, showing that the increase in reserves is almost entirely responsible for the overall increase to the monetary base. The fact that those reserves are locked up tight &mdash; no bank can lend reserves except to another bank &mdash; means that their effect on inflation is lower than one might expect.
 
 ## Other Effects
 
@@ -187,3 +187,4 @@ The Fed's purchase of large numbers of treasuries is enough to push down the **y
 
 * [Why quantitative easing isn't printing money](http://www.cnbc.com/id/100760150)
 * [What is the purpose of QE?](http://www.ritholtz.com/blog/2012/12/what-is-the-purpose-of-qe/)
+* [Does Chairman Bernanke Know Squat About Money](http://www.economonitor.com/lrwray/2012/04/19/does-chairman-bernanke-know-squat-about-money/)
