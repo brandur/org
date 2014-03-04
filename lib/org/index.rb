@@ -44,7 +44,6 @@ module Org
           map { |e| e[:slug] }.
           join("-")
         etag(Digest::SHA1.hexdigest("index-#{slugs}"))
-        @title = "Brandur Leach - brandur.org"
         @viewport_width = "600"
         slim :"index"
       end
