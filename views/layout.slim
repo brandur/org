@@ -2,7 +2,11 @@ doctype 5
 
 html lang='en'
   head
-    title= @title ? @title : "brandur.org"
+    title
+      - if @title
+        | #{@title} &mdash; Brandur Leach
+      - else
+        | brandur.org &mdash; Brandur Leach
 
     meta content='text/html; charset=utf-8' http-equiv='Content-Type'
 
