@@ -14,6 +14,7 @@ A few projects from Heroku employees already exist to help parse logfmt in vario
 * [logfmt for Go](http://godoc.org/github.com/kr/logfmt)
 * [logfmt for Node.JS](https://github.com/csquared/node-logfmt)
 * [logfmt for Python](https://pypi.python.org/pypi/logfmt/0.1)
+* [logfmt for Ruby](https://github.com/cyberdelia/logfmt-ruby)
 
 ## Eliminate the Guesswork
 
