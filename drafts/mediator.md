@@ -1,14 +1,14 @@
-Grouper published a post yesterday [about how they use interactors](http://eng.joingrouper.com/blog/2014/03/03/rails-the-missing-parts-interactors) in their Rails app to help keep their `ActiveRecord` models as lean as possible. This was particularly intriguing to me because while working on the Heroku API, we'd arrived at almost the same pattern independently after learning the hard way that callbacks and large models were easy gateways to an unmaintainable mess.
+Grouper published a post yesterday [about how they use interactors](http://eng.joingrouper.com/blog/2014/03/03/rails-the-missing-parts-interactors) in their Rails app to help keep their `ActiveRecord` models as lean as possible. Somewhat comically, while doing a major refactor of the Heroku API, we'd independently arrived at a nearly identical pattern after learning the hard way that callbacks and large models were an easy route leading to an unmaintainable mess.
 
-The only difference was in terminology: we called the resulting PORO's "mediators", a [design pattern](http://en.wikipedia.org/wiki/Mediator_pattern) that defines how a set of objects interact. I'm not one to quarrel over nomenclature, but I'll use the term "mediator" throughout this article because that's how I'm used to thinking about them.
+The main difference was in semantics: we called the resulting PORO's "mediators", a [design pattern](http://en.wikipedia.org/wiki/Mediator_pattern) that defines how a set of objects interact. I'm not one to quarrel over nomenclature, but I'll use the term "mediator" throughout this article because that's how I'm used to thinking about them.
 
 The intent of this article is to build on what Grouper wrote by talking about some other nice patterns that we've built around the use of mediators/interactors.
 
 ## Lean Endpoints
 
-One goal of our usage of mediators is to consolidate all the business logic that might otherwise have to reside in any API endpoint. Ideally what remains should be a set of request checks like authentication, ACL, and parameters; a single call down to a mediator; and response logic like serialization and setting status codes.
+One goal of our usage of mediators is to consolidate all the business logic that might otherwise have to reside in any API endpoint. Ideally what remains should be a set of request checks like authentication, ACL, and parameters; a single call down to a mediator; and response logic like serialization and status.
 
-Here's a small excerpt from the endpoint for creating an SSL Endpoint:
+Here's a small excerpt from the API endpoint for creating an SSL Endpoint:
 
 ``` ruby
 module API::Endpoints::APIV3
@@ -104,10 +104,11 @@ end
 
 ## Strong Preconditions
 
-From within any mediator, we assume that a number of preconditions are checked elsewhere:
+From within any mediator, we assume that a few preconditions have already been met:
 
-* **Parameters:** We can assume that all parameters are present in their expected form.
-* **Security:** We can assume that security checks like authentication and access control have already been made elsewhere.
+* **Parameters:** All parameters are present in their expected form.
+* **Models:** Rather than passing around abstract identifiers, parameters are materialized models so that no look-up logic needs to be included.
+* **Security:** Security checks like authentication and access control have already been made.
 
 Making these strong assumptions has a number of advantages:
 
@@ -119,7 +120,7 @@ Making these strong assumptions has a number of advantages:
 
 One way to think about mediators is that they encapsulate a discrete piece of work that involves interaction between a set of objects; a piece of work that otherwise might have ended up in an unwieldy method on a model. Because units of work are often composable, just like those model methods would have been, it's a common pattern for mediators to make calls to other mediators.
 
-The following is a small example of an app that deprovisions its installed add-ons as it's destroyed:
+Here's a small example of an app mediator that also deprovisions the app's installed add-ons:
 
 ``` ruby
 module API::Mediators::Apps
@@ -189,3 +190,9 @@ module API::Mediators::Apps
     ...
   end
 ```
+
+A few years into working with the mediator pattern now, and I'd never go back. Although mediator calls are a little more verbose than they might have been as a model methods, they've allowed us to lean out the majority of our models to contain only basics like assocations, validations, and accessors.
+
+Eliminating callbacks has also been a hugely important step forward in that it reduces production incidents caused by running innocent-looking code that results in devastating side effects, and results more transparent test code.
+
+As a bonus, an unintended consequence of this refactoring is that we're now closer to being decoupled from `ActiveRecord` completely than we've ever been before, and having options available is great for peace of mind.
