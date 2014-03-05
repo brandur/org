@@ -112,7 +112,7 @@ From within any mediator, we assume that a few preconditions have already been m
 
 Making these strong assumptions has a number of advantages:
 
-* The complexity of the resulting code is reduce dramatically. We don't have to spend LOCs checking that objects are present or whether they're in their expected form (almost like working in a strongly typed language!).
+* The complexity of the resulting code is reduced dramatically. We don't have to spend LOCs checking that objects are present or whether they're in their expected form (almost like working in a strongly typed language!).
 * It eases testing as the boilerplate for checking parameter validation and the like can be consolidated elsewhere.
 * Allows mediators to be called more easily from outside their normal context like from a debugging/operations console session.
 
