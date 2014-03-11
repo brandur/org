@@ -1,12 +1,12 @@
-Grouper published a post last week [about how they use interactors](http://eng.joingrouper.com/blog/2014/03/03/rails-the-missing-parts-interactors) in their Rails app to help keep their `ActiveRecord` models as lean as possible. Somewhat comically, while doing a major refactor of the Heroku API, we'd independently arrived at a nearly identical pattern after learning the hard way that callbacks and large models were an easy route leading to an unmaintainable mess.
+Grouper published a post last week [about how they use interactors](http://eng.joingrouper.com/blog/2014/03/03/rails-the-missing-parts-interactors) in their Rails app to help keep their ActiveRecord models as lean as possible. Somewhat amusingly, while doing a major refactor of the Heroku API, we'd independently arrived at a nearly identical pattern after learning the hard way that callbacks and large models are the inviting pool whose frothy water conceals treacherous rocks.
 
-The main difference was in semantics: we called the resulting PORO's "mediators", a [design pattern](http://en.wikipedia.org/wiki/Mediator_pattern) that defines how a set of objects interact. I'm not one to quarrel over nomenclature, but I'll use the term "mediator" throughout this article because that's how I'm used to thinking about them.
+The main difference was in appellation: we called the resulting PORO's "mediators", a [design pattern](http://en.wikipedia.org/wiki/Mediator_pattern) that defines how a set of objects interact. I'm not one to quarrel over naming, but I'll use the term "mediator" throughout this article because that's how I'm used to thinking about this pattern.
 
 The intent of this article is to build on what Grouper wrote by talking about some other nice patterns that we've built around the use of mediators/interactors.
 
 ## Lean Endpoints
 
-One goal of our usage of mediators is to consolidate all the business logic that might otherwise have to reside in any API endpoint. Ideally what remains should be a set of request checks like authentication, ACL, and parameters; a single call down to a mediator; and response logic like serialization and status.
+One goal of our usage of mediators is to consolidate all the business logic that might otherwise have to reside in a combination of an API endpoint's body and methods on models. Ideally what remains in the endpoint should be a set of request checks like authentication, ACL, and parameters; a single call down to a mediator; and response logic like serialization and status.
 
 Here's a small excerpt from the API endpoint for creating an SSL Endpoint:
 
@@ -40,7 +40,7 @@ module API::Endpoints::APIV3
 end
 ```
 
-This pattern helps produce a convention that helps keep important logic out of endpoints and in the more readily accessible mediator classes. It also keeps unit tests for the endpoints focused on what those endpoints are responsible for: authentication, parameter and permission checks, serialization, etc. For success cases, we can mock out the mediator's call and response and focus on doing more comprehensive tests on the business logic in the mediator's own unit tests. The entire stack still gets exercised at the integration test level, but we don't have to get into the same level of exhaustive testing there.
+This pattern produces a convention that helps keep important logic out of endpoints and in the more readily accessible mediator classes. It also keeps unit tests for the endpoints focused on what those endpoints are responsible for: authentication, parameter and permission checks, serialization, and the like. For success cases, we can mock out the mediator's call and response and focus on doing more comprehensive tests on the business logic in the mediator's own unit tests. The entire stack still gets exercised at the integration test level, but we don't have to get into the same level of exhaustive testing there.
 
 A mocked endpoint unit test might look like the following (note that the specs are using the [rr](https://github.com/rr/rr) mocking syntax):
 
@@ -107,7 +107,7 @@ end
 Much in the same way that mediators keep our endpoints lean, they do the same for our async jobs. By encapsulating all business logic into a mediator, we leave jobs to focus only one two things:
 
 1. **Model materialization:** Async jobs are passed through some kind of backchannel like a database table or a redis queue, and have to marshaled on the other side. It's up to the job to figure out how to find and instantiate the models that it needs to inject into its mediator. This logic may change job to job: if we have a job to create a logging channel for an app, but that app has already been deleted by the time it runs, then we should fall through the job without an error; but if we have an async job to a destroy an app, and its record is no longer avaiable, then something unexpected happen and we should raise an error.
-2. **Error handling:** A job's second responsibility is to rescue errors and figure out what to do with them. If we're trying to provision an SSL Endpoint and got a connection error, then we might want to send the job back into the work queue; but if something like a configuration error occurred, we might want to notify our error service and fail the job permanently.
+2. **Error handling:** A job's second responsibility is to rescue errors and figure out what to do with them. If we're trying to provision an SSL Endpoint and got a connection error to our downstream endpoints service, then we might want to send the job back into the work queue; but if something like a configuration error occurred, we might want to notify our error service and fail the job permanently.
 
 Let's look at what an async job might look like for the hypothetical SSL Endpoint creation mediator from above:
 
@@ -138,7 +138,7 @@ module API::Jobs::SSLEndpoints
         app:     @app,
         key:     args[:key],
         pem:     args[:pem],
-        user:    current_user
+        user:    @user
       )
 
     # Something is wrong which will prevent the job from ever succeeding. Fail
@@ -155,7 +155,7 @@ module API::Jobs::SSLEndpoints
 end
 ```
 
-(Note that the above is a simplified example. If you were going to send a sensitive secret like an SSL key through an insecure channel, we'd want to encrypt it in reality.)
+(Note that the above is a simplified example. If you were going to send a sensitive secret like an SSL key through an insecure channel, we'd want to encrypt it.)
 
 ## Strong Preconditions
 
@@ -199,7 +199,7 @@ Of course it's important that your mediators have a clear call hierarchy so as n
 
 ## Patterns Through Convention
 
-While establishing mediators as the default unit of work, it's also a convenient time to start building other useful conventions into them. For example, we build in an auditing pattern so that we're still able to produce a trail of audit events even the mediator's work is performed from unexpected places like an operations console:
+While establishing mediators as the default unit of work, it's also a convenient time to start building other useful conventions into them. For example, we build in an auditing pattern so that we're still able to produce a trail of audit events even the mediator's work is performed from unexpected places like a console:
 
 ``` ruby
 module API::Mediators::Apps
@@ -246,8 +246,6 @@ module API::Mediators::Apps
   end
 ```
 
-A few years into working with the mediator pattern now, and I'd never go back. Although mediator calls are a little more verbose than they might have been as a model methods, they've allowed us to lean out the majority of our models to contain only basics like assocations, validations, and accessors.
+A few years into working with the mediator pattern now, and I'd never go back. Although mediator calls are a little more verbose than they might have been as a model methods, they've allowed us to lean out the majority of our models to contain only basics like assocations, validations, and accessors. This has the added advantage of leaving us more decoupled from our ORM (ActiveRecord in this case) than ever before.
 
-Eliminating callbacks has also been a hugely important step forward in that it reduces production incidents caused by running innocent-looking code that results in major side effects, and results in more transparent test code.
-
-As a bonus, an unintended consequence of this refactoring is that we're now closer to being decoupled from `ActiveRecord` completely than we've ever been before, and having options available is great for peace of mind.
+Eliminating callbacks has also been a hugely important step forward in that it reduces production incidents caused by running innocent-looking code that results in major side effects, and leaves us with more transparent test code.
