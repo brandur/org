@@ -8,7 +8,7 @@ The intent of this article is to build on what Grouper wrote by talking about so
 
 One goal of our usage of mediators is to consolidate all the business logic that might otherwise have to reside in a combination of an API endpoint's body and methods on models. Ideally what remains in the endpoint should be a set of request checks like authentication, ACL, and parameters; a single call down to a mediator; and response logic like serialization and status.
 
-Here's a small excerpt from the API endpoint for creating an SSL Endpoint:
+Here's a small (and slightly beautified) excerpt from the API endpoint for creating an SSL Endpoint:
 
 ``` ruby
 module API::Endpoints::APIV3
