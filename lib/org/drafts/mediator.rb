@@ -5,7 +5,7 @@ module Org
 Interactors by a different name.
       eos
       location:     "San Francisco",
-      published_at: Time.parse("Tue Mar  4 10:26:28 PST 2014"),
+      published_at: Time.parse("Tue Mar 11 10:25:07 CDT 2014"),
       signature:    true,
       title:        "The Mediator Pattern",
     } do
