@@ -1,4 +1,4 @@
-Grouper published a post yesterday [about how they use interactors](http://eng.joingrouper.com/blog/2014/03/03/rails-the-missing-parts-interactors) in their Rails app to help keep their `ActiveRecord` models as lean as possible. Somewhat comically, while doing a major refactor of the Heroku API, we'd independently arrived at a nearly identical pattern after learning the hard way that callbacks and large models were an easy route leading to an unmaintainable mess.
+Grouper published a post last week [about how they use interactors](http://eng.joingrouper.com/blog/2014/03/03/rails-the-missing-parts-interactors) in their Rails app to help keep their `ActiveRecord` models as lean as possible. Somewhat comically, while doing a major refactor of the Heroku API, we'd independently arrived at a nearly identical pattern after learning the hard way that callbacks and large models were an easy route leading to an unmaintainable mess.
 
 The main difference was in semantics: we called the resulting PORO's "mediators", a [design pattern](http://en.wikipedia.org/wiki/Mediator_pattern) that defines how a set of objects interact. I'm not one to quarrel over nomenclature, but I'll use the term "mediator" throughout this article because that's how I'm used to thinking about them.
 
@@ -102,6 +102,61 @@ describe API::Mediators::SSLEndpoints::Creator do
 end
 ```
 
+## Lean Jobs
+
+Much in the same way that mediators keep our endpoints lean, they do the same for our async jobs. By encapsulating all business logic into a mediator, we leave jobs to focus only one two things:
+
+1. **Model materialization:** Async jobs are passed through some kind of backchannel like a database table or a redis queue, and have to marshaled on the other side. It's up to the job to figure out how to find and instantiate the models that it needs to inject into its mediator. This logic may change job to job: if we have a job to create a logging channel for an app, but that app has already been deleted by the time it runs, then we should fall through the job without an error; but if we have an async job to a destroy an app, and its record is no longer avaiable, then something unexpected happen and we should raise an error.
+2. **Error handling:** A job's second responsibility is to rescue errors and figure out what to do with them. If we're trying to provision an SSL Endpoint and got a connection error, then we might want to send the job back into the work queue; but if something like a configuration error occurred, we might want to notify our error service and fail the job permanently.
+
+Let's look at what an async job might look like for the hypothetical SSL Endpoint creation mediator from above:
+
+``` ruby
+module API::Jobs::SSLEndpoints
+  class Creator < API::Jobs::Base
+    def initialize(args = {})
+      super
+      require_args!(
+        :app_id,
+        :key,
+        :pem,
+        :user_id
+        )
+    end
+
+    def call
+      # If the app is no longer present, then it's been deleted since the job
+      # was dequeued; succeed without doing anything.
+      return unless @app = App.find_by_id(args[:app_id])
+
+      # If the user is no longer present, then they may have deleted their
+      # account isince the job was dequeued; succeed without doing anything.
+      return unless @user = User.find_by_id(args[:user_id])
+
+      API::Mediators::SSLEndpoints::Creator.run(
+        auditor: self,
+        app:     @app,
+        key:     args[:key],
+        pem:     args[:pem],
+        user:    current_user
+      )
+
+    # Something is wrong which will prevent the job from ever succeeding. Fail
+    # the job permamently and notify operators of the error.
+    rescue API::Error::ConfigurationMissing => e
+      raise API::Error::JobFailed.new(e)
+
+    # Something has caused a temporary disruption in service. Queue the job
+    # again for retry.
+    rescue Excon::Errors::Error
+      raise API::Error::JobRetry
+    end
+  end
+end
+```
+
+(Note that the above is a simplified example. If you were going to send a sensitive secret like an SSL key through an insecure channel, we'd want to encrypt it in reality.)
+
 ## Strong Preconditions
 
 From within any mediator, we assume that a few preconditions have already been met:
@@ -140,7 +195,7 @@ module API::Mediators::Apps
   end
 ```
 
-Of course it's important that your mediators have a clear call hierarchy so that you don't develop any circular dependencies, but over time we've found this practice to be mostly problem-free.
+Of course it's important that your mediators have a clear call hierarchy so as not to develop any circular dependencies, but as long as developers don't get too overzealous with mediator creation, this is pretty safe.
 
 ## Patterns Through Convention
 
@@ -193,6 +248,6 @@ module API::Mediators::Apps
 
 A few years into working with the mediator pattern now, and I'd never go back. Although mediator calls are a little more verbose than they might have been as a model methods, they've allowed us to lean out the majority of our models to contain only basics like assocations, validations, and accessors.
 
-Eliminating callbacks has also been a hugely important step forward in that it reduces production incidents caused by running innocent-looking code that results in devastating side effects, and results more transparent test code.
+Eliminating callbacks has also been a hugely important step forward in that it reduces production incidents caused by running innocent-looking code that results in major side effects, and results in more transparent test code.
 
 As a bonus, an unintended consequence of this refactoring is that we're now closer to being decoupled from `ActiveRecord` completely than we've ever been before, and having options available is great for peace of mind.
