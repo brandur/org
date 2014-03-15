@@ -21,13 +21,13 @@
             ul
               - tweets_by_month.each do |month, _|
                 li
-                  a href="#year-#{month}"= month_name(month)
+                  a href="#month-#{year}-#{month}"= month_name(month)
     #tweets
       - @tweets.each do |year, tweets_by_month|
         div class="year" id="year-#{year}"
           h2= year
           - tweets_by_month.each do |month, tweets|
-            div class="month" id="month-#{month}"
+            div class="month" id="month-#{year}-#{month}"
               h3= month_name(month)
               ul
                 - tweets.each do |tweet|
