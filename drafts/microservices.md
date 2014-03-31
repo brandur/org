@@ -21,7 +21,7 @@ Although microservices might be SOA with a modern veneer of HTTP, JSON, and poly
 These tiny services have a number of advantages over their heavier counterparts:
 
 * They have an inherently smaller surface area, and their development can be continually iterated until all bugs are squashed.
-* Due to their small area of responsibility, they're rarely in the same state of constant change that's normal many larger codebases. Less change is natural protection against new bugs or regressions.
+* Due to their small area of responsibility, they're rarely in the same state of constant change that's a matter of course many larger codebases. Less change is natural protection against new bugs or regressions.
 * In many cases their resource use will be smaller, which could help avoid a class of bugs stemming from overutilization like GC pauses, out-of-memory errors, swapping, etc.
 * May be able to use only a very reliable data store like S3 or even be made completely stateless, which can avoid a single point of failure like a relational database.
 
@@ -38,13 +38,13 @@ A few others didn't quite make weight, but are still small:
 * **Scheduler:** 630 LOC. Powers the web frontend for the [Heroku Scheduler add-on](https://devcenter.heroku.com/articles/scheduler).
 * **Vixie:** 805 LOC. Powers the backend of Heroku's Scheduler add-on, and receives instructions from the scheduler above.
 
-One common trait of all the services listed above is that their autonomy is remarkable. We have some basic alarms on them in case they go down, but they rarely go off. Being deployed on the Heroku platform is certainly a big help here, but also that their concerns are so narrow and unchanging that there isn't a lot of room for bugs to hide.
+One common trait of all the services listed above is that their autonomy is remarkable. We have some basic alarms on them in case they go down, but they go off rarely. Being deployed on the Heroku platform is certainly a big help here, but also that their concerns are so narrow and unchanging that there isn't a lot of room for bugs to hide.
 
-I suspect that 500 LOC isn't enough to box in all concerns of many components, even if they are quite narrow in scope -- anecdotally, most of our more important services easily blow past this limit. I'm also not quite at the point where I'd replace my unit or acceptance tests with self- or business monitoring (also one of the assertions made above), but I do love the concept of disposing services that have outlived their usefulness (and even encouraging it).
+I suspect that 500 LOC isn't enough to box in all concerns of many components, even if they are quite narrow in scope -- anecdotally, most of our more important services easily blow past this limit. I'm also not quite at the point where I'd replace my unit or acceptance tests with self- or business monitoring (also one of the assertions made above).
 
 ## SOA isn't a Silver Bullet, it's a Trade-off
 
-SOA bestows a huge number of architectural advantages, but we probably want to be careful to keep its expectations in check. Boiled down to a fundamental level, SOA is about introducing very hard isolation between components which can result in big gains in organization and operation, but by extension leads to component boundaries that are more difficult to evolve.
+SOA bestows a huge number of architectural advantages, but we probably want to be careful to keep its expectations in check. Boiled down to a fundamental level, SOA is about introducing very hard isolation between components which can result in big gains in organizational and operational effectiveness, but by extension leads to component boundaries that are more difficult to evolve.
 
 The less desirable features of a SOA-like system include the following:
 
