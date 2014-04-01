@@ -18,7 +18,7 @@ Even among its originators, the term doesn't seem to have a perfect definition w
 
 Although microservices might be SOA with a modern veneer of HTTP, JSON, and polygot, the concept of a "micro microservice" (that 200-500 LOC sweet spot) is worth considering in a bit more depth. In my own experience, not all services can fit into this size, but services that do are remarkably more stable than their counterparts --- and for anyone who's an operator as well as a developer, building a completely autonomous system is an idyllic vision well worthy of pursuit.
 
-These tiny services have a number of advantages over their heavier counterparts:
+These tiny services have some major advantages over their heavier counterparts:
 
 * They have an inherently smaller surface area, and their development can be continually iterated until all bugs are squashed.
 * Due to their small area of responsibility, they're rarely in the same state of constant change that's a matter of course many larger codebases. Less change is natural protection against new bugs or regressions.
@@ -44,7 +44,7 @@ I suspect that 500 LOC isn't enough to box in all concerns of many components, e
 
 ## SOA isn't a Silver Bullet, it's a Trade-off
 
-SOA bestows a huge number of architectural advantages, but we probably want to be careful to keep its expectations in check. Boiled down to a fundamental level, SOA is about introducing very hard isolation between components which can result in big gains in organizational and operational effectiveness, but by extension leads to component boundaries that are more difficult to evolve.
+SOA bestows a huge number of architectural advantages, but we probably want to be careful to keep its expectations in check. Boiled down to a fundamental level, SOA is about introducing very hard isolation between components that can result in big gains in organizational and operational effectiveness, but by extension leads to component boundaries that are more difficult to evolve.
 
 The less desirable features of a SOA-like system include the following:
 
