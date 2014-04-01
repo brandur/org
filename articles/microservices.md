@@ -1,4 +1,4 @@
-A recent article by James Lewis and Martin Fowler has kicked off a discussion about "microservices" and SOA in general; one of the few topics in the API community besides Hypermedia that's pretty much guaranteed to generate controversy and some healthy debate. The [original body of work](http://martinfowler.com/articles/microservices.html) defines the characteristics of a microservice:
+A recent article by James Lewis and Martin Fowler has kicked off a discussion about "microservices" and SOA in general; one of the few topics in the API community besides Hypermedia that's pretty much guaranteed to generate some healthy debate. The [original body of work](http://martinfowler.com/articles/microservices.html) defines the characteristics of a microservice:
 
 * Services are out-of-process components that can be deployed and operated independently.
 * Organizes teams around _business capability_ so that each service is run by a cross-functional group.
