@@ -2,10 +2,10 @@ module Org
   class Articles
     article "/microservices", {
      hook:         <<-eos,
-Useful distinction over SOA, or new buzzword to sell training courses?
+Useful distinction or new buzzword? Comments on 200-500 line services.
       eos
       location:     "San Francisco",
-      published_at: Time.parse("Mon Mar 17 09:01:10 PDT 2014"),
+      published_at: Time.parse("Tue Apr 01 05:37:17 PDT 2014"),
       signature:    true,
       title:        "Microservices",
     } do

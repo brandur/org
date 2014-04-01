@@ -6,7 +6,7 @@ A recent article by James Lewis and Martin Fowler has kicked off a discussion ab
 * Services are language agnostic and can be built according to the technologies that a team selects.
 * Services don't share databases.
 
-At least some portion of the community expresses some incredulity that the talking points are enough to justify a distinct concept from the more classic idea of SOA that was first put forward [somewhere in the neighborhood of 2005](http://books.google.com/books/about/Service_Oriented_Architecture.html?id=qLrLngEACAAJ). Many companies have architectures that would check all the boxes above without ever having used the word "microservice".
+At least some portion of the community expresses some incredulity that the talking points are enough to justify a distinct concept from the more classic idea of SOA that was first put forward [somewhere in the neighborhood of 2005](http://books.google.com/books/about/Service_Oriented_Architecture.html?id=qLrLngEACAAJ). Many companies have architectures that would check all the boxes above without ever having heard the word "microservice".
 
 Even among its originators, the term doesn't seem to have a perfect definition with wide consensus. A talk by [Fred George on the subject in Barcelona](https://www.youtube.com/watch?v=2rKEveL55TY) adds the "micro-" back in microservices and puts forward some more radical assertions regarding their nature:
 
