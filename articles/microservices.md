@@ -42,7 +42,7 @@ One common trait of all the services listed above is that their autonomy is rema
 
 I suspect that 500 LOC isn't enough to box in all concerns of many components, even if they are quite narrow in scope -- anecdotally, most of our more important services easily blow past this limit. I'm also not quite at the point where I'd replace my unit or acceptance tests with self- or business monitoring (also one of the assertions made above).
 
-## SOA isn't a Silver Bullet, it's a Trade-off
+## SOA isn't a Silver Bullet
 
 SOA bestows a huge number of architectural advantages, but we probably want to be careful to keep its expectations in check. Boiled down to a fundamental level, SOA is about introducing very hard isolation between components that can result in big gains in organizational and operational effectiveness, but by extension leads to component boundaries that are more difficult to evolve.
 
