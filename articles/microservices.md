@@ -38,6 +38,8 @@ A few others didn't quite make weight, but are still small:
 * **Scheduler:** 630 LOC. Powers the web frontend for the [Heroku Scheduler add-on](https://devcenter.heroku.com/articles/scheduler).
 * **Vixie:** 805 LOC. Powers the backend of Heroku's Scheduler add-on, and receives instructions from the scheduler above.
 
+_(Jamie Hodge points out that many of these services lack full databases and therefore might better be described as coordinators. The more limited state which they maintain simplifies their operational characteristics to a large degree.)_
+
 One common trait of all the services listed above is that their autonomy is remarkable. We have some basic alarms on them in case they go down, but they go off rarely. Being deployed on the Heroku platform is certainly a big help here, but also that their concerns are so narrow and unchanging that there isn't a lot of room for bugs to hide.
 
 I suspect that 500 LOC isn't enough to box in all concerns of many components, even if they are quite narrow in scope -- anecdotally, most of our more important services easily blow past this limit. I'm also not quite at the point where I'd replace my unit or acceptance tests with self- or business monitoring (also one of the assertions made above).
