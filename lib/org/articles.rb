@@ -42,7 +42,7 @@ module Org
       #@articles += mutelight_articles
       @articles.sort_by! { |a| a[:published_at] }
       @articles.reverse!
-      slim :articles, layout: !pjax?
+      slim :"articles/index", layout: !pjax?
     end
 
     get "/articles.atom" do
@@ -50,7 +50,7 @@ module Org
       @articles.select! { |a| a[:published_at] <= Time.now }
       @articles.sort_by! { |a| a[:published_at] }
       @articles.reverse!
-      builder :articles
+      builder :"articles/index"
     end
 
     private
