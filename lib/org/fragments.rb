@@ -42,35 +42,41 @@ module Org
 
     private
 
-    def self.fragments
-      # not threadsafe, but it doesn't matter
-      @@fragments ||= begin
-        fragment_data = Dir[Config.root + "/fragments/**/*.md"].map { |f|
-          contents = File.read(f)
-          if contents =~ /\A(---\n.*?\n---)\n(.*)\Z/m
-            meta = YAML.load($1)
-            {
-              content:          $2,
-              last_modified_at: Time.now,
-              published_at:     meta["published_at"],
-              slug:             File.basename(f).chomp(".md"),
-              title:            meta["title"],
-            }
-          else
-            raise "No YAML front matter for #{f}."
-          end
-        }.
-        sort_by { |f| f[:published_at] }.
-        select { |f| f[:published_at] <= Time.now }.
-        reverse
-
-        # take advantage of knowing about ordered hashes in Ruby to make sure
-        # that these stay in the right order
-        fragments = {}
-        fragment_data.each do |fragment|
-          fragments[fragment[:slug]] = fragment
+    def self.build_fragments
+      fragment_data = Dir[Config.root + "/fragments/**/*.md"].map { |f|
+        contents = File.read(f)
+        if contents =~ /\A(---\n.*?\n---)\n(.*)\Z/m
+          meta = YAML.load($1)
+          {
+            content:          $2,
+            last_modified_at: Time.now,
+            published_at:     meta["published_at"],
+            slug:             File.basename(f).chomp(".md"),
+            title:            meta["title"],
+          }
+        else
+          raise "No YAML front matter for #{f}."
         end
-        fragments
+      }.
+      sort_by { |f| f[:published_at] }.
+      select { |f| f[:published_at] <= Time.now }.
+      reverse
+
+      # take advantage of knowing about ordered hashes in Ruby to make sure
+      # that these stay in the right order
+      fragments = {}
+      fragment_data.each do |fragment|
+        fragments[fragment[:slug]] = fragment
+      end
+      fragments
+    end
+
+    def self.fragments
+      if Config.production?
+        # not threadsafe, but it doesn't matter
+        @@fragments ||= build_fragments
+      else
+        build_fragments
       end
     end
   end
