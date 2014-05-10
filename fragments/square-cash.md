@@ -23,6 +23,6 @@ Especially for a heavy Mutt user, this really is a perfectly ideal solution. The
 
 Although sending money by this channel might be relatively new, e-mail being used as a platform for interacting with foreign services is a long-standing concept that I hope we'll continue to see. I've long appreciated how I can reply via e-mail when someone uses Facebook to send me a message, or get notified when something changes in a GitHub repository that I've been watching. While newer services like App.net declare that they'll become the ubiquitous communications platform for the new web, e-mail has been quietly playing the role since the beginning.
 
-Some modern mail streams can be high volume, but as implied before, e-mail clients provide the tools that we need to work with them, whether that's spam filtering, automatic sorting, prioritization, or muting functions. Even Steve Jobs was known to occasionally reply to externally sent e-mails that made it back to his not-entirely-unknown sjobs@apple.com account.
+Some modern mail streams can be high volume, but as implied before, e-mail clients provide the tools that we need to work with them, whether that's spam filtering, automatic sorting, prioritization, or muting functions. Even Steve Jobs was known to occasionally reply to externally sent e-mails that made it back to his not-entirely-unknown "sjobs@apple.com" account.
 
 This is one channel that I hope to see exploited even further in the coming years.
