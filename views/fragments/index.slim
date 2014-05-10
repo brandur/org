@@ -1,0 +1,19 @@
+- if pjax?
+  title= @title
+.flag
+.top-spacing
+.content
+  #title
+    #lead
+      a href="/" Home
+    h1 Fragments
+  ul.list
+    - @fragments.each do |_, fragment|
+      li
+        a href="/fragments/#{fragment[:slug]}" data-pjax="#container"
+          = fragment[:title]
+        span.meta
+          |  
+          = fragment[:published_at].strftime("%B %e, %Y")
+        .divider-short
+== render :slim, :"_footer", layout: false
