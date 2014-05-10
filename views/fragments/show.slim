@@ -7,20 +7,6 @@
     #title
       #lead
         a href="/fragments" Fragments
-      /h1 Modern Web Design is an Anti-pattern
-      h1 Modern Web Design
+      h1= @fragment[:title]
     article
-      markdown:
-        Data warehouse. The term immediately brings heavy enterprise into mind, complete with business intelligence, heavy XML-based ETL instructions, and "N-dimensional" data processing technology like the [OLAP hypercube](http://en.wikipedia.org/wiki/OLAP_cube).
-        
-        A few months back, a colleague of mine [built an app](https://github.com/mfine/prism) that pulls commit data from within the Heroku organization down from the GitHub API. Over the course of a few days (pesky rate limiting), it backfilled the entire commit history of every project that the company ever created into a Postgres database, then left a scheduled process running to periodically update itself with new data.
-        
-        The project had a specific goal. While web APIs are powerful tools, their RESTful paradigm often doesn't organize data in quite the way that you'd like to access it, preferring instead to present data as resources with highly consistent interfaces.
-        
-        GitHub's API couldn't be used directly for any kind of advanced querying or analysis, but it could be leveraged to build a local reflection of that data, and that was exactly what the app was designed to do:
-        
-        With the data now fully housed in an RDMS, the powerful querying features of SQL are available to filter, map, transform, join, compare, and aggregate this data in any way imaginable. Better yet, although the volume of commit data on GitHub's servers is undoubtedly very large and would take non-trival time and system resources to process, we've succeeded in boiling it down to just the subset that we're interested in --- to the extent that nearly any kind of number crunching takes negligible time even on a tiny database.
-        
-        This is an example of a data warehouse (DWH) on a scale small enough to be agile, and by extension free of the negative connotations of heavy software and big enterprise, but still very useful for analysis and reporting. In the modern world, Postgres databases are cheap and primitive software building blocks needed to extract data from foreign sources (i.e. API SDKs, HTTP clients, RSS readers, etc.), are readily available in the form of gems or NPM packages, allowing simple DWHs like this one to be built from scratch with amazing rapidity. No XML or 200k LOC frameworks required --- only your language and libraries of choice and your favorite database.
-        
-        As another example, I've been using a similar technique for years to [archive my tweets](https://github.com/brandur/blackswan). Compare this query to slowly manually paging back through your list of tweets looking for that link you posted six months ago:
+      == @content

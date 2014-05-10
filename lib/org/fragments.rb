@@ -3,6 +3,7 @@ require 'digest/md5'
 module Org
   class Fragments < Sinatra::Base
     helpers Helpers::Common
+    helpers Helpers::Markdown
     register Sinatra::Namespace
 
     before do
@@ -21,7 +22,15 @@ module Org
         slim :"fragments/index", layout: !pjax?
       end
 
-      get "/modern" do
+      get "/:slug" do |slug|
+        halt(404) unless @fragment = Fragments.fragments[slug]
+        halt(404) unless @fragment[:published_at] <= Time.now
+        if Config.production?
+          last_modified(@fragment[:last_modified_at])
+          etag(Digest::SHA1.hexdigest(@fragment[:content]))
+        end
+        @content = render_markdown(@fragment[:content])
+        @title = @fragment[:title]
         slim :"fragments/show", layout: !pjax?
       end
     end
@@ -36,10 +45,11 @@ module Org
           if contents =~ /\A(---\n.*?\n---)\n(.*)\Z/m
             meta = YAML.load($1)
             {
-              content:      $2,
-              published_at: meta["published_at"],
-              slug:         File.basename(f).chomp(".md"),
-              title:        meta["title"],
+              content:          $2,
+              last_modified_at: Time.now,
+              published_at:     meta["published_at"],
+              slug:             File.basename(f).chomp(".md"),
+              title:            meta["title"],
             }
           else
             raise "No YAML front matter for #{f}."
