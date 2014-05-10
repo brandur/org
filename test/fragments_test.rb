@@ -23,13 +23,13 @@ describe Org::Fragments do
       assert_match /Lamenting the Death of the Page/, last_response.body
     end
   end
-=end
 
   describe "/fragments/:id" do
     it "succeeds" do
-      get "/fragments/modern"
+      get "/fragments/modern-web-design"
       assert_equal 200, last_response.status
-      #assert_match /convenient points of reference/, last_response.body
+      assert_match /OLAP/, last_response.body
     end
   end
+=end
 end
