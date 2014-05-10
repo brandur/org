@@ -15,15 +15,15 @@ describe Org::Fragments do
     end
   end
 
-=begin
   describe "/fragments.atom" do
     it "succeeds" do
       get "/fragments.atom"
       assert_equal 200, last_response.status
-      assert_match /Lamenting the Death of the Page/, last_response.body
+      #assert_match /Lamenting the Death of the Page/, last_response.body
     end
   end
 
+=begin
   describe "/fragments/:id" do
     it "succeeds" do
       get "/fragments/modern-web-design"

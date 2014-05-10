@@ -22,6 +22,11 @@ module Org
         slim :"fragments/index", layout: !pjax?
       end
 
+      get ".atom" do
+        @fragments = Fragments.fragments
+        builder :"fragments/index"
+      end
+
       get "/:slug" do |slug|
         halt(404) unless @fragment = Fragments.fragments[slug]
         halt(404) unless @fragment[:published_at] <= Time.now
@@ -54,7 +59,10 @@ module Org
           else
             raise "No YAML front matter for #{f}."
           end
-        }.sort_by { |f| f[:published_at] }.reverse
+        }.
+        sort_by { |f| f[:published_at] }.
+        select { |f| f[:published_at] <= Time.now }.
+        reverse
 
         # take advantage of knowing about ordered hashes in Ruby to make sure
         # that these stay in the right order
