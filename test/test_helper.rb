@@ -10,7 +10,6 @@ require 'bundler/setup'
 Bundler.require(:default, :test)
 
 require "minitest/spec"
-require 'minitest/pride'
 require "minitest/autorun"
 require "rr"
 
