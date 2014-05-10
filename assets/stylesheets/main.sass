@@ -4,7 +4,8 @@ $serif: georgia, serif
 $primary: #333
 $secondary: #cdcdcd
 $tertiary: #dedede
-$quaternary: #f5f5f5
+$quaternary: #efefef
+$quinary: #f5f5f5
 
 $content_width: 680px
 
@@ -101,7 +102,7 @@ table
     vertical-align: middle
 
   th
-    background: $quaternary
+    background: $quinary
     font-weight: bold
     padding: 10px 10px
 
@@ -246,12 +247,6 @@ ol, ul
         color: $primary
 
 article
-
-  &:first-letter
-    float: left
-    font-size: 100px
-    line-height: 0.7em
-    margin: 5px 10px 0 0
 
   figure
     margin: 20px 0
@@ -408,16 +403,6 @@ footer
   body
     //font-size: 17px
 
-  figure
-    column-break-inside: avoid
-    -moz-column-break-inside: avoid
-    -webkit-column-break-inside: avoid
-
-  h1, h2, h3, h4
-    column-break-after: avoid
-    -moz-column-break-after: avoid
-    -webkit-column-break-after: avoid
-
   p
     // so much space! allow code content to just expand across the screen
     overflow: visible
@@ -425,16 +410,6 @@ footer
   pre
     // so much space! allow code content to just expand across the screen
     overflow: visible
-
-  .content
-    max-width: none
-    line-height: 1.8em
-    column-gap: 60px
-    column-width: 600px
-    -moz-column-gap: 60px
-    -moz-column-width: 600px
-    -webkit-column-gap: 60px
-    -webkit-column-width: 600px
 
   footer
 

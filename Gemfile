@@ -17,6 +17,7 @@ gem "sequel", require: ["sequel", "sequel/extensions/pg_hstore"]
 gem "sequel-instruments"
 gem "slides"
 gem "sinatra", require: "sinatra/base"
+gem "sinatra-contrib", require: "sinatra/namespace"
 gem "sinatra-router"
 gem "slim"
 gem "sprockets"

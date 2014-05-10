@@ -2,11 +2,13 @@
  *= require "_reset"
  *= require "main"
  *= require "about"
+ *= require "fragments"
  *= require "index"
  *= require "photos"
  *= require "quotes"
  *= require "reading"
  *= require "runs"
+ *= require "signature"
  *= require "tenets"
  *= require "twitter"
 */

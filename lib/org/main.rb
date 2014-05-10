@@ -13,6 +13,7 @@ module Org
       mount Org::About
       mount Org::Articles
       mount Org::Assets
+      mount Org::Fragments
       mount Org::Href
       mount Org::Humans
       mount Org::Index
