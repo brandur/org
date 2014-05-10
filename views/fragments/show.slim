@@ -12,3 +12,4 @@
         = @fragment[:published_at].strftime("%B %e, %Y")
     article
       == @content
+== render :slim, :"_footer", layout: false
