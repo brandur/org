@@ -29,7 +29,7 @@ module Org
 
       get "/:slug" do |slug|
         halt(404) unless @fragment = Fragments.fragments[slug]
-        halt(404) unless @fragment[:published_at] <= Time.now
+        halt(404) unless @fragment[:published_at] <= Time.now.getutc
         if Config.production?
           last_modified(@fragment[:last_modified_at])
           etag(Digest::SHA1.hexdigest(@fragment[:content]))
@@ -59,7 +59,7 @@ module Org
         end
       }.
       sort_by { |f| f[:published_at] }.
-      select { |f| f[:published_at] <= Time.now }.
+      select { |f| f[:published_at] <= Time.now.getutc }.
       reverse
 
       # take advantage of knowing about ordered hashes in Ruby to make sure
