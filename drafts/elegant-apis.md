@@ -1,10 +1,10 @@
-We've recently [gone on record](TODO) indicating our commitment to using JSON Schema as the format for describing our API's, then even further by [releasing a set of JSON Schema tools]TODO() to improve the process of building and working with HTTP API's. With the recent rise of great API description formats over the last few years like Swagger, Blueprint, and RAML (among others), I wanted to write a few words on what JSON Schema is, why it's a neat technology, and how it can be applied specifically to building great API's.
+We've recently [gone on record](https://blog.heroku.com/archives/2014/1/8/json_schema_for_heroku_platform_api) indicating our commitment to using JSON Schema as the format for describing our API's, then even further by [releasing a set of JSON Schema tools](https://blog.heroku.com/archives/2014/5/20/heroku-http-api-toolchain) to improve the process of building and working with HTTP API's. With the recent rise of great API description formats over the last few years like Swagger, Blueprint, and RAML (among others), I wanted to write a few words on what JSON Schema is, why it's a neat technology, and how it can be applied specifically to building great API's.
 
-At any time, you can jump into some more detailed documentation [over at jsonschema.org](TODO), which includes draft specificallys for both JSON Schema and JSON Hyper-schema.
+At any time, you can jump into some more detailed documentation [over at jsonschema.org](http://json-schema.org/documentation.html), which includes draft specificallys for both JSON Schema and JSON Hyper-schema.
 
 ## The Basic Case
 
-At its essence, JSON Schema is simply a declarative language for validating the format and structure of a JSON object. It allows you to specify a number of special primitives to describe exactly what a valid JSON object will look like, and provides a powerful nesting concept that allows you to extend these primitives to a document of any complexity. This idea hails back to the days of XML, when it was common to see XML documents linking to the [XSD's](TODO) (XML Schema Document TODO) that should be used to validate them.
+At its essence, JSON Schema is simply a declarative language for validating the format and structure of a JSON object. It allows you to specify a number of special primitives to describe exactly what a valid JSON object will look like, and provides a powerful nesting concept that allows you to extend these primitives to a document of any complexity. This idea hails back to the days of XML, when it was common to see XML documents linking to the [XSD's](http://en.wikipedia.org/wiki/XML_schema) (XML Schema Definition) that should be used to validate them.
 
 Let's start with one of the most basic schemas possible. The following describes a single value inside a JSON object:
 
@@ -46,7 +46,7 @@ The `required` keyword indicates that the property `name` is expected, so while 
 
 Note how the `type` keyword is present in both of the objects in our schema above. This is where the elegance of JSON Schema starts to emerge: **both objects are JSON Schemas that are defined to precisely the same specification**. We could give the `name` object its own `definitions`, but that would be non-sensical because it's defined as a `string` rather than an `object`.
 
-A very common convention in cases like this is to define subschemas under `definitions` and reference them from elsewhere, which allows allows those schema definitions to be re-used. Like `properties`, `definitions` also maps object keys to schemas, but doesn't suggest that those keys should actually be properties on an object being validated; it's simply a useful convention for defining schemas in a common place. The above could be re-written to use `definitions` like so:
+A very common convention in cases like this is to define subschemas under `definitions` and reference them from elsewhere, which allows those schema definitions to be re-used. Like `properties`, `definitions` also maps object keys to schemas, but doesn't suggest that those keys should actually be properties on an object being validated; it's simply a useful convention for defining schemas in a common place. The above could be re-written to use `definitions` like so:
 
 ```
 {
@@ -66,7 +66,7 @@ A very common convention in cases like this is to define subschemas under `defin
 }
 ```
 
-The strange `$ref` keyword is a [JSON Reference](TODO) (RFC TODO). It tells schema parsers that the definition is not a schema itself, but rather references a schema elsewhere in the document (or in a different document). The `#` denotes the root of the JSON document, and the slashes are keys that should be descended through until the appropriate value is reached.
+The strange `$ref` keyword is a [JSON Reference](http://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03). It tells schema parsers that the definition is not a schema itself, but rather references a schema elsewhere in the document (or in a different document). The `#` denotes the root of the JSON document, and the slashes are keys that should be descended through until the appropriate value is reached.
 
 ## We Need to Go Deeper
 
@@ -301,7 +301,7 @@ And we've managed to re-use our basic object definitions yet again! Knowing what
 
 ## Let's Get Meta
 
-An interesting set of products that both JSON Schema and Hyper-schema provide are their own [meta schemas](TODO). Because a schema is itself just a JSON document, a schema can be written for a schema! For example, take a look at the [JSON Hyper-schema meta schema](TODO). Note how the special `$schema` keyword points back to its own `id`. This schema can be used to validate the format of your own Hyper-schema with a tool like [`json_schema`](https://github.com/brandur/json_schema):
+An interesting set of products that both JSON Schema and Hyper-schema provide are their own [meta schemas](http://json-schema.org/documentation.html). Because a schema is itself just a JSON document, a schema can be written for a schema! For example, take a look at the [JSON Hyper-schema meta schema](http://json-schema.org/hyper-schema). Note how the special `$schema` keyword points back to its own `id`. This schema can be used to validate the format of your own Hyper-schema with a tool like [`json_schema`](https://github.com/brandur/json_schema):
 
 ```
 validate-schema --detect my-schema.json
@@ -332,7 +332,7 @@ For example, a hyper-schema only dictates that a link specifies the `href` and `
   }
 ```
 
-You may also notice that the [hyper-schema meta schema](TODO) uses an `allOf` attribute to make sure that in addition to the constraints it defines, data should also validate against JSON Schema. We can do the same thing for our variant except for hyper-schema:
+You may also notice that the [hyper-schema meta schema](http://json-schema.org/hyper-schema) uses an `allOf` attribute to make sure that in addition to the constraints it defines, data should also validate against JSON Schema. We can do the same thing for our variant except for hyper-schema:
 
 ```
 {
