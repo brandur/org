@@ -10,7 +10,7 @@ module Org
     def self.article(route, metadata={}, &block)
       slug = route.gsub(/^\/*/, "")
       metadata.merge!({
-        last_modified_at: Time.now,
+        last_modified_at: Time.now.getutc,
         slug: slug,
       })
       @@articles[route] = metadata
@@ -19,7 +19,7 @@ module Org
 
     def self.articles
       articles = @@articles.values
-      articles.select! { |a| a[:published_at] <= Time.now }
+      articles.select! { |a| a[:published_at] <= Time.now.getutc }
       articles.sort_by! { |a| a[:published_at] }
       articles.reverse!
       articles
@@ -38,7 +38,7 @@ module Org
       @title = "Articles"
       @viewport_width = "600"
       @articles = @@articles.values
-      @articles.select! { |a| a[:published_at] <= Time.now }
+      @articles.select! { |a| a[:published_at] <= Time.now.getutc }
       #@articles += mutelight_articles
       @articles.sort_by! { |a| a[:published_at] }
       @articles.reverse!
@@ -47,7 +47,7 @@ module Org
 
     get "/articles.atom" do
       @articles = @@articles.values
-      @articles.select! { |a| a[:published_at] <= Time.now }
+      @articles.select! { |a| a[:published_at] <= Time.now.getutc }
       @articles.sort_by! { |a| a[:published_at] }
       @articles.reverse!
       builder :"articles/index"
@@ -68,7 +68,7 @@ module Org
 
     def render_article
       @article = @@articles[request.path_info]
-      halt(404) unless @article[:published_at] <= Time.now
+      halt(404) unless @article[:published_at] <= Time.now.getutc
       last_modified(@article[:last_modified_at]) if Config.production?
       @title = @article[:title]
       @content = render_content(@article)
