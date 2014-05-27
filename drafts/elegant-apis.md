@@ -1,10 +1,14 @@
-We've recently [gone on record](https://blog.heroku.com/archives/2014/1/8/json_schema_for_heroku_platform_api) indicating our commitment to using JSON Schema as the format for describing our API's, then even further by [releasing a set of JSON Schema tools](https://blog.heroku.com/archives/2014/5/20/heroku-http-api-toolchain) to improve the process of building and working with HTTP API's. With the recent rise of great API description formats over the last few years like Swagger, Blueprint, and RAML (among others), I wanted to write a few words on what JSON Schema is, why it's a neat technology, and how it can be applied specifically to building great API's.
+We've recently [gone on record](https://blog.heroku.com/archives/2014/1/8/json_schema_for_heroku_platform_api) indicating our commitment to using JSON Schema as the format for describing our API's, then even further by [releasing a set of tools](https://blog.heroku.com/archives/2014/5/20/heroku-http-api-toolchain) to improve the process of building and working with schema-based HTTP API's. With the recent rise of great API description formats over the last few years like Swagger, Blueprint, and RAML (among others), I wanted to write a few words on what JSON Schema is, why it's a neat technology, and how it can be applied specifically to building great API's.
 
-At any time, you can jump into some more detailed documentation [over at jsonschema.org](http://json-schema.org/documentation.html), which includes draft specificallys for both JSON Schema and JSON Hyper-schema.
+At any time, you can jump into more documentation [over at jsonschema.org](http://json-schema.org/documentation.html), which includes detailed draft specifications for both JSON Schema and JSON Hyper-schema.
 
 ## The Basic Case
 
 At its essence, JSON Schema is simply a declarative language for validating the format and structure of a JSON object. It allows you to specify a number of special primitives to describe exactly what a valid JSON object will look like, and provides a powerful nesting concept that allows you to extend these primitives to a document of any complexity. This idea hails back to the days of XML, when it was common to see XML documents linking to the [XSD's](http://en.wikipedia.org/wiki/XML_schema) (XML Schema Definition) that should be used to validate them.
+
+```
+TODO
+```
 
 Let's start with one of the most basic schemas possible. The following describes a single value inside a JSON object:
 
@@ -27,7 +31,7 @@ More complex rules can be mixed into the object as well. This will validate that
 
 ## Nesting Schemas
 
-While the above lets us validate a single value, it's more interesting to validate a more complex object. We can build on the above by nesting our single value validation into a more complex schema using the `definitions` keyword, which describes the keys that a JSON object might have, and the schema that validates their values:
+While the above lets us validate a single value, it's more interesting to validate a complex JSON object. We can build on the above by nesting our single value validation into another schema using the `definitions` keyword, which describes the keys that a JSON object might have, and the schema that validates their values:
 
 ```
 {
@@ -46,7 +50,7 @@ The `required` keyword indicates that the property `name` is expected, so while 
 
 Note how the `type` keyword is present in both of the objects in our schema above. This is where the elegance of JSON Schema starts to emerge: **both objects are JSON Schemas that are defined to precisely the same specification**. We could give the `name` object its own `definitions`, but that would be non-sensical because it's defined as a `string` rather than an `object`.
 
-A very common convention in cases like this is to define subschemas under `definitions` and reference them from elsewhere, which allows those schema definitions to be re-used. Like `properties`, `definitions` also maps object keys to schemas, but doesn't suggest that those keys should actually be properties on an object being validated; it's simply a useful convention for defining schemas in a common place. The above could be re-written to use `definitions` like so:
+A very common convention in cases like this is to define subschemas under `definitions` and reference them from elsewhere, which allows those schema definitions to be re-used. Like `properties`, `definitions` also maps object keys to schemas, but doesn't suggest that those keys should actually be properties on an object being validated; it's simply a useful mechanism for defining schemas in a common place. The above could be re-written to use `definitions` like so:
 
 ```
 {
@@ -92,9 +96,9 @@ Along with our app, let's define a domain:
 }
 ```
 
-Domain looks a lot like an app with its own `name` and property definitions. Note that we've actually defined that domain's `name` is in the `hostname` format, which is a special string validation built into JSON Schema.
+Domain looks a lot like an app, with its own `name` and property definitions. Note above that we've defined that domain's `name` is in the `hostname` format, which is a special string validation built into JSON Schema.
 
-Now, remember how I told you that schemas nest? They do, and we've already seen how they can be nested one level deep above. To make this even better though, we can actually nest them to _any_ level. Let's put app and domain into the same root schema. Note that the references change to reflect the greater depth of nesting.
+Now, remember how I told you that schemas nest? They do, and we've already seen how they can be nested one level deep above. To make this even better though, we can actually nest them to _any_ level. Let's put app and domain into the same root schema which will eventually be used to define our entire API. Note how the references below change to reflect the greater depth of nesting.
 
 ```
 {
@@ -151,7 +155,7 @@ Now, remember how I told you that schemas nest? They do, and we've already seen 
 }
 ```
 
-Phew! We've managed to build out a pretty significant schema already. Astute readers may have seen that we've defined a new property for app:
+Phew! We've managed to build out a pretty significant schema already. Astute readers may have notice that along with the new domains resource, we've defined a new property for app:
 
 ```
 "domains": {
@@ -162,7 +166,7 @@ Phew! We've managed to build out a pretty significant schema already. Astute rea
 }
 ```
 
-`items` is another special keyword that applies specifically to the `array` type. It indicates that all items in the array should conform to the referenced schema; in this case, that means that `domains` should be an array of objects that validate according to the `domain` schema. Take this valid value for example:
+`items` is another special keyword that applies specifically to the `array` type. It indicates that all items in the array should conform to the referenced schema; in this case, that means that `domains` should be an array of objects that validate according to the `domain` schema. For example, this array validates correctly:
 
 ```
 [
@@ -171,7 +175,7 @@ Phew! We've managed to build out a pretty significant schema already. Astute rea
 ]
 ```
 
-We've now demonstrated not only how schemas can be infinitely nested, but also how subschemas can start to reference each other to do build out more complex objects in a modular way.
+We've now demonstrated not only how schemas can be nested to as many levels as we need, but also how subschemas can start to reference each other to do build out more complex validation rules in a modular way.
 
 Once again, discerning readers may have noticed that our top-level schema actually defines a non-sensical object that has both an app and a domain like `{"app":..., "domain":...}`. This is true, but we'll see that it's not important as we move onto building an API in the next section.
 
@@ -179,7 +183,7 @@ Once again, discerning readers may have noticed that our top-level schema actual
 
 Along with the JSON Schema, a companion draft also defines JSON Hyper-schema, which builds off the original specification to define a schema that can host a collection of links. This allows us to move beyond the realm of basic JSON validation, and into the more interesting area of using schema to build APIs.
 
-Let's define two simple links on our app schema for creating a new app and listing existing ones:
+Let's define two simple links on our app schema for creating a new app (`POST /apps`) and listing existing ones (`GET /apps`):
 
 ```
 {
@@ -206,13 +210,13 @@ Let's define two simple links on our app schema for creating a new app and listi
 }
 ```
 
-Notice how these define individual HTTP endpoints: an access verb is specified in `method`, along with a URI in `href`. We've also tagged each link with some other metadata that tells us a little more about what it does and how we should describe it; this can be supremely useful for tasks like generating code and documentation from a schema.
+Notice how these define individual HTTP endpoints: an access verb is specified in `method`, along with a URI in `href`. We've also tagged each link with some other metadata that tells us a little more about what it does and how we should describe it; this can be supremely useful for tasks like generating code and documentation.
 
 ### Request Schemas
 
-The links above are useful in that we now know a little bit about how to interact with an apps resource, but they don't tell us much beyond that. For example, how do we know what parameters should we send in while creating an app to ensure that the request is valid?
+The links above are useful in that we now know a little bit about how to interact with an apps resource, but they don't tell us much beyond that. For example, how do we know what parameters to send in while creating an app?
 
-Luckily, hyper-schema also allows us to nest schemas to describe just that. Let's leverage references once again, and define a create app link that requires a valid app object to be send in along with a request:
+Luckily, hyper-schema also allows us to nest schemas to describe just that. Let's leverage references once again, and define a create app link that requires a valid app object to be sent in along with a request:
 
 ```
 {
@@ -256,7 +260,9 @@ curl -X POST http://example.com/apps \
   -d '{"name":"my-app"}'
 ```
 
-Once again, I'd like to draw your attention to the elegant modularity of JSON Schema here. We've defined a property on our app object a single time, then referenced it to describe what a valid app looks like, then used the same technique to reference it again to describe what a valid request might look like.
+We could also remove the name requirement (`"required": ["name"]`) if we wanted to generate a name for the new app unless the user explicitly overrides it. In that case, an empty JSON object `{}` would be a valid request for this endpoint.
+
+Once again, I'd like to draw your attention to the elegant modularity of JSON Schema here. We've defined a property on our app object (`name`) one time, then referenced it to describe what a valid app looks like, then used the same technique to reference it again to describe a valid request.
 
 A declarative definition of incoming requests can be supremely useful for sanitizing data and generating errors for malformed data automatically. A tool like [Committee](https://github.com/interagent/committee), which provides a collection of schema-related middleware, can help with this in Ruby.
 
@@ -342,7 +348,7 @@ For example, a hyper-schema only dictates that a link specifies the `href` and `
 }
 ```
 
-It may be necessary to read some documentation to understand all the specific keywords in use here, but in essence what we're declaring here is that everything under `definitions` in our hyper-schema is an API resource (`resource` above), and that those resources may have links (`link` above). Those links should have the properties `href`, `method`, `rel`, and `targetSchema`.
+It may be necessary to read some documentation to understand all the specific keywords in use here, but in essence what we're declaring here is that everything under `definitions` in our hyper-schema is an API resource (see `resource` under `definitions`), and that those resources may have links (`link` under `definitions`). Those links should have the properties `href`, `method`, `rel`, and `targetSchema`.
 
 Checking the validity of our schema above with `validate-schema` from the [json_schema](https://github.com/brandur/json_schema), we get this:
 
@@ -374,7 +380,7 @@ We could also mandate that all resource property names should be lowercase only 
 },
 ```
 
-Note that the `patternProperties` keyword allows us to match on a schema based on the name of a property in an object, and `additionalProperties` set to `false` dictates that properties that are not in the `properties` object or defined in `patternProperties` are not valid. Re-running again we get the following:
+Note that the `patternProperties` keyword allows us to match on a schema based on the name of a property in an object, and `additionalProperties` set to `false` dictates that properties that are not in the `properties` object or defined in `patternProperties` are not valid. Re-running again we see that all the property names we defined are okay:
 
 ```
 validate-schema -d -s meta.json schema.json
@@ -399,7 +405,7 @@ You may also notice that the [hyper-schema meta-schema](http://json-schema.org/h
 
 ## Schema Endpoint
 
-A convention that we have at Heroku is to serve the schema itself when a request is made to `GET /schema`. One neat trick is to define the `/schema` link in the schema itself and that its response should validate according a meta-schema. This allows the schema to validate itself against its own meta-schema from your acceptance test suite!
+A convention that we have at Heroku is to serve the schema itself when a request is made to `GET /schema`. One neat trick is to define the `/schema` link in the schema itself and that its response should validate according to its meta-schema. Using the same mechanism that you'd use to check that a JSON response conforms to its schema, this allows the schema to validate itself against its own meta-schema from your acceptance test suite!
 
 ```
 {
@@ -412,7 +418,7 @@ A convention that we have at Heroku is to serve the schema itself when a request
 }
 ```
 
-All the code for both the simple schema we've built here and the meta-schema that can be used to validate it is available [on GitHub](TODO).
+All the code for the simple hyper-schema and the meta-schema that we've built here are available [on GitHub](TODO).
 
 ## Schemas for Other Media Types
 
@@ -433,7 +439,7 @@ Although the API itself still needs to be implemented, by combining this schema 
 
 * Generate API documentation with [Prmd](https://github.com/interagent/prmd).
 * Generate a Ruby client with [Heroics](https://github.com/interagent/heroics).
-* Generate a Go client with [Schematic](https://github.com/interagent/schematic), like the one used in Heroku's new CLI [hk](https://github.com/heroku/hk).
+* Generate a Go client with [Schematic](https://github.com/interagent/schematic), like the one used in Heroku's new CLI, [hk](https://github.com/heroku/hk).
 * Boot a working stub with [Committee](https://github.com/interagent/committee) that will validate incoming requests.
 * Insert a request validation middleware with [Committee](https://github.com/interagent/committee) that will validate incoming request data according to schema before it reaches our stack.
 * Use [Committee's](https://github.com/interagent/committee) test helpers to verify that the responses from our stack conform to the schema.
