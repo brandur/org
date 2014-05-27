@@ -5,7 +5,7 @@ module Org
 A quick tour through some of the fundamentals of JSON Schema and Hyper-schema, and how they can be applied to building APIs.
       eos
       location:     "Berlin",
-      published_at: Time.parse("Tue May 27 15:28:14 CEST 2014"),
+      published_at: Time.parse("2014-05-27T13:39:13Z"),
       signature:    true,
       title:        "Elegant APIs with JSON Schema",
     } do
