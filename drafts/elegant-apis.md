@@ -6,10 +6,6 @@ At any time, you can jump into more documentation [over at jsonschema.org](http:
 
 At its essence, JSON Schema is simply a declarative language for validating the format and structure of a JSON object. It allows you to specify a number of special primitives to describe exactly what a valid JSON object will look like, and provides a powerful nesting concept that allows you to extend these primitives to a document of any complexity. This idea hails back to the days of XML, when it was common to see XML documents linking to the [XSD's](http://en.wikipedia.org/wiki/XML_schema) (XML Schema Definition) that should be used to validate them.
 
-```
-TODO
-```
-
 Let's start with one of the most basic schemas possible. The following describes a single value inside a JSON object:
 
 ```
@@ -418,7 +414,7 @@ A convention that we have at Heroku is to serve the schema itself when a request
 }
 ```
 
-All the code for the simple hyper-schema and the meta-schema that we've built here are available [on GitHub](TODO).
+All the code for the simple hyper-schema and the meta-schema that we've built here are available [on GitHub](https://github.com/brandur/simple-schema).
 
 ## Schemas for Other Media Types
 
