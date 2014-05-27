@@ -383,7 +383,7 @@ validate-schema -d -s meta.json schema.json
 schema.json is valid.
 ```
 
-### Mixing in Hyper-schema's Meta Schema
+### Mixing in Hyper-schema's Meta-schema
 
 You may also notice that the [hyper-schema meta-schema](http://json-schema.org/hyper-schema) uses an `allOf` attribute to make sure that in addition to the constraints it defines, data should also validate against the JSON Schema meta-schema as well. We can do the same thing for our variant except for hyper-schema:
 
