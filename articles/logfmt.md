@@ -11,6 +11,7 @@ Especially with a bit of practice and colorized output, it's pretty easy for a h
 
 A few projects from Heroku employees already exist to help parse logfmt in various languages:
 
+* [logfmt for Clojure](https://github.com/tcrayford/logfmt)
 * [logfmt for Go](http://godoc.org/github.com/kr/logfmt)
 * [logfmt for Node.JS](https://github.com/csquared/node-logfmt)
 * [logfmt for Python](https://pypi.python.org/pypi/logfmt/0.1)
