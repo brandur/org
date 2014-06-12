@@ -17,7 +17,7 @@ I would go so far to say that the vigilant staff were the distinctive difference
 
 The menu was nothing short of hilarious in its raw unintelligibility. An eclectic mixture of random font sizes and styles, erratic whitespace and kerning, and deranged sectioning came together in harmony to ensure its total opacity. It took the four of us three separate conversations with our waitstaff before we could make sense of it.
 
-Its absymal design may have even been a design feature to make sure that patrons engaged with a human before ordering anything. That said, Occam's razor suggests that it may have been the byproduct of a night of wild absinthe abuse, and a copy of Microsoft Word from the mid-nineties.
+Its absymal design may have even been a design feature to make sure that patrons engaged with a human before ordering anything. That said, Occam's razor suggests that it may have been the byproduct of a night of wild absinthe abuse, and a mid-nineties copy of Microsoft Word.
 
 The menu didn't affect the experience, but there was clear irony that the one at the McDonalds two blocks away was better-designed.
 
