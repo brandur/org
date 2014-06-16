@@ -38,6 +38,8 @@
                   | ISBN13: 
                   a href="http://www.google.com/search?tbo=p&tbm=bks&q=isbn:#{book[:metadata][:isbn]}"= format_isbn13(book[:metadata][:isbn])
                   | ; 
+                - if !book[:metadata][:rating].empty?
+                  | #{1.upto(book[:metadata][:rating].to_i).map { |_| "★ " }.join}; 
                 span.meta 
                   - display = distance_of_time_in_words(book[:occurred_at])
                   = display ? "finished #{display} ago" : book[:occurred_at].getlocal.strftime('%b %e, %Y %H:%M')
