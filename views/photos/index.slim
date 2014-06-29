@@ -11,6 +11,7 @@
     ul
       - @photos.each do |photo|
         li
-          a href="/photos/#{photo[:slug]}"
+          a href="https://www.flickr.com/photos/brandurleach/#{photo[:slug]}"
             img src="/photos/medium/#{photo[:slug]}.jpg" height="#{photo[:metadata][:medium_height]}" width="#{photo[:metadata][:medium_width]}"
+    p See the complete set on <a href="https://www.flickr.com/photos/brandurleach/tags/lifestream">Flickr</a>.
 == render :slim, :"_footer", layout: false
