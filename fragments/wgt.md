@@ -13,4 +13,4 @@ I was lucky enough to catch some great shows by some well-known bands like Front
 
 After the music, the costumes were the aspect to like the most. All goth subgenres were well-represented including aristocratic goths in dark billowing gowns, cybergoths with their cyberlox hair extensions, punk goths with their ripped clothing and mohawks, industrial fans with nearly militaristic outfits, and even visual kei styles out of Japan.
 
-Wave-Gotik-Treffen 2015 is May 22nd to the 25th.
+Wave-Gotik-Treffen 2015 will take place May 22nd to the 25th.
