@@ -22,7 +22,7 @@
       ul
         - @photos.each_with_index do |photo, i|
           li
-            a href="/photos/#{photo[:slug]}"
+            a href="https://www.flickr.com/photos/brandurleach/#{photo[:slug]}"
               img src="/photos/medium/#{photo[:slug]}.jpg" height="#{photo[:metadata][:medium_height]}" width="#{photo[:metadata][:medium_width]}" class="photo-col#{(i / 6).to_i}"
       .clear
 .clear
