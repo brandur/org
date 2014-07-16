@@ -36,3 +36,21 @@ A few random observations about the city:
 * Especially in popular areas, traffic on the sidewalks is so heavy that a form of "pedestrian gridlock" actually slows walking speed significantly.
 * Access to a large variety of merchants open 24 hours is _very_ convenient. This healthy all-hour ecosystem presumably becomes possible as population density approaches four times that of SF.
 * My favorite establishment was a speakeasy called Angel's Share. I'd been warned that it was hard to find, but if I handed received precise instructions to climb a set of stairs, ignore the rundown Japanese restaurant at the top, and enter the first door on my left (completely unmarked and nondescript), I never would have found the exceptional cocktail bar therein.
+
+<!-- The High Line -->
+<a href="https://www.flickr.com/photos/brandurleach/14653593255/"><img src="https://farm4.staticflickr.com/3897/14653593255_b6251f4c03_n.jpg"></a>
+
+<!-- Washington Square Park -->
+<a href="https://www.flickr.com/photos/brandurleach/14653221392/"><img src="https://farm3.staticflickr.com/2940/14653221392_7de8b7ff09_n.jpg"></a>
+
+<!-- Met -->
+<a href="https://www.flickr.com/photos/brandurleach/14466989119/"><img src="https://farm4.staticflickr.com/3864/14466989119_1b188b4b38_n.jpg"></a>
+
+<!-- 5th Ave Apple Cube -->
+<a href="https://www.flickr.com/photos/brandurleach/14467196207/"><img src="https://farm3.staticflickr.com/2902/14467196207_aff9b542ca_n.jpg"></a>
+
+<!-- Don't block the box -->
+<a href="https://www.flickr.com/photos/brandurleach/14673526443/"><img src="https://farm4.staticflickr.com/3881/14673526443_4252bdda64_n.jpg"></a>
+
+<!-- Rockefeller -->
+<a href="https://www.flickr.com/photos/brandurleach/14467182087/"><img src="https://farm3.staticflickr.com/2913/14467182087_c058c360db.jpg"></a>
