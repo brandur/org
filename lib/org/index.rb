@@ -38,8 +38,9 @@ module Org
       else
         events = DB[:events].reverse_order(:occurred_at)
         @essays   = Articles.articles
+        # 27 = 9 * 3 columns
         @photos   = events.filter(type: "flickr").
-          filter("metadata -> 'medium_width' = '500'").limit(18)
+          filter("metadata -> 'medium_width' = '500'").limit(27)
         slugs = [@essays.first, @photos.first].
           map { |e| e[:slug] }.
           join("-")
