@@ -1,9 +1,9 @@
 module Org
   class Articles
     article "/warehouse", {
-#      hook:         <<-eos,
-#When building an app against an API, do you pull in their SDK or just make raw HTTP calls? Here are a few reasons that I don't want your SDK in production.
-#      eos
+      hook:         <<-eos,
+Data warehouses aren't just for the enterprise! Let's examine a few of their basic characteristics, and build some examples with Go/Ruby and Postgres.
+      eos
       location:     "San Francisco",
       published_at: Time.parse("2014-09-05T16:25:04Z"),
       signature:    true,
