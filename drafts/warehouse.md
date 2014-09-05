@@ -32,18 +32,24 @@ GitHub's API couldn't be used directly for any kind of advanced querying or anal
 With the data now fully housed in an RDMS, the powerful querying features of SQL are available to filter, map, transform, join, compare, and aggregate this data in any way imaginable. Better yet, although the volume of commit data on GitHub's servers is undoubtedly very large and would take non-trival time and system resources to process, we've succeeded in boiling it down to just the subset that we're interested in --- to the extent that nearly any kind of number crunching takes negligible time even on a tiny database.
 
 ``` sql
+--
 -- most commits in the last six months
+--
 select email, count(*) from commits
 where date > now() - '6 months'::interval
 group by email order by count desc limit 10;
 
+--
 -- most frequent weekend committers
+--
 select email, count(*) from commits
 where extract(dow FROM date) in (0,6)
   and date > now() - '6 months'::interval
 group by email order by count desc limit 5;
 
+--
 -- longest commit messages
+--
 select email, avg(char_length(msg)) from commits
 where date > now() - '6 months'::interval
 group by email order by avg desc limit 5;
@@ -52,6 +58,8 @@ group by email order by avg desc limit 5;
 ```
 
 This is an example of a data warehouse (DWH) on a scale small enough to be agile, and by extension free of the negative connotations of heavy software and big enterprise, but still very useful for analysis and reporting. In the modern world, Postgres databases are cheap and primitive software building blocks needed to extract data from foreign sources (i.e. API SDKs, HTTP clients, RSS readers, etc.), are readily available in the form of gems or NPM packages, allowing simple DWHs like this one to be built from scratch with amazing rapidity. No XML or 200k LOC frameworks required --- only your language and libraries of choice and your favorite database.
+
+## Tweets
 
 As another example, I've been using a similar technique for years to [archive my tweets](https://github.com/brandur/blackswan). Compare this query to slowly manually paging back through your list of tweets looking for that link you posted six months ago:
 
@@ -77,37 +85,81 @@ As another example, I've been using a similar technique for years to [archive my
 (10 rows)
 ```
 
-Just like it's more expensive enterprise cousins, this warehouse has [its own ETL process](https://github.com/brandur/blackswan/blob/master/lib/black_swan/spiders/twitter.rb) for pulling down these tweets from Twitter's API and storing them. It's written in Ruby and leverages community gems to stay concise and DRY. Here's an excerpt:
+Just like it's more expensive enterprise cousins, this warehouse has [its own ETL process](https://github.com/brandur/blackswan/blob/master/lib/black_swan/spiders/twitter.rb) for pulling down these tweets from Twitter's API and storing them. It's written in Ruby and leverages community gems to stay concise and DRY.
 
-``` ruby
-res = Excon.get(
-  "https://api.twitter.com/1.1/statuses/user_timeline.json",
-  expects: 200,
-  headers: {
-    "Authorization" => "Bearer #{ENV["TWITTER_ACCESS_TOKEN"]}"
-  },
-  query: {
-    count:            200,
-    include_entities: "true",
-    max_id:           options[:max_id],
-    screen_name:      ENV["TWITTER_HANDLE"],
-    since_id:         options[:since_id],
-    trim_user:        "true",
-  }.reject { |k, v| v == nil })
-events = MultiJson.decode(res.body)
-events.each do |event|
-  next if \
-    DB[:events].first(slug: event["id"].to_s, type: "twitter") != nil
+## A File Warehouse
 
-  DB[:events].insert(
-    content:     expand_urls(event),
-    occurred_at: event["created_at"],
-    slug:        event["id"].to_s,
-    type:        "twitter",
-    metadata: {
-      reply:     (event["text"] =~ /^\s*@/) != nil,
-    }.hstore)
-end
+As a final practical example, let's build a small Postgres data warehouse containing the contents of our home directories. I find myself consistently running into the problem where my disk is near full, but my operating system does a poor job of helping me to identify the best candidates for removal.
+
+First create a database (you'll need Postgres and Ruby installed to follow along):
+
+```
+$ createdb home-warehouse
 ```
 
-This is the humble data warehouse --- a lightweight construct for developers. Its uses are unbounded, 
+Now we'll create a table to hold all our files:
+
+```
+$ psql home-warehouse -c \
+  'create table files (size bigint, name text, dir boolean)'
+```
+
+And finally, let's run our simple ETL that uses `du` to dump file information into the table that we've created (note the multiplication by 512 to convert blocks into bytes):
+
+```
+$ du -a . | \
+  ruby -n -a -e 'puts "#{$F[0].to_i * 512}\t#{$F[1]}\t#{File.directory?($F[1])}"' | \
+  psql home-warehouse -c '\COPY files FROM STDIN'
+```
+
+I've indexed my `~/Downloads` directory, and it's seriously bloated in a bad way. As you can see, I've got a serious amount of garbage in there:
+
+```
+=> select count(*) from files where dir = false;
+ count
+-------
+ 14819
+(1 row)
+
+=> select pg_size_pretty(sum(size)) from files where dir = false;
+ pg_size_pretty
+----------------
+ 18 GB
+(1 row)
+```
+
+I don't want to just remove everything though; once in a while this oversized directory comes in handy because it allows me to dig up some file that I've had in the ancient past and which I want to look at again. Instead, let's just find the top candidates for deletion:
+
+```
+=> select name, pg_size_pretty(size) from files where dir = false order by size desc limit 30;
+
+                             name                             | pg_size_pretty
+--------------------------------------------------------------+----------------
+ ./dchha39_Death_Throes_of_the_Republic_VI.mp3                | 300 MB
+ ./GCC-10.7-v2.pkg                                            | 273 MB
+ ./eclipse-standard-kepler-R-macosx-cocoa-x86_64.tar.gz       | 198 MB
+ ./jdk-7u45-macosx-x64.dmg                                    | 184 MB
+ ./andean.zip                                                 | 155 MB
+ ./command_line_tools_for_xcode_june_2012.dmg                 | 147 MB
+ ./dads_gift/musical_evenings_with_the_captain_1996.zip       | 126 MB
+ ./ideaIC-12.1.4.dmg                                          | 117 MB
+ ./complete/nzbget.log                                        | 116 MB
+ ./dads_gift/musical_evenings_with_the_captain_ii_1997.zip    | 108 MB
+```
+
+Those look okay to delete by me, so let's axe them:
+
+```
+$ psql home-warehouse -c \
+  '\COPY (select name from files where dir = false order by size desc limit 30) TO STDOUT' | \
+  xargs rm
+```
+
+While the example above may be slightly contrived -- it doesn't compute anything that couldn't be determined using simple UNIX tooling -- its purpose is mainly to demonstrate that data can be queried in arbitrary ways using the full power of the SQL:2011 language standard after it's loaded into an RDMS.
+
+The example above also demonstrates two other important concept (albeit in a trivial way):
+
+1. The blocks to byte conversion in the Ruby ETL script shows how data can be transformed as it enters the warehouse to make it easier for for us to work with it.
+2. Notice how we've also just sliced off a tiny piece of the filesystem (my `~/Downloads` directory). A massive dataset that would otherwise by expensive to query can be boiled down to just the pieces that we care about for fast analysis.
+
+Truly a data warehouse for everyone! I'd highly recommend downloading [Postgres](http://www.postgresql.org/download/) and trying this out for yourself today.
