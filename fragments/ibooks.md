@@ -23,6 +23,6 @@ It amuses me that if iBooks every does start syncing non-purchased content, any 
 2. Dropbox to my iPad (where it's exported to iBooks).
 3. iPad to iCloud.
 4. iCloud to my computer.
-5. iPad to my computer (again) when I plug in the iPad and iTunes starts doing its thing.
+5. iPad to my computer (again) when I plug in the iPad and iTunes starts doing things.
 
 So as seems to happen all too often with modern software ecosystems, I've built a patchy routine with a large surface area that works for me today, but which feels overcomplicated compared to my modest goal: reading a book.
