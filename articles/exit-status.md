@@ -2,7 +2,7 @@ During a [recent discussion on two factor authentication](https://github.com/her
 
 First though, a little background: when building out hk, a strong philosophy was adopted around most commands being non-interactive by default (with a few well-known exceptions like `hk login`). This is a nice characteristic when attempting to compose hk directives into something like a shell script; at no point will a command unexpectedly prompt for user input and possibly ruin automation.
 
-With the addition of 2FA to the Heroku API, there is a new possibility of 2FA being arbitrarily required for an API call in that the behavior may vary based on particular endpoints, but also based on the parameters of the request. For example, a particularly sensitive app may require that a two factor code is specified for most of its sensitive operations. The current CLI handles this by simply prompting the user as needed, but hk's principle of non-interactivity makes it less obvious how to support this.
+With the addition of 2FA to the Heroku API, there is a new possibility of 2FA being arbitrarily required for an API call in that the behavior may vary based on particular endpoints, but also based on the parameters of the request. For example, a particularly sensitive app may require that a two factor code is specified for most of its critical operations. The current CLI handles this by simply prompting the user as needed, but hk's principle of non-interactivity makes it less obvious how to support this.
 
 A decision was made to error when a two factor challenge was detected, but with a well-known exit status that would signal to other programs that the command failed due to a 2FA problem rather than anything else.
 
