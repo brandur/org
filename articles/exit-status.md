@@ -6,7 +6,7 @@ With the addition of 2FA to the Heroku API, there is a new possibility of 2FA be
 
 A decision was made to error when a two factor challenge was detected, but with a well-known exit status that would signal to other programs that the command failed due to a 2FA problem rather than anything else.
 
-This led to the question of which exit status to return. It's fairly common knowledge that in Bash-like shells, status 0 signals success and that status 1 is an error. A misuse of the program can either be signaled by 1 (as demonstrated many programs including `git` or `ls`), or possibly a 2, which signals the misuse of a shell built-in (hk uses 2 to differentiate this class of errors from other types of failures). When a program receives a fatal signal, it will exit with a code of 128 + `n` where `n` is the signal code, for example, for a program sent signal 2 (`SIGINT`, or more commonly thought about as `Ctrl+C`):
+This led to the question of which exit status to return. It's fairly common knowledge that in Bash-like shells, status 0 signals success and that status 1 is an error. A misuse of the program can either be signaled by 1 (as demonstrated many programs including `git` or `ls`), or possibly a 2, which signals the misuse of a shell built-in (hk uses 2 to differentiate this class of errors from other types of failures signaled by 1). When a program receives a fatal signal, it will exit with a code of 128 + `n` where `n` is the signal code, for example, for a program sent signal 2 (`SIGINT`, or more commonly thought about as `Ctrl+C`):
 
 ```
 $ curl -n https://api.heroku.com/apps
