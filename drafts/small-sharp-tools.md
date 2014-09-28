@@ -1,14 +1,14 @@
 Upon joining Heroku a few years back, one of the central maxims that I heard cited quited frequently was that of _small, sharp tools_, essentially the idea of building minimalist, composable programs that could work in concert to a degree of effectiveness that was more than the sum of their parts, such as providing a highly effective operating environment like a Unix shell. Although the idea was originally applied to the Unix environment, a number of people at Heroku including a founder and a few lead engineers, had found that it lent itself quite naturally to building modern web platforms as well.
 
-The best documented original source for this idea is the book [_The Art of Unix Programming_](http://www.catb.org/esr/writings/taoup/) written by Eric S. Raymond. The background of the idea is described under a section on Unix philosophy titled _Tradeoffs between Interface and Implementation Complexity_:
-
-> One strain of Unix thinking emphasizes small sharp tools, starting designs from zero, and interfaces that are simple and consistent. This point of view has been most famously championed by Doug McIlroy. Another strain emphasizes doing simple implementations that work, and that ship quickly, even if the methods are brute-force and some edge cases have to be punted. Ken Thompson’s code and his maxims about programming have often seemed to lean in this direction.
-
-Raymond goes on to extract the overarching philosophies of Unix into a number of digestible rules, three of which are highly applicable to the idea of small, sharp tools:
+The best documented original source for this idea is the book [_The Art of Unix Programming_](http://www.catb.org/esr/writings/taoup/) written by Eric S. Raymond. In the book, the author boils down the overarching philosophies of Unix into a number of digestible rules, three of which are highly applicable to the idea of small, sharp tools:
 
 1. **Rule of Modularity:** Write simple parts connected by clean interfaces.
 2. **Rule of Composition:** Design programs to be connected to other programs.
 3. **Rule of Parsimony:** Write a big program only when it is clear by demonstration that nothing else will do.
+
+More background for the idea is described under a section on Unix philosophy titled _Tradeoffs between Interface and Implementation Complexity_:
+
+> One strain of Unix thinking emphasizes small sharp tools, starting designs from zero, and interfaces that are simple and consistent. This point of view has been most famously championed by Doug McIlroy. Another strain emphasizes doing simple implementations that work, and that ship quickly, even if the methods are brute-force and some edge cases have to be punted. Ken Thompson’s code and his maxims about programming have often seemed to lean in this direction.
 
 One example of the Unix-based small, sharp tools that are being referred to here are the basic shell primitives like `cd`, `ls`, `cat`, `grep`, and `tail` that can be composed in the context of with pipelines, redirections, the shell, and the file system itself to work in tandem towards a particular goal. The simple and consistent interfaces are the conventions like common idioms between programs for specifying input to consume, and [exit codes](/exit-statuses) that are re-used between programs.
 
