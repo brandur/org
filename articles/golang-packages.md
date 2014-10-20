@@ -4,7 +4,7 @@ Personally, some basic principles left me reeling. Here's an [excerpt from the G
 
 > Packages intended for public use should try to maintain backwards compatibility as they evolve. The Go 1 compatibility guidelines are a good reference here: don't remove exported names, encourage tagged composite literals, and so on. If different functionality is required, add a new name instead of changing an old one. If a complete break is required, create a new package with a new import path.
 
-You have to fork your project to change the API?! It's hard to believe how this could be considered correct in any world, and many Go articles are so apologetic that downsides of this approach are never addressed. For those who were as confused about this as I was, let's address a few of the special characteristics of Go's import and packaging system.
+You have to fork project to change the API?! It's hard to believe how this could be considered correct in any world, and many Go articles are so apologetic that downsides of this approach are never addressed. For those who were as confused about this as I was, let's address a few of the special characteristics of Go's import and packaging system.
 
 ## The Workspace
 
