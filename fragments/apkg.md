@@ -20,7 +20,7 @@ sqlite> .tables
 cards   col     graves  notes   revlog
 ```
 
-Things don't get easier from there though. The author(s) obviously came from the terse school of coding:
+Things don't get easier from there though. The author(s) are from the terse school of software:
 
 ```
 sqlite> .schema notes
