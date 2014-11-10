@@ -4,7 +4,7 @@ module Org
       hook:         <<-eos,
       eos
       location:     "San Francisco",
-      published_at: Time.parse("2014-11-10T17:25:22Z"),
+      published_at: Time.parse("2014-11-10T23:46:34Z"),
       signature:    true,
       title:        "Dotfile Secrets and GPG",
     } do
