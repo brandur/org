@@ -1,17 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    backports (3.6.0)
+    backports (3.6.3)
     builder (3.2.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
-    columnize (0.3.6)
-    debugger-linecache (1.2.0)
-    debugger2 (1.0.0.beta2)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
     eventmachine (1.0.3)
     eventmachine (1.0.3-java)
     excon (0.27.3)
@@ -83,7 +78,6 @@ PLATFORMS
 DEPENDENCIES
   builder
   coffee-script
-  debugger2
   excon
   gson
   jdbc-postgres
