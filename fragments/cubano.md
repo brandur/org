@@ -1,5 +1,5 @@
 ---
-title: Cubano
+title: The Cubano
 published_at: 2014-11-27T05:11:21Z
 ---
 
