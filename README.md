@@ -12,3 +12,8 @@ heroku config:set BLACK_SWAN_DATABASE_URL=postgres://
 heroku config:set RACK_ENV=production
 git push heroku master
 ```
+
+```
+heroku git:remote -a brandur-org-next-staging -r staging
+heroku git:remote -a brandur-org-next -r production
+```
