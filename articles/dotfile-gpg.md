@@ -73,4 +73,5 @@ The most trivial example is probably Curl, which is used to reading from an unen
 I've converted quite a number of my standard tools now, and will curate the following list of mini-guides for GPG integration as I write them:
 
 * [GPG and Curl](/fragments/gpg-curl)
+* [GPG and HTTP Git](/fragments/gpg-git)
 * [GPG and s3cmd](/fragments/gpg-s3cmd)
