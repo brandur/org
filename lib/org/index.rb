@@ -42,6 +42,7 @@ module Org
         @photos   = events.filter(type: "flickr").
           filter("metadata -> 'medium_width' = '500'").limit(27)
         slugs = [@essays.first, @photos.first].
+          compact.
           map { |e| e[:slug] }.
           join("-")
         etag(Digest::SHA1.hexdigest("index-#{slugs}"))
