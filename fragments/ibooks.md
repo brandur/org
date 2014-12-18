@@ -9,7 +9,7 @@ One app that I've had a love/hate relationship with for a long time is Apple's i
 
 iBook's only weakness is the same as Apple's: the cloud. There isn't a good way of getting content into iBooks; your options are:
 
-* Browse the store from your device and buy or download something from it. This is a slow and frustrating experience at the best of times, and not suitable for getting other personal content onto the device.
+* Browse the store from your device and buy or download something from it. This is a slow and frustrating experience at the best of times, and not suitable for transferring other personal content.
 * Plug your device into your computer via USB and transfer content with iTunes. This method involves both wires and iTunes, neither of which is ever going to be a pleasant experience.
 * Transfer content to the device using another program, and use "Open In ..." with iBooks.
 
