@@ -3,8 +3,8 @@ module Org::Helpers
     def distance_by_year(runs)
       distance_by_year = {}
       runs.each do |run|
-        distance_by_year[run[:occurred_at].year] ||= 0
-        distance_by_year[run[:occurred_at].year] +=
+        distance_by_year[Time.parse(run[:metadata][:occurred_at_local]).year] ||= 0
+        distance_by_year[Time.parse(run[:metadata][:occurred_at_local]).year] +=
           run[:metadata][:distance].to_f
       end
       distance_by_year.each do |year, distance|

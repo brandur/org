@@ -20,7 +20,7 @@
             | , #{run[:metadata][:location_city]}
           span.meta
             |  
-            = run[:occurred_at].strftime("%B %e, %Y")
+            = Time.parse(run[:metadata][:occurred_at_local]).strftime("%B %e, %Y")
 == render :slim, :"_footer", layout: false
 
 javascript:
