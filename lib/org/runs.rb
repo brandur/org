@@ -19,7 +19,7 @@ module Org
         last_modified(run[:occurred_at])
       end
       @distance_by_year = distance_by_year(@runs)
-      @runs = @runs.limit(10).all
+      @runs = @runs.limit(30).all
       @title = "Runs"
       slim :"runs/index"
     end

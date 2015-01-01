@@ -11,7 +11,7 @@
     - tally = @distance_by_year[Time.now.year] || 0.0
     p #{tally.round(1)} km ran in #{Time.now.year}, for a projected total of #{(tally / Time.now.yday.to_f * 365).round(1)} km.
     #data-distance-by-year
-    h2 Last Ten
+    h2 Last Thirty
     ul.list
       - @runs.each do |run|
         li
