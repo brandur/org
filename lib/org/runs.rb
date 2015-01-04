@@ -20,7 +20,7 @@ module Org
       end
       @distance_by_year = distance_by_year(@runs)
       @runs = @runs.limit(30).all.
-        group_by { |r| r[:metadata][:occurred_at_local].month }
+        group_by { |r| Time.parse(r[:metadata][:occurred_at_local]).month }
       @title = "Runs"
       slim :"runs/index"
     end
