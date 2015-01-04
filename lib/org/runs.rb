@@ -19,7 +19,8 @@ module Org
         last_modified(run[:occurred_at])
       end
       @distance_by_year = distance_by_year(@runs)
-      @runs = @runs.limit(30).all.group_by { |r| r[:occurred_at_local].month }
+      @runs = @runs.limit(30).all.
+        group_by { |r| r[:metadata][:occurred_at_local].month }
       @title = "Runs"
       slim :"runs/index"
     end
