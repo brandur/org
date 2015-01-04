@@ -11,16 +11,18 @@
     - tally = @distance_by_year[Time.now.year] || 0.0
     p #{tally.round(1)} km ran in #{Time.now.year}, for a projected total of #{(tally / Time.now.yday.to_f * 365).round(1)} km.
     #data-distance-by-year
-    h2 Last Thirty
-    ul.list
-      - @runs.each do |run|
-        li
-          | #{in_km(run[:metadata][:distance].to_f).round(1)} km @ #{pace(run)}/km
-          - if run[:metadata][:location_city]
-            | , #{run[:metadata][:location_city]}
-          span.meta
-            |  
-            = Time.parse(run[:metadata][:occurred_at_local]).strftime("%B %e, %Y")
+    h2 Latest Runs
+    - @runs.each do |month, month_runs|
+      h3= Date::MONTHNAMES[month]
+      ul.list
+        - month_runs.each do |run|
+          li
+            | #{in_km(run[:metadata][:distance].to_f).round(1)} km @ #{pace(run)}/km
+            - if run[:metadata][:location_city]
+              | , #{run[:metadata][:location_city]}
+            span.meta
+              |  
+              = Time.parse(run[:metadata][:occurred_at_local]).strftime("%B %e, %Y")
 == render :slim, :"_footer", layout: false
 
 javascript:
