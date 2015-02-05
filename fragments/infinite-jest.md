@@ -3,7 +3,7 @@ title: Infinite Jest
 published_at: 2015-02-05T03:26:42Z
 ---
 
-![Infinite Jest on a table](https://pbs.twimg.com/media/B25yqPsIEAECykQ.jpg:small)
+![Infinite Jest on a table](https://pbs.twimg.com/media/B25yqPsIEAECykQ.jpg:medium)
 
 I just finished David Foster Wallace's magnum opus _Infinite Jest_. Generally regarded as a work of literary genius, it's also infamous for being incredibly difficult to read. Rather than following any kind of traditional story telling techniques, DFW presents us with a series of loosely coupled scenes where a large number of cast members engage in seemingly meaningless activities or interact with each other in inscrutable ways. I got a third of the way through the book before going to find a plot synopsis (in despair); it turned out that I'd failed to realize what the book was even about.
 
