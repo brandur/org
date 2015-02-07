@@ -27,7 +27,7 @@ More complex rules can be mixed into the object as well. This will validate that
 
 ## Nesting Schemas
 
-While the above lets us validate a single value, it's more interesting to validate a complex JSON object. We can build on the above by nesting our single value validation into another schema using the `definitions` keyword, which describes the keys that a JSON object might have, and the schema that validates their values:
+While the above lets us validate a single value, it's more interesting to validate a complex JSON object. We can build on the above by nesting our single value validation into another schema using the `properties` keyword, which describes the keys that a JSON object might have, and the schema that validates their values:
 
 ```
 {
