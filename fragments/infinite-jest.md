@@ -17,4 +17,4 @@ After you've finished the book, jump over to [what happens at the end of Infinit
 
 ([Live Online with David Foster Wallace, May 17, 1996](http://www.badgerinternet.com/~bobkat/jest11a.html))
 
-It failed me.
+It failed for me.
