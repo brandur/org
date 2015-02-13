@@ -37,7 +37,7 @@ module Org
         }, pretty: true)
       else
         events = DB[:events].reverse_order(:occurred_at)
-        @essays   = Articles.articles[0, 15]
+        @essays   = Articles.articles[0, 10]
         # 27 = 9 * 3 columns
         @photos   = events.filter(type: "flickr").
           filter("metadata -> 'medium_width' = '500'").limit(27)
