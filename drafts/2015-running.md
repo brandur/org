@@ -12,20 +12,40 @@ WITH runs AS (
     GROUP BY month_num
     ORDER BY month_num
 ), trips AS (
-    SELECT date_part('month', occurred_at) month_num,
-        array_to_string(array_agg(content), ', ') AS trips
+    SELECT content AS trip_name,
+        (metadata -> 'start_date')::timestamp AS start,
+        (metadata -> 'end_date')::timestamp AS end
     FROM events
     WHERE type = 'tripit'
         AND date_part('year', occurred_at) = 2014
+), trips_enriched AS (
+    SELECT t.trip_name,
+        date_part('month', t.start) AS start_month,
+        date_part('month', t.end) AS end_month
+        date_part('month', t'end) + '1 month'::duration - '1 day'::duration AS 
+    FROM trips t
+), trips_start AS (
+    SELECT t.start_month month_num,
+        array_agg(trip_name) AS trips_start
+    FROM trips_enriched t
+    GROUP BY month_num
+    ORDER BY month_num
+), trips_end AS (
+    SELECT t.end_month month_num,
+        array_agg(trip_name) AS trips_end
+    FROM trips_enriched t
     GROUP BY month_num
     ORDER BY month_num
 )
+
 SELECT to_char(to_timestamp(r.month_num::text, 'MM'), 'Month') AS month,
     num_runs,
     (total_meters / 1000)::int AS total_km,
     (total_meters / num_runs / 1000)::int AS average_km,
-    trips
-FROM runs r LEFT JOIN trips t ON r.month_num = t.month_num;
+    array_to_string(array_cat(trips_start, trips_end), ', ') AS trips
+FROM runs r
+    LEFT JOIN trips_start ts ON r.month_num = ts.month_num
+    LEFT JOIN trips_end te ON r.month_num = te.month_num;
 ```
 
 ```
