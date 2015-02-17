@@ -5,7 +5,7 @@ module Org
 A simple mechanism for managing changes to a web API and to help cheapen the disposal of prototypes.
       eos
       location:     "San Francisco",
-      published_at: Time.parse("2015-02-16T20:24:43Z"),
+      published_at: Time.parse("2015-02-17T22:13:48Z"),
       signature:    true,
       title:        "Version Variants",
     } do
