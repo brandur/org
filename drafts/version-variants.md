@@ -1,4 +1,4 @@
-An old problem with APIs of all kinds is that they're difficult to change. Although an API can be expanded without too much trouble, it becomes difficult to remove any fields that may have been present previously in case some consumer has come to be dependent on them. As companies like Twitter found out, breaking API consumers on a consistent basis is the fastest way to foster a disparaging development community and a long-lasting infamy as an unreliable provider.
+An old problem with APIs of all kinds is that they're difficult to change. Although an API can be expanded without too much trouble, it becomes costly to remove any fields that may have been present previously in case some consumer has come to be dependent on them. As companies like Twitter found out, breaking API consumers on a consistent basis is the fastest way to foster a disparaging development community and a long-lasting infamy as an unreliable provider.
 
 Modern web pundits might tell you to solve this problem with Hypermedia, but although this type of RESTful technique might provide some protection against the relocation of resources, it can do little to protect against the removal of fields on a resource or the removal of entire resource types.
 
@@ -10,7 +10,7 @@ But when it comes to web APIs, versioning is problematic in its own way. Anytime
 
 ## Variants
 
-To help improve on this situation, we introduced a concept that we've been using for a few months now called _version variants_. Variants are a simple way of hiding new API features behind a flag so that they stay out of the main API version. They have names that mirror their associated version that look like `3.new-feature` and are requested in a similar fashion:
+To help improve on this situation, we introduced a concept that we've been using for a few months now called _version variants_. Variants are a simple way of hiding new API features behind a flag so that they stay out of the main API version. They have names that mirror their associated version that look like `version=3.new-feature` and are requested in a similar fashion:
 
     Accept: application/vnd.heroku+json; version=3.new-feature
 
@@ -30,7 +30,7 @@ At their core, variants are a tool to ease the prototyping process by making the
     1. Declaring it widespread beta or GA: pull the variant into the mainline API.
     2. Declare the prototype obsolete: remove the variant and all associated implementation code.
 
-We'll normally have an API engineer run a full review on the new APIs at the time of pulling a variant mainline, with only minimal manual guidance provided up to that point (we do of course encourage everyone to read our [general HTTP API design guidelines](https://github.com/interagent/http-api-design) before starting anything at all). This helps to cheapen the cost of the prototype in that a team building a new feature doesn't have to swallow the process of an API audit with every change that they make to it.
+We'll normally have an API engineer run a full review on the new APIs at the time of pulling a variant mainline, with only minimal manual guidance provided up to that point (we do of course encourage everyone to read our [general HTTP API design guidelines](https://github.com/interagent/http-api-design) before starting anything at all, and to come to us with any proposed designs that don't fit our existing patterns well). This helps to cheapen the cost of the prototype in that a team building a new feature doesn't have to swallow the process of an API audit with every change that they make to it.
 
 Our API responds with mainline even for API variants that it doesn't know about (i.e. `3.*`). This makes the process of pulling variants to mainline safe in that even consumers that are still requesting the old variant have their requests filled appropriately until they can be updated.
 
