@@ -32,7 +32,7 @@ While the above lets us validate a single value, it's more interesting to valida
 ```
 {
   "properties": {
-    "name", {
+    "name": {
       "pattern": "^[a-z][a-z0-9-]{3,30}$",
       "type": "string"
     }
@@ -151,7 +151,7 @@ Now, remember how I told you that schemas nest? They do, and we've already seen 
 }
 ```
 
-Phew! We've managed to build out a pretty significant schema already. Astute readers may have notice that along with the new domains resource, we've defined a new property for app:
+Phew! We've managed to build out a pretty significant schema already. Astute readers may have noticed that along with the new domains resource, we've defined a new property for app:
 
 ```
 "domains": {
