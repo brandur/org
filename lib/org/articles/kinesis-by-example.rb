@@ -5,7 +5,7 @@ module Org
 Splitting and merging in action.
       eos
       location:     "San Francisco",
-      published_at: Time.parse("2015-03-19T06:37:17Z"),
+      published_at: Time.parse("2015-03-19T07:27:45Z"),
       signature:    true,
       title:        "Kinesis Shard Splitting & Merging by Example",
     } do
