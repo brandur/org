@@ -2,7 +2,7 @@ module Org
   class Articles
     article "/kinesis-by-example", {
       hook:         <<-eos,
-A quick demonstration of shards in a Kinesis stream being split and merged.
+Splitting and merging in action.
       eos
       location:     "San Francisco",
       published_at: Time.parse("2015-03-19T06:37:17Z"),
