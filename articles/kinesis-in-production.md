@@ -39,7 +39,7 @@ P50 on this total throughput time sits right around 1.5 s, with P95 and P99 sitt
   <figcaption>P50, P95, and P99 of time from production to consumption. P50 hovers around 1.50 s.</figcaption>
 </figure>
 
-All-in-all, I consider these numbers pretty good for a distributed system. In our particular use case, accuracy is more important then ultra low-latency throughput, so given the durability guarantees that Kinesis is getting us here, I'm more than willing to accept these numbers.
+All-in-all, I consider these numbers pretty good for a distributed system. In our particular use case, accuracy is more important then ultra low-latency throughput, so given the durability guarantees that Kinesis is getting us here, I'm more than willing to accept them.
 
 A little more on the qualitative side of observation, we've still yet to notice a serious operational problem in one of our Kinesis streams throughout the time that we've had them online. This doesn't give me much data to report on how well they behave during a degraded situation like a serious outage, but also demonstrates that the infrastructure is pretty reliable.
 
