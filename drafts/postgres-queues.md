@@ -120,8 +120,12 @@ Notice the last line "247311 dead row versions cannot be removed yet". What this
 
 ### The Postgres MVCC Model
 
+To guarantee transaction isolation (that's the "I" in "ACID"), Postgres implements a [concurrency control](http://www.postgresql.org/docs/9.4/static/mvcc.html) model called MVCC (Multiversion Concurrency Control) that ensures that each ongoing SQL statement sees a consistent snapshot of data regardless of what changes may have occurred on the underlying data. By extension, that means that rows that are deleted from a Postgres database are not actually deleted immediately. Instead, they're marked as deleted so that they they're still available to any open snapshots that may still have use for them. When they're no longer needed in any snapshot, a VACUUM process will perform a pass and safely clean them up.
+
+The flags that power MVCC are actually available as "hidden" columns on any Postgres table. Let's take a simple example where we're holding a few unworked jobs in a Que table:
+
 ```
-# select xmin, xmax, job_id from que_jobs limit 5;
+term-A-# select xmin, xmax, job_id from que_jobs limit 5;
  xmin  | xmax | job_id
 -------+------+--------
  89912 |    0 |  25865
@@ -132,18 +136,26 @@ Notice the last line "247311 dead row versions cannot be removed yet". What this
 (5 rows)
 ```
 
+Every write transaction in Postgres is assigned a transaction ID (`xid`). The `xmin` column defines the minimum transaction ID for which a particular row becomes visible (i.e. the `xid` where it was created). `xmax` defines the maximum `xid` bound that the row is available. As above, for a row that's still available to any new transaction, that number is set to 0.
+
+If we start a new transaction from a different console:
+
 ```
-# start transaction isolation level serializable;
+term-B-# start transaction isolation level serializable;
 START TRANSACTION
 ```
 
+Then remove one of the jobs:
+
 ```
-# delete from que_jobs where job_id = 25865;
+term-A-# delete from que_jobs where job_id = 25865;
 DELETE 1
 ```
 
+We can see that the removed row (which is still visible from our second transaction), now has its `xmax` set:
+
 ```
-# select xmin, xmax, job_id from que_jobs limit 5;
+term-B-# select xmin, xmax, job_id from que_jobs limit 5;
  xmin  | xmax  | job_id
 -------+-------+--------
  89912 | 90505 |  25865
@@ -154,13 +166,79 @@ DELETE 1
 (5 rows)
 ```
 
-<Postgres code>
-
-Everytime a job is worked successfully, it gets harder to lock another job!
-
 ### Descending the B-tree
 
+The standard Postgres index is implemented as a [B-tree](http://en.wikipedia.org/wiki/B-tree) which is descended to find TIDs (tuple identifiers) that are stored in its leaves. These TIDs then map back to physical locations of rows within the index's table which Postgres can use to extract the full tuple.
+
+The one key piece of information here is that an index _does not contain tuple visibility information_. To know whether a tuple is still visible to the currently run transaction, it must be extracted from the heap and have its visibility checked.
+
+The Postgres codebase is large enough that pointing to a single place to outline this detail in the implementation is difficult, but `index_getnext` as shown below is a pretty important piece of it. Its job is to scan any type of index in a generic way and extract a tuple that matches the conditions of an incoming query. Most of the body is wrapped in a continuous look that first dips into `index_getnext_tid` which will descend the B-tree to find an appropriate TID. After one is retrieved, it's passed off to `index_fetch_heap`, which will fetch a full tuple and check its visibility against the current snapshot (which is contained as part of the `IndexScanDesc` type).
+
+``` c
+/* ----------------
+ *		index_getnext - get the next heap tuple from a scan
+ *
+ * The result is the next heap tuple satisfying the scan keys and the
+ * snapshot, or NULL if no more matching tuples exist.
+ *
+ * On success, the buffer containing the heap tup is pinned (the pin will be
+ * dropped in a future index_getnext_tid, index_fetch_heap or index_endscan
+ * call).
+ *
+ * Note: caller must check scan->xs_recheck, and perform rechecking of the
+ * scan keys if required.  We do not do that here because we don't have
+ * enough information to do it efficiently in the general case.
+ * ----------------
+ */
+HeapTuple
+index_getnext(IndexScanDesc scan, ScanDirection direction)
+{
+	HeapTuple	heapTuple;
+	ItemPointer tid;
+
+	for (;;)
+	{
+		if (scan->xs_continue_hot)
+		{
+			/*
+			 * We are resuming scan of a HOT chain after having returned an
+			 * earlier member.  Must still hold pin on current heap page.
+			 */
+			Assert(BufferIsValid(scan->xs_cbuf));
+			Assert(ItemPointerGetBlockNumber(&scan->xs_ctup.t_self) ==
+				   BufferGetBlockNumber(scan->xs_cbuf));
+		}
+		else
+		{
+			/* Time to fetch the next TID from the index */
+			tid = index_getnext_tid(scan, direction);
+
+			/* If we're out of index entries, we're done */
+			if (tid == NULL)
+				break;
+		}
+
+		/*
+		 * Fetch the next (or only) visible heap tuple for this index entry.
+		 * If we don't find anything, loop around and grab the next TID from
+		 * the index.
+		 */
+		heapTuple = index_fetch_heap(scan);
+		if (heapTuple != NULL)
+			return heapTuple;
+	}
+
+	return NULL;				/* failure exit */
+}
+```
+
+This insight along with performing some basic profiling to check it leads us to the reason our locking performance suffers so much given a long running transaction. As dead tuples continue to accumulate in the index, Postgres enters a hot loop as it continually descends the B-tree, comes up with an invisible tuple, and repeats the process again and again, coming up empty-handed every time. By the end of the experiment illustrated in the charts above, every time a worker tried to lock a job this would happen 100,000 times. Worse yet, every time a job is successfully worked a new dead tuple is left in the index, making the next job that much harder to lock.
+
+A job queue's access pattern is particularly susceptible to this kind of degradation because all this work gets thrown out between every job that gets worked. In an attempt to minimize the amount of time that a job sits in the queue, these type of queueing systems tend to only grab one job at a time which leads to short waiting periods during optimal performance, but particularly pathologic behavior during the worse case scenario.
+
 ## Followers You Say?
+
+Given the information above, it hopefully makes sense how a long lived transaction on the primary could end up bloating a table and taking down a job queue, but as noted in the introduction, the same effect can occur given a long lived transaction on a follower as well. A [number of mechanisms](http://www.postgresql.org/docs/9.4/static/hot-standby.html) exist to help mitigate the effects of query conflicts between primaries and followers, one of which is `hot_standby_feedback`, an option that allows followers to report their snapshots to the primary in such a way that the primary will consider them when performing visibility calculations during a VACUUM. If you've ever used a Heroku Postgres database, you've used Postgres with `hot_standby_feedback` enabled.
 
 ## Towards a Solution
 
