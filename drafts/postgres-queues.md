@@ -330,6 +330,8 @@ Finally, I'd highly encourage database use to stay within the operational bounda
 
 ## Summary
 
+Long lived transactions on a Postgres database can cause a variety of problems for hot tables including a job queue. Given a reasonable understanding of how Postgres' B-tree and tuple visibility logic works, we can change our implementation to improve this situation, but not eliminate it completely. For optimal results, monitor long-lived transactions within Postgres clusters and don't share databases across component or team boundaries.
+
 Times:
 
 * Without patch: 1430875700
