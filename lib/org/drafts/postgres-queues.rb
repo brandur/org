@@ -7,7 +7,7 @@ module Org
       location:     "San Francisco",
       published_at: Time.parse("2015-05-03T21:37:27Z"),
       signature:    true,
-      title:        "Postgres-backed Job Queues & the MVCC Apocalypse",
+      title:        "Postgres-backed Job Queues & Failure By MVCC",
     } do
       render_article do
         slim :"articles/signature", layout: !pjax?
