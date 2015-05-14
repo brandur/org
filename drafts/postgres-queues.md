@@ -174,7 +174,7 @@ A new operation in the database will be assigned a `xid` af 90506 or higher, and
 
 The standard Postgres index is implemented as a [B-tree](http://en.wikipedia.org/wiki/B-tree) which is searched to find TIDs (tuple identifiers) that are stored in its leaves. These TIDs then map back to physical locations of rows within the table which Postgres can use to extract the full tuple.
 
-The one key piece of information here is that an index _does not contain tuple visibility information_. To know whether a tuple is still visible to the currently run transaction, it must be extracted from the heap and have its visibility checked.
+The one key piece of information here is that a Postgres index doesn't generally contain tuple visibility information<sup id="footnote-1-source"><a href="#footnote-1">1</a></sup>. To know whether a tuple is still visible to the in-progress transaction, it must be extracted from the heap and have its visibility checked.
 
 The Postgres codebase is large enough that pointing to a single place to outline this detail in the implementation is difficult, but `index_getnext` as shown below is a pretty important piece of it. Its job is to scan any type of index in a generic way and extract a tuple that matches the conditions of an incoming query. Most of the body is wrapped in a continuous loop that first calls into `index_getnext_tid` which will descend the B-tree to find an appropriate TID. After one is retrieved, it's passed off to `index_fetch_heap`, which will fetch a full tuple and check its visibility against the current snapshot (a snapshot reference is stored as part of the `IndexScanDesc` type).
 
@@ -340,3 +340,7 @@ Times:
 
 * Without patch: 1430875700
 * With patch: 1431038950
+
+<div class="divider-short"></div>
+
+<sup id="footnote-1"><a href="#footnote-1-source">1</a></sup> Although it is generally true that a Postgres index doesn't contain visibility information, there is an exception. If a process notices that a heap tuple is completely dead (as in not visible to any open transaction), it may set a flag on the index TID called [LP_DEAD](https://github.com/postgres/postgres/blob/master/src/backend/access/nbtree/README#L378). This will allow subsequent scans on the index to skip visiting the corresponding heap tuple.
