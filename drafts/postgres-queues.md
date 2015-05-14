@@ -322,9 +322,11 @@ The extra hop required for the `pending_jobs` table may make this implementation
 
 ## Lessons Learned
 
-A jobs table is the pathologic case, but this could manifest in any hot table.
+Given a full understanding of problems with long-lived transactions in Postgres, a tempting (but overly simplistic) takeaway might be that Postgres isn't a good fit for a job queue. This is at least partly correct, but it's worth remembering that although a job queue may be the least optimal situation, similar problems can develop for any sufficiently hot Postgres table.
 
-Be careful with followers. Don't share database access outside of the operating team.
+First and foremost, it's worth considering a Postgres supervisor that keeps an eye on transactions in the leader and all followers, and executes a `pg_terminate_backend` on anything that's been alive for too long. Postgres also provides a built-in [setting called `statement_timeout`](http://www.postgresql.org/docs/9.4/static/runtime-config-client.html#GUC-STATEMENT-TIMEOUT) that's worth enabling as well, but which is insufficient in itself because it can fail under a variety of conditions (like a user overriding it manually).
+
+Finally, I'd highly encourage database use to stay within the operational boundaries of a single component. This has already been addressed elsewhere online, but the correct way for components to intercommunicate is via well-defined and safe by default APIs. If we hadn't shared our database with other teams with poor visibility into their own operational components, we may never have noticed that this problem existed.
 
 ## Summary
 
