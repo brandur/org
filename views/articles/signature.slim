@@ -22,6 +22,11 @@
     - if @article[:hook]
       p.hook= @article[:hook]
       .divider-short
+    #toc
+      - unless @toc.empty?
+        h2 Table of Contents
+        == @toc
+        .divider-short
     article
       == @content
       .divider-short

@@ -255,6 +255,35 @@ ol, ul
       &:hover
         color: $primary
 
+#toc
+  font-family: $sans_serif
+  font-size: 13px
+  line-height: 2em
+
+  h2
+    font-family: $serif
+    font-size: 13px
+    margin: 10px 0
+    text-transform: uppercase
+
+  ol
+    list-style-type: decimal
+    margin: 5px 0
+
+    li
+      margin-bottom: 0
+      margin-left: 30px
+      padding-left: 10px
+
+      ol
+        list-style-type: lower-alpha
+
+        ol
+          list-style-type: lower-roman
+
+          ol
+            list-style-type: none
+
 article
 
   blockquote
