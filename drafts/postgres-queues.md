@@ -2,7 +2,7 @@ You get a page and open your laptop. Your job queue has spiked to 10,000 jobs an
 
 Long running databases transactions appear to be the culprit here, but how exactly can they have such a significant impact on a database table? And so quickly no less? Furthermore, the transaction wasn't even running on the master database, but was rather ongoing on a follower.
 
-The figure blow shows a simulation of the effect. With a relatively high rate of churn through the jobs table (roughly 50 jobs a second here), the effect can be reproduced quite quickly, and once it starts to manifest (15 minutes in), it worsens very quickly without hope of recovery.
+The figure blow shows a simulation of the effect. With a relatively high rate of churn through the jobs table (roughly 50 jobs a second here), the effect can be reproduced quite quickly, and once it starts to manifest (15 minutes in), it worsens very quickly without hope of recovery (causing a queue overrun).
 
 <figure>
   <p><img src="/assets/postgres-queues/pre-queue-count.png"></p>
@@ -172,7 +172,7 @@ The standard Postgres index is implemented as a [B-tree](http://en.wikipedia.org
 
 The one key piece of information here is that an index _does not contain tuple visibility information_. To know whether a tuple is still visible to the currently run transaction, it must be extracted from the heap and have its visibility checked.
 
-The Postgres codebase is large enough that pointing to a single place to outline this detail in the implementation is difficult, but `index_getnext` as shown below is a pretty important piece of it. Its job is to scan any type of index in a generic way and extract a tuple that matches the conditions of an incoming query. Most of the body is wrapped in a continuous look that first dips into `index_getnext_tid` which will descend the B-tree to find an appropriate TID. After one is retrieved, it's passed off to `index_fetch_heap`, which will fetch a full tuple and check its visibility against the current snapshot (which is contained as part of the `IndexScanDesc` type).
+The Postgres codebase is large enough that pointing to a single place to outline this detail in the implementation is difficult, but `index_getnext` as shown below is a pretty important piece of it. Its job is to scan any type of index in a generic way and extract a tuple that matches the conditions of an incoming query. Most of the body is wrapped in a continuous look that first dips into `index_getnext_tid` which will descend the B-tree to find an appropriate TID. After one is retrieved, it's passed off to `index_fetch_heap`, which will fetch a full tuple and check its visibility against the current snapshot (contained as part of the `IndexScanDesc` type).
 
 ``` c
 /* ----------------
@@ -236,28 +236,95 @@ This insight along with performing some basic profiling to check it leads us to 
 
 A job queue's access pattern is particularly susceptible to this kind of degradation because all this work gets thrown out between every job that gets worked. In an attempt to minimize the amount of time that a job sits in the queue, these type of queueing systems tend to only grab one job at a time which leads to short waiting periods during optimal performance, but particularly pathologic behavior during the worse case scenario.
 
-## Followers You Say?
+## But on a Follower?
 
-Given the information above, it hopefully makes sense how a long lived transaction on the primary could end up bloating a table and taking down a job queue, but as noted in the introduction, the same effect can occur given a long lived transaction on a follower as well. A [number of mechanisms](http://www.postgresql.org/docs/9.4/static/hot-standby.html) exist to help mitigate the effects of query conflicts between primaries and followers, one of which is `hot_standby_feedback`, an option that allows followers to report their snapshots to the primary in such a way that the primary will consider them when performing visibility calculations during a VACUUM. If you've ever used a Heroku Postgres database, you've used Postgres with `hot_standby_feedback` enabled.
+It's somewhat intuitive at least how a long lived transaction on the primary could end up bloating a table and taking down a job queue, but it's a little less so on how one on a follower could have the same effect. A [number of mechanisms](http://www.postgresql.org/docs/9.4/static/hot-standby.html) exist to help mitigate the effects of query conflicts between primaries and followers, one of which is `hot_standby_feedback`. This option allows followers to report their snapshots to the primary in such a way that it will consider them when performing visibility calculations during a VACUUM. If you've ever used a Heroku Postgres database, you've used Postgres with `hot_standby_feedback` enabled.
 
-## Towards a Solution
+## Solutions
 
 ### Predicate Specificity
+
+Stated plainly, our fundamental problem here is that our index has become less useful. Even after selecting rows based on the predicates we've specified, Postgres still has to seek through thousands of dead rows before finally arriving at something that it can use.
+
+Referencing the locking SQL above, we can see that it's the minimal constraint on only queue name and `run_at` that's causing us grief. In the degraded case, all dead rows that have already been worked will match both these conditions.
+
+``` sql
+WHERE queue = $1::text
+AND run_at <= now()
+```
+
+We know that the third field in the Que table's primary key is `job_id`; what if we could modify the predicate above to take it into account as well? If we could supply a `job_id` that was even reasonably fresh, that should be enough to increase the specificity of the query enough to skip thousands of dead rows that we might have otherwise had to examine.
+
+Because Que works jobs in order that they came into the queue, having workers re-use the identifier of the last job they worked might be a simple way to accomplish this. Here's some basic pseudocode:
+
+```
+last_job_id = nil
+
+loop do
+  # if last_job_id is nil, the extra constraint on job_id is left out of the
+  # lock query
+  job = lock_job(last_job_id)
+  work_job(job)
+  last_job_id = job.id
+end
+```
+
+Let's [apply an equivalent patch to Que]() and see how it fairs. Here's oldest transaction time vs. queue count _after_ the patch:
 
 <figure>
   <p><img src="/assets/postgres-queues/post-queue-count.png"></p>
   <figcaption>Queue count.</figcaption>
 </figure>
 
+And for comparison, here's what it looked like _before_ the patch:
+
+<figure>
+  <p><img src="/assets/postgres-queues/pre-queue-count.png"></p>
+  <figcaption>Oldest transaction in seconds on the left. Queue count on the right.</figcaption>
+</figure>
+
+We can see above that the patched version of Que performs much better for much longer under the degraded conditions. It eventually hockeysticks as well, but only after maintaining a stable queue for a considerable amount of time. We found this hockeystick tendency to be partly a function of database size too; the tests above were run on a `heroku-postgresql:standard-0`, but a `heroku-postgresql:standard-7` with the patched version of Que was able to maintain near zero queue for the entire duration of the experimental run, while the unpatched version looked nearly identical to its companion on the smaller database.
+
+#### Lock Jitter
+
+An astute reader may have noticed that our proposed revision of the locking algorithm above introduces a new problem. If a worker dies or a transaction commits a job ID that's out of order, it's possible for all online workers to have moved onto `last_job_ids` that are all higher than one of the unworked jobs left in the queue, leaving that job in an indefinite limbo.
+
+To account for this problem our patch to Que introduces a time-based form of locking jitter. Every so often each worker will forget their `last_job_id` and select any available job from the queue. If a long-lived transaction is ongoing, these selects without a `job_id` will be significantly more expensive, but they will be run infrequently enough that our job queue should still be able to remain stable overall.
+
+An amended form of the new locking pseudocode might look like this:
+
+```
+last_job_id = nil
+start = now()
+
+loop do
+  # lock jitter
+  if now() > start + 60.seconds
+    last_job_id = nil
+    start = now()
+  end
+
+  job = lock_job(last_job_id)
+  work_job(job)
+  last_job_id = job.id
+end
+```
+
 ### Lock Multiple Jobs
 
+An alternative approach to solving the same problem might be to have each worker lock more than one job at a time, which distributes the cost of taking the lock. The disadvantage to this approach is that the overall time to get a job worked may suffer because jobs can get "stuck" behind a long-running job that happened to come out ahead of them in the same batch.
+
 ### Batch Jobs to Redis
+
+Yet another approach might be to drop your Postgres-based queues completely and instead save jobs to a `pending_jobs` table in your database. A background process could then loop through and select jobs from this table en masse and feed them out to a Redis-backed job queue like Sidekiq. This would allow your project to keep the nice database-based property of transaction consistency, but the background worker selecting jobs in bulk would keep the implementation orders of magnitude more resistant to long-lived transactions than Que or Queue Classic.
+
+The extra hop required for the `pending_jobs` table may make this implementation a little slower than a Postgres-based queue operating under ideal conditions, but it could probably be optimized so as not to be too costly.
 
 ## Lessons Learned
 
 A jobs table is the pathologic case, but this could manifest in any hot table.
 
-Be careful with followers.
+Be careful with followers. Don't share database access outside of the operating team.
 
 ## Summary
 
