@@ -13,7 +13,7 @@ The figure blow shows a simulation of the effect. With a relatively high rate of
 
 Your first question may be: why put a job queue in Postgres at all? The answer is that although it may be far from the use case that databases are designed for, storing jobs in a database allows a program to take advantage of its transactional consistency; when an operation fails and rolls back, an injected job rolls back with it. Postgres transactional isolation also keeps jobs invisible to workers until their transactions commit and are ready to be worked.
 
-Without that transaction consistency, having jobs that are worked before the request that enqueued them is fully committed is a common problem. [See the Sidekiq FAQ]() on this suject for example.
+Without that transaction consistency, having jobs that are worked before the request that enqueued them is fully committed is a common problem. [See the Sidekiq FAQ](https://github.com/mperham/sidekiq/wiki/FAQ#why-am-i-seeing-a-lot-of-cant-find-modelname-with-id12345-errors-with-sidekiq) on this suject for example.
 
 As we'll see below, there are very good reasons not to use your database as a job queue, but by following a few key best practices, a program can go pretty far using this pattern.
 
@@ -273,7 +273,7 @@ loop do
 end
 ```
 
-Let's [apply an equivalent patch to Que]() and see how it fairs. Here's oldest transaction time vs. queue count _after_ the patch:
+Let's [apply an equivalent patch to Que](https://github.com/chanks/que/compare/master...brandur:transaction-tolerant) and see how it fairs. Here's oldest transaction time vs. queue count _after_ the patch:
 
 <figure>
   <p><img src="/assets/postgres-queues/post-queue-count.png"></p>
