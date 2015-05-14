@@ -7,7 +7,7 @@ How long-lived transactions can cause serious trouble for hot tables in producti
       location:     "San Francisco",
       published_at: Time.parse("2015-05-14T15:37:27Z"),
       signature:    true,
-      title:        "Postgres-backed Job Queues & Failure By MVCC",
+      title:        "Postgres Job Queues & Failure By MVCC",
     } do
       render_article do
         slim :"articles/signature", layout: !pjax?
