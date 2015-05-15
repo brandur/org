@@ -38,7 +38,7 @@ The first step into figuring out exactly what's going wrong is to find out what 
 
 ### Locking Algorithms
 
-We'd originally been using a library called Queue Classic (QC) to run our job queue. We started to suspect that its relatively inefficient locking mechanism might be the source of our trouble, so we moved over to another package called Que which is known to be faster. To our chagrin though, we found that the problem still existed, even if its better overall performance did seem to help stave it off for a little bit longer. We'll be examining Que in detail here, but it's worth nothing that both of these systems are suspectible to the same root problem.
+We'd originally been using a library called Queue Classic (QC) to run our job queue. We started to suspect that its relatively inefficient locking mechanism might be the source of our trouble, so we moved over to another package called Que which is known to be faster. But to our chagrin, we found that the problem still existed, even if its better overall performance did seem to help stave it off for a little bit longer. We'll be examining Que in detail here, but it's worth nothing that both of these systems are suspectible to the same root problem.
 
 [Inspecting Que's source code](https://github.com/chanks/que/blob/f95aec38a48a86d1b4c82297bc5ed9c88bb600d6/lib/que/sql.rb), we see that it uses this algorithm to lock a job:
 
