@@ -13,7 +13,7 @@ The figure blow shows a simulation of the effect. With a relatively high rate of
 
 Your first question may be: why put a job queue in Postgres at all? The answer is that although it may be far from the use case that databases are designed for, storing jobs in a database allows a program to take advantage of its transactional consistency; when an operation fails and rolls back, an injected job rolls back with it. Postgres transactional isolation also keeps jobs invisible to workers until their transactions commit and are ready to be worked.
 
-Without that transaction consistency, having jobs that are worked before the request that enqueued them is fully committed is a common problem. [See the Sidekiq FAQ](https://github.com/mperham/sidekiq/wiki/FAQ#why-am-i-seeing-a-lot-of-cant-find-modelname-with-id12345-errors-with-sidekiq) on this suject for example.
+Without that transactional consistency, having jobs that are worked before the request that enqueued them is fully committed is a common problem. [See the Sidekiq FAQ](https://github.com/mperham/sidekiq/wiki/FAQ#why-am-i-seeing-a-lot-of-cant-find-modelname-with-id12345-errors-with-sidekiq) on this suject for example.
 
 As we'll see below, there are very good reasons not to use your database as a job queue, but by following a few key best practices, a program can go pretty far using this pattern.
 
@@ -176,7 +176,7 @@ The standard Postgres index is implemented as a [B-tree](http://en.wikipedia.org
 
 The one key piece of information here is that a Postgres index doesn't generally contain tuple visibility information<sup id="footnote-1-source"><a href="#footnote-1">1</a></sup>. To know whether a tuple is still visible to the in-progress transaction, it must be extracted from the heap and have its visibility checked.
 
-The Postgres codebase is large enough that pointing to a single place to outline this detail in the implementation is difficult, but `index_getnext` as shown below is a pretty important piece of it. Its job is to scan any type of index in a generic way and extract a tuple that matches the conditions of an incoming query. Most of the body is wrapped in a continuous loop that first calls into `index_getnext_tid` which will descend the B-tree to find an appropriate TID. After one is retrieved, it's passed off to `index_fetch_heap`, which will fetch the full tuple from the heap, and among other things check its visibility against the current snapshot (a snapshot reference is stored as part of the `IndexScanDesc` type).
+The Postgres codebase is large enough that pointing to a single place to outline this detail in the implementation is difficult, but `index_getnext` as shown below is a pretty important piece of it. Its job is to scan any type of index in a generic way and extract a tuple that matches the conditions of an incoming query. Most of the body is wrapped in a continuous loop that first calls into `index_getnext_tid` which will descend the B-tree to find an appropriate TID. After one is retrieved, it's passed off to `index_fetch_heap`, which will fetch the full tuple from the heap, and among other things check its visibility against the current snapshot (a snapshot reference is stored as part of the `IndexScanDesc` type) <sup id="footnote-2-source"><a href="#footnote-2">2</a></sup>.
 
 ``` c
 /* ----------------
@@ -344,3 +344,5 @@ Times:
 <div class="divider-short"></div>
 
 <sup id="footnote-1"><a href="#footnote-1-source">1</a></sup> Although it is generally true that a Postgres index doesn't contain visibility information, there is an exception. If a process notices that a heap tuple is completely dead (as in not visible to any open transaction), it may set a flag on the index TID called [LP_DEAD](https://github.com/postgres/postgres/blob/master/src/backend/access/nbtree/README#L378). This will allow subsequent scans on the index to skip visiting the corresponding heap tuple.
+
+<sup id="footnote-2"><a href="#footnote-2-source">2</a></sup> It's worth noting as well that an [index-only scan](https://wiki.postgresql.org/wiki/Index-only_scans) can to some degree check a tuple's visibility without fetching it from the heap. This is accomplished through the use of a _visibility map_ which concerns itself with tracking the tuples that are still visible to _all_ transactions. The scan must still visit the heap to check visibility for pages containing tuples that have conditional visibility, but for most tables the visibility map will provide a significant optimization.
