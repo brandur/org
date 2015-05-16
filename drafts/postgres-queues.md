@@ -6,7 +6,7 @@ The figure blow shows a simulation of the effect. With a relatively high rate of
 
 <figure>
   <p><img src="/assets/postgres-queues/pre-queue-count.png"></p>
-  <figcaption>Oldest transaction in seconds on the left. Queue count on the right. One hour in, we're close to 60k jobs.</figcaption>
+  <figcaption>Number of jobs in queue. One hour into a long-lived transaction, we're at 60k jobs.</figcaption>
 </figure>
 
 ## Why Put a Job Queue in Postgres?
@@ -33,7 +33,7 @@ The first step into figuring out exactly what's going wrong is to find out what 
 
 <figure>
   <p><img src="/assets/postgres-queues/pre-lock-time.png"></p>
-  <figcaption>Oldest transaction in seconds on the left. Median lock time on the right. Normally < 0.01 s, locks are taking 15x longer by the end.</figcaption>
+  <figcaption>Median lock time. Normally < 0.01 s, locks are taking 15x one hour in.</figcaption>
 </figure>
 
 ### Locking Algorithms
@@ -101,7 +101,7 @@ By continuing to examine test data, we quickly notice another strong correlation
 
 <figure>
   <p><img src="/assets/postgres-queues/pre-dead-tuples.png"></p>
-  <figcaption>Oldest transaction in seconds on the right. Number of dead tuples on the left. Dead tuples flatten out as jobs get harder to work.</figcaption>
+  <figcaption>Number of dead tuples in the jobs table. The curve flattens out as jobs get harder to work.</figcaption>
 </figure>
 
 Automated Postgres VACUUM processes are supposed to clean these up, but by running a manual VACUUM, we can see that they can't be removed:
@@ -339,17 +339,17 @@ Let's [apply an equivalent patch to Que](https://github.com/chanks/que/compare/m
 
 <figure>
   <p><img src="/assets/postgres-queues/post-queue-count.png"></p>
-  <figcaption>With patch. Oldest transaction in seconds on the left. Queue count on the right.</figcaption>
+  <figcaption>Number of jobs in the queue with patched version of Que. 30k one hour in.</figcaption>
 </figure>
 
 And for comparison, here's what it looked like _before_ the patch:
 
 <figure>
   <p><img src="/assets/postgres-queues/pre-queue-count.png"></p>
-  <figcaption>Without patch. Oldest transaction in seconds on the left. Queue count on the right.</figcaption>
+  <figcaption>Number of jobs in the queue on vanilla Que. 60k one hour in.</figcaption>
 </figure>
 
-We can see above that the patched version of Que performs much better for much longer under the degraded conditions. It eventually hockeysticks as well, but only after maintaining a stable queue for a considerable amount of time. We found this hockeystick tendency to be partly a function of database size too; the tests above were run on a `heroku-postgresql:standard-0`, but a `heroku-postgresql:standard-7` with the patched version of Que was able to maintain near zero queue for the entire duration of the experimental run, while the unpatched version degraded nearly identically to its companion on the smaller database.
+We can see above that the patched version of Que performs optimally for roughly twice as long under degraded conditions. It eventually hockeysticks as well, but only after maintaining a stable queue for a considerable amount of time<sup id="footnote-3-source"><a href="#footnote-1">3</a></sup>. We found that a database's capacity to work under degraded conditions was partly a function of database size too: the tests above were run on a `heroku-postgresql:standard-0`, but a `heroku-postgresql:standard-7` with the patched version of Que was able to maintain near zero queue for the entire duration of the experimental run, while the unpatched version degraded nearly identically to its companion on the smaller database.
 
 #### Lock Jitter
 
@@ -403,3 +403,10 @@ Long lived transactions on a Postgres database can cause a variety of problems f
 <sup id="footnote-1"><a href="#footnote-1-source">1</a></sup> Although it is generally true that a Postgres index doesn't contain visibility information, there is an exception. If a process notices that a heap tuple is completely dead (as in not visible to any open transaction), it may set a flag on the index TID called [LP_DEAD](https://github.com/postgres/postgres/blob/master/src/backend/access/nbtree/README#L378). This will allow subsequent scans on the index to skip visiting the corresponding heap tuple.
 
 <sup id="footnote-2"><a href="#footnote-2-source">2</a></sup> It's worth noting as well that an [index-only scan](https://wiki.postgresql.org/wiki/Index-only_scans) can to some degree check a tuple's visibility without fetching it from the heap. This is accomplished through the use of a _visibility map_ which concerns itself with tracking the tuples that are still visible to _all_ transactions. The scan must still visit the heap to check visibility for pages containing tuples that have conditional visibility, but for most tables the visibility map will provide a significant optimization.
+
+<sup id="footnote-3"><a href="#footnote-3-source">3</a></sup> The hockeystick effect is related to a very sharp increase in lock time. I didn't get to the bottom of why this was happening, but it's also something that's worth investigating.
+
+<figure>
+  <p><img src="/assets/postgres-queues/post-lock-time.png"></p>
+  <figcaption>Job lock time with patched Que. Spikes very suddenly, which results in queue count also falling off a cliff.</figcaption>
+</figure>
