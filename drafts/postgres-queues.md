@@ -29,11 +29,11 @@ Like we hoped, the program was easily able to reproduce the problem and in a rel
 
 ## Slow Lock Time
 
-The first step into figuring out exactly what's going wrong is to find out what exactly about the long running transaction is slowing the job queue down. By looking around at a few queue metrics, we quickly find a promising candidate. During stable operation, a worker locking a job to make sure that it can be worked exclusively takes on the order of < 0.01 seconds. As we can see in the figure below though, as the oldest transaction gets older, this lock time escalates quickly until it's 15x that level at times of 0.1 s and above. As the difficulty to lock a job increases, workers can through fewer of them in the same amount of time. Left long enough, the queue will eventually reach a point where more jobs are being produced than being worked, leading to a bloated queue.
+The first step into figuring out exactly what's going wrong is to find out what exactly about the long running transaction is slowing the job queue down. By looking around at a few queue metrics, we quickly find a promising candidate. During stable operation, a worker locking a job to make sure that it can be worked exclusively takes on the order of < 0.01 seconds. As we can see in the figure below though, as the oldest transaction gets older, this lock time escalates quickly until it's 15x that level at times of 0.1 s and above. As the difficulty to lock a job increases, workers can through fewer of them in the same amount of time. Left long enough, the queue will eventually reach a point where more jobs are being produced than being worked, leading to a runaway queue.
 
 <figure>
   <p><img src="/assets/postgres-queues/pre-lock-time.png"></p>
-  <figcaption>Median lock time. Normally < 0.01 s, locks are taking 15x one hour in.</figcaption>
+  <figcaption>Median lock time. Normally < 0.01 s, locks are taking 15x longer than that one hour in.</figcaption>
 </figure>
 
 ### Locking Algorithms
