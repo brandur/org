@@ -93,7 +93,7 @@ Eventually one of two conditions will be met that ends the recursion:
 * A job is locked, iteration is stopped by `LIMIT` combined with the check on `locked`, and the expression returns a successfully locked row.
 * If there are no more candidates to lock, the select from `que_jobs` will come up empty, which will automatically terminate the expression.
 
-Taking a closer look at the [jobs table DDL](https://github.com/chanks/que/blob/f95aec38a48a86d1b4c82297bc5ed9c88bb600d6/lib/que/migrations/1/up.sql#L11) we see that its primary key on (priority, run\_at, job\_id) should ensure that the expression above will run efficiently. We may be able to improve the it somewhat by introducing some random jitter to reduce contention, but that's unlikely to help with the multiple order of magnitude performance degradation that we're seeing, so let's move on.
+Taking a closer look at the [jobs table DDL](https://github.com/chanks/que/blob/f95aec38a48a86d1b4c82297bc5ed9c88bb600d6/lib/que/migrations/1/up.sql#L11) we see that its primary key on `(priority, run_at, job_id)` should ensure that the expression above will run efficiently. We may be able to improve the it somewhat by introducing some random jitter to reduce contention, but that's unlikely to help with the multiple order of magnitude performance degradation that we're seeing, so let's move on.
 
 ## Dead Tuples
 
