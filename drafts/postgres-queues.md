@@ -43,7 +43,7 @@ We'd originally been using a library called Queue Classic (QC) to run our job qu
 [Inspecting Que's source code](https://github.com/chanks/que/blob/f95aec38a48a86d1b4c82297bc5ed9c88bb600d6/lib/que/sql.rb), we see that it uses this algorithm to lock a job:
 
 ``` sql
-WITH RECURSIVE job AS (
+WITH RECURSIVE jobs AS (
   SELECT (j).*, pg_try_advisory_lock((j).job_id) AS locked
   FROM (
     SELECT j
@@ -61,18 +61,18 @@ WITH RECURSIVE job AS (
         FROM que_jobs AS j
         WHERE queue = $1::text
         AND run_at <= now()
-        AND (priority, run_at, job_id) > (job.priority, job.run_at, job.job_id)
+        AND (priority, run_at, job_id) > (jobs.priority, jobs.run_at, jobs.job_id)
         ORDER BY priority, run_at, job_id
         LIMIT 1
       ) AS j
-      FROM job
-      WHERE NOT job.locked
+      FROM jobs
+      WHERE jobs.job_id IS NOT NULL
       LIMIT 1
     ) AS t1
   )
 )
 SELECT queue, priority, run_at, job_id, job_class, args, error_count
-FROM job
+FROM jobs
 WHERE locked
 LIMIT 1
 ```
