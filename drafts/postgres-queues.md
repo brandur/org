@@ -396,7 +396,7 @@ Long lived transactions on a Postgres database can cause a variety of problems f
 
 ## Acknowledgements
 
-Many thanks to my colleague [Daniel Farina](https://twitter.com/danfarina) for postulating the original hypothesis suggesting the precise failure mechanic of QC and Que, and my colleague [Peter Geoghegan](https://twitter.com/geoghegan86) for verifying our findings with relation to Postgres and suggesting improvements.
+Many thanks to my colleague [Daniel Farina](https://twitter.com/danfarina) for postulating the original hypothesis suggesting the precise failure mechanic of QC and Que, and my colleague [Peter Geoghegan](https://twitter.com/geoghegan86) for verifying our findings with relation to Postgres and suggesting improvements for accuracy.
 
 <div class="divider-short"></div>
 
