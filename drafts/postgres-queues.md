@@ -279,7 +279,6 @@ AND run_at < now()     v                                           v
                        ==========================>
                          index_getnext loop/seek
 ```
-```
 
 A job queue's access pattern is particularly susceptible to this kind of degradation because all this work gets thrown out between every job that's worked. In an attempt to minimize the amount of time that a job sits in the queue, queueing systems tend to only grab one job at a time which leads to short waiting periods during optimal performance, but particularly pathologic behavior during the worse case scenario.
 
@@ -320,6 +319,7 @@ Illustrated visually, the locking function is able to skip the bulk of the dead 
                                               +-----+ +-----+
 
                                                LOCK!
+```
 
 Because Que works jobs in order that they came into the queue, having workers re-use the identifier of the last job they worked might be a simple and effective way to accomplish this. Here's the basic pseudocode for a modified work loop:
 
