@@ -2,7 +2,7 @@ module Org
   class Articles
     article "/postgres-queues", {
       hook:         <<-eos,
-How long-lived transactions can cause serious trouble for hot tables in production due to the way that Postgres' concurrency model is implemented.
+How long-lived transactions can cause serious trouble for hot tables due to the way that Postgres' concurrency model is implemented.
       eos
       location:     "San Francisco",
       published_at: Time.parse("2015-05-14T15:37:27Z"),

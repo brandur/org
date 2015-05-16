@@ -382,7 +382,7 @@ Yet another approach might be to drop your Postgres-based queues completely and 
 
 The extra hop required for the `pending_jobs` table may make this implementation a little slower than a Postgres-based queue operating under ideal conditions, but it could probably be optimized so as not to be too costly.
 
-## Lessons Learned
+## Lessons Learnt
 
 Given a full understanding of problems with long-lived transactions in Postgres, a tempting (but overly simplistic) takeaway might be that Postgres isn't a good fit for a job queue. This is at least partly correct, but it's worth remembering that although a job queue may be the least optimal situation, similar problems can develop for any sufficiently hot Postgres table.
 
