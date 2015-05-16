@@ -238,6 +238,8 @@ index_getnext(IndexScanDesc scan, ScanDirection direction)
 
 This insight along with performing some basic profiling to check it leads us to the reason our locking performance suffers so much given a long running transaction. As dead tuples continue to accumulate in the index, Postgres enters a hot loop as it searches the B-tree, comes up with an invisible tuple, and repeats the process again and again, coming up empty-handed every time. By the end of the experiment illustrated in the charts above, every worker trying to lock a job would cycle through this loop 100,000 times. Worse yet, every time a job is successfully worked a new dead tuple is left in the index, making the next job that much harder to lock.
 
+Illustrated visually, a lock under ideal conditions searches the job queue's B-tree and immediately finds a job to lock:
+
 ```
                 +-------------+
                 | B-tree root |
@@ -256,7 +258,7 @@ AND run_at < now()     v                 v
                      LOCK!
 ```
 
-Degenerate:
+In the degenerate case, a search turns up a series of dead tuples that must be scanned through until a live job is reached:
 
 ```
                 +-------------+
@@ -277,25 +279,6 @@ AND run_at < now()     v                                           v
                        ==========================>
                          index_getnext loop/seek
 ```
-
-Fix:
-
-```
-                +-------------+
-                | B-tree root |
-                +-------------+
-                       |
-                       +-------------------------+-----------------+
-                                SEARCH           |                 |
-                              queue = ''         |                 |
-                          AND run_at < now()     v                 v
-                           AND job_id > 123   +-----+ +-----+
-                                              |     | |     |
-                      DEAD  DEAD  DEAD  DEAD  | Job | | Job |     ...
-                                              |     | |     |
-                                              +-----+ +-----+
-
-                                               LOCK!
 ```
 
 A job queue's access pattern is particularly susceptible to this kind of degradation because all this work gets thrown out between every job that's worked. In an attempt to minimize the amount of time that a job sits in the queue, queueing systems tend to only grab one job at a time which leads to short waiting periods during optimal performance, but particularly pathologic behavior during the worse case scenario.
@@ -318,6 +301,25 @@ AND run_at <= now()
 ```
 
 We know that the third field in the Que table's primary key is `job_id`; what if we could modify the predicate above to take it into account as well? If we could supply a `job_id` that was even reasonably fresh, that should be enough to increase the specificity of the query enough to skip thousands of dead rows that we might have otherwise had to examine.
+
+Illustrated visually, the locking function is able to skip the bulk of the dead rows because its B-tree search takes it to a live job right away:
+
+```
+                +-------------+
+                | B-tree root |
+                +-------------+
+                       |
+                       +-------------------------+-----------------+
+                                SEARCH           |                 |
+                              queue = ''         |                 |
+                          AND run_at < now()     v                 v
+                           AND job_id > 123   +-----+ +-----+
+                                              |     | |     |
+                      DEAD  DEAD  DEAD  DEAD  | Job | | Job |     ...
+                                              |     | |     |
+                                              +-----+ +-----+
+
+                                               LOCK!
 
 Because Que works jobs in order that they came into the queue, having workers re-use the identifier of the last job they worked might be a simple and effective way to accomplish this. Here's the basic pseudocode for a modified work loop:
 
