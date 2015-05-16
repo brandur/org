@@ -1,6 +1,6 @@
-An alarm goes off and open your laptop. Your job queue has spiked to 10,000 jobs and is continuing to grow at a rapid rate. The bloated queue means that internal components are not receiving critical updates. You start to investigate. The worker processes look healthy and jobs are being worked in a timely manner. Everything else looks normal. After close to an hour feeling around the system you notice a transaction that another team has opened for analytical purposes on one of your database followers. You promptly send it a SIGINT. The queue's backlog evaporates almost instantly and everything goes back to normal.
+An alarm goes off and open your laptop. Your job queue has spiked to 10,000 jobs and is still growing rapidly. The bloated queue means that internal components are not receiving critical updates which will eventually compromise the health of the whole system. You start to investigate. The worker processes look healthy and jobs are being worked in a timely manner. Everything else looks normal. After close to an hour feeling around the system you notice a transaction that another team has opened for analytical purposes on one of your database followers. You promptly send it a SIGINT. The queue's backlog evaporates in the blink of an eye and everything goes back to normal.
 
-Long running databases transactions appear to be the culprit here, but how exactly can they have such a significant impact on a database table? And so quickly no less? Furthermore, the transaction wasn't even running on the master database, but was rather ongoing on a follower.
+Long running databases transactions appear to be the culprit here, but how exactly can they have such a significant impact on a database table? And so quickly no less?
 
 The figure blow shows a simulation of the effect. With a relatively high rate of churn through the jobs table (roughly 50 jobs a second here), the effect can be reproduced quite quickly. After manifesting, it only takes about 15 minutes to worsen to the point where recovery is hopeless.
 
@@ -93,7 +93,7 @@ Eventually one of two conditions will be met that ends the recursion:
 * A job is locked, iteration is stopped by `LIMIT` combined with the check on `locked`, and the expression returns a successfully locked row.
 * If there are no more candidates to lock, the select from `que_jobs` will come up empty, which will automatically terminate the expression.
 
-Taking a closer look at the [jobs table DDL](https://github.com/chanks/que/blob/f95aec38a48a86d1b4c82297bc5ed9c88bb600d6/lib/que/migrations/1/up.sql#L11) we see that its primary key on `(priority, run_at, job_id)` should ensure that the expression above will run efficiently. We may be able to improve the it somewhat by introducing some random jitter to reduce contention, but that's unlikely to help with the multiple order of magnitude performance degradation that we're seeing, so let's move on.
+Taking a closer look at the [jobs table DDL](https://github.com/chanks/que/blob/f95aec38a48a86d1b4c82297bc5ed9c88bb600d6/lib/que/migrations/1/up.sql#L11) we see that its primary key on `(priority, run_at, job_id)` should ensure that the expression above will run efficiently. We may be able to improve the it somewhat by introducing some randomness to reduce contention, but that's unlikely to help with the multiple order of magnitude performance degradation that we're seeing, so let's move on.
 
 ## Dead Tuples
 
@@ -236,7 +236,7 @@ index_getnext(IndexScanDesc scan, ScanDirection direction)
 }
 ```
 
-This insight along with performing some basic profiling to check it leads us to the reason our locking performance suffers so much given a long running transaction. As dead tuples continue to accumulate in the index, Postgres enters a hot loop as it searches the B-tree, comes up with an invisible tuple, and repeats the process again and again, coming up empty-handed every time. By the end of the experiment illustrated in the charts above, every worker trying to lock a job would cycle through this loop 100,000 times. Worse yet, every time a job is successfully worked a new dead tuple is left in the index, making the next job that much harder to lock.
+This insight along with performing some basic profiling to check it leads us to the reason our locking performance suffers so much given a long running transaction. As dead tuples continue to accumulate in the index, Postgres enters a hot loop as it searches the B-tree, comes up with an invisible tuple, and repeats the process again and again, surfacing empty-handed every time. By the end of the experiment illustrated in the charts above, every worker trying to lock a job would cycle through this loop 100,000 times. Worse yet, every time a job is successfully worked a new dead tuple is left in the index, making the next job that much harder to lock.
 
 Illustrated visually, a lock under ideal conditions searches the job queue's B-tree and immediately finds a job to lock:
 
@@ -280,7 +280,7 @@ AND run_at < now()     v                                           v
                          index_getnext loop/seek
 ```
 
-A job queue's access pattern is particularly susceptible to this kind of degradation because all this work gets thrown out between every job that's worked. In an attempt to minimize the amount of time that a job sits in the queue, queueing systems tend to only grab one job at a time which leads to short waiting periods during optimal performance, but particularly pathologic behavior during the worse case scenario.
+A job queue's access pattern is particularly susceptible to this kind of degradation because all this work gets thrown out between every job that's worked. To minimize the amount of time that a job sits in the queue, queueing systems tend to only grab one job at a time which leads to short waiting periods during optimal performance, but particularly pathologic behavior during the worse case scenario.
 
 ## Solutions
 
