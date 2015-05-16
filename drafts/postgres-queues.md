@@ -238,6 +238,66 @@ index_getnext(IndexScanDesc scan, ScanDirection direction)
 
 This insight along with performing some basic profiling to check it leads us to the reason our locking performance suffers so much given a long running transaction. As dead tuples continue to accumulate in the index, Postgres enters a hot loop as it searches the B-tree, comes up with an invisible tuple, and repeats the process again and again, coming up empty-handed every time. By the end of the experiment illustrated in the charts above, every worker trying to lock a job would cycle through this loop 100,000 times. Worse yet, every time a job is successfully worked a new dead tuple is left in the index, making the next job that much harder to lock.
 
+```
+                +-------------+
+                | B-tree root |
+                +-------------+
+                       |
+                       +-----------------+
+      SEARCH           |                 |
+    queue = ''         |                 |
+AND run_at < now()     v                 v
+                    +-----+ +-----+
+                    |     | |     |
+                    | Job | | Job |     ...
+                    |     | |     |
+                    +-----+ +-----+
+
+                     LOCK!
+```
+
+Degenerate:
+
+```
+                +-------------+
+                | B-tree root |
+                +-------------+
+                       |
+                       +-------------------------------------------+
+      SEARCH           |                                           |
+    queue = ''         |                                           |
+AND run_at < now()     v                                           v
+                                              +-----+ +-----+
+                                              |     | |     |
+                      DEAD  DEAD  DEAD  DEAD  | Job | | Job |     ...
+                                              |     | |     |
+                                              +-----+ +-----+
+
+                                               LOCK!
+                       ==========================>
+                         index_getnext loop/seek
+```
+
+Fix:
+
+```
+                +-------------+
+                | B-tree root |
+                +-------------+
+                       |
+                       +-------------------------+-----------------+
+                                SEARCH           |                 |
+                              queue = ''         |                 |
+                          AND run_at < now()     v                 v
+                           AND job_id > 123   +-----+ +-----+
+                                              |     | |     |
+                      DEAD  DEAD  DEAD  DEAD  | Job | | Job |     ...
+                                              |     | |     |
+                                              +-----+ +-----+
+
+                                               LOCK!
+```
+
 A job queue's access pattern is particularly susceptible to this kind of degradation because all this work gets thrown out between every job that's worked. In an attempt to minimize the amount of time that a job sits in the queue, queueing systems tend to only grab one job at a time which leads to short waiting periods during optimal performance, but particularly pathologic behavior during the worse case scenario.
 
 ## But on a Follower?
