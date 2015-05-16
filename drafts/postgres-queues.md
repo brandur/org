@@ -398,11 +398,6 @@ Finally, I'd highly encourage database use to stay within the operational bounda
 
 Long lived transactions on a Postgres database can cause a variety of problems for hot tables including a job queue. Given a reasonable understanding of how Postgres' B-tree and tuple visibility implementation works, we can vary our job locking approach to improve this situation, but not eliminate it completely. For optimal results, monitor long-lived transactions within Postgres clusters and don't share databases across component or team boundaries.
 
-Times:
-
-* Without patch: 1430875700
-* With patch: 1431038950
-
 <div class="divider-short"></div>
 
 <sup id="footnote-1"><a href="#footnote-1-source">1</a></sup> Although it is generally true that a Postgres index doesn't contain visibility information, there is an exception. If a process notices that a heap tuple is completely dead (as in not visible to any open transaction), it may set a flag on the index TID called [LP_DEAD](https://github.com/postgres/postgres/blob/master/src/backend/access/nbtree/README#L378). This will allow subsequent scans on the index to skip visiting the corresponding heap tuple.
