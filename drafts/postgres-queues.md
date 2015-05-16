@@ -282,10 +282,6 @@ AND run_at < now()     v                                           v
 
 A job queue's access pattern is particularly susceptible to this kind of degradation because all this work gets thrown out between every job that's worked. In an attempt to minimize the amount of time that a job sits in the queue, queueing systems tend to only grab one job at a time which leads to short waiting periods during optimal performance, but particularly pathologic behavior during the worse case scenario.
 
-## But on a Follower?
-
-It's somewhat intuitive at least how a long lived transaction on the primary could end up bloating a table and taking down a job queue, but it's a little less how one on a follower could have the same effect. A [number of mechanisms](http://www.postgresql.org/docs/9.4/static/hot-standby.html) exist to help mitigate the effects of query conflicts between primaries and followers, one of which is `hot_standby_feedback`. This option allows followers to report their snapshots to the primary in such a way that it will consider them when performing visibility calculations during a VACUUM. If you've ever used a Heroku Postgres database, you've used Postgres with `hot_standby_feedback` enabled.
-
 ## Solutions
 
 ### Predicate Specificity
