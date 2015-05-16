@@ -6,6 +6,7 @@ module Org
 
     helpers Helpers::Common
     helpers Helpers::Markdown
+    helpers Helpers::TOC
 
     def self.article(route, metadata={}, &block)
       slug = route.gsub(/^\/*/, "")
@@ -72,6 +73,7 @@ module Org
       last_modified(@article[:last_modified_at]) if Config.production?
       @title = @article[:title]
       @content = render_content(@article)
+      @toc = build_toc(@content)
       data = yield
       etag(Digest::SHA1.hexdigest(data)) if Config.production?
       data

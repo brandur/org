@@ -255,6 +255,39 @@ ol, ul
       &:hover
         color: $primary
 
+#toc
+  float: right
+  font-family: $sans_serif
+  font-size: 13px
+  line-height: 2em
+  margin: 0 0 0 30px
+  width: 200px
+
+  h2
+    font-family: $sans_serif
+    font-size: 12px
+    margin: 10px 0
+    text-transform: uppercase
+
+  ol
+    list-style-type: decimal
+    margin: 5px 0
+
+    li
+      margin-bottom: 0
+      margin-left: 20px
+      padding-left: 10px
+
+      ol
+        font-size: 12px
+        list-style-type: lower-alpha
+
+        ol
+          list-style-type: lower-roman
+
+          ol
+            list-style-type: none
+
 article
 
   blockquote
@@ -331,6 +364,11 @@ footer
 
 @media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
 
+  #toc
+    float: none
+    margin: 0
+    width: auto
+
   article
 
     figure
@@ -390,39 +428,41 @@ footer
     .side
       display: none
 
-@media only screen and (min-width: 1800px)
+// uncomment the below for multi-column "big" layout
 
-  article
-
-    figure
-
-      // center images when going to multi-column
-      img
-        display: block
-        margin: 0 auto
-
-      // if we active multi-column, we have to deactivate the left margin
-      // positioning of figcaptions
-      figcaption
-        left: 0
-        margin: 20px 0 0 0
-        position: relative
-        text-align: center
-        top: 0
-        width: auto
-
-  body
-    //font-size: 17px
-
-  p
-    // so much space! allow code content to just expand across the screen
-    overflow: visible
-
-  pre
-    // so much space! allow code content to just expand across the screen
-    overflow: visible
-
-  footer
-
-    nav
-      font-size: 12px
+//@media only screen and (min-width: 1800px)
+//
+//  article
+//
+//    figure
+//
+//      // center images when going to multi-column
+//      img
+//        display: block
+//        margin: 0 auto
+//
+//      // if we active multi-column, we have to deactivate the left margin
+//      // positioning of figcaptions
+//      figcaption
+//        left: 0
+//        margin: 20px 0 0 0
+//        position: relative
+//        text-align: center
+//        top: 0
+//        width: auto
+//
+//  body
+//    //font-size: 17px
+//
+//  p
+//    // so much space! allow code content to just expand across the screen
+//    overflow: visible
+//
+//  pre
+//    // so much space! allow code content to just expand across the screen
+//    overflow: visible
+//
+//  footer
+//
+//    nav
+//      font-size: 12px

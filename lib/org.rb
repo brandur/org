@@ -5,6 +5,7 @@ require_relative "org/helpers/common"
 require_relative "org/helpers/markdown"
 require_relative "org/helpers/reading"
 require_relative "org/helpers/runs"
+require_relative "org/helpers/toc"
 require_relative "org/helpers/twitter"
 
 require_relative "org/about"
