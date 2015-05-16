@@ -1,4 +1,4 @@
-An alarm goes off and open your laptop. Your job queue has spiked to 10,000 jobs and is continuing to grow at a rapid rate. The bloated queue means that internal components are not receiving critical updates. You start to investigate. The worker processes look healthy aand jobs are being worked in a timely manner. Everything else looks normal. After close to an hour feeling around the system you notice a transaction that another team has opened for analytical purposes on one of your database followers. You promptly send it a SIGINT. The queue's backlog evaporates almost instantly and everything goes back to normal.
+An alarm goes off and open your laptop. Your job queue has spiked to 10,000 jobs and is continuing to grow at a rapid rate. The bloated queue means that internal components are not receiving critical updates. You start to investigate. The worker processes look healthy and jobs are being worked in a timely manner. Everything else looks normal. After close to an hour feeling around the system you notice a transaction that another team has opened for analytical purposes on one of your database followers. You promptly send it a SIGINT. The queue's backlog evaporates almost instantly and everything goes back to normal.
 
 Long running databases transactions appear to be the culprit here, but how exactly can they have such a significant impact on a database table? And so quickly no less? Furthermore, the transaction wasn't even running on the master database, but was rather ongoing on a follower.
 
@@ -13,7 +13,7 @@ The figure blow shows a simulation of the effect. With a relatively high rate of
 
 Your first question may be: why put a job queue in Postgres at all? The answer is that although it may be far from the use case that databases are designed for, storing jobs in a database allows a program to take advantage of its transactional consistency; when an operation fails and rolls back, an injected job rolls back with it. Postgres transactional isolation also keeps jobs invisible to workers until their transactions commit and are ready to be worked.
 
-Without that transactional consistency, having jobs that are worked before the request that enqueued them is fully committed is a common problem. [See the Sidekiq FAQ](https://github.com/mperham/sidekiq/wiki/FAQ#why-am-i-seeing-a-lot-of-cant-find-modelname-with-id12345-errors-with-sidekiq) on this suject for example.
+Without that transactional consistency, having jobs that are worked before the request that enqueued them is fully committed is a common problem. [See the Sidekiq FAQ](https://github.com/mperham/sidekiq/wiki/FAQ#why-am-i-seeing-a-lot-of-cant-find-modelname-with-id12345-errors-with-sidekiq) on this subject for example.
 
 As we'll see below, there are very good reasons not to use your database as a job queue, but by following a few key best practices, a program can go pretty far using this pattern.
 
@@ -38,7 +38,7 @@ The first step into figuring out exactly what's going wrong is to find out what 
 
 ### Locking Algorithms
 
-We'd originally been using a library called Queue Classic (QC) to run our job queue. We started to suspect that its relatively inefficient locking mechanism might be the source of our trouble, so we moved over to another package called Que which is known to be faster. But to our chagrin, we found that the problem still existed, even if its better overall performance did seem to help stave it off for a little bit longer. We'll be examining Que in detail here, but it's worth nothing that both of these systems are suspectible to the same root problem.
+We'd originally been using a library called Queue Classic (QC) to run our job queue. We started to suspect that its relatively inefficient locking mechanism might be the source of our trouble, so we moved over to another package called Que which is known to be faster. But to our chagrin, we found that the problem still existed, even if its better overall performance did seem to help stave it off for a little bit longer. We'll be examining Que in detail here, but it's worth nothing that both of these systems are susceptible to the same root problem.
 
 [Inspecting Que's source code](https://github.com/chanks/que/blob/f95aec38a48a86d1b4c82297bc5ed9c88bb600d6/lib/que/sql.rb), we see that it uses this algorithm to lock a job:
 
@@ -286,7 +286,7 @@ A job queue's access pattern is particularly susceptible to this kind of degrada
 
 ### Predicate Specificity
 
-Stated plainly, our root problem is that the job table's index has become less useful to the point where using it isn' much faster than a full sequential scan. Even after selecting rows based on the predicates we've specified, Postgres still has to seek through thousands of dead rows before finally arriving at something that it can use.
+Stated plainly, our root problem is that the job table's index has become less useful to the point where using it isn't much faster than a full sequential scan. Even after selecting rows based on the predicates we've specified, Postgres still has to seek through thousands of dead rows before finally arriving at something that it can use.
 
 Referencing the locking SQL above, we can hypothesize that it may be the fairly minimal constraint on only queue name and `run_at` that's making the index search so inefficient. In the degraded case, all dead rows that have already been worked will match both these conditions:
 
