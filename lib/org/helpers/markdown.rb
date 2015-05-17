@@ -86,6 +86,9 @@ module Org::Helpers
       rendered
     end
 
+    # Note that this must be a post-transform filter. If it wasn't, our
+    # Markdown renderer would not render the Markdown inside the footnotes
+    # layer because it would already be wrapped in HTML.
     def transform_footnotes(html)
       # look for the section the section at the bottom of the page that looks
       # like <p>[1] (the paragraph tag is there because Markdown will have
