@@ -4,10 +4,7 @@ Long running databases transactions appear to be the culprit here, but how exact
 
 The figure blow shows a simulation of the effect. With a relatively high rate of churn through the jobs table (roughly 50 jobs a second here), the effect can be reproduced quite quickly. After manifesting, it only takes about 15 minutes to worsen to the point where recovery is hopeless.
 
-<figure>
-  <p><img src="/assets/postgres-queues/pre-queue-count.png"></p>
-  <figcaption>Number of jobs in queue. One hour into a long-lived transaction, we're at 60k jobs.</figcaption>
-</figure>
+!fig src="/assets/postgres-queues/pre-queue-count.png" caption="Number of jobs in queue. One hour into a long-lived transaction, we're at 60k jobs."
 
 ## Why Put a Job Queue in Postgres?
 
@@ -31,10 +28,7 @@ Like we hoped, the program was easily able to reproduce the problem and in a rel
 
 The first step into figuring out exactly what's going wrong is to find out what exactly about the long running transaction is slowing the job queue down. By looking around at a few queue metrics, we quickly find a promising candidate. During stable operation, a worker locking a job to make sure that it can be worked exclusively takes on the order of < 0.01 seconds. As we can see in the figure below though, as the oldest transaction gets older, this lock time escalates quickly until it's 15x that level at times of 0.1 s and above. As the difficulty to lock a job increases, workers can through fewer of them in the same amount of time. Left long enough, the queue will eventually reach a point where more jobs are being produced than being worked, leading to a runaway queue.
 
-<figure>
-  <p><img src="/assets/postgres-queues/pre-lock-time.png"></p>
-  <figcaption>Median lock time. Normally < 0.01 s, locks are taking 15x longer than that one hour in.</figcaption>
-</figure>
+!fig src="/assets/postgres-queues/pre-lock-time.png" caption="Median lock time. Normally < 0.01 s, locks are taking 15x longer than that one hour in."
 
 ### Locking Algorithms
 
@@ -99,10 +93,7 @@ Taking a closer look at the [jobs table DDL](https://github.com/chanks/que/blob/
 
 By continuing to examine test data, we quickly notice another strong correlation. As the age of the oldest transaction increases, the number of dead tuples in the jobs table grows continually. The figure below shows how by the end of our experiment, we're approaching an incredible 100,000 dead rows.
 
-<figure>
-  <p><img src="/assets/postgres-queues/pre-dead-tuples.png"></p>
-  <figcaption>Number of dead tuples in the jobs table. The curve flattens out as jobs get harder to work.</figcaption>
-</figure>
+!fig src="/assets/postgres-queues/pre-dead-tuples.png" caption="Number of dead tuples in the jobs table. The curve flattens out as jobs get harder to work."
 
 Automated Postgres VACUUM processes are supposed to clean these up, but by running a manual VACUUM, we can see that they can't be removed:
 
@@ -333,17 +324,11 @@ end
 
 Let's [apply an equivalent patch to Que](https://github.com/chanks/que/compare/master...brandur:transaction-tolerant) and see how it fairs. Here's oldest transaction time vs. queue count _after_ the patch:
 
-<figure>
-  <p><img src="/assets/postgres-queues/post-queue-count.png"></p>
-  <figcaption>Number of jobs in the queue with patched version of Que. 30k one hour in.</figcaption>
-</figure>
+!fig src="/assets/postgres-queues/post-queue-count.png" caption="Number of jobs in the queue with patched version of Que. 30k one hour in."
 
 And for comparison, here's what it looked like _before_ the patch:
 
-<figure>
-  <p><img src="/assets/postgres-queues/pre-queue-count.png"></p>
-  <figcaption>Number of jobs in the queue on vanilla Que. 60k one hour in.</figcaption>
-</figure>
+!fig src="/assets/postgres-queues/pre-queue-count.png" caption="Number of jobs in the queue on vanilla Que. 60k one hour in."
 
 We can see above that the patched version of Que performs optimally for roughly twice as long under degraded conditions. It eventually hockeysticks as well, but only after maintaining a stable queue for a considerable amount of time[3]. We found that a database's capacity to work under degraded conditions was partly a function of database size too: the tests above were run on a `heroku-postgresql:standard-2`, but a `heroku-postgresql:standard-7` with the patched version of Que was able to maintain near zero queue for the entire duration of the experimental run, while the unpatched version degraded nearly identically to its companion on the smaller database.
 
@@ -404,7 +389,4 @@ Many thanks to my colleague [Daniel Farina](https://twitter.com/danfarina) for p
 
 [3] The hockeystick effect is related to a very sharp increase in lock time. I didn't get to the bottom of why this was happening, but it's also something that's worth investigating.
 
-<figure>
-  <p><img src="/assets/postgres-queues/post-lock-time.png"></p>
-  <figcaption>Job lock time with patched Que. Spikes very suddenly, which results in queue count also falling off a cliff.</figcaption>
-</figure>
+!fig src="/assets/postgres-queues/post-lock-time.png" caption="Job lock time with patched Que. Spikes very suddenly, which results in queue count also falling off a cliff."

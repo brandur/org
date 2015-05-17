@@ -7,6 +7,10 @@ module Org::Helpers
       :transform_footnotes,
     ]
 
+    PRE_RENDER_TRANSFORMS = [
+      :transform_figures,
+    ]
+
     def render_markdown(str)
       log :render_markdown do
         if RUBY_PLATFORM == 'java'
@@ -31,6 +35,8 @@ module Org::Helpers
         Slim::Embedded.default_options[:markdown]
       )
 
+      str = PRE_RENDER_TRANSFORMS.inject(str) { |str, m| method(m).call(str) }
+
       # Redcarpet now allows a new renderer to be defined. This would be better.
       html = renderer.render(str)
 
@@ -43,6 +49,13 @@ module Org::Helpers
     def transform_code_with_language_prefix(html)
       html.gsub /<code class="(\w+)">/, %q|<code class="language-\1">|
     end
+
+    FIGURE = <<-eos.strip
+      <figure>
+        <p><img src="%s"></p>
+        <figcaption>%s</figcaption>
+      </figure>
+    eos
 
     FOOTNOTE_ANCHOR = <<-eos.gsub(/\n/, '').gsub(/>\s+</, '><').strip
       <sup id="footnote-%s">
@@ -61,6 +74,17 @@ module Org::Helpers
         %s
       </div>
     eos
+
+    # a super ghetto way of making figures a tad easier to write
+    def transform_figures(str)
+      rendered = str.dup
+
+      str.scan(/(!fig src="(.*)" caption="(.*)")/) do |f, src, caption|
+        rendered.gsub!(f, FIGURE % [src, caption])
+      end
+
+      rendered
+    end
 
     def transform_footnotes(html)
       # look for the section the section at the bottom of the page that looks
