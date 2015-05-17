@@ -174,9 +174,9 @@ A new operation in the database will be assigned a `xid` af 90506 or higher, and
 
 The standard Postgres index is implemented as a [B-tree](http://en.wikipedia.org/wiki/B-tree) which is searched to find TIDs (tuple identifiers) that are stored in its leaves. These TIDs then map back to physical locations of rows within the table which Postgres can use to extract the full tuple.
 
-The one key piece of information here is that a Postgres index doesn't generally contain tuple visibility information<sup id="footnote-1-source"><a href="#footnote-1">1</a></sup>. To know whether a tuple is still visible to the in-progress transaction, it must be extracted from the heap and have its visibility checked.
+The one key piece of information here is that a Postgres index doesn't generally contain tuple visibility information[1]. To know whether a tuple is still visible to the in-progress transaction, it must be extracted from the heap and have its visibility checked.
 
-The Postgres codebase is large enough that pointing to a single place to outline this detail in the implementation is difficult, but `index_getnext` as shown below is a pretty important piece of it. Its job is to scan any type of index in a generic way and extract a tuple that matches the conditions of an incoming query. Most of the body is wrapped in a continuous loop that first calls into `index_getnext_tid` which will descend the B-tree to find an appropriate TID. After one is retrieved, it's passed off to `index_fetch_heap`, which will fetch the full tuple from the heap, and among other things check its visibility against the current snapshot (a snapshot reference is stored as part of the `IndexScanDesc` type) <sup id="footnote-2-source"><a href="#footnote-2">2</a></sup>.
+The Postgres codebase is large enough that pointing to a single place to outline this detail in the implementation is difficult, but `index_getnext` as shown below is a pretty important piece of it. Its job is to scan any type of index in a generic way and extract a tuple that matches the conditions of an incoming query. Most of the body is wrapped in a continuous loop that first calls into `index_getnext_tid` which will descend the B-tree to find an appropriate TID. After one is retrieved, it's passed off to `index_fetch_heap`, which will fetch the full tuple from the heap, and among other things check its visibility against the current snapshot (a snapshot reference is stored as part of the `IndexScanDesc` type)[2].
 
 ``` c
 /* ----------------
@@ -345,7 +345,7 @@ And for comparison, here's what it looked like _before_ the patch:
   <figcaption>Number of jobs in the queue on vanilla Que. 60k one hour in.</figcaption>
 </figure>
 
-We can see above that the patched version of Que performs optimally for roughly twice as long under degraded conditions. It eventually hockeysticks as well, but only after maintaining a stable queue for a considerable amount of time<sup id="footnote-3-source"><a href="#footnote-1">3</a></sup>. We found that a database's capacity to work under degraded conditions was partly a function of database size too: the tests above were run on a `heroku-postgresql:standard-2`, but a `heroku-postgresql:standard-7` with the patched version of Que was able to maintain near zero queue for the entire duration of the experimental run, while the unpatched version degraded nearly identically to its companion on the smaller database.
+We can see above that the patched version of Que performs optimally for roughly twice as long under degraded conditions. It eventually hockeysticks as well, but only after maintaining a stable queue for a considerable amount of time[3]. We found that a database's capacity to work under degraded conditions was partly a function of database size too: the tests above were run on a `heroku-postgresql:standard-2`, but a `heroku-postgresql:standard-7` with the patched version of Que was able to maintain near zero queue for the entire duration of the experimental run, while the unpatched version degraded nearly identically to its companion on the smaller database.
 
 #### Lock Jitter
 
@@ -398,13 +398,11 @@ Long lived transactions on a Postgres database can cause a variety of problems f
 
 Many thanks to my colleague [Daniel Farina](https://twitter.com/danfarina) for postulating the original hypothesis suggesting the precise failure mechanic of QC and Que, and my colleague [Peter Geoghegan](https://twitter.com/geoghegan86) for verifying our findings with relation to Postgres and suggesting improvements for accuracy.
 
-<div class="divider-short"></div>
+[1] Although it is generally true that a Postgres index doesn't contain visibility information, there is an exception. If a process notices that a heap tuple is completely dead (as in not visible to any open transaction), it may set a flag on the index TID called [LP_DEAD](https://github.com/postgres/postgres/blob/master/src/backend/access/nbtree/README#L378). This will allow subsequent scans on the index to skip visiting the corresponding heap tuple.
 
-<sup id="footnote-1"><a href="#footnote-1-source">1</a></sup> Although it is generally true that a Postgres index doesn't contain visibility information, there is an exception. If a process notices that a heap tuple is completely dead (as in not visible to any open transaction), it may set a flag on the index TID called [LP_DEAD](https://github.com/postgres/postgres/blob/master/src/backend/access/nbtree/README#L378). This will allow subsequent scans on the index to skip visiting the corresponding heap tuple.
+[2] It's worth noting as well that an [index-only scan](https://wiki.postgresql.org/wiki/Index-only_scans) can to some degree check a tuple's visibility without fetching it from the heap. This is accomplished through the use of a _visibility map_ which concerns itself with tracking the tuples that are still visible to _all_ transactions. The scan must still visit the heap to check visibility for pages containing tuples that have conditional visibility, but for most tables the visibility map will provide a significant optimization.
 
-<sup id="footnote-2"><a href="#footnote-2-source">2</a></sup> It's worth noting as well that an [index-only scan](https://wiki.postgresql.org/wiki/Index-only_scans) can to some degree check a tuple's visibility without fetching it from the heap. This is accomplished through the use of a _visibility map_ which concerns itself with tracking the tuples that are still visible to _all_ transactions. The scan must still visit the heap to check visibility for pages containing tuples that have conditional visibility, but for most tables the visibility map will provide a significant optimization.
-
-<sup id="footnote-3"><a href="#footnote-3-source">3</a></sup> The hockeystick effect is related to a very sharp increase in lock time. I didn't get to the bottom of why this was happening, but it's also something that's worth investigating.
+[3] The hockeystick effect is related to a very sharp increase in lock time. I didn't get to the bottom of why this was happening, but it's also something that's worth investigating.
 
 <figure>
   <p><img src="/assets/postgres-queues/post-lock-time.png"></p>

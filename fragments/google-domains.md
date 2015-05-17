@@ -3,7 +3,7 @@ title: Google Domains
 published_at: 2015-05-17T03:29:55Z
 ---
 
-I just moved a few of my domains over to [Google's new Domains service](https://domains.google.com) to try out the new product. Until now I'd been using NameCheap for registration, having switched from GoDaddy a few years previously after my willingless to tolerate their trademark terrible UX fell behind by my unwillingness to pay what other registrars were asking<sup id="footnote-1-source"><a href="#footnote-1">1</a></sup>.
+I just moved a few of my domains over to [Google's new Domains service](https://domains.google.com) to try out the new product. Until now I'd been using NameCheap for registration, having switched from GoDaddy a few years previously after my willingless to tolerate their trademark terrible UX fell behind by my unwillingness to pay what other registrars were asking[1].
 
 For a .org domain, Google's sticker price of $12 is cheaper than NameCheap if you account for private registration, a feature that's free with Google. NameCheap charges $11.48 for the domain and $2.88 for the privacy for a total of $14.36. NameCheap however is a known purveyor of frequent discount codes, so a savvy Internet consumer may be able to knock a few bucks off of that.
 
@@ -17,6 +17,4 @@ I did run into a couple small bugs involving Google not being able to fetch info
 
 Google already had me with their great UX and transparent pricing model, but even without that I might have switched anyway just to minimize the number of merchants who are holding my credit card number. For the time being, they've got my business.
 
-<div class="divider-short"></div>
-
-<sup id="footnote-1"><a href="#footnote-1-source">1</a></sup> GoDaddy had also caught themselves up on the wrong side of the latest bout of fighting of the war of net neutrality, which further accelerated my move. The exact details of that are lost to history though.
+[1] GoDaddy had also caught themselves up on the wrong side of the latest bout of fighting of the war of net neutrality, which further accelerated my move. The exact details of that are lost to history though.
