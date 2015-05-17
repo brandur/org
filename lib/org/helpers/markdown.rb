@@ -23,6 +23,31 @@ module Org::Helpers
 
     private
 
+    FIGURE = <<-eos.strip
+<figure>
+  <p><img src="%s"></p>
+  <figcaption>%s</figcaption>
+</figure>
+    eos
+
+    FOOTNOTE_ANCHOR = <<-eos.gsub(/\n/, '').gsub(/>\s+</, '><').strip
+<sup id="footnote-%s">
+  <a href="#footnote-%s-source">%s</a>
+</sup>
+    eos
+
+    FOOTNOTE_LINK = <<-eos.gsub(/\n/, '').gsub(/>\s+</, '><').strip
+<sup id="footnote-%s-source">
+  <a href="#footnote-%s">%s</a>
+</sup>
+    eos
+
+    FOOTNOTE_WRAPPER = <<-eos.strip
+<div id="footnotes">
+  %s
+</div>
+    eos
+
     def render_kramdown(str)
       Kramdown::Document.new(str, input: 'GFM').to_html
     end
@@ -49,31 +74,6 @@ module Org::Helpers
     def transform_code_with_language_prefix(html)
       html.gsub /<code class="(\w+)">/, %q|<code class="language-\1">|
     end
-
-    FIGURE = <<-eos.strip
-      <figure>
-        <p><img src="%s"></p>
-        <figcaption>%s</figcaption>
-      </figure>
-    eos
-
-    FOOTNOTE_ANCHOR = <<-eos.gsub(/\n/, '').gsub(/>\s+</, '><').strip
-      <sup id="footnote-%s">
-        <a href="#footnote-%s-source">%s</a>
-      </sup>
-    eos
-
-    FOOTNOTE_LINK = <<-eos.gsub(/\n/, '').gsub(/>\s+</, '><').strip
-      <sup id="footnote-%s-source">
-        <a href="#footnote-%s">%s</a>
-      </sup>
-    eos
-
-    FOOTNOTE_WRAPPER = <<-eos.strip
-      <div id="footnotes">
-        %s
-      </div>
-    eos
 
     # a super ghetto way of making figures a tad easier to write
     def transform_figures(str)
