@@ -5,7 +5,7 @@ module Org
 How long-lived transactions can cause serious trouble for hot tables due to the way that Postgres' concurrency model is implemented.
       eos
       location:     "San Francisco",
-      published_at: Time.parse("2015-05-14T15:37:27Z"),
+      published_at: Time.parse("2015-05-18T23:13:23Z"),
       signature:    true,
       title:        "Postgres Job Queues & Failure By MVCC",
     } do
