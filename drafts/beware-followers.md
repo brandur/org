@@ -26,6 +26,24 @@ But query cancellation is not always convenient. If a user wants to run a relati
 
 If query cancellation is found to be overly disruptive, Postgres provides a few other useful possibilities. `hot_standby_feedback` is one that allows followers to report the state of their ongoing queries back to the primary so that it will prevent VACUUMs from removing any rows that may still be visible to them just as if those queries were running on the primary. This setting is particularly useful because the most common reason for conflict between primaries and followers is _early cleanup_. This is the effect that occurs when a primary reaps rows that are no longer visible to any of its ongoing queries, but by doing so leaves a large discrepancy between itself and any followers that may need to keep those rows around to satisfy their open queries.
 
+```
+               WAL
+        +----------------+
+        |                |
+        |                v
+   +----+----+      +---------+
+   |         |      |         |
+   |         |      |         |
+   | Primary |      | Standby |
+   |         |      |         |
+   |         |      |         |
+   +----+----+      +----+----+
+        ^                |
+        |                |
+        +----------------+
+           Oldest xmin
+```
+
 ## Production Impact
 
 At some point in the past while building out their product, the Heroku Postgres team found that query cancellation was problematic for their operations. Kicking off a database backup on a follower requires that a long-lived snapshot be opened for the entirety of the time that it takes to produce a backup, and for larger databases query cancellation was kicking in and canceling backups before they could ever complete. They tried to relax the the cancelation policy by increasing the maximum standby delay, but were foiled once again whereby high-churn databases were able to fill disks on followers with unapplied WAL while waiting for their queries to resolve. They compromised by disabling cancelation but enabling `hot_standby_feedback`. This allowed followers to report their transactions to their primary to prevent early cleanup and minimize the amount of WAL produced during a long running follower query.
