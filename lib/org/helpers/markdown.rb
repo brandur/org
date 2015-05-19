@@ -5,6 +5,7 @@ module Org::Helpers
     POST_RENDER_TRANSFORMS = [
       :transform_code_with_language_prefix,
       :transform_footnotes,
+      :transform_headers_with_links,
     ]
 
     PRE_RENDER_TRANSFORMS = [
@@ -102,7 +103,7 @@ module Org::Helpers
           # render the footnote itself
           rendered.gsub!("[#{number}]", FOOTNOTE_ANCHOR % ([number] * 3))
 
-          # find any referenfes elsewhere in the document and turn them into
+          # find any references elsewhere in the document and turn them into
           # links
           main_content.gsub!(/\[#{number}\]/, FOOTNOTE_LINK % ([number] * 3))
         end
@@ -111,6 +112,16 @@ module Org::Helpers
         rendered = FOOTNOTE_WRAPPER % [rendered]
 
         html = main_content + rendered
+      end
+      html
+    end
+
+    def transform_headers_with_links(html)
+      html.dup.scan(%r{((<h[2-9] id="(.*)">)(.*)(</h[2-9]>))}) do
+        |header, open_tag, id, tag_content, close_tag|
+        html.gsub!(header, <<-eos.strip)
+#{open_tag}<a href="##{id}">#{tag_content}</a>#{close_tag}
+        eos
       end
       html
     end
