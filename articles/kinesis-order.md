@@ -91,12 +91,9 @@ When we want to select a batch of records to stream, we'll use an SQL query that
 ```
 => SELECT partition_key, record_data FROM kinesis_records
 WHERE id IN (
-  SELECT ke.id FROM (
-    SELECT id, ROW_NUMBER() OVER (
-      PARTITION BY partition_key ORDER BY id
-    ) AS row
-    FROM kinesis_records
-  ) ke WHERE row = 1
+  SELECT MIN(id)
+  FROM kinesis_records
+  GROUP BY partition_key
 )
 ORDER BY id;
 
