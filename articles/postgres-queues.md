@@ -2,7 +2,7 @@ An alarm goes off and open your laptop. Your job queue has spiked to 10,000 jobs
 
 Long running databases transactions appear to be the culprit here, but how exactly can they have such a significant impact on a database table? And so quickly no less?
 
-The figure blow shows a simulation of the effect. With a relatively high rate of churn through the jobs table (roughly 50 jobs a second here), the effect can be reproduced quite quickly. After manifesting, it only takes about 15 minutes to worsen to the point where recovery is hopeless.
+The figure below shows a simulation of the effect. With a relatively high rate of churn through the jobs table (roughly 50 jobs a second here), the effect can be reproduced quite quickly. After manifesting, it only takes about 15 minutes to worsen to the point where recovery is hopeless.
 
 !fig src="/assets/postgres-queues/pre-queue-count.png" caption="Number of jobs in queue. One hour into a long-lived transaction, we're at 60k jobs."
 
