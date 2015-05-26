@@ -104,7 +104,7 @@ These guys came on again, and the show was so good that I stayed again.
 
 Headed back north to the Schauspielhaus to catch [Jo Quail](http://www.joquail.co.uk/), a cellist and impressive loop performer. I didn't know much about her previously, but this turned out to be one of my favorite performance of the show and possibly the most evocative live performance that I've ever seen.
 
-Jo uses an electric cello combined with a loop machine to slowly build up every song to the point where it's a powerful crescendo of sound and emotion. It's the kind of thing that so hypnotizes you that you feel a chill running down your spine as you sit enraptured by the music. You just want the moment to hold still forever. The perfect acoustics of the Schauspielhaus helped as well.
+Jo uses an electric cello combined with a loop machine to slowly build up every song to the point where it's a powerful crescendo of sound and emotion. It's the kind of thing that so hypnotizes you that you feel a chill running down your spine as you sit enraptured by the music. You just want the moment to hold still forever. The perfect acoustics of the Schauspielhaus didn't hurt either.
 
 <a href="https://www.flickr.com/photos/brandurleach/17437946353/"><img src="https://farm8.staticflickr.com/7709/17437946353_07fc1ffd05.jpg"></a>
 
