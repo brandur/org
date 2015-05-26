@@ -1,6 +1,6 @@
 ---
 title: WGT 2015 Brain Dump
-published_at: 2015-05-23T22:11:52Z
+published_at: 2015-05-26T08:39:18Z
 ---
 
 I wrote about [WGT](/fragments/wgt) for the first time last year, and this year I once again attended the world famous gothic event over in Leipzig. As usual, it was an incredible experience and I'm happy to say that I was finally starting to catch on to how the festival is organized and how to find things this year (as opposed to previous years which largely involved being led around by the hand in a state of perpetual confusion).
