@@ -140,7 +140,7 @@ Because this was the final day of the festival, I swung by the central location 
 
 ### Reliquiae
 
-A Germany folk band called [Reliquiae](http://reliquiae-band.de/) was up next, and we got yet another well-executed and very energetic performance at Heidnisches Dorf. As I was leaving, they were covering Seven Nation Army. These guys don't seem to have much of a presence outside of Germany, but I'll be following along with them however I can.
+A German folk band called [Reliquiae](http://reliquiae-band.de/) was up next, and we got yet another well-executed and very energetic performance at Heidnisches Dorf. As I was leaving, they were covering Seven Nation Army. These guys don't seem to have much of a presence outside of Germany, but I'll be following along with them however I can.
 
 ### Arkona
 
