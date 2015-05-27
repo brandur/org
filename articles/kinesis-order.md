@@ -48,7 +48,7 @@ Here we try to post three records in order (`record1`, `record2`, `record3`), bu
 
 So with `PutRecord` we can guarantee order at the cost of throughput, and if we use `PutRecords` we get improved throughput but without order. So the question is: is there a way that we can get both of these desirable characteristics?
 
-## Sharding
+## Sharding (#sharing)
 
 Before we get there, let's briefly touch upon the concept of sharding with respect to a Kinesis stream. [As described in this architectural diagram](http://docs.aws.amazon.com/kinesis/latest/dev/key-concepts.html), a Kinesis stream is split into one or more shards for purposes of scalability; each shard has an upper limit on the amount of data that it can be written into it or read out of it (currently these limits at 1 MB/s and 2 MB/s respectively), so as the volume of data in a stream is increased, more shards can be added to achieve a form of horizontal scaling. Records within a shard are ordered according to how records were sent into them, and this order will be maintained when they're streamed out to a consumer. However, when producing to and consuming from multiple shards, no kind of ordering between shards can be guaranteed.
 
@@ -56,7 +56,7 @@ Producers control which shards they're producing to by specifying a [partition k
 
 So back to our original question: how can we guarantee that all records are consumed in the same order in which they're produced? The answer is that we can't, but that we shouldn't let that unfortunate reality bother us too much. Once we've scaled our stream to multiple shards, there's no mechanism that we can use to guarantee that records are consumed in order across the whole stream; only within a single shard. So instead of focusing on a global guarantee of ordering, we should instead try to to leverage techniques that will get us as much throughput as possible, and fall back to techniques that allow us to control for certain subsets of records where we deem it necessary.
 
-## Sequential Puts per Partition Key; Bulk Otherwise
+## Sequential Puts per Partition Key; Bulk Otherwise (#per-partition)
 
 To achieve the above, we're using a simple algorithm on our producers:
 
@@ -123,7 +123,7 @@ That would be posted by itself in a second batch. The worker would then run one 
 
 By partitioning over our known key and selecting the first result ordered by the table's sequential ID, we achieve the same effect as the pseudocode algorithm above, resulting in a set of records with unique partition keys that are safe to post in bulk even if a failure ends up ordering it in a way that we didn't intend.
 
-## Partition Key Selection
+## Partition Key Selection (#partition-key)
 
 A side effect of this approach is that the selection of a partition key that's logical for your records becomes one of the most important concerns when starting to stream a new type of record. The partition key is the only mechanism available for controlling the order in which records are streamed to consumers, and some consideration must be taken when selecting partition keys to ensure that all records in the stream will play nicely together.
 

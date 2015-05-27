@@ -17,7 +17,7 @@ A few projects from Heroku employees already exist to help parse logfmt in vario
 * [logfmt for Python](https://pypi.python.org/pypi/logfmt/0.1)
 * [logfmt for Ruby](https://github.com/cyberdelia/logfmt-ruby)
 
-## Eliminate the Guesswork
+## Eliminate the Guesswork (#eliminate-guesswork)
 
 A major advantage provided by logfmt is that it helps to completely eliminate any guesswork that a developer would have to make while deciding what to log. Take the following line in a more traditional logging format for example:
 
@@ -36,7 +36,7 @@ Readability isn't compromised too much, and all the developer has to do is dump 
     stopping_fetchers | stats p50(num_open_fetchers) p95(num_open_fetchers)
       p99(num_open_fetchers)
 
-## Building Context
+## Building Context (#building-context)
 
 logfmt also lends itself well to building context around operations. Inside a request for example, as important information becomes available, it can be added to a request-specific context and included with every log line published by the app. This may not seem immediately useful, but it can be very helpful while debugging in production later, as only a single log line need be found to get a good idea of what's going on.
 

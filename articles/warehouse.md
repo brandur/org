@@ -59,7 +59,7 @@ group by email order by avg desc limit 5;
 
 This is an example of a data warehouse (DWH) on a scale small enough to be agile, and by extension free of the negative connotations of heavy software and big enterprise, but still very useful for analysis and reporting. In the modern world, Postgres databases are cheap and primitive software building blocks needed to extract data from foreign sources (i.e. API SDKs, HTTP clients, RSS readers, etc.), are readily available in the form of gems or NPM packages, allowing simple DWHs like this one to be built from scratch with amazing rapidity. No XML or 200k LOC frameworks required --- only your language and libraries of choice and your favorite database.
 
-## Tweets
+## Tweets (#tweets)
 
 As another example, I've been using a similar technique for years to [archive my tweets](https://github.com/brandur/blackswan). Compare this query to slowly manually paging back through your list of tweets looking for that link you posted six months ago:
 
@@ -87,7 +87,7 @@ As another example, I've been using a similar technique for years to [archive my
 
 Just like it's more expensive enterprise cousins, this warehouse has [its own ETL process](https://github.com/brandur/blackswan/blob/master/lib/black_swan/spiders/twitter.rb) for pulling down these tweets from Twitter's API and storing them. It's written in Ruby and leverages community gems to stay concise and DRY.
 
-## A File Warehouse
+## A File Warehouse (#file-warehouse)
 
 As a final practical example, let's build a small Postgres data warehouse containing the contents of our home directories. I find myself consistently running into the problem where my disk is near full, but my operating system does a poor job of helping me to identify the best candidates for removal.
 

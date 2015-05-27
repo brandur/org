@@ -8,7 +8,7 @@ Many providers try to give themselves a bit of freedom in this area by introduci
 
 But when it comes to web APIs, versioning is problematic in its own way. Anytime that a version is incremented, an orphan is left behind. That orphan still has many consumers left on it, and will require considerable product and technical work in the form of a sophisticated deprecation schedule and strategy. To ensure that consumers aren't constantly chasing a moving target, that schedule may have to stay very conservative by allowing a grace period of months, or even years. For example, [our compatibility policy](https://devcenter.heroku.com/articles/api-compatibility-policy#production) states that production resources will remain available for twelve months after deprecation. Especially when it comes to building prototypes and experiments, this kind of expense associated with any kind of obsolescence is a hard pill to swallow.
 
-## Variants
+## Variants (#variants)
 
 To help improve on this situation, we introduced a concept that we've been using for a few months now called _version variants_. Variants are a simple way of hiding new API features behind a flag so that they stay out of the main API version. They have names that mirror their associated version that look like `version=3.new-feature` and are requested in a similar fashion:
 
@@ -20,7 +20,7 @@ Variants have a few important characteristics:
 * **Explicit:** As seen above, requesting a version variant is a very explicit process in that all requests must specifically include the variant with every call. This helps signal to consumer that what they're requesting is a probably an experimental feature and as such, does not provide the same stability guarantees as they might expect from the mainline API.
 * **Orthogonal:** Version variants are orthogonal to each other in that although they will include all features of the main API, they cannot be combined with other variants. This is designed to act as a forcing function to encourage variants to be pulled back into the mainline so that they can get access to new features. More importantly, it discourages developers from building spiderwebs of interconnected experimental features that depend on other experimental features to operate.
 
-## Lifecycle
+## Lifecycle (#lifecycle)
 
 At their core, variants are a tool to ease the prototyping process by making the process of deprecating a prototype cheaper. Their common lifecycle looks a little like the following:
 
@@ -36,6 +36,6 @@ Our API responds with mainline even for API variants that it doesn't know about 
 
 In the latter case of a prototype's complete removal, some consumers may be broken just like if a major feature was removed from the mainline API, but hopefully the number of broken consumers will be fewer and the lowered stability expectations of those users will help them cope with the change. In any case, we'd still recommend announcing the deprecation at least a few weeks in advance to provide consumers with some grace time to help them react appropriately.
 
-## Internal Expectations
+## Internal Expectations (#internal-expectations)
 
 One anti-pattern that might manifest without careful consideration are prototypes in variants that are not made either generally available or deprecated appropriately, a common case for any project which is started but then loses steam and isn't finished. To help mitigate this, we're experimenting with requiring all variants to be assigned an expiry date, after which a variant may be removed liberally if the team that created it is no longer taking appropriate action to continue moving its lifecycle forward. This is modeled in part on the IETF's [guidelines for Internet drafts](http://www.ietf.org/ietf-ftp/1id-guidelines.txt) which require that an expiration date of 185 days from the date of submission is added to the first and last pages of any draft document.

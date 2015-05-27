@@ -39,9 +39,9 @@ Developer accessibility is more of an idea than any particular method, and as
 such there's no definite way of implementing it, but a number of patterns that
 we see in the wild can help to illustrate the concept.
 
-## Patterns
+## Patterns (#patterns)
 
-### OAuth 2
+### OAuth 2 (#oauth2)
 
 Much of the added complexity around OAuth 1 stems from the extra layer of
 security that was built on top of it. OAuth 2 simply relies on HTTPS to take
@@ -53,7 +53,7 @@ which significantly lowers the barrier of entry to an API.
 Even Twitter, well known for its restrictive APIs [has an easy way of procuring
 an OAuth 2 access token](https://gist.github.com/brandur/5845931).
 
-### Bearer Token Authorization
+### Bearer Token Authorization (#bearer-tokens)
 
 A very simple pattern for use with OAuth 2 is allowing users to authorize with
 a bearer token via the `Authorization` header. This ensures that any client
@@ -62,7 +62,7 @@ base64-encoding.
 
     curl -H "Authorization: Bearer 01234567-89ab-cdef-0123-456789abcdef" ...
 
-### Curlability
+### Curlability (#curl)
 
 A consistent theme across many patterns is simply that an API should be
 accessible to any generic HTTP client, with Curl occupying the place of that
@@ -75,7 +75,7 @@ A very simple pattern of immediately improving an API's Curlabiliity is to
 prettify JSON output for Curl clients as [I've previously
 described](https://mutelight.org/pretty-json).
 
-### In-response Scope Hints
+### In-response Scope Hints (#scope-hints)
 
 It can be quite helpful to return metadata about the current request and the
 current endpoint for a developer to digest while they're testing calls against
@@ -91,7 +91,7 @@ accessing, allowing them to lock down their scope before releasing an app.
     Oauth-Scope: global
     Oauth-Scope-Accepted: global identity
 
-### In-response Ordering Hints
+### In-response Ordering Hints (#ordering-hints)
 
 For our [V3 platform
 API](https://devcenter.heroku.com/articles/platform-api-reference) at Heroku,
@@ -104,7 +104,7 @@ that comes back with list responses:
     Accept-Ranges: id, name
     Range: id ..
 
-### Ship a Service Stub
+### Ship a Service Stub (#service-stubs)
 
 I've previously talked about how Rack service stubs can be [used to improve the
 development and testing experience](https://brandur.org/service-stubs) of apps
@@ -114,7 +114,7 @@ mutate data when done in a production environment. See the [Heroku API
 stub](https://github.com/heroku/heroku-api-stub) for an example of this
 technique.
 
-### Programmatic Maps
+### Programmatic Maps (#programmatic-maps)
 
 An interesting Hypermedia-related technique that's gaining some traction is to
 provide a set of links at an API's root that point to other available

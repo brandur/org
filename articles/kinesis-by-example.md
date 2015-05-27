@@ -27,7 +27,7 @@ $ aws kinesis describe-stream --stream-name split-merge-test
 
 Note above that the shard has a `HashKeyRange` assigned to it that starts at zero and ends at `340282366920938463463374607431768211455`. When a record is sent into a Kinesis stream, a basic hash function is applied to its partition key. The result of this function maps the record to one of the stream's shards based on the hash key range that each shard handles. A stream's total capacity is increased by subdividing the hash key range on an existing shard so that it maps to more shards than it did before.
 
-## Splitting
+## Splitting (#splitting)
 
 Splitting a shard is a manual process in that an operator must decide how to divide up its total hash space between the new shards that will be created. I've decided to split mine evenly between two new shards, so I perform some basic arithmetic on my `EndingHashKey` to find the halfway point between it and zero:
 
@@ -125,7 +125,7 @@ $ aws kinesis describe-stream --stream-name split-merge-test
 
 It may also be worth pointing out that although `shardId-000000000000` is considered to be `CLOSED` now, as the last records that it contains leave Kinesis' retention window it will transition from `CLOSED` to `EXPIRED`. When it does, no further records can ever be retrieved from the shard.
 
-## Merging
+## Merging (#merging)
 
 Now let's see what happens when we merge the two shards back together. A merge operation takes two shards as parameters: (1) the main shard to merge, and (2) the adjacent shard that will be mixed into it. Note that the use of the word "adjacent" here is not an accident; because of the way that Kinesis shards handle hash key ranges, only two shards that handle ranges that are contiguous can be merged back together.
 

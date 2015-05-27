@@ -11,7 +11,7 @@ accessing. I thought this might be a good opportunity to talk a little about
 OAuth scoping, what the spec has to say about it, how it's implemented elsewhere
 on the web, and our own design considerations.
 
-## The Spec
+## The Spec (#spec)
 
 [RFC 6749](http://tools.ietf.org/html/rfc6749#section-3.3) describes how scope
 should be implemented according to the proposed OAuth 2 standard. I've tried to
@@ -31,13 +31,13 @@ should actually look like. This decision allows providers to define their own
 strings, and gives them enough flexibility to ensure that OAuth 2 scoping is a
 good fit for accessing a wide variety of different resources.
 
-## From Around the Web
+## From Around the Web (#samples)
 
 The open-ended spec has resulted in all kinds of creative implementations
 across the web, with no two being exactly alike. I've compiled a few examples
 to demonstrate the range of ideas out there.
 
-### App.net
+### App.net (#app-net)
 
 App.net allows developers to define a basic set of scopes in snake_case. This
 pretty standard scoping implementation is simple and effective.
@@ -46,7 +46,7 @@ pretty standard scoping implementation is simple and effective.
 
 http://developers.app.net/docs/authentication/#scopes
 
-### Facebook
+### Facebook (#facebook)
 
 Facebook deviates from spec a bit by suggesting that scope strings be
 comma-delimited. The two other interesting characteristics of Facebook scopes
@@ -60,7 +60,7 @@ can be very precise about what powers they'll require.
 
 https://developers.facebook.com/docs/reference/login/#permissions
 
-### GitHub
+### GitHub (#github)
 
 GitHub provides a concise set of scopes with some namespacing using the colon
 character. For example, `user:email` is a subset of the permissions allowed by
@@ -79,7 +79,7 @@ scope for their apps and tokens.
 
 http://developer.github.com/v3/oauth/#scopes
 
-### Google
+### Google (#google)
 
 Google mandates that scopes should start with the `openid` string, then include
 either or both of `email` and `profile`. From there, scope is extended across
@@ -89,7 +89,7 @@ Google's flourishing ecosystem by defining other strings as extensible URIs.
 
 https://developers.google.com/accounts/docs/OAuth2Login
 
-### Instagram
+### Instagram (#instagram)
 
 Another fairly simple implementation, with the notable use of plus signs rather
 than spaces for delimitation.
@@ -98,7 +98,7 @@ than spaces for delimitation.
 
 http://instagram.com/developer/authentication
 
-### LinkedIn
+### LinkedIn (#linkedin)
 
 LinkedIn reserves the underscore to separate types of resources from the
 read/write permissions to that type, with an `r` specifying read privileges and
@@ -108,7 +108,7 @@ read/write permissions to that type, with an `r` specifying read privileges and
 
 https://developer.linkedin.com/documents/authentication#granting
 
-### Salesforce
+### Salesforce (#salesforce)
 
 An uncommon trait here is that Salesforce requires a particular scope string
 for the privilege of being granted a refresh token.
@@ -117,7 +117,7 @@ for the privilege of being granted a refresh token.
 
 http://help.salesforce.com/help/doc/en/remoteaccess_oauth_scopes.htm
 
-### Shopify
+### Shopify (#shopify)
 
 Shopify also mixes read and write permissions into scope strings. Their system
 is fairly intuitive in that `write_` also implies `read_` permission, so that
@@ -127,7 +127,7 @@ developers don't need to specify both.
 
 http://docs.shopify.com/api/tutorials/oauth
 
-### Windows Live ID
+### Windows Live ID (#windows-live)
 
 Defines scope strings that are prefixed with `wl.` (for Windows Live);
 presumably so that scopes are unique across Microsoft's entire product space.
@@ -136,7 +136,7 @@ presumably so that scopes are unique across Microsoft's entire product space.
 
 http://msdn.microsoft.com/en-us/library/live/hh243646.aspx
 
-## Heroku
+## Heroku (#heroku)
 
 The end product for Heroku OAuth scope was shaped by a few major product and
 engineering design goals:

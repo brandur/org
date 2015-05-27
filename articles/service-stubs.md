@@ -30,7 +30,7 @@ end
 response = handler.install(app, user, options) if api_calls_enabled?
 ```
 
-## Progression
+## Progression (#progression)
 
 Implementations varied as more services were added over time, and generally became more sophisticated as we learned the downsides of particular approaches and iterated on them. This progression eventually led to the _Rack service stubs_ we use today, and which are detailed in the next section.
 
@@ -61,7 +61,7 @@ Now we're getting somewhere! Our mocks should behave reasonably during developme
 
 While this kind of stub generally works pretty well, it still leaves us with a large disparity between development and production in that two different handlers, and therefore two completely different code paths are run in the two environments. A problem caused by this gap would hopefully be caught in a high-fidelity staging environment before making it to production, but even in staging, debugging is harder and slower compared to a local production copy.
 
-## Rack Service Stubs
+## Rack Service Stubs (#rack)
 
 While re-approaching the application code for our API, we started experimenting with doing away with the variety of stub handlers, and tried replacing them with actual implementations of the foreign stubs written with Rack-compliant libraries. These Rack stubs are designed to implement only the subset of the foreign API required by the calling app, and are greatly simplified to provide the bare minimum of the requirements for a correct response (and do little else).
 
@@ -83,7 +83,7 @@ end
 
 Because the stub is a fully functional application in its own right, it becomes immediately useful in both development and testing. A platform that trivializes deployment extends this use to cloud-hosted development and staging environments as well (i.e. you can `git push heroku master` this stub and to make it available for other apps to talk to).
 
-## Testing
+## Testing (#testing)
 
 Use of service stubs in tests is made simple by using [Webmock's](https://github.com/bblimke/webmock) excellent Rack support to intercept requests made to a particular URL and send them off to be processed by the stub. Here are some examples of simple helper methods that we use in the API:
 
@@ -136,7 +136,7 @@ it "should raise an error on a bad ion response" do
 end
 ```
 
-## Development
+## Development (#development)
 
 By including a small snippet of conditional run code along with each stub, we ensure that each can be booted as an application in its own right:
 
@@ -192,7 +192,7 @@ Subject:        /C=US/ST=California/L=San Francisco/O=Heroku/CN=secure.example.o
 SSL certificate is self signed.
 ```
 
-### Foreman
+### Foreman (#foreman)
 
 The process can be further streamlined by using [Foreman](https://github.com/ddollar/foreman) and adding stubs to the list of processes that should be started:
 

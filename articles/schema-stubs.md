@@ -16,7 +16,7 @@ post "/apps" do
 end
 ```
 
-## Towards Stronger Constraints
+## Towards Stronger Constraints (#strong-constraints)
 
 The basic stubbing technique is pretty effective just by itself because it allows an app's stack to be exercised all the way out to the HTTP calls it's making without a mess of inconsistent stubbing sprinkled throughout the codebase. The data that's returned from the stubs is low fidelity compared to what would be returned by the actual service, but in practice it's not a huge problem when running in isolation or exercising a test suite.
 
@@ -107,7 +107,7 @@ post "/apps" do
 end
 ```
 
-## Symmetry
+## Symmetry (#symmetry)
 
 Committee and other validation tools like it aren't just for use by stubs! By using Committee in the actual implementation of a component, that component's code around parameter validation can be simplified drastically because it can assume that if a request has made it into its handler, then the parameters of that request are present and of the right type.
 

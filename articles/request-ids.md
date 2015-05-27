@@ -2,7 +2,7 @@ Log into Heroku's [Dashboard](https://dashboard.heroku.com) and you'll hit three
 
 It's key to have powerful techniques at your disposable to gain introspection and track down bugs in your production system. A simple one that's tremendously useful even on its own, is the use of request IDs to trace requests as they thread themselves through a set of composed components.
 
-## Request IDs
+## Request IDs (#request-ids)
 
 A very lightweight alternative to something like [Twitter's Zipkin](http://engineering.twitter.com/2012/06/distributed-systems-tracing-with-zipkin.html), and based on the same ideas as the [troubleshooting technique that Amazon uses for route 53](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResponseHeader_RequestID.html), request IDs are a way of grouping all the information associated with a given request, even as that request makes its way across a distributed architecture. The benefits are two-fold:
 
@@ -49,7 +49,7 @@ Our apps are all configured to drain their log streams to Splunk, which provides
 9d5ccdbe-6a5c-4da7-8762-8fb627a020a4
 ```
 
-## Heroku's Request IDs
+## Heroku's Request IDs (#heroku)
 
 Heroku's routing layer can [generate a request ID](https://devcenter.heroku.com/articles/http-request-id) automatically, which allows platform-generated logging events to be tagged in as well. Rather than generating them yourself, these IDs can be accessed through an incoming header:
 
@@ -60,7 +60,7 @@ def log(action, data={})
 end
 ```
 
-## Composing Request IDs
+## Composing Request IDs (#composition)
 
 Request IDs provide a convenient mechanism for digging into a single request for any given app, but so far they're not much help when it comes to a number of composed apps that are constantly making calls to each other.
 
@@ -101,9 +101,9 @@ A Splunk query based on the top-level request ID will yield logging events from 
 
 <div class="attachment"><img src="/assets/request-ids/splunk-search.png"></div>
 
-## Tweaks
+## Tweaks (#tweaks)
 
-### Inject Any Number of Request IDs
+### Inject Any Number of Request IDs (#multiple)
 
 A minor modification to the middleware pattern above will allow any number of request IDs to be injected into a given app, so that a request can be traced across three or more composed services.
 
@@ -119,7 +119,7 @@ def call(env)
 end
 ```
 
-### Respond with Request ID
+### Respond with Request ID (#response)
 
 The request ID can be returned as a response header to enable easier identification and subsequent debugging of any given request:
 
@@ -142,7 +142,7 @@ Request-ID: 9d5ccdbe-6a5c-4da7-8762-8fb627a020a4
 
 Heroku's new [V3 platform API](https://devcenter.heroku.com/articles/platform-api-reference#request-id) includes a request ID in the respones with every request.
 
-### Storing Request ID in a Request Store
+### Storing Request ID in a Request Store (#storage)
 
 In a larger application, producing logs from a context-sensitive method like a Sinatra helper may be architecturally difficult. In cases like this, a thread-safe request store pattern can be used instead.
 
