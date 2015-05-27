@@ -126,7 +126,7 @@ module Org::Helpers
       # matches one of the following:
       #   `# header`
       #   `# header (#header-id)`
-      str.dup.scan(%r{^((#+)\s+([^(\n]*)(\s+\(#(.*)\))?)$}) do
+      str.dup.scan(%r{^((#+)\s+(.*?)(\s+\(#(.*)\))?)$}) do
         |header, level, title, _, id|
         h_num = level.length
 
