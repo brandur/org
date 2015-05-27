@@ -126,7 +126,10 @@ module Org::Helpers
       # matches one of the following:
       #   `# header`
       #   `# header (#header-id)`
-      str.dup.scan(%r{^((#+)\s+(.*?)(\s+\(#(.*)\))?)$}) do
+      #
+      # For now, only match ## or more so as to remove code comments from
+      # matches. We need a better way of doing that though.
+      str.dup.scan(%r{^((\#{2,})\s+(.*?)(\s+\(#(.*)\))?)$}) do
         |header, level, title, _, id|
         h_num = level.length
 
