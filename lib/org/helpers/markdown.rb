@@ -5,10 +5,10 @@ module Org::Helpers
     POST_RENDER_TRANSFORMS = [
       :transform_code_with_language_prefix,
       :transform_footnotes,
-      :transform_headers_with_links,
     ]
 
     PRE_RENDER_TRANSFORMS = [
+      :transform_headers,
       :transform_figures,
     ]
 
@@ -55,9 +55,7 @@ module Org::Helpers
 
     def render_redcarpet(str)
       renderer = Redcarpet::Markdown.new(
-        Redcarpet::Render::HTML.new({
-          with_toc_data: true
-        }),
+        Redcarpet::Render::HTML.new,
         Slim::Embedded.default_options[:markdown]
       )
 
@@ -116,14 +114,41 @@ module Org::Helpers
       html
     end
 
-    def transform_headers_with_links(html)
-      html.dup.scan(%r{((<h[2-9] id="(.*)">)(.*)(</h[2-9]>))}) do
-        |header, open_tag, id, tag_content, close_tag|
-        html.gsub!(header, <<-eos.strip)
-#{open_tag}<a href="##{id}">#{tag_content}</a>#{close_tag}
+    # Transforms headers to HTML. We do this ourselves so that we can add
+    # human-readable identifiers (naturally not supported by Markdown) and add
+    # in links for them.
+    def transform_headers(str)
+      header_num = 0
+
+      # Tracks previously assigned headers so that we can detect duplicates.
+      headers = {}
+
+      # matches one of the following:
+      #   `# header`
+      #   `# header (#header-id)`
+      str.dup.scan(%r{^((#+)\s+([^(\n]*)(\s+\(#(.*)\))?)$}) do
+        |header, level, title, _, id|
+        h_num = level.length
+
+        # give an unnamed header a `section-` prefix
+        full_id = if !id
+          "section-#{header_num}"
+        # give a duplicate header a suffix like `-0`
+        elsif num = headers[id]
+          headers[id] += 1
+          "#{id}-#{num}"
+        # otherwise just use the given ID
+        else
+          headers[id] = 0
+          id
+        end
+
+        str.gsub!(header, <<-eos.strip)
+<h#{h_num} id="#{full_id}"><a href="##{full_id}">#{title}</a></h#{h_num}>
         eos
+        header_num += 1
       end
-      html
+      str
     end
   end
 end
