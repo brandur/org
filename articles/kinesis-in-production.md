@@ -8,7 +8,7 @@ The most obvious alternative to Kinesis is [Kafka](http://kafka.apache.org/), wh
 
 Kinesis has a well-written [developer guide](http://docs.aws.amazon.com/kinesis/latest/dev/introduction.html) if you want to learn a little more about it. I've also written a few other articles on the subject. See [Guaranteeing Order with Kinesis Bulk Puts](/kinesis-order) and [Kinesis Shard Splitting & Merging by Example](/kinesis-by-example).
 
-## Performance and Stability
+## Performance and Stability (#performance-and-stability)
 
 Probably of most paramount concern is how Kinesis performs in production. One thing to keep in mind when looking at these numbers is that Kinesis' durability characteristic is highly relevant. When injecting a record to a stream, that record is synchronously replicated to three different availability zones in the region to help guarantee that you'll get it out of the other side. There is a performance cost associated with this level of reliability, and comparing the numbers below to a single-node system like Redis (for example), would be nonsense.
 
@@ -43,11 +43,11 @@ All-in-all, I consider these numbers pretty good for a distributed system. In ou
 
 A little more on the qualitative side of observation, we've still yet to notice a serious operational problem in one of our Kinesis streams throughout the time that we've had them online. This doesn't give me much data to report on how well they behave during a degraded situation like a serious outage, but also demonstrates that the infrastructure is pretty reliable.
 
-## Limitations
+## Limitations (#limitations)
 
 Now onto the part that may be the most important for the prospective Kinesis user: the product's limitations. I'm happy to report that I didn't find many, but those that I did find are significant.
 
-### You Get Five (Reads)
+### You Get Five (Reads) (#five-reads)
 
 Scalability is right there on the Kinesis front page as one of the core features of the product, and indeed it is scalable: a stream in US East can have up to 50 shards, each of which can handle 1 MB/s in and 2 MB/s out for a theoretically maximum of 50 MB/s in and 100 MB/s out. That's an incredible amount of data! However, despite being very scalable along this one dimension, it scales very poorly along another: the number of consumers that a stream can have.
 
@@ -64,7 +64,7 @@ To help illustrate the problem, here's a chart of the number of "throughput exce
   <figcaption>Number of errors encountered due to read limits on a low volume stream over 30 minutes.</figcaption>
 </figure>
 
-### Vanishing History
+### Vanishing History (#vanishing-history)
 
 As described in my previous article [Kinesis Shard Splitting & Merging by Example](/kinesis-by-example), a Kinesis shard is immutable in the sense that if it's split or merged, the existing shard is closed and new shards are created in its place. I find this to be quite an elegant solution to the problem of consumers trying to guarantee their read order across these events. To help consumers check that they're appropriately consumed closed shards to completion, the [DescribeStream](http://docs.aws.amazon.com/kinesis/latest/APIReference/API_DescribeStream.html) API endpoint allows them to examine the ancestry of each currently open shard and the range of sequence numbers that every closed shard handled during its lifetime.
 
@@ -72,13 +72,13 @@ This is all well and good except that the list in `DescribeStream` is pruned on 
 
 Removing these old records of ancestry on such an aggressive schedule to save a few hundred bytes of JSON on an infrequently made API call seems like a pretty strange design decision to me. Like with the previous problem, corresponding with staff didn't help me gain any particular insight into its justification.
 
-## Comparison to Kafka
+## Comparison to Kafka (#kafka)
 
 I don't have a great deal of experience with Kafka (we ran a cluster for a few months but didn't put together any kind of analysis of worthwhile depth), so I'll keep this section short.
 
 One aspect of Kinesis that I did appreciate is the removal of the concept of a _topic_, which is a channel of sorts within a Kafka cluster that allows messages to be grouped together logically. The topic is an important feature when considering the maintenance and operation of Kafka in that it allows a single cluster to be re-used for a number of applications (and therefore fewer moving parts to keep an eye on), but as a developer, this isn't something that I really want to think about. If I want to send one type record I'll provision a Kinesis stream for it, and if I want to send a different type of record I'll provision a separate stream for that. From my perspective as an AWS user, those are two completely independent services that scale orthogonally and have their isolated sets of resources (rate limits, throughput capacity, and the like). As far as I'm concerned, this is a major win for hosted services.
 
-## Summary
+## Summary (#summary)
 
 I'm overall pretty happy with my experience with Kinesis, and we'll continue to run services on it for the foreseeable future. In general it behaves like a perfect infrastructure component in that it performs well and stays out of the way.
 
