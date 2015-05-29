@@ -26,7 +26,7 @@ Like we hoped, the program was easily able to reproduce the problem and in a rel
 
 ## Slow Lock Time (#slow-lock-time)
 
-The first step into figuring out exactly what's going wrong is to find out what exactly about the long running transaction is slowing the job queue down. By looking around at a few queue metrics, we quickly find a promising candidate. During stable operation, a worker locking a job to make sure that it can be worked exclusively takes on the order of < 0.01 seconds. As we can see in the figure below though, as the oldest transaction gets older, this lock time escalates quickly until it's 15x that level at times of 0.1 s and above. As the difficulty to lock a job increases, workers can through fewer of them in the same amount of time. Left long enough, the queue will eventually reach a point where more jobs are being produced than being worked, leading to a runaway queue.
+The first step into figuring out exactly what's going wrong is to find out what exactly about the long running transaction is slowing the job queue down. By looking around at a few queue metrics, we quickly find a promising candidate. During stable operation, a worker locking a job to make sure that it can be worked exclusively takes on the order of < 0.01 seconds. As we can see in the figure below though, as the oldest transaction gets older, this lock time escalates quickly until it's 15x that level at times of 0.1 s and above. As the difficulty to lock a job increases, workers can lock fewer of them in the same amount of time. Left long enough, the queue will eventually reach a point where more jobs are being produced than being worked, leading to a runaway queue.
 
 !fig src="/assets/postgres-queues/pre-lock-time.png" caption="Median lock time. Normally < 0.01 s, locks are taking 15x longer than that one hour in."
 
@@ -87,7 +87,7 @@ Eventually one of two conditions will be met that ends the recursion:
 * A job is locked, iteration is stopped by `LIMIT` combined with the check on `locked`, and the expression returns a successfully locked row.
 * If there are no more candidates to lock, the select from `que_jobs` will come up empty, which will automatically terminate the expression.
 
-Taking a closer look at the [jobs table DDL](https://github.com/chanks/que/blob/f95aec38a48a86d1b4c82297bc5ed9c88bb600d6/lib/que/migrations/1/up.sql#L11) we see that its primary key on `(priority, run_at, job_id)` should ensure that the expression above will run efficiently. We may be able to improve the it somewhat by introducing some randomness to reduce contention, but that's unlikely to help with the multiple order of magnitude performance degradation that we're seeing, so let's move on.
+Taking a closer look at the [jobs table DDL](https://github.com/chanks/que/blob/f95aec38a48a86d1b4c82297bc5ed9c88bb600d6/lib/que/migrations/1/up.sql#L11) we see that its primary key on `(priority, run_at, job_id)` should ensure that the expression above will run efficiently. We may be able to improve that somewhat by introducing some randomness to reduce contention, but that's unlikely to help with the multiple order of magnitude performance degradation that we're seeing, so let's move on.
 
 ## Dead Tuples (#dead-tuples)
 
@@ -113,7 +113,7 @@ Notice the last line "247311 dead row versions cannot be removed yet". What this
 
 ### Postgres MVCC (#mvcc)
 
-To guarantee transaction isolation (that's the "I" in "ACID"), Postgres implements a [concurrency control](http://www.postgresql.org/docs/9.4/static/mvcc.html) model called MVCC (Multiversion Concurrency Control) that ensures that each ongoing SQL statement sees a consistent snapshot of data regardless of what changes may have occurred on the underlying data. By extension, that means that rows that are deleted from a Postgres database are not actually deleted immediately, but rather only flagged as deleted so that they'll still available to any open snapshots that may still have use for them. When they're no longer needed in any snapshot, a VACUUM process will perform a pass and safely delete them more permanently.
+To guarantee transaction isolation (that's the "I" in "ACID"), Postgres implements a [concurrency control](http://www.postgresql.org/docs/9.4/static/mvcc.html) model called MVCC (Multiversion Concurrency Control) that ensures that each ongoing SQL statement sees a consistent snapshot of data regardless of what changes may have occurred on the underlying data. By extension, that means that rows that are deleted from a Postgres database are not actually deleted immediately, but rather only flagged as deleted so that they'll still be available to any open snapshots that may still have use for them. When they're no longer needed in any snapshot, a VACUUM process will perform a pass and safely delete them more permanently.
 
 The flags that power MVCC are visible as "hidden" columns on any Postgres table called `xmin` and `xmax`. Let's take a simple example where we're holding a few unworked jobs in a Que table:
 
@@ -308,7 +308,7 @@ Illustrated visually, the locking function is able to skip the bulk of the dead 
                                                LOCK!
 ```
 
-Because Que works jobs in order that they came into the queue, having workers re-use the identifier of the last job they worked might be a simple and effective way to accomplish this. Here's the basic pseudocode for a modified work loop:
+Because Que works jobs in the order that they came into the queue, having workers re-use the identifier of the last job they worked might be a simple and effective way to accomplish this. Here's the basic pseudocode for a modified work loop:
 
 ```
 last_job_id = nil
