@@ -2,11 +2,13 @@ module Org
   Main = Rack::Builder.new do
     use Rack::SSL if Config.force_ssl?
     use Org::Instruments
-    use Rack::Deflater
     use Rack::Cache,
       verbose:     true,
       metastore:   'file:/tmp/cache/meta',
       entitystore: 'file:/tmp/cache/entity' if Config.production?
+    # make sure that ::Deflater comes after ::Cache so that gzipped responses
+    # can be cached correctly
+    use Rack::Deflater
     use Rack::Robots
 
     run Sinatra::Router.new {
