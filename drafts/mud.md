@@ -106,6 +106,16 @@ Although I've covered its various problems in depth, it's worth considering that
 
 This can also help with iteration speed in the same way that developing inside of a monolith is faster. If a change only requires some tweaks to the overall orchestration logic, it's possible that no other services need even be touched.
 
+## The Big Ball of Mud
+
+The single orchestrator is reminiscent of ["The Big Ball of Mud"](http://en.wikipedia.org/wiki/Big_ball_of_mud) as conceived by Brian Foote and Joseph Yoder. Even though is may not be quite as dire as a large software project with no architecture that's been thoroughly considered to any depth, it's still a situation where there's no obvious way to extend the system without continually making the orchestrator forever larger and more complex.
+
+> A Big Ball of Mud is a haphazardly structured, sprawling, sloppy, duct-tape-and-baling-wire, spaghetti-code jungle. These systems show unmistakable signs of unregulated growth, and repeated, expedient repair.
+>
+> &mdash; Brian Foote and Joseph Yoder, _Big Ball of Mud_
+
+As its size increases and its number of contributors grows, the orchestrator will inevitably trend toward an ever-decreasing standard of quality. The Big Ball of Mud is perpetually just over the horizon, laying in wait for that moment when quality in maintenance falters, or as a thousand tiny steps in the wrong direction finally brings it to the edge.
+
 ## The Log
 
 
