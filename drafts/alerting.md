@@ -2,7 +2,7 @@ I'll try to avoid the truly obvious advice.
 
 At Heroku.
 
-## Tips (#tips)
+## Advice (#advice)
 
 ### Design for Granularity (#granularity)
 
@@ -40,20 +40,36 @@ Stay conservative when it comes to adding new alerts; it's okay to add alerts th
 
 ### Throttle On Slowly (#throttle-slowly)
 
-Being on the wrong end of a pager after a new product goes into production might lead to a harrowing night. Luckily, no product goes into production overnight. Take advantage of the relatively long product lifestyle by putting in alerts during the alpha and beta phases that produce a notification that somebody will receive (like an e-mail), but not a phone call at 3 AM. One those warning-style alerts are vetted and stable, promote them to production.
+Being on the wrong end of a pager after a new product goes into production might lead to a harrowing week. Luckily, no product goes into production overnight. Take advantage of the relatively long product lifestyle by putting in alerts during the alpha and beta phases that produce a notification that somebody will receive (like an e-mail), but not a phone call at 3 AM. One those warning-style alerts are vetted and stable, promote them to production.
 
 ### Don't Allow Flappy Alarms to Enter the Shared Consciousness (#flappy-alarms)
 
+As busy engineers, one bad habit that we're particularly susceptible to is applying the fastest possible fix to a problem and moving on without considering whether there may also be an only incrementally more expensive solution that could buy a much more permanent fix. In the case of an alarm, this often looks like responding to it and doing some basic investigation to make sure that nothing is seriously wrong, but without considering that the alarm may be very broken and badly in need of attention. Over time, it's easy to become desensitized to these types of flappy alarms to the point where they become built into the team's shared consciousness and where no one will consider them to any real depth.
 
+Newer employees might be especially susceptible to this problem because as far as they're concerned, some alert might have been going off for the entire length of their contemporary career. They'll also make implicit assumptions that their senior colleagues would have looked into the problem already if there was anything that could be done about it.
 
-Newer employees might be especially susceptible to this problem because as far as they're concerned, some alert might have been going off for the entire contemporary career.
+My advice for these types of situations is (of course) to try to spend a bit of time trying to tweak or change the alarm so that it's less prone to produce false positives. _However,_ if nothing can easily be done to improve it, it's far better to eliminate the alarm completely than leave it in-place in its degraded state. Given a bad alarm, responders are already unlikely to be doing much of anything useful when it goes off, so it's better to save them the pain in the first place.
+
+An example of this that we had was to put an alert on 500 status codes coming from backend servies when after we had an incident that involved a service going down that we would have been easily able to detect. The alert was added, but at a level that would trigger based on occasional ambient spikes in backend errors, which caused it to go off randomly every day or two. Every time it did, an operator would have to go in, find the service that was causing the trouble, and compare its current error levels to historical records before deciding how to proceed. It didn't take long before operators were ignoring these false positives completely.
 
 ### Treat Alarms as an Evolving System (#evolve)
 
-Imbriaco.
+As an extension to the previous point, it's a good idea to always think about your current set of alarms as a evolving system that you can and should be constantly tweaking and improving. Obviously this applies to adding new alarms as exotic new failure cases are discovered, but even if what already have works pretty well, there may still be a more optimal configuration or a different alarm that could be put in place that does a better job compared to what's already in there.
+
+Try to never get yourself in a position where you're cargo culting by keeping alarms around just because they've always been there. Even if you're not the original author of a particular component, take control of its stack and keep it sane.
 
 ### Empower Recipients to Improve the Situation (#empower-recipients)
 
+When I first started working at Heroku, we had a global pager rotation where for one day every few weeks, one on-call engineer would respond to any problem that occurred across the entire platform. For reasons that are hopefully mostly intuitive, this situation was utterly depraved; engineers would wake up, acknowledge pages, follow playbooks by rote, and hope against all odds that this would be the last page of the night. Everyone had strong incentive to fix the problems that were interrupting their sleep and lives half a dozen times a day, but for the most part these problems were in foreign codebases where the cost to patch them would be astronomically high.
+
+We eventually did away with this abomination by moving to team-based pager rotations and inventing the "ops week", which generally meant that the on-call engineer wasn't working on anything else besides being on-call. This would give them a bit of free capacity to go in and address the root problems of any pages that had woken them up, thus empowering them to reduce their own level of pain.
+
 ### Observe Ownership (#ownership)
 
+It may be tempting for an enthusiastic operator to put alarms into place that indeed do represent failure cases for a service that they own, but which upon closer inspection may have a root cause that lies outside of its area of responsibility. As mentioned in the ["Alert at the Root Cause"](#root-cause) above, it's important to make sure that the most direct source of a problem is traced, and in some cases that source may lie across team boundaries. A poorly placed alarm may result in an operator waking up only to pass the page onto another team who can address the problem more directly. Given this situation, it's far better to have that other team wake up first; hopefully they can address the problem before it bubbles up to everyone else.
+
+Once again, this one might seem obvious, but there are a number of situations where this problem is easy to encounter. For example, given a situation where an alarm belongs in the realm of a mostly non-technical team without a good operational situation, it might be easier to keep the alarm on your side rather than fire up the various bureaucratic mechanisms that would get them to analyze the situation and eventually take ownership. But even if easier in the short term, it's likely to cause trouble over time in that your team is unlikely to ever be able to address the underlying problem (see ["Empower Recipients to Improve the Situation"](#empower-recipients) above).
+
 ## Summary (#summary)
+
+There's a common theme to all the guidelines mentioned above: most of them are intuitive at first sight, but can still represent dangers for even experienced teams. A successful process for designing alerts 
