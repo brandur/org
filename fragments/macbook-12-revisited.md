@@ -3,7 +3,7 @@ title: The 12" MacBook Revisited
 published_at: 2015-06-14T04:33:27Z
 ---
 
-I recently visited Europe for two weeks, and during that time I used my 12" MacBook the entire time. When I returned and picked up the MacBook Air that I use for work, it felt like an alien artifact. The changes that I noticed in particular:
+I recently visited Europe for two weeks, and I used my 12" MacBook for the entirety of the trip. When I returned and picked up the MacBook Air that I use for work, it felt like an alien artifact. The changes that I noticed in particular:
 
 * The scissor keys look downright weird and cheap compared to the [butterfly mechanism](https://www.apple.com/macbook/design/) used in the 12" MacBook. They're still faster to type on though, and that's more important.
 * Going back to non-retina is a brutal exercise in eye strain.
