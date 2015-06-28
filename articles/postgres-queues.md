@@ -381,7 +381,7 @@ Long lived transactions on a Postgres database can cause a variety of problems f
 
 ## Acknowledgements (#acknowledgements)
 
-Many thanks to my colleague [Daniel Farina](https://twitter.com/danfarina) for postulating the original hypothesis suggesting the precise failure mechanic of QC and Que, and my colleague [Peter Geoghegan](https://twitter.com/geoghegan86) for verifying our findings with relation to Postgres and suggesting improvements to this article for accuracy.
+Many thanks to my colleague [Daniel Farina](https://twitter.com/danfarina) for postulating the original hypothesis suggesting the precise failure mechanic of QC and Que, and my colleague [Peter Geoghegan](https://twitter.com/petervgeoghegan) for verifying our findings with relation to Postgres and suggesting improvements to this article for accuracy.
 
 [1] Although it is generally true that a Postgres index doesn't contain visibility information, there is an exception. If a process notices that a heap tuple is completely dead (as in not visible to any open transaction), it may set a flag on the index TID called [LP_DEAD](https://github.com/postgres/postgres/blob/master/src/backend/access/nbtree/README#L378). This will allow subsequent scans on the index to skip visiting the corresponding heap tuple.
 
