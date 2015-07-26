@@ -9,7 +9,7 @@ GEM
     coffee-script-source (1.8.0)
     eventmachine (1.0.4)
     eventmachine (1.0.4-java)
-    excon (0.42.1)
+    excon (0.45.3)
     execjs (2.2.2)
     gson (0.6.1-java)
     hike (1.2.1)
