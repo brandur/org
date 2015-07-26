@@ -1,14 +1,14 @@
-I'll try to avoid the truly obvious advice.
+Putting alerts on your production components is one of those well-known best practices that's cited almost everywhere these days; right up there with other broadly distributed truisms like "metrics are good" and "single points of failure are bad". Oftentimes though, there is still a lot of guesswork involved in its implementation, with developers or ops people adding metrics in areas that they think are probably places that are likely to fail.
 
-At Heroku.
+Working at Heroku, I found that following some basic guidelines was generally enough to avoid some of the worst pitfalls that are likely to be stumbled into while putting together a component's initial set of alarms. Some mixture of experience and intuition will always be involved for the best results, but that's something that will be built up by every engineer over time.
 
-## Advice (#advice)
+## Guidelines (#guidelines)
 
 ### Design for Granularity (#granularity)
 
 There's nothing worse than waking up in the middle of the night and discovering that an alert has gone of that doesn't have an obvious remediation because it could mean that any number of things have gone wrong. This inevitably leads to a drawn out investigation that's further slowed by the operator being half-asleep.
 
-This one may seem obvious, but there are quite a few types of alerts that seem like a good idea until a closer inspection reveals that they're breaking the granularity rule. For example, an alert on something like a service's HTTP `/health` endpoint is a very widespread pattern, but for which a failure can mean anything from a thread deadlock to its database going down. A much more powerful alternative pattern is to have a background process constantly logging fine-grain health information on a wide range of system telemetry, and using that to implement alarms that try to detect each type of failure condition individually.
+This one may seem obvious, but there are quite a few types of alerts that seem like a good idea until a closer inspection reveals that they're breaking the granularity rule. For example, an alert on something like a service's HTTP `/health` endpoint is a very widespread pattern, but for which a failure can mean anything from a thread deadlock to its database going down. A much more powerful alternative pattern is to have a background process constantly logging fine-grain health information on a wide range of system telemetry, and using that to implement alarms that try to detect each type of failure condition individually. This will allow an operator to identity the root of the failure faster, and execute a quick resolution.
 
 A goal to shoot for here is to make sure that every alarm in your system has a 1:1 ratio with a possible causation. If receiving an alert could mean that more than one thing has gone wrong, then there's probably room to make that alert more granular.
 
@@ -24,7 +24,7 @@ In all cases except maybe your most mission critical system, it's not worth waki
 
 By extension, wherever you have any measure of control (with other teams internally for example), try to encourage the operators of services that you depend on to maintain appropriate visibility into their own stacks. Your goal here is certainly to make sure that the system as a whole stays up, but that the team receiving the page are the ones with the best ability to influence the situation.
 
-A misstep that we made internally is that the component that handled [Heroku Dropbox Sync](https://devcenter.heroku.com/articles/dropbox-sync) ended up being built on top of a rickety component that streamed platform events and which had a very poor track record for reliability. It was ostensibly owned by my own team, and we only had bare bones alerting on it. Dutifully though, they put an alarm in place around an end-to-end integration test that injected a release into a Heroku app and waited for it to come out of the other end. When the audit steamer failed, they got paged, and they re-raised those pages to us, resulting in a bad situation for everyone involved.
+A misstep that we made internally is that the component that handled [Heroku Dropbox Sync](https://devcenter.heroku.com/articles/dropbox-sync) ended up being built on top of a rickety component whose job it was to stream platform events and which had a very poor track record for reliability. It was ostensibly owned by my own team, and we only had bare bones alerting on it. Dutifully though, they put an alarm in place around an end-to-end integration test that injected a release into a Heroku app and waited for it to come out of the other end. When the audit steamer failed, they got paged, and they re-raised those pages to us, resulting in a bad situation for everyone involved.
 
 ### Safe at Rest (#safe-at-rest)
 
@@ -40,7 +40,7 @@ Stay conservative when it comes to adding new alerts; it's okay to add alerts th
 
 ### Throttle On Slowly (#throttle-slowly)
 
-Being on the wrong end of a pager after a new product goes into production might lead to a harrowing week. Luckily, no product goes into production overnight. Take advantage of the relatively long product lifestyle by putting in alerts during the alpha and beta phases that produce a notification that somebody will receive (like an e-mail), but not a phone call at 3 AM. One those warning-style alerts are vetted and stable, promote them to production.
+Being on the wrong end of a pager after a new product goes into production might lead to a harrowing week. Luckily, no product goes into production overnight. Take advantage of the relatively long product lifestyle by putting in alerts during the alpha and beta phases that produce a notification that somebody will receive eventually (like an e-mail), but which won't page outside of business hours. One those warning-style alerts are vetted and stable, promote them to production.
 
 ### Don't Allow Flappy Alarms to Enter the Shared Consciousness (#flappy-alarms)
 
@@ -50,19 +50,19 @@ Newer employees might be especially susceptible to this problem because as far a
 
 My advice for these types of situations is (of course) to try to spend a bit of time trying to tweak or change the alarm so that it's less prone to produce false positives. _However,_ if nothing can easily be done to improve it, it's far better to eliminate the alarm completely than leave it in-place in its degraded state. Given a bad alarm, responders are already unlikely to be doing much of anything useful when it goes off, so it's better to save them the pain in the first place.
 
-An example of this that we had was to put an alert on 500 status codes coming from backend servies when after we had an incident that involved a service going down that we would have been easily able to detect. The alert was added, but at a level that would trigger based on occasional ambient spikes in backend errors, which caused it to go off randomly every day or two. Every time it did, an operator would have to go in, find the service that was causing the trouble, and compare its current error levels to historical records before deciding how to proceed. It didn't take long before operators were ignoring these false positives completely.
+An example of this that we had was to put an alert on 500 status codes coming from backend services when after we had an incident that involved a service going down that we would have been easily able to detect. The alert was added, but at a level that would trigger based on occasional ambient spikes in backend errors, which caused it to go off randomly every day or two. Every time it did, an operator would have to go in, find the service that was causing the trouble, and compare its current error levels to historical records before deciding how to proceed. It didn't take long before operators were ignoring these false positives completely.
 
 ### Treat Alarms as an Evolving System (#evolve)
 
 As an extension to the previous point, it's a good idea to always think about your current set of alarms as a evolving system that you can and should be constantly tweaking and improving. Obviously this applies to adding new alarms as exotic new failure cases are discovered, but even if what already have works pretty well, there may still be a more optimal configuration or a different alarm that could be put in place that does a better job compared to what's already in there.
 
-Try to never get yourself in a position where you're cargo culting by keeping alarms around just because they've always been there. Even if you're not the original author of a particular component, take control of its stack and keep it sane.
+This also applies in the reverse: try to never get yourself in a position where you're cargo culting by keeping alarms around just because they've always been there. Even if you're not the original author of a particular component, take control of its stack and keep it sane.
 
 ### Empower Recipients to Improve the Situation (#empower-recipients)
 
 When I first started working at Heroku, we had a global pager rotation where for one day every few weeks, one on-call engineer would respond to any problem that occurred across the entire platform. For reasons that are hopefully mostly intuitive, this situation was utterly depraved; engineers would wake up, acknowledge pages, follow playbooks by rote, and hope against all odds that this would be the last page of the night. Everyone had strong incentive to fix the problems that were interrupting their sleep and lives half a dozen times a day, but for the most part these problems were in foreign codebases where the cost to patch them would be astronomically high.
 
-We eventually did away with this abomination by moving to team-based pager rotations and inventing the "ops week", which generally meant that the on-call engineer wasn't working on anything else besides being on-call. This would give them a bit of free capacity to go in and address the root problems of any pages that had woken them up, thus empowering them to reduce their own level of pain.
+We eventually did away with this catastrophe by moving to team-based pager rotations and inventing the "ops week", which generally meant that the on-call engineer wasn't working on anything else besides being on-call. This would give them a bit of free capacity to go in and address the root problems of any pages that had woken them up, thus empowering them to reduce their own level of pain.
 
 ### Observe Ownership (#ownership)
 
@@ -72,4 +72,4 @@ Once again, this one might seem obvious, but there are a number of situations wh
 
 ## Summary (#summary)
 
-There's a common theme to all the guidelines mentioned above: most of them are intuitive at first sight, but can still represent dangers for even experienced teams. A successful process for designing alerts 
+There's a common theme to all the guidelines mentioned above: most of them are intuitive at first sight, but can still represent dangers for even experienced teams. A successful process tries to use whatever guidelines are helpful to put together an initial set of alarms for a service, and then makes sure to iterate until that set's been optimized to maximize uptime and decrease operator pain.
