@@ -17,8 +17,8 @@ impose sales tax. The book leaves you with very mixed feelings about both Bezos
 and the techniques that he's used to turn Amazon into the mighty behemoth that
 it is today. But even so, I couldn't help but to also consider these
 transgressions from my own perspective as an Amazon customer, who now pays less
-for books than every before and is serviced by a level of convenience that
-would have been unimaginable in any other age.
+for books than ever before and experiences a level of convenience that would
+have been unimaginable in any other age.
 
 Aside from just business history, the book also describes some of the
 particularly memorable quirks of the giant: the two-pizza team, the "Sev-B"
