@@ -10,7 +10,7 @@ While it may be somewhat intuitive that a long-lived transaction on the primary 
 
 Before we do that though, let's revisit a few basics of the Postgres write-ahead log (WAL). The WAL is an important mechanic for guaranteeing data integrity while simultaneously improving performance within Postgres in that rather than flushing entire page files to disk on every write, those changes can instead be grouped and written sequentially as part of the WAL. In the event of a system failure, whatever on-disk representations were left over can be re-used and the WAL replayed against them to rebuild an accurate pre-crash representation of the data.
 
-The WAL is also very important in that it's how a primary tells its standby servers about changes in the system. Postgres can either send WAL via [streaming replication](http://www.postgresql.org/docs/current/static/warm-standby.html#STREAMING-REPLICATION) or by [archived WAL files](http://www.postgresql.org/docs/current/static/continuous-archiving.html#BACKUP-ARCHIVING-WAL), which each standby receives and commits to its own system to keep itself up to date. Archiving in particular is a very powerful mechanism in that it can be combined with software like [wal-e](https://github.com/wal-e/wal-e) to archive WAL to S3, thus keeping the I/O load on a primary database stable regardless of the number of standby servers in operation because each is reading its WAL directly from S3 instead of the primary's disk.
+The WAL is also a critical piece in how a primary tells its standby servers about changes in the system. Postgres can either send WAL via [streaming replication](http://www.postgresql.org/docs/current/static/warm-standby.html#STREAMING-REPLICATION) or by [archived WAL files](http://www.postgresql.org/docs/current/static/continuous-archiving.html#BACKUP-ARCHIVING-WAL), which each standby receives and commits to its own system to keep itself up to date. Archiving in particular is a very powerful mechanism in that it can be combined with software like [wal-e](https://github.com/wal-e/wal-e) to archive WAL to S3, thus keeping the I/O load on a primary database stable regardless of the number of standby servers in operation because each is reading its WAL directly from S3 instead of the primary's disk.
 
 ## Query Conflicts and Cancellation (#conflicts)
 
@@ -28,22 +28,22 @@ The compensate for this possibility, Postgres offers a few other useful alternat
 
 A simplified illustration might look a little like the primary streaming WAL to a standby, and that standby in return reporting its query status back to the primary:
 
-```
-               WAL
-        +----------------+
-        |                |
-        |                v
-   +----+----+      +---------+
-   |         |      |         |
-   |         |      |         |
-   | Primary |      | Standby |
-   |         |      |         |
-   |         |      |         |
-   +----+----+      +----+----+
-        ^                |
-        |                |
-        +----------------+
-           Oldest xmin
+``` monodraw
+                                               
+         ┌────────────WAL────────────┐         
+         │                           │         
+         │                           ▼         
+┌─────────────────┐         ┌─────────────────┐
+│                 │█        │                 │
+│                 │█        │                 │
+│     Primary     │█        │     Standby     │
+│                 │█        │                 │
+│                 │█        │                 │
+└─────────────────┘█        └─────────────────┘
+ ████████▲██████████                 │         
+         │                           │         
+         └────────Oldest xmin────────┘         
+                                               
 ```
 
 ## Production Impact (#production-impact)
@@ -160,11 +160,11 @@ Unless an aggressive cancellation policy is in place, there is always going to b
 
 A reasonably simple alternative model might to move to one where new standby servers of the primary are brought online on a periodic schedule, detached from the primary, used for a short tiem while their data is reasonably fresh, and then recycled as a new standby servers are activated. This type of "forking" model is well supported by Postgres, which can use the latest file system level backup combined with the most recent WAL to bring a new standby online cheaply. It also has the advantage of being perfectly safe compared to the same system based on standby servers, with the only disadvantages being the possibility of slightly outdated data and that the machinery used to create the forks requiring some development and maintenance.
 
-### Logical Streaming (#logical-streaming)
+### Application-level Streaming (#application-level-streaming)
 
 A system built on top of a shared internal database might be an appropriately cheap solution for a smaller organization, but should be re-evaluated as soon as its used starts to become more widespread. Aside from the possible production issues outlined above, sharing a database across components can result in other types of problems as well: changing the database's schema becomes difficult because there's no saying who or what it might break, and any kind of failover becomes a much more complicated operation.
 
-An organization might consider a _logical streaming_ approach instead whereby a component streams the logical changes that are occurring within it over a salable bus like Kafka or Kinesis in a well-defined format that's been designed and documented. This puts a much stronger contract in-place between the source component and it consumers which will be much less likely to fall apart over the long run. LinkedIn has produced a good article describing this idea in more detail entitled ["The Log"](http://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying).
+An organization might consider a _application-level streaming_ approach instead whereby a component streams the logical changes that are occurring within it over a salable bus like Kafka or Kinesis in a well-defined format that's been designed and documented. This puts a much stronger contract in-place between the source component and it consumers which will be much less likely to fall apart over the long run. LinkedIn has produced a good article describing this idea in more detail entitled ["The Log"](http://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying).
 
 ## Summary (#summary)
 

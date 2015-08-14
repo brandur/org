@@ -4,7 +4,7 @@ module Org
       hook:         <<-eos,
 How a Postgres standby server used only for analytical queries can produce feedback that can degrade a production system.
       eos
-      location:     "Stockholm",
+      location:     "Stockholm (finished in San Francisco)",
       published_at: Time.parse("2015-05-24T09:30:24Z"),
       signature:    true,
       title:        "Beware Your Postgres Standby"
