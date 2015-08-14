@@ -30,20 +30,26 @@ end
 
 Visually, it might look a little like Core acting as a general _orchestrator_ by facilitating the communication between itself and every other service:
 
-```
-  +--------------+      +----------------------+
-  |              | ---> |   Auditing Service   |
-  |     CORE     |      +----------------------+
-  |              |
-  +--------------+
-      |      |          +----------------------+
-      |      +--------> |   Billing Service    |
-      |                 +----------------------+
-      |
-      |
-      |                 +----------------------+
-      +---------------> |     Dyno Service     |
-                        +----------------------+
+``` monodraw
+                             ┌──────────────────────┐                             
+                             │                      │█                            
+                             │                      │█                            
+                             │                      │█                            
+                             │         CORE         │█                            
+                             │                      │█                            
+                             │                      │█                            
+                             │                      │█                            
+                             └──────────────────────┘█                            
+                              ███████████│████████████                            
+                                         │                                        
+            ┌────────────────────────────┼────────────────────────────┐           
+            │                            │                            │           
+            ▼                            ▼                            ▼           
+┌──────────────────────┐     ┌──────────────────────┐     ┌──────────────────────┐
+│                      │     │                      │     │                      │
+│   Auditing Service   │     │   Billing Service    │     │     Dyno Service     │
+│                      │     │                      │     │                      │
+└──────────────────────┘     └──────────────────────┘     └──────────────────────┘
 ```
 
 This pattern of orchestration results in a few inherent problems. The general theme of these is that although many of the services external to the orchestrator can afford to simply serve up an API and be blissfully unaware as to how it gets called, the orchestrator starts to become increasing complex in that it needs to know about every other service in operation and how to use each one of them. The architecture still provides the advantage that the orchestrator can forego implementation details because it's communicating through an API, but it still needs to contain a significant amount of contextual detail that lets it know how to call into those APIs, and when.
