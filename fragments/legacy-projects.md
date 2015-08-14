@@ -53,9 +53,9 @@ effectively is the second. This involves a few things:
    face of overwhelming force.
 
 It's the second point here which is challenging. Especially in the private
-world where their are hard deadlines around every corner, it's tempting to
-justify inferior quality with a line like, "We just don't have time to do this
-the right way right now. We'll improve it later." As most engineers with a few
+world where hard deadlines are around every corner, it's tempting to justify
+inferior quality with a line like, "We just don't have time to do this the
+right way right now. We'll improve it later." As most engineers with a few
 years of experience under their belts can tell you, that "later" will never
 come.  The best way to stop that debt from piling up is to stop it in the
 present, not to offload it to an imaginary future of relative idleness. A
