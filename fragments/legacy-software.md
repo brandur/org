@@ -15,7 +15,7 @@ By extension, almost all of us will at some point (as we start a new job or
 take over maintenance of an open-source project) have to work in a codebase
 that we would consider to be "legacy", a term that we apply because in our
 minds it's not up to the same exacting standards that we would demand were we
-to build it again today. Most of us understand simultaneously though that this
+to build it again today. Simultaneously though, most of us understand that this
 is a falsehood; poor quality software rarely got the way it is due to malicious
 intent or sheer incompetence by its original authors, but rather from slow
 degradation over time as it continued to accumulate new capabilities that
