@@ -1,5 +1,5 @@
 ---
-title: On Working In Legacy Codebases
+title: Legacy Projects & the Maintainer
 published_at: 2015-08-14T05:27:58Z
 ---
 
@@ -9,7 +9,7 @@ simply that at some point software becomes so feature-rich that trying to
 reimplement it would be a costly endeavor, and would provide no guarantee that
 the new software would be superior quality to its predecessor. There are many
 reasons that your bank still programs modules in COBOL, but the language's
-technical merits are not one of them.
+technical merits aren't one of them.
 
 By extension, almost all of us will at some point (as we start a new job or
 take over maintenance of an open-source project) have to work in a codebase
@@ -41,8 +41,12 @@ A more pragmatic step would be elect a maintainer for the project. This might
 also seem like an obvious step, but keep this in mind: you're not just looking
 for somebody to merge pull requests, you're looking for an overseer who cares
 about the project on a deep level, and who strive continuously to help build a
-better future for it. Finding this person is the first step; empowering them to
-do their job effectively is the second. This involves a few things:
+better future for it. Once other contributors realize that patches are now
+being rejected on the basis quality, it doesn't take long for things to start
+improving.
+
+Finding this person is the first step; empowering them to do their job
+effectively is the second. This involves a few things:
 
 1. Give them the slack time necessary to build improvements.
 2. Give them the political capital necessary to apply backpressure even in the
