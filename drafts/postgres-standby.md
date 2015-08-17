@@ -22,6 +22,8 @@ Delaying WAL application isn't harmful in moderation, but can have undesirable s
 
 The primary mechanism that Postgres provides to resolve these types of conflicts is _query cancellation_. The settings `max_standby_archive_delay` and `max_standby_streaming_delay` dictate the maximum amount of time that a query is allowed to delay WAL replication before Posgres cancels it forcibly. This is usually a nice compromise in that it allows a grace period for conflicting queries on standby servers to resolve themselves, but also provides a way to guarantee a constraint on the maximum drift between a primary and its standby servers.
 
+### Hot Standby Feedback (#hot-standby-feedback)
+
 But query cancellation is not always convenient. If a user wants to run an expensive long-running operation on a standby, say a database backup for example, it may be difficult for it to ever complete if there's enough activity (and by extension a fairly steady stream of WAL) happening on the primary. The WAL delay will trigger a cancellation every time.
 
 The compensate for this possibility, Postgres offers a few other useful alternatives to cancellation. `hot_standby_feedback` is one that allows standby servers to report the state of their ongoing queries back to the primary so that it will prevent VACUUMs from removing any rows that may still be visible to them just as if those queries were running on the primary. This setting is particularly useful because the most common reason for conflict between primaries and standby servers is _early cleanup_. This occurs when a primary reaps rows that are no longer visible to any of its ongoing queries, but by doing so leaves a large discrepancy between itself and any standby servers that may need to keep those rows around to satisfy their open queries (and once again, stalling the application of WAL).
@@ -52,7 +54,7 @@ At some point in the past while building out their product, the Heroku Postgres 
 
 While working nicely in most cases, the inadvertent side effect to this decision was to open the possibility of table bloat resulting from standby feedback to impact the operation of hot tables on the primary (as described above). Although somewhat intuitive after all the background information is known, this can be an extremely surprising effect if it isn't. It took us a few incidents in production before we finally figured out exactly what was going on.
 
-## The Mechanics of `hot_standby_feedback` (#hot-standby-feedback)
+## The Mechanics of Hot Standby Feedback (#hot-standby-feedback-mechanics)
 
 The implementation of `hot_standby_feedback` is pretty interesting and quite digestible (which was a pleasant surprise for me), so let's dig into the Postgres source a little bit. Note that the Postgres is still under active development, and as such made of these code snippets are probably going to be outdated in short order, but the overall concept is likely to be pretty stable for some time to come.
 
