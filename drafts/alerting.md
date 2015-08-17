@@ -1,9 +1,9 @@
-Adding alerts to systems has entered our institutional memory as a widespread
-standard practice that helps engineers keep their production systems up. The
-basic idea is that systems should be designed in such a way that they should be
-able to compensate for common failure cases, but if something happens that's
-beyond the boundaries of the system's ability to handle, it should tell a human
-about it so that they can come in and fix the problem manually.
+Adding alerts to systems has become a widespread standard practice that helps
+engineers keep their production systems up. The basic idea of such a setup is
+that systems should be designed in such a way that they should be able to
+compensate for common failure cases, but if something happens that's beyond the
+boundaries of the system's ability to handle, it should tell a human about it
+so that they can come in and fix the problem manually.
 
 The on-call model for software was adopted from other industries, the surgeon
 who may get called in to perform an emergency surgery for example. But unlike
@@ -13,16 +13,16 @@ with the brunt of failures being handled by internal systems automatically and
 relatively few dropping through the cracks to a human. Receiving a page is of
 course a less-than-desirable outcome because it might lead to someone waking up
 in the middle of the night to fix a problem at work, making automation
-attractive, but not sufficient in itself.
+attractive (but not wholly sufficient in itself).
 
 Adopting a system of alerting certainly isn't a problem-free endeavor though;
-like many other areas in technology, there are plenty of pitfalls to run into.
-Lack of a appropriate discipline while designing them can lead to bad weeks
-on-call and operator fatigue. Specifically, here are a few problems that are
-easy to run into:
+like many other areas in technology, there are a plethora of pitfalls to run
+into.  Lack of a appropriate discipline while designing them can lead to bad
+weeks on-call and operator fatigue. Specifically, here are a few problems that
+are easy to run into:
 
-* Alarms that page too aggressively; they're respond to and it turns out that
-  there's nothing wrong.
+* Alarms that page too aggressively; they're responded to and it turns out that
+  nothing is wrong.
 * Alarms that aren't specific enough; they're responded to and significantly
   more analysis is needed to figure out what's going on.
 * Alarms that need to be passed down the line because they only represent an
@@ -48,13 +48,13 @@ half-asleep.
 This one may seem obvious, but there are quite a few types of alerts that seem
 like a good idea until a closer inspection reveals that they're breaking the
 granularity rule. For example, an alert on something like a service's HTTP
-`/health` endpoint is a very widespread pattern, but for which a failure can
-mean anything from a thread deadlock to its database going down. A much more
-powerful alternative pattern is to have a background process constantly logging
-fine-grain health information on a wide range of system telemetry, and using
-that to implement alarms that try to detect each type of failure condition
-individually. This will allow an operator to identity the root of the failure
-faster, and execute a quick resolution.
+`/health` endpoint is a very widespread pattern, but one where a failure can
+ambiguously mean anything from a thread deadlock to its database going down. A
+much more powerful alternative pattern is to have a background process
+constantly logging fine-grain health information on a wide range of system
+telemetry, and using that to implement alarms that try to detect each type of
+failure condition individually. This will allow an operator to identity the
+root of the failure faster, and execute a quick resolution.
 
 A goal to shoot for here is to make sure that every alarm in your system has a
 1:1 ratio with a possible causation. If receiving an alert could mean that more
@@ -76,12 +76,12 @@ originally been alerting based on the number of jobs in our background queue
 because that was the most obvious symptom of the problem. Upon closer study,
 we realized that the job queue only bloated because the time to lock a job was
 increasing, so that lock time became a more obvious candidate for an alert. But
-going in even further, we realized that it was the number of dead tuples in an
-index's B-tree that was affecting the lock time, so that number seemed even
-more appropriate. But in a job queue with fairly constant throughput, the
-number of dead tuples in the index is a direct function of oldest transaction
-in the system, so in the end we settled on that as the most optimal fit for an
-alarm.
+going in even further, we realized that the reason lock time degraded was
+almost always due to an old transaction somewhere in the system, so we started
+alerting on that. After even more time passed, we noticed lock degradation that
+was unrelated to oldest transaction, so we started alerting on the number of
+dead tuples in the table, which is directly correlated to lock time and an
+early warning for when the system starts degrading for any reason.
 
 ### Minimize External Services (#external-services)
 
@@ -183,8 +183,8 @@ but at a level that would trigger based on occasional ambient spikes in backend
 errors, which caused it to go off randomly every day or two. Every time it did,
 an operator would have to go in, find the service that was causing the trouble,
 and compare its current error levels to historical records before deciding how
-to proceed. It didn't take long before operators were ignoring these false
-positives completely.
+to proceed. It didn't take long before operators were ignoring these alarms
+completely, making them noisy and worthless.
 
 ### Treat Alarms as an Evolving System (#evolve)
 
