@@ -7,7 +7,7 @@ _(Caution: major spoilers below.)_
 
 _(Note: I'd originally written this on February 24th, 2015, but recently found it in my drafts unpublished. I made a few edits and pushed it up with a new timestamp.)_
 
-★ ★ ★ ★
+★ ★ ★ ★ (out of five)
 
 Best Picture nominee Whiplash is a very emotional production centering around the relationship between first-year jazz student Andrew Neiman (Miles Teller) and conductor Terence Fletcher (J.K. Simmons). Fletcher's style of teaching is an attempt to motivate Neiman in unconventional ways through a barrage of vocal and physical abuse along with public humiliation. It does drive Neiman to excel, but also comes with a steep price on his mental well-being, and before too long Neiman's life and relationships begin to unravel around him.
 

@@ -3,7 +3,7 @@ title: The Everything Store
 published_at: 2015-08-09T18:10:56Z
 ---
 
-★ ★ ★ ★ ★
+★ ★ ★ ★ ★ (out of five)
 
 I just finished _The Everything Store_ by Brad Stone and now is as good of a
 time as any to reflect on the nature of one of the giants of the modern day,
