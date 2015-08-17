@@ -248,5 +248,5 @@ There's a common theme to all the guidelines mentioned above: most of them are
 intuitive at first sight, but can still represent dangers for even experienced
 teams. A successful process tries to use whatever guidelines are helpful to put
 together an initial set of alarms for a service, and then makes sure to iterate
-until that set's been optimized to maximize uptime and speed to resolution, all
-the while decreasing operator pain.
+until that set has been optimized to maximize uptime and speed to resolution,
+all the while decreasing operator pain.
