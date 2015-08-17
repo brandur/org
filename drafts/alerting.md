@@ -73,15 +73,15 @@ through these abstractions until only the most basic level is left.
 As an example, I previously wrote about how [long-lived transactions degraded
 the performance of our Postgres-based job queue](/postgres-queues). We'd
 originally been alerting based on the number of jobs in our background queue
-because that was the most obvious symptom of the problem. Upon closer study
-though, we realized that the job queue only bloated because the time to lock a
-job was increasing, so that lock time became a more obvious candidate for an
-alert. But going in even further, we realized that it was the number of dead
-tuples in an index's B-tree that was affecting the lock time, so that number
-seemed even more appropriate. But in a job queue with fairly constant
-throughput, the number of dead tuples in the index is a direct function of
-oldest transaction in the system, so in the end we settled on that as the most
-optimal fit for an alarm.
+because that was the most obvious symptom of the problem. Upon closer study,
+we realized that the job queue only bloated because the time to lock a job was
+increasing, so that lock time became a more obvious candidate for an alert. But
+going in even further, we realized that it was the number of dead tuples in an
+index's B-tree that was affecting the lock time, so that number seemed even
+more appropriate. But in a job queue with fairly constant throughput, the
+number of dead tuples in the index is a direct function of oldest transaction
+in the system, so in the end we settled on that as the most optimal fit for an
+alarm.
 
 ### Minimize External Services (#external-services)
 
