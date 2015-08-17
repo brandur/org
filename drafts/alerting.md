@@ -33,7 +33,7 @@ into are:
 There's no universal playbook that'll ensure that these kinds of things never
 surface, but following a few general guidelines can help reduce the number of
 them significantly. Here's a few that I've assembled over the years while
-putting alerts into production at Heroku.
+putting alerts into production for various services.
 
 ## Guidelines (#guidelines)
 
