@@ -18,8 +18,8 @@ attractive, but not sufficient in itself.
 Adopting a system of alerting certainly isn't a problem-free endeavor though;
 like many other areas in technology, there are plenty of pitfalls to run into.
 Lack of a appropriate discipline while designing them can lead to bad weeks
-on-call and operator fatigue. Specifically, a few problems that are easy to run
-into are:
+on-call and operator fatigue. Specifically, here are a few problems that are
+easy to run into:
 
 * Alarms that page too aggressively; they're respond to and it turns out that
   there's nothing wrong.
