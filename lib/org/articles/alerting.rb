@@ -5,7 +5,7 @@ module Org
 A set of general guidelines to consider when designing a alerts for a production system.
       eos
       location:     "Leipzig (finished in San Francisco)",
-      published_at: Time.parse("2015-05-24T09:32:24Z"),
+      published_at: Time.parse("2015-08-18T11:28:48Z"),
       signature:    true,
       title:        "Designing Alerts"
     } do
