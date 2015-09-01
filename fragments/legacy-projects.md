@@ -42,7 +42,7 @@ also seem like an obvious step, but keep this in mind: you're not just looking
 for somebody to merge pull requests, you're looking for an overseer who cares
 about the project on a deep level, and who strive continuously to help build a
 better future for it. Once other contributors realize that patches are now
-being rejected on the basis quality, it doesn't take long for things to start
+being rejected on the basis of quality, it doesn't take long for things to start
 improving.
 
 Finding this person is the first step; empowering them to do their job
@@ -57,7 +57,7 @@ world where hard deadlines are around every corner, it's tempting to justify
 inferior quality with a line like, "We just don't have time to do this the
 right way right now. We'll improve it later." As most engineers with a few
 years of experience under their belts can tell you, that "later" will never
-come.  The best way to stop that debt from piling up is to stop it in the
+come. The best way to stop that debt from piling up is to stop it in the
 present, not to offload it to an imaginary future of relative idleness. A
 maintainer must be able to call out problems and apply resistance even in the
 face of important company directives.
