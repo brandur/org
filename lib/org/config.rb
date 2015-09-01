@@ -22,6 +22,10 @@ module Org
       %w{1 true yes}.include?(env("FORCE_SSL"))
     end
 
+    def github_repo
+      env("GITHUB_REPO") || "https://github.com/brandur/org"
+    end
+
     def google_analytics_id
       env("GOOGLE_ANALYTICS_ID")
     end

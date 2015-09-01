@@ -32,8 +32,9 @@
       .divider-short
       .info
         p <strong>#{@article[:title]}</strong> was published on <strong>#{@article[:published_at].strftime("%B %e, %Y")}</strong> from <strong>#{@article[:location]}</strong>. Find me on Twitter at <strong><a href="https://twitter.com/brandur">@brandur</a></strong>.
-        - if @article[:attributions]
-          p.attribution== @article[:attributions]
         - if @article[:hn_link]
           p Please post comments and discussion to <strong><a href="#{@article[:hn_link]}">Hacker News</a></strong>.
+        p Find an error? Please consider <a href="#{Org::Config.github_repo}/edit/master/articles/#{@article[:slug]}.md">sending a pull request</a>.
+        - if @article[:attributions]
+          p.attribution== @article[:attributions]
   == render :slim, :"_footer", layout: false
