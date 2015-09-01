@@ -14,5 +14,5 @@
       == @content
       .divider-short
       .info
-        p Find an error? Please consider <a href="https://github.com/brandur/org/edit/master/fragments/#{@fragment[:slug]}.md">sending a pull request</a>.
+        p Find an error? Please consider <a href="#{Org::Config.github_repo}/edit/master/fragments/#{@fragment[:slug]}.md">sending a pull request</a>.
 == render :slim, :"_footer", layout: false
