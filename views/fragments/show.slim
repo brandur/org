@@ -4,13 +4,16 @@
 .top-spacing
 .fragments
   .content
+    - if @fragment[:image]
+      img#mood src=@fragment[:image]
     #title
       #lead
         a href="/fragments" Fragments
       h1= @fragment[:title]
       .meta
         = @fragment[:published_at].strftime("%B %e, %Y")
-    article
+    - klass = @fragment[:image] ? "with-mood" : "without-mood"
+    article class=klass
       == @content
       .divider-short
       .info

@@ -49,6 +49,7 @@ module Org
           meta = YAML.load($1)
           {
             content:          $2,
+            image:            meta["image"],
             last_modified_at: Time.now,
             published_at:     meta["published_at"],
             slug:             File.basename(f).chomp(".md"),

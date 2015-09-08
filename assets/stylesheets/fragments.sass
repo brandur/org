@@ -15,10 +15,41 @@ $secondary: #cdcdcd
     white-space: pre-wrap
 
   .content
-    max-width: 550px
+    // constrain very large screens
+    max-width: 1800px
+
+    // this is a "highlight" image that may or may not be included with an
+    // article
+    img#mood
+      width: 100%
+
+    article.with-mood
+      column-width: 280px
+      -moz-column-width: 280px
+      -webkit-column-width: 280px
+      column-gap: 40px
+      -moz-column-gap: 40px
+      -webkit-column-gap: 40px
+
+      h1
+        column-span: all
+        -moz-column-width: all
+        -webkit-column-width: all
+
+    article.without-mood
+      max-width: 550px
 
   .meta
     color: $secondary
     font-family: $sans_serif
     font-size: 12px
     font-style: italic
+
+@media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
+
+  .fragments
+
+    .content
+      // hide image on very small screens
+      img#mood
+        display: none
