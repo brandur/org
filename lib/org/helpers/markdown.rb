@@ -56,7 +56,7 @@ module Org::Helpers
     def render_redcarpet(str)
       renderer = Redcarpet::Markdown.new(
         Redcarpet::Render::HTML.new,
-        Slim::Embedded.default_options[:markdown]
+        Slim::Embedded.options[:markdown]
       )
 
       str = PRE_RENDER_TRANSFORMS.inject(str) { |str, m| method(m).call(str) }
