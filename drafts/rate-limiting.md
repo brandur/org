@@ -23,7 +23,7 @@ kind of action is performed and another leaks water from all buckets.
 
 A you can probably imagine, the leaky bucket produces a very smooth rate
 limiting effect. A user can still exhaust their entire quota by filling their
-entire bucket nearly instantaneously, but after realizing the erorr, they
+entire bucket nearly instantaneously, but after realizing the error, they
 should still have access to more quota fairly quickly as the leak starts to
 drain the bucket instantly.
 
