@@ -8,8 +8,8 @@ require "./lib/org"
 
 # configuration
 DB = Sequel.connect(Org::Config.black_swan_database_url)
-Slim::Engine.set_default_options format: :html, pretty: true
-Slim::Embedded.default_options[:markdown] = {
+Slim::Engine.set_options format: :html, pretty: true
+Slim::Embedded.options[:markdown] = {
   autolink:           false,
   fenced_code_blocks: true,
   strikethrough:      true,
