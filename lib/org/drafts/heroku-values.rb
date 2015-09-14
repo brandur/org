@@ -2,7 +2,7 @@ module Org
   class Articles
     article "/heroku-values", {
       hook:         <<-eos,
-Some of the things that I came to appreciate while working at Heroku.
+In retrospect, some of my favorite practices and ideas from almost four years at Heroku.
       eos
       image:        "/assets/heroku-values/heroku-values.jpg",
       location:     "San Francisco",
