@@ -6,7 +6,7 @@ Some of the things that I came to appreciate while working at Heroku.
       eos
       image:        "/assets/heroku-values/heroku-values.jpg",
       location:     "San Francisco",
-      published_at: Time.parse("Sat Feb 15 17:51:32 PST 2014"),
+      published_at: Time.parse("2015-09-14T22:18:58Z"),
       signature:    true,
       title:        "My Heroku Values",
     } do
