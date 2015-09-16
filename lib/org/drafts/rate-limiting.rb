@@ -8,7 +8,7 @@ Implementing rate limiting using Generic Cell Rate Algorithm (GCRA), a sliding w
       location:     "San Francisco",
       published_at: Time.parse("2015-08-30T16:40:36Z"),
       signature:    true,
-      title:        "Rate Limiting and GCRA",
+      title:        "Rate Limiting, Cells, and GCRA",
 #      attributions: <<-eos
 #Header image by <strong><a href="https://www.flickr.com/photos/javmorcas/6326542870/">Javier Morales</a></strong>. Licensed under Creative Commons BY-NC-ND 2.0.
 #      eos
