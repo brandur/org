@@ -1,72 +1,130 @@
-In the spirit of [Adam Wiggins' inspiring list of Heroku values][wiggins-values] which was published around the the time of this departure from the company, I wanted to publish a list of my own as I make my own transition away.
+In the spirit of [Adam Wiggins' inspiring list of Heroku
+values][wiggins-values] which was published when he left the company, I wanted
+to publish a list of my own as I make my own transition away.
 
 My time at Heroku was easily the most valuable learning experience of my life, and I'll always remember my time there very fondly. So many parts of the job were such vast improvements over anywhere I'd worked before that I wanted to put at least a few of these great concepts down on paper for future reference (and hopefully re-use).
+
+I suspect that at least some of these ideas might be interesting to even those
+with no relation to the company. Heroku was a place founded and formed by
+people who came from outside the traditional corporate structure, and what
+resulted was a mostly divergent branch of structure compared to most big
+companies. Even the bad ideas should hopefully be somewhat novel.
 
 I should add the caveat that this is a compendium of values from the entire
 duration of my stay at the company; not all had been established when I got
 there, and not all were still in place when I left.
 
-## Technology
+## Technology (#technology)
 
-### The Platform
+### The Platform (#platform)
 
-I wouldn't go so far to say that companies should definitively use the Heroku
-platform, but it is a good way to have one without a major investment in
-infrastructure. As a company scales, it might be worth putting a self-hosted
-one in place like Remind has done with [Empire][empire] or Soundcloud has done
-with [Bazooka][bazooka] (PDF warning). GitHub's model of deploying experiments
-and small apps to Heroku and eventually promoting them to more dedicated
+One of the greatest pleasures during work at Heroku was the Heroku product
+itself. Apps could be created and deployed in seconds, which encouraged
+innovation by making prototyping easy, and allowed incredibly fast iteration on
+production products. Every company should have a Heroku-like interface for
+their developers to use.
+
+I wouldn't go so far to say that companies should definitively use Heroku, but
+it is a good way to have one without a major investment in infrastructure. As a
+company scales, it might be worth putting a self-hosted one in place like
+Remind has done with [Empire][empire] or Soundcloud has done with
+[Bazooka][bazooka] (PDF warning). GitHub's model of deploying experiments and
+small apps to Heroku and eventually promoting them to more dedicated
 infrastructure (if necessary) is also worthy of note.
 
-### Dogfooding
+### Dogfooding (#dogfooding)
 
-Heroku OAuth.
+Continuing from above, we used our own products wherever possible. Every
+production app at the company was deployed on the Heroku platform except for a
+small set of core services that couldn't be. More internal Salesforce apps were
+making their way over every year as well, demonstrating that the idea was
+making its way out into the wider company.
 
-Dashboard uses the V3 API. I can't even describe the number of bugs uncovered
-by this technique; bugs that would have otherwise been encountered by
-customers.
+Every internal app that required a login (e.g. the Heroku Dashboard, the Help
+system, the add-ons SSO portal) used the same Heroku OAuth provider that's
+available to third parties, leaving services very loosely coupled to each
+other.
 
-### Twelve Factor
+Still one of my favorite accomplishments is that Dashboard (the service that
+allows customers to log into a web interface and manage their apps) runs off of
+the same [public V3 API][heroku-api] available to customers. I can't even
+describe the number of bugs uncovered by this technique; bugs that would have
+otherwise been encountered by customers.
 
-I've previously read criticism on [twelve-factor][twelve-factor] which postulates that it's an artificial set of principles to work around limitations in the platform. I don't buy this for a second, but I'll let [Randall Degges cover this position][degges-12factor] because he puts it far more succinctly than I ever could.
+### Twelve Factor (#twelve-factor)
 
-Provided great internal conventions. We'd use it for apps on and off the platform.
+[Twelve-factor][twelve-factor] methodology provided a very nice set of guiding
+principles for internal apps so that an engineer could reason about them more
+easily. Every app got its configuration from the environment. Every app had a
+procfile. Every app emitted logs to standard out.
 
-### The HTTP API Design Guide
+I've previously read criticism on twelve-factor which postulates that it's an
+artificial set of principles to work around limitations in the platform. I
+don't buy this for a second, but I'll let [Randall Degges cover this
+position][degges-12factor] because he puts it far more succinctly than I ever
+could.
 
-Interagent.
+### The HTTP API Design Guide (#http-api-design)
 
-### Service Conventions
+A fundamental law of the universe is that every engineer will design an HTTP
+API slightly differently, even if they're being guided by prior art. I've seen
+engineers name their new resource `/resource_with_underscores` even though 78
+out of 78 of the resources that already exist look like
+`/resource-with-hyphens`.
 
-Pliny.
+We knew that if we wanted a consistent public API, we needed to codify a set of
+opinionated conventions, which is why we wrote the [the HTTP API design
+guide][api-design-guide] based off of the decisions we'd made building the V3
+API. The result is that Heroku's API is one of the most self-consistent HTTP
+APIs that you'll ever find, despite having been contributed to by dozens of
+different engineers.
 
-Productionization.
+### Service Conventions (#service-conventions)
 
-### Postgres
+Twelve-factor offered some convention when it came to deploying new services,
+but we tried to take standardization much further with our service toolkit
+[Pliny][pliny], which was designed to offer a powerful out-of-the-box stack
+that would be a sane choice for most internal Heroku apps.
 
-If given the opportunity to start from a blank slate, I can't say for sure that I would use some of our staple technologies like Ruby again, but Postgres is a certainty.
+My only regrets with regards to Pliny are not having started the project
+earlier and not sinking a lot more time into it. Even the basic form in which
+the project exists today took Heroku a long way in that not every new service
+was a special snowflake of its author's favorite ideas (which was previously a
+major problem), but we could have gone so much further by putting in automatic
+distribution of updates, more free services (e.g. built-in rate limiting), and
+service discovery and registration. Internal service frameworks are an
+important enough problem that most mid-sized I/P/SaaS companies should have
+dedicated people building them.
+
+### Postgres (#postgres)
+
+If given the opportunity to start a new stack from a blank slate, I might avoid
+some of Heroku's current technological staples (e.g. Ruby). One of the few that
+I _would_ use without a doubt though is Postgres. It's powerful, flexible,
+incredibly stable, and has consistently been a pleasure to work with over the
+years.
 
 It's possible that we missed out on some cutting edge technologies that would
 have offered major benefits, but the resources saved by _not_ jumping on every
-database du jour is incalculable. There's probably still room in Heroku's stack
-for an HA store, but it was the right thing to do to delay the introduction of
-one until a number of mature options were available. In the meantime, we got
-really good at operating Postgres.
+data store du jour is incalculable. There's probably still room in Heroku's
+stack for an HA store, but it was the right thing to do to delay the
+introduction of one until a number of mature options were available. In the
+meantime, we got really good at operating Postgres.
 
 The only thing better than Postgres itself was our Heroku Data team (known
 affectionately internally as the DOD, or Department of Data). This team of
 hugely talented engineers saved my skin an untold number of times as I dealt
-[with pretty involved operational problems][postgres-queues] (thank-you
-[Maciek][maciek] in particular for stepping in way more often than you should
-have). I was told a number of times that I was their highest-maintenance
-customer, and it was probably true. 
-## Culture
+[with pretty messy operational problems][postgres-queues] [1]. I was told a
+number of times that I was their highest-maintenance customer, and it was
+true.
 
-### Leadership & Inspiration
+## Culture (#culture)
+
+### Leadership & Inspiration (#inspiration)
 
 I've never had the opportunity to work with so many people who inspired me on such a fundamental level as those who I met at Heroku, especially in my early days there. The company had everything: great leaders, inspiring thinkers, great engineers, and great designers.
 
-### Self-service
+### Self-service (#selfservice)
 
 Give people the tools to control their own destinies.
 
@@ -74,13 +132,13 @@ This value is hard to foster. People don't want self-service; they'd much prefer
 
 Prevents [constant disruption on open communication channels][slack-distractor].
 
-### Cross-team Contribution
+### Cross-team Contribution (#cross-contribution)
 
 Pulls.
 
 This one died, but while alive it was a beautiful thing.
 
-### Shipping Cadence
+### Shipping Cadence (#shipping)
 
 No QA.
 
@@ -90,11 +148,11 @@ due to a weak process for getting them across the finish line. This problem was
 examined and corrected, and today products make it out the door on a regular
 basis.
 
-### High Expectations for Engineers
+### High Expectations for Engineers (#engineers)
 
 No extreme specialization. Engineering talent is generally good enough that most people can solve most problems for themselves. Remember, engineers who need constant hand holding from other engineers are a not an asset, they're a cost center.
 
-### Technical Culture
+### Technical Culture (#technical-culture)
 
 Workshop.
 
@@ -102,7 +160,7 @@ For quite some time we had an event every Friday called Workshop where
 engineers could show off some of the interesting projects they were working. It
 was designed to educate and inspire, and it worked.
 
-### Flexible Environment
+### Flexible Environment (#flexible-environment)
 
 <figure>
   <p><img src="https://farm4.staticflickr.com/3685/9549450965_84f27e06b4_z.jpg"></p>
@@ -121,15 +179,21 @@ to hire well. If you've got the right people on your team, you can sit back and
 relax knowing through blind faith alone that they're doing the right thing (even
 if they're working from across the Atlantic).
 
-### Coffee
+### Coffee (#coffee)
 
-For the longest time, there wasn't a coffee machine at Heroku, and I'm glad there wasn't, because if there had been I probably never would have learnt to make coffee with the Chemex pot.
+Admittedly, this one is a little self-indulgent, but I came to appreciate
+coffee for the first time while at Heroku. For the longest time, there wasn't
+even a coffee machine in the office; just Chemex pots, a grinder, and paper
+filters. The idea was that making coffee would be five to ten minute process,
+during which there would be time to interact with colleagues who happened to
+drop by the area. The system worked.
 
-Instead we had Chemex pots, a grinder, and paper filters. This sounds like some kind of hipster coffee elitism, and to some degree it is, but the idea was that making coffee would be five to ten minute process. This would in turn bring people together in the kitchen where they would have the opportunity to get away from their computers for a while and speak to their colleagues in-person. It works.
+I leanrt how to use both Chemex and AeroPress; both of which I continue to use
+regularly.
 
-## Process & Organization
+## Process & Organization (#process)
 
-### GitHub
+### GitHub (#github)
 
 <figure>
   <p><img src="https://farm8.staticflickr.com/7727/16585790614_1b6a09c72e_z.jpg"></p>
@@ -146,13 +210,13 @@ It was a sad day when I realized that Trello was becoming the most prevalent too
 
 Wikis.
 
-### Resources
+### Resources (#resources)
 
 Provision the resources you need, including third party services from the large add-on catalog.
 
 I've previously worked at companies where provisioning a job queue is a multi-month process involving endless meetings, territorial operations people, mountains of paperwork, and by the end of the whole ordeal, you have exactly one installation and have no answer to working with staging or development environments.
 
-### Total Ownership
+### Total Ownership (#total-ownership)
 
 Our own version of "devops", total ownership was meant to convey that a team
 responsible for the development of a component was also responsible for its
@@ -168,13 +232,13 @@ still a little on the fence about it. While I don't miss the multi-week
 deployment schedules, I do miss the regular blocks of daily focus during which
 I would never have to stop work and deal with an interruption from production.
 
-### Organize Around Services
+### Organize Around Services (#organize-around-services)
 
 Following from total ownership, teams were built around the services that they owned.
 
 Extract services and form teams around them.
 
-### Technical Management
+### Technical Management (#management)
 
 When I started at Heroku, my manager knew the codebase better than I did, knew
 Ruby better than I did, and pushed more commits in a day than I would do in a
@@ -190,17 +254,23 @@ what was happening.
 We eventually moved to a place where a virtuous manager was one who had never
 committed a line of code, responded to a page, or looked at a support ticket;
 and who was expected to only have a tenuous grasp of the products that their
-teams were building (i.e. probably the situation that most big organizations
-have). But although technical management wasn't an idea that lasted, we saw the
+team was building (i.e. probably the situation that most big organizations
+have). But although technical management wasn't an idea that lasted, it was the
 promised land while it did.
 
+[api-design-guide]: https://github.com/interagent/http-api-design
 [bazooka]: http://gotocon.com/dl/goto-zurich-2013/slides/AlexanderSimmerl_and_MattProud_BuildingAnInHouseHeroku.pdf
 [degges-12factor]: http://www.rdegges.com/heroku-isnt-for-idiots/
 [empire]: https://github.com/remind101/empire
 [ghi]: https://github.com/stephencelis/ghi
+[heroku-api]: https://devcenter.heroku.com/articles/platform-api-reference
 [hub]: https://github.com/github/hub
 [maciek]: https://twitter.com/uhoh_itsmaciek
+[pliny]: https://github.com/interagent/pliny
 [postgres-queues]: /postgres-queues
 [slack-distractor]: http://www.guilded.co/blog/2015/08/29/slack-the-ultimate-distractor.html
 [twelve-factor]: http://12factor.net/
 [wiggins-values]: https://gist.github.com/adamwiggins/5687294
+
+[1] Thank-you [Maciek][maciek] in particular for stepping in and helping out
+    with my Postgres woes way more often than you should have.
