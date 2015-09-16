@@ -85,7 +85,7 @@ def call(env)
 end
 ```
 
-The event stream emmitted by the composed apps is now tagged based on all generated request IDs:
+The event stream emitted by the composed apps is now tagged based on all generated request IDs:
 
 ```
 app=id session_check elapsed=0.000 request_id=4edef22b...
