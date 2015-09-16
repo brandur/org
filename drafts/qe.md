@@ -1,4 +1,4 @@
-As QE3 continues to demonstrate that its nickname of QE-Infinity is well-deserved, it's increasingly important that the general public understands how it works and is able to grasp its long term consequences on the financial system. Is Bernanke actually printing $85 billion a month? Does that mean I'll be paying $100 for a loaf of bread by 2020? Looking around the web, I was abhored by just how difficult it was to find an explanation of the precise mechanics of QE; even the Fed itself [assures us that it's not printing](http://www.federalreserve.gov/faqs/money_12853.htm), but then proceeds to gloss over the details.
+As QE3 continues to demonstrate that its nickname of QE-Infinity is well-deserved, it's increasingly important that the general public understands how it works and is able to grasp its long term consequences on the financial system. Is Yellen actually printing $85 billion a month [1]? Does that mean I'll be paying $100 for a loaf of bread by 2020? Looking around the web, I was abhored by just how difficult it was to find an explanation of the precise mechanics of QE; even the Fed itself [assures us that it's not printing](http://www.federalreserve.gov/faqs/money_12853.htm), but then proceeds to gloss over the details.
 
 What follows is my attempt to explain QE in the simple and pragmatic style of the technical blog posts that I've read over the years (thus "for hackers"). Keep in mind that I'm an enthusiast but not an expert, and [welcome feedback and corrections](mailto:brandur@brandur.org).
 
@@ -194,3 +194,5 @@ The Fed's purchase of large numbers of treasuries is enough to push down the **y
 * [Why quantitative easing isn't printing money](http://www.cnbc.com/id/100760150)
 * [What is the purpose of QE?](http://www.ritholtz.com/blog/2012/12/what-is-the-purpose-of-qe/)
 * [Does Chairman Bernanke Know Squat About Money](http://www.economonitor.com/lrwray/2012/04/19/does-chairman-bernanke-know-squat-about-money/)
+
+[1] When this article was orginally written I'd had Bernanke in place of Yellen as he was still the chairman of the Fed.
