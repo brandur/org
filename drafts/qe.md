@@ -173,6 +173,12 @@ So in other words, the inflationary pressure here may not be that much stronger 
       <td>$2,582B</td>
       <td>$1,227B</td>
     </tr>
+    <tr>
+      <td>January 2015</td>
+      <td>$4,017B</td>
+      <td>$2,746B</td>
+      <td>$1,333B</td>
+    </tr>
   </table>
   <figcaption>Monetary base, reserves, and currency in circulation as published by the Fed.</figcaption>
 </figure>
