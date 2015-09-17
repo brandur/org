@@ -1,11 +1,25 @@
-Rate limiting 
+Rate limiting is a mechanism that many developers (especially those running
+services) may find themselves looking into at some point in their careers. A
+few places that rate limiting might be needed are:
+
+1. **Sharing access to limited resources.** For example, requests made to an API
+   where the limited resources are your server capacity, database load, etc.
+2. **Security.** For example, limiting the number of second factor attempts that a
+   user is allowed to perform, or the number of times they're allowed to get
+   their password wrong.
+3. **Revenue.** Certain services might want to limit actions based on the tier of
+   their customer's service, and thus create a revenue model based on rate
+   limiting.
+
+Here we'll explore a few different rate limiting algorithms and culminate at
+one called GCRA which has some very nice properties.
 
 ## Time Bucketed (#time-bucketed)
 
 A very simple rate limiting implementation is to simply bucket the remaining
 limit for a certain amount of time. Start a bucket when the first action comes
 in, decrement its value as more actions appear, and expire the bucket after the
-configured rate limiting period. The pseudo-code might look like the following:
+configured rate limiting period. The pseudo-code looks like:
 
 ``` ruby
 # 5000 allowed actions per hour
@@ -48,22 +62,20 @@ the case if we could find an algorithm that would force these requests to be
 more evenly spaced out.
 
 GitHub's API is one such service that implements this naive algorithm (I will
-randomly pick on them, but many others do this as well), and I can use it to
-easily demonstrate this problem:
-
-``` sh
-```
-
-I'll be locked out for the next hour:
+randomly pick on them, but many others do this as well), and I can use a
+benchmarking tool to help demonstrate the problem. After my 5000 requests are
+through I'll be locked out for the next hour:
 
 ``` sh
 $ curl --silent --head -i -H "Authorization: token $GITHUB_TOKEN" \
     https://api.github.com/users/brandur | grep RateLimit-Reset
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 0
 X-RateLimit-Reset: 1442423816
 
 $ RESET=1442423816 ruby -e 'puts "%.0f minute(s) before reset" % \
     ((Time.at(ENV["RESET"].to_i) - Time.now) / 60)'
-29 minute(s) before reset
+58 minute(s) before reset
 ```
 
 ## Leaky Bucket (#leaky-bucket)
@@ -80,29 +92,31 @@ than the amount leaving through the leak, the bucket starts to fill. Actions
 are disallowed if the bucket is full.
 
 ``` monodraw
-          ***      User                           
-      │   ***    actions                          
-      │            add                            
-      │          "water"                          
-      │                                           
-      │                                           
-═╗    ▼   ***        ╔═       ▲                   
- ║        ***        ║        │                   
- ║                   ║        │                   
- ║                   ║   τ = Bucket               
- ║                   ║    capacity                
- ║*******************║        │                   
- ║*******************║        │                   
- ║*******************║        │                   
- ╚════════╗*╔════════╝        ▼                   
-          ║*║                                     
-         ═╝*╚═                                    
-           *                 ┌──────────────────┐ 
-      │    *                 │                  │░
-      │    *    Constant     │   LEAKY BUCKET   │░
-      │    *    drip out     │                  │░
-      ▼    *                 └──────────────────┘░
-           *                  ░░░░░░░░░░░░░░░░░░░░
+┌──────────────────┐               *                      
+│                  │░             ***      User           
+│   LEAKY BUCKET   │░         │   ***    actions          
+│                  │░         │            add            
+└──────────────────┘░         │          "water"          
+ ░░░░░░░░░░░░░░░░░░░░         │                           
+                              │    *                      
+                        ═╗    ▼   ***        ╔═      ▲    
+                         ║        ***        ║       │    
+                         ║                   ║       │    
+                         ║                   ║  τ = Bucket
+                         ║                   ║   capacity 
+                         ║*******************║       │    
+                         ║*******************║       │    
+                         ║*******************║       │    
+                         ╚════════╗*╔════════╝       ▼    
+                                  ║*║                     
+                                  ║*║                     
+                                 ═╝*╚═                    
+                                   *                      
+                              │    *                      
+                              │    *    Constant          
+                              │    *    drip out          
+                              ▼    *                      
+                                   *                      
 ```
 
 The leaky bucket produces a very smooth rate limiting effect. A user can still
@@ -150,16 +164,19 @@ successful request, a new TAT is calculated by adding T.
 
 The pseudo-code for the algorithm can look a little daunting, so instead of
 providing it, I'll recommend taking a look at our reference implementation
-[Throttled](#throttled) (more on this below). Instead, let's take a look at
-visual representation of the timeline and various variables for successful
-request. Here we see an allowed request where t<sub>0</sub> is within the
-bounds of TAT - (τ + T) (i.e. the time of the next allowed request):
+[Throttled](#throttled) (more on this below) which is free of heavy
+abstractions and straightforward to read. Instead, let's take a look at visual
+representation of the timeline and various variables for successful request.
+Here we see an allowed request where t<sub>0</sub> is within the bounds of TAT
+- (τ + T) (i.e. the time of the next allowed request):
 
 ``` monodraw
-┌──────────────────┐                                                     
-│ ALLOWED REQUEST  │░                                                    
-└──────────────────┘░                                                    
- ░░░░░░░░░░░░░░░░░░░░                                                    
+┌───────────────────┐                                                    
+│                   │░                                                   
+│  ALLOWED REQUEST  │░                                                   
+│                   │░                                                   
+└───────────────────┘░                                                   
+ ░░░░░░░░░░░░░░░░░░░░░                                                   
                                                                          
                 ┌────────┐                                               
                 │allow at│               ┌───────┐     ┌───────┐         
@@ -188,10 +205,12 @@ For a failed request, the time of the next allowed request is in the future,
 prompting us to deny the request:
 
 ``` monodraw
-┌──────────────────┐                                                     
-│  DENIED REQUEST  │░                                                    
-└──────────────────┘░                                                    
- ░░░░░░░░░░░░░░░░░░░░                                                    
+┌───────────────────┐                                                    
+│                   │░                                                   
+│  DENIED REQUEST   │░                                                   
+│                   │░                                                   
+└───────────────────┘░                                                   
+ ░░░░░░░░░░░░░░░░░░░░░                                                   
                                                                          
                 ┌────────┐                                               
   ┌───────┐     │allow at│                             ┌───────┐         
@@ -204,30 +223,32 @@ prompting us to deny the request:
                     │//////////////////////////////////////│             
                     └──────────────────────────────────────┘             
                      ◀────────────────τ + T───────────────▶              
-                                                                         
 ```
 
 Because GCRA is so dependent on time, it's critical to have a strategy for
 making sure that the current time is consistent if rate limits are being
 tracked from multiple deployments. Clock drift between machines could throw off
-the algorithm and lead to false positives (i.e. locked out users). One easy
-strategy here is to use the store's time for synchronization (for example, by
-accessing the `TIME` command in Redis).
+the algorithm and lead to false positives (i.e. users locked out of their
+accounts). One easy strategy here is to use the store's time for
+synchronization (for example, by accessing the `TIME` command in Redis).
 
 ### Throttled (#throttled)
 
 My soon-to-be-colleague [Andrew Metcalf][andrew-metcalf] recently upgraded the
-open-source Golang library [Throttled][throttled] from the naive rate limiting
-implementation that it had been using to the one using GCRA. The package is
-well-documented and well-tested, and should serve as a pretty intuitive
-reference implementation for the curious. It's already taking production
-traffic at Stripe and should be soon at Heroku as well. If any of this was of
-interest to you, we'd love for you to give it a whirl.
+open-source Golang library [Throttled][throttled] [1] from a naive rate
+limiting implementation to the one using GCRA. The package is well-documented
+and well-tested, and should serve as a pretty intuitive reference
+implementation for the curious. It's already taking production traffic at
+Stripe and should be soon at Heroku as well. If any of this was of interest to
+you, we'd love for you to give it a whirl.
 
 [andrew-metcalf]: https://github.com/metcalf
 [atm]: https://en.wikipedia.org/wiki/Asynchronous_Transfer_Mode
 [atm-dead]: http://technologyinside.com/2007/01/31/part-1-the-demise-of-atm…/
 [atm-forum]: https://en.wikipedia.org/wiki/ATM_Forum
+[boom]: https://github.com/rakyll/boom
 [gcra]: https://en.wikipedia.org/wiki/Generic_cell_rate_algorithm
 [leaky-bucket]: https://en.wikipedia.org/wiki/Leaky_bucket
 [throttled]: https://github.com/throttled/throttled
+
+[1] I am also a maintainer on Throttled.
