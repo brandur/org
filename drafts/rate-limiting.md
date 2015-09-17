@@ -234,14 +234,13 @@ synchronization (for example, by accessing the `TIME` command in Redis).
 
 ### Throttled (#throttled)
 
-My soon-to-be-colleague [Andrew Metcalf][andrew-metcalf] recently upgraded the
-open-source Golang library [Throttled][throttled] [2] from a naive rate
-limiting implementation to the one using GCRA. The package is well-documented
-and well-tested, and should serve as a pretty intuitive reference
-implementation for the curious. It's already taking production traffic at
-Stripe and should be soon at Heroku as well. In particular, check out
-[rate.go][throttled-rate] where the bulk of the implementation of GCRA is
-located.
+My colleague [Andrew Metcalf][andrew-metcalf] recently upgraded the open-source
+Golang library [Throttled][throttled] [2] from a naive rate limiting
+implementation to the one using GCRA. The package is well-documented and
+well-tested, and should serve as a pretty intuitive reference implementation
+for the curious. It's already taking production traffic at Stripe and should be
+soon at Heroku as well. In particular, check out [rate.go][throttled-rate]
+where the bulk of the implementation of GCRA is located.
 
 And of course, if you need a rate limiting module and have some Go in your
 stack, we'd love for you to give Throttled a whirl and let us know how it went.
