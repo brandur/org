@@ -1,25 +1,26 @@
 Rate limiting is a mechanism that many developers (especially those running
-services) may find themselves looking into at some point in their careers. A
-few places that rate limiting might be needed are:
+services) may find themselves looking into at some point in their careers. It's
+useful for a variety of purposes, some of which might be:
 
-1. **Sharing access to limited resources.** For example, requests made to an API
-   where the limited resources are your server capacity, database load, etc.
-2. **Security.** For example, limiting the number of second factor attempts that a
-   user is allowed to perform, or the number of times they're allowed to get
-   their password wrong.
+1. **Sharing access to limited resources.** e.g. Requests made to an API where
+   the limited resources are your server capacity, database load, etc.
+2. **Security.** e.g. Limiting the number of second factor attempts that a user
+   is allowed to perform, or the number of times they're allowed to get their
+   password wrong.
 3. **Revenue.** Certain services might want to limit actions based on the tier of
    their customer's service, and thus create a revenue model based on rate
    limiting.
 
 Here we'll explore a few different rate limiting algorithms and culminate at
-one called GCRA which has some very nice properties.
+a sophisticated one called GCRA.
 
 ## Time Bucketed (#time-bucketed)
 
-A very simple rate limiting implementation is to simply bucket the remaining
-limit for a certain amount of time. Start a bucket when the first action comes
-in, decrement its value as more actions appear, and expire the bucket after the
-configured rate limiting period. The pseudo-code looks like:
+A very simple rate limiting implementation is to store a remaining limit in a
+bucket that will expire after a certain amount of time. We can do this by
+starting a bucket when the first action comes in, decrementing its value as
+more actions appear, and make sure it expires after the configured rate
+limiting period. The pseudo-code looks like:
 
 ``` ruby
 # 5000 allowed actions per hour
@@ -49,7 +50,7 @@ care of clean-up.
 
 This method can be somewhat unforgiving for users because it allows a buggy or
 rogue script to burn an account's entire rate limit immediately, and force them
-to wait for the next reset event to be able to get access back.
+to wait for the bucket's expiry to get access back.
 
 By the same principle, the algorithm can be dangerous to the server as well.
 Consider an antisocial script that can make enough concurrent requests that it
@@ -63,8 +64,8 @@ more evenly spaced out.
 
 GitHub's API is one such service that implements this naive algorithm (I will
 randomly pick on them, but many others do this as well), and I can use a
-benchmarking tool to help demonstrate the problem. After my 5000 requests are
-through I'll be locked out for the next hour:
+benchmarking tool to help demonstrate the problem [1]. After my 5000 requests
+are through I'll be locked out for the next hour:
 
 ``` sh
 $ curl --silent --head -i -H "Authorization: token $GITHUB_TOKEN" \
@@ -75,21 +76,21 @@ X-RateLimit-Reset: 1442423816
 
 $ RESET=1442423816 ruby -e 'puts "%.0f minute(s) before reset" % \
     ((Time.at(ENV["RESET"].to_i) - Time.now) / 60)'
-58 minute(s) before reset
+51 minute(s) before reset
 ```
 
 ## Leaky Bucket (#leaky-bucket)
 
 Luckily, an algorithm exists that can take care of the problem of this sort of
-jagged rate limiting called the [leaky bucket][leaky-bucket]. It's very
-intuitive to understand by simply comparing it to its real-world namesake:
-imagine a bucket partially filled with water and which has some fixed capacity
-(τ). The bucket has a leak so that some amount of water is escaping at a
-constant rate (T). Whenever an action that should be rate limited occurs, some
-amount of water flows into the bucket, with the amount being proportional to
-its relative costliness. If the amount of water entering the bucket is greater
-than the amount leaving through the leak, the bucket starts to fill. Actions
-are disallowed if the bucket is full.
+jagged rate limiting called the [leaky bucket][leaky-bucket]. It's intuitive to
+understand by comparing it to its real-world namesake: imagine a bucket
+partially filled with water and which has some fixed capacity (τ). The bucket
+has a leak so that some amount of water is escaping at a constant rate (T).
+Whenever an action that should be rate limited occurs, some amount of water
+flows into the bucket, with the amount being proportional to its relative
+costliness. If the amount of water entering the bucket is greater than the
+amount leaving through the leak, the bucket starts to fill. Actions are
+disallowed if the bucket is full.
 
 ``` monodraw
 ┌──────────────────┐               *                      
@@ -122,8 +123,7 @@ are disallowed if the bucket is full.
 The leaky bucket produces a very smooth rate limiting effect. A user can still
 exhaust their entire quota by filling their entire bucket nearly
 instantaneously, but after realizing the error, they should still have access
-to more quota fairly quickly as the leak starts to drain the bucket
-immediately.
+to more quota quickly as the leak starts to drain the bucket.
 
 The leaky bucket is normally implemented using a background process that
 simulates a leak. It looks for any active buckets that need to be drained, and
@@ -158,12 +158,12 @@ multiplier of our "emission interval" (T), which is dervied from the rate at
 which we want the bucket to refill. When any subsequent request comes in, we
 take the existing TAT, subtract a fixed buffer representing the limit's total
 burst capacity from it (τ + T), and compare the result to the current time.
-This result represents the next time to allow a request and if it's in the past
-we allow the incoming request; if it's in the future, we don't. After a
+This result represents the next time to allow a request. If it's in the past,
+we allow the incoming request, and if it's in the future, we don't. After a
 successful request, a new TAT is calculated by adding T.
 
 The pseudo-code for the algorithm can look a little daunting, so instead of
-providing it, I'll recommend taking a look at our reference implementation
+showing it, I'll recommend taking a look at our reference implementation
 [Throttled](#throttled) (more on this below) which is free of heavy
 abstractions and straightforward to read. Instead, let's take a look at visual
 representation of the timeline and various variables for successful request.
@@ -235,12 +235,16 @@ synchronization (for example, by accessing the `TIME` command in Redis).
 ### Throttled (#throttled)
 
 My soon-to-be-colleague [Andrew Metcalf][andrew-metcalf] recently upgraded the
-open-source Golang library [Throttled][throttled] [1] from a naive rate
+open-source Golang library [Throttled][throttled] [2] from a naive rate
 limiting implementation to the one using GCRA. The package is well-documented
 and well-tested, and should serve as a pretty intuitive reference
 implementation for the curious. It's already taking production traffic at
-Stripe and should be soon at Heroku as well. If any of this was of interest to
-you, we'd love for you to give it a whirl.
+Stripe and should be soon at Heroku as well. In particular, check out
+[rate.go][throttled-rate] where the bulk of the implementation of GCRA is
+located.
+
+And of course, if you need a rate limiting module and have some Go in your
+stack, we'd love for you to give Throttled a whirl and let us know how it went.
 
 [andrew-metcalf]: https://github.com/metcalf
 [atm]: https://en.wikipedia.org/wiki/Asynchronous_Transfer_Mode
@@ -250,5 +254,12 @@ you, we'd love for you to give it a whirl.
 [gcra]: https://en.wikipedia.org/wiki/Generic_cell_rate_algorithm
 [leaky-bucket]: https://en.wikipedia.org/wiki/Leaky_bucket
 [throttled]: https://github.com/throttled/throttled
+[throttled-rate]: https://github.com/throttled/throttled/blob/ef1aa857b069ed60f6f859f8b16350e5b7c8ec96/rate.go#L155-L239
 
-[1] I am also a maintainer on Throttled.
+[1] Note that it appears that GitHub also has a secondary limiting mechanism
+    that protects its API from fast instantaneous bursts. I'm still using them
+    as an example because although this does help protect them, it doesn't help
+    very much in protecting me from myself (i.e. blowing through my entire
+    limit with a buggy script).
+
+[2] I am also a maintainer of Throttled.
