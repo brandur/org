@@ -2,7 +2,11 @@ In the spirit of [Adam Wiggins' inspiring list of Heroku
 values][wiggins-values] which was published when he left the company, I wanted
 to publish a list of my own as I make my own transition away.
 
-My time at Heroku was easily the most valuable learning experience of my life, and I'll always remember my time there very fondly. So many parts of the job were such vast improvements over anywhere I'd worked before that I wanted to put at least a few of these great concepts down on paper for future reference (and hopefully re-use).
+My time at Heroku was easily the most valuable learning experience of my life,
+and I'll always remember my time there very fondly. So many parts of the job
+were such vast improvements over anywhere I'd worked before that I wanted to
+put at least a few of these great concepts down on paper for future reference
+(and hopefully re-use).
 
 I suspect that at least some of these ideas might be interesting to even those
 with no relation to the company. Heroku was a place founded and formed by
@@ -67,7 +71,9 @@ could.
 ### The HTTP API Design Guide (#http-api-design)
 
 A fundamental law of the universe is that every engineer will design an HTTP
-API slightly differently, even if they're being guided by prior art. I've seen
+API slightly differently, even if they're being guided by prior art. This isn't
+always a problem, but it's a challenge if you're trying to keep an API cohesive
+when it might be contributed to by dozens of different people. I've seen
 engineers name their new resource `/resource_with_underscores` even though 78
 out of 78 of the resources that already exist look like
 `/resource-with-hyphens`.
@@ -76,8 +82,7 @@ We knew that if we wanted a consistent public API, we needed to codify a set of
 opinionated conventions, which is why we wrote the [the HTTP API design
 guide][api-design-guide] based off of the decisions we'd made building the V3
 API. The result is that Heroku's API is one of the most self-consistent HTTP
-APIs that you'll ever find, despite having been contributed to by dozens of
-different engineers.
+APIs that you'll ever find.
 
 ### Service Conventions (#service-conventions)
 
@@ -122,25 +127,37 @@ true.
 
 ### Leadership & Inspiration (#inspiration)
 
-I've never had the opportunity to work with so many people who inspired me on such a fundamental level as those who I met at Heroku, especially in my early days there. The company had everything: great leaders, inspiring thinkers, great engineers, and great designers.
+I've never had the opportunity to work with so many people who inspired me on
+such a fundamental level as those who I met at Heroku, especially in my early
+days there. The company had everything: great leaders [2], inspiring thinkers
+[3], and great engineers [4]. As someone still relatively inexperienced and new
+to the Valley, my first few months felt like a constant assault of new ideas
+about everything from technology to organizational structure. This motivated
+me to want to build great things and made work all around exciting.
 
-### Self-service (#selfservice)
+### Self-service (#self-service)
 
-Give people the tools to control their own destinies.
-
-This value is hard to foster. People don't want self-service; they'd much prefer that you do their work for them. Keeping a culture of self-service alive requires a huge amount of discipline and perseverance, especially with a large influx of new employees who are more used to traditional corporate attitudes.
-
-Prevents [constant disruption on open communication channels][slack-distractor].
+Instead of doing work for someone, give them the tools necessary for them to do
+it for themselves. For example, Heroku's core API service had a private
+administrative API that employees with a CLI plugin could use to perform
+special actions like re-send a sign-up e-mail. This creates a powerful
+precedent for people to try to do things out for themselves before leaning on
+someone else. This in turns helps to prevent [constant disruption on open
+communication channels][slack-distractor] so that people have time to work.
 
 ### Cross-team Contribution (#cross-contribution)
 
-Pulls.
-
-This one died, but while alive it was a beautiful thing.
+Want a new feature or improvement? Send a pull request for it. There is no
+better way to demonstrate your commitment to an idea. It also had the side
+benefit of giving engineers a wider insight into how the whole machine works by
+forcing them to look beyond the projects that they might maintain day to day.
 
 ### Shipping Cadence (#shipping)
 
-No QA.
+We shipped our services fast and frequently, and had framework of tooling to
+make it safe to do so. You'd more often than not see a change go out same day,
+which kept endless possibilities open for shipping new products or improving
+existing ones.
 
 This was also something that had to be discovered at the organization level.
 There was a period in Heroku's history where projects were hard to ship mostly
@@ -148,7 +165,9 @@ due to a weak process for getting them across the finish line. This problem was
 examined and corrected, and today products make it out the door on a regular
 basis.
 
-### High Expectations for Engineers (#engineers)
+### Capable Engineers (#engineers)
+
+Everyone is flexible enough to jump over a hurdle once they get to one.
 
 No extreme specialization. Engineering talent is generally good enough that most people can solve most problems for themselves. Remember, engineers who need constant hand holding from other engineers are a not an asset, they're a cost center.
 
@@ -262,15 +281,25 @@ promised land while it did.
 [bazooka]: http://gotocon.com/dl/goto-zurich-2013/slides/AlexanderSimmerl_and_MattProud_BuildingAnInHouseHeroku.pdf
 [degges-12factor]: http://www.rdegges.com/heroku-isnt-for-idiots/
 [empire]: https://github.com/remind101/empire
+[farina]: https://github.com/fdr
 [ghi]: https://github.com/stephencelis/ghi
 [heroku-api]: https://devcenter.heroku.com/articles/platform-api-reference
 [hub]: https://github.com/github/hub
 [maciek]: https://twitter.com/uhoh_itsmaciek
+[mmcgrana]: https://github.com/mmcgrana
+[mfine]: https://github.com/mfine
 [pliny]: https://github.com/interagent/pliny
 [postgres-queues]: /postgres-queues
 [slack-distractor]: http://www.guilded.co/blog/2015/08/29/slack-the-ultimate-distractor.html
 [twelve-factor]: http://12factor.net/
+[wiggins]: https://github.com/adamwiggins
 [wiggins-values]: https://gist.github.com/adamwiggins/5687294
 
 [1] Thank-you [Maciek][maciek] in particular for stepping in and helping out
     with my Postgres woes way more often than you should have.
+
+[2] [Exhibit A][wiggins].
+
+[3] [Exhibit B][mmcgrana].
+
+[4] [Exhibit C][mfine]. [Exhibit D][farina].
