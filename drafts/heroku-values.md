@@ -123,6 +123,8 @@ hugely talented engineers saved my skin an untold number of times as I dealt
 number of times that I was their highest-maintenance customer, and it was
 true.
 
+### Ephmeralization (#ephemeralization)
+
 ## Culture (#culture)
 
 ### Leadership & Inspiration (#inspiration)
@@ -167,17 +169,28 @@ basis.
 
 ### Capable Engineers (#engineers)
 
-Everyone is flexible enough to jump over a hurdle once they get to one.
+At its essence, this one is pretty obvious: hire good engineering talent.
 
-No extreme specialization. Engineering talent is generally good enough that most people can solve most problems for themselves. Remember, engineers who need constant hand holding from other engineers are a not an asset, they're a cost center.
+In particular, it's worth looking for people who are good at what they do, but
+still flexible enough to jump in and fix bugs or modify almost any project.
+This requires a degree of being able to learn indepedently and figure things
+out for themselves that not everyone is well-suited for, but results in fewer
+disruptions to the rest of the team and more work output overall.
+
+For quite some time we have a team that sync up once a week and plow through
+huge workloads for the rest of it. Communication happened largely
+asynchronously unless a higher bandwidth channel was more suitable.
 
 ### Technical Culture (#technical-culture)
 
-Workshop.
-
-For quite some time we had an event every Friday called Workshop where
-engineers could show off some of the interesting projects they were working. It
-was designed to educate and inspire, and it worked.
+Technical culture was fostered, which (I believe) led to a high degree of
+technical excellence in the products that we produced. This mostly manifested
+in the way of papers being passed around, general discussions on the
+engineering mailing list, and plenty of forward-thinking water cooler
+speculation on how to improve the product's internal architecture. For a long
+time we also held a technical event every Friday where engineers could show off
+some of the interesting projects that they were working on. It was designed to
+educate and inspire, and it worked.
 
 ### Flexible Environment (#flexible-environment)
 
@@ -190,13 +203,18 @@ was designed to educate and inspire, and it worked.
 ![Agora](https://farm6.staticflickr.com/5538/9549457229_fbd6c7c464_z.jpg)
 -->
 
-I worked from Berlin for roughly three weeks almost every year that I was at
-the company.
+Traditional organizations generally hold a strong belief that every employee
+should enter the office at 9 AM, leave it at 5 PM, and keep that up for 5 days
+a week year round. At Heroku people would regularly work at home or out of the
+office. It made very little difference to their productivity, but did have a
+profoundly positive effect on their overall happiness. For example, I visited
+my family back in Calgary for weeks at a time two or three times a year, and
+worked from Berlin for roughly three weeks almost every year that I was at the
+company.
 
-I think the fact that I could do this was a testament to the company's ability
-to hire well. If you've got the right people on your team, you can sit back and
-relax knowing through blind faith alone that they're doing the right thing (even
-if they're working from across the Atlantic).
+This is all possible if a company hires well. If you've got the right people on
+your team, you don't have to keep an eye on them all day because they'll do the
+right things themselves.
 
 ### Coffee (#coffee)
 
@@ -219,21 +237,21 @@ regularly.
   <figcaption>The OctoTrophy (dodgeball).</figcaption>
 </figure>
 
-GitHub. GitHub. GitHub. GitHub.
+GitHub has been one of the best pieces of software on the Internet for years,
+and is the right way to organize code and projects. Companies should be using
+tools that developers can extend to optimize their workflows and maximize their
+own their efficiency. With a well-maintained API and healthy ecosystem of
+supporting tooling like [hub][hub] and [ghi][ghi], as well as complementing
+turn key services like Travis, GitHub is one of those tools.
 
-My belief that GitHub is the right way to organize is projects is actually part of a larger idea though, which is that developers should have the resources that they need to be successful and build their own highly optimized workflows. GitHub is one of those invaluable resources, along with its extremely healthy API and ecosystem of tools like [hub][hub] and [ghi][ghi], and complementing services like Travis.
-
-The day that tools which didn't share these principles started to see popular use was sad indeed (I'm looking at you, Trello).
-
-It was a sad day when I realized that Trello was becoming the most prevalent tool for organization at the company. Trello is the anti-GitHub: a horrific UI, the ugliest API available today without dipping into SOAP, dull tools, and completely non-functional basic features like plain text e-mail notifications.
-
-Wikis.
+Time that developers *don't spend* supporting custom infrastructure or fighting
+bad tooling is time that can be used to build your product.
 
 ### Resources (#resources)
 
 Provision the resources you need, including third party services from the large add-on catalog.
 
-I've previously worked at companies where provisioning a job queue is a multi-month process involving endless meetings, territorial operations people, mountains of paperwork, and by the end of the whole ordeal, you have exactly one installation and have no answer to working with staging or development environments.
+I've previously worked at companies where provisioning a job queue is a multi-month process involving endless meetings, territorial ops people, mountains of paperwork, and by the end of the whole ordeal, you have exactly one installation and have no answer to working with staging or development environments.
 
 ### Total Ownership (#total-ownership)
 
@@ -250,12 +268,6 @@ Total ownership was instrumental in helping me to improve my game, but I'm
 still a little on the fence about it. While I don't miss the multi-week
 deployment schedules, I do miss the regular blocks of daily focus during which
 I would never have to stop work and deal with an interruption from production.
-
-### Organize Around Services (#organize-around-services)
-
-Following from total ownership, teams were built around the services that they owned.
-
-Extract services and form teams around them.
 
 ### Technical Management (#management)
 
