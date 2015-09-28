@@ -125,17 +125,38 @@ true.
 
 ### Ephmeralization (#ephemeralization)
 
+One powerful idea was that of _ephemeralization_, which can be roughly
+described as "doing more with less". But aside from doing more, the act of
+reducing the number of moving parts in a system helps to lower its cognitive
+burden and made learning it easier. In a similar vein, picking one true way
+forward from a collection of similar options helps keep engineers productive as
+they move between components.
+
+A few examples:
+
+* Pick and choose single "right" technology stacks from a set of like options.
+  For example, prefer Ruby over Python. More generally, try to focus on _just_
+  Ruby and Go (and Javascript) over the long run.
+* Try to zero in on particular library to perform certain functions. For
+  example, preferring Puma for Ruby HTTP stacks by converting existing installs
+  of Unicorn, or Thin. Using Sequel instead of ActiveRecord.
+* Standardize deployment images so that instead of having individual Chef
+  recipes for every component, all would share only one and be configured
+  purely at the application level.
+* Use a single type of data store consistently. i.e. Postgres.
+
 ## Culture (#culture)
 
 ### Leadership & Inspiration (#inspiration)
 
 I've never had the opportunity to work with so many people who inspired me on
 such a fundamental level as those who I met at Heroku, especially in my early
-days there. The company had everything: great leaders [2], inspiring thinkers
-[3], and great engineers [4]. As someone still relatively inexperienced and new
-to the Valley, my first few months felt like a constant assault of new ideas
-about everything from technology to organizational structure. This motivated
-me to want to build great things and made work all around exciting.
+days there. The company had everything at one point: great leaders [2],
+inspiring thinkers [3], and great engineers [4]. As someone still relatively
+inexperienced and new to the Valley, my first few months felt like a constant
+assault of new ideas about everything from technology to organizational
+structure. This motivated me to want to build great things and made work all
+around exciting.
 
 ### Self-service (#self-service)
 
@@ -144,8 +165,9 @@ it for themselves. For example, Heroku's core API service had a private
 administrative API that employees with a CLI plugin could use to perform
 special actions like re-send a sign-up e-mail. This creates a powerful
 precedent for people to try to do things out for themselves before leaning on
-someone else. This in turns helps to prevent [constant disruption on open
-communication channels][slack-distractor] so that people have time to work.
+someone else. If sufficient coverage is reached, this technique helps to
+prevent [constant disruption on open communication channels][slack-distractor]
+so that people have time to work.
 
 ### Cross-team Contribution (#cross-contribution)
 
@@ -249,9 +271,20 @@ bad tooling is time that can be used to build your product.
 
 ### Resources (#resources)
 
-Provision the resources you need, including third party services from the large add-on catalog.
+If an engineer needed a new resource for a service being deployed, prototype,
+or even one-off experiment, they were at liberty to provision it and keep on
+working, even if that resource cost money. Resources here might include
+everything from dynos to run an app, to a Postgres backend, to a few extra EC2
+boxes for deployment to bare metal (relatively speaking). Having Heroku's
+considerable catalog of add-on providers and being completely deployed to AWS
+helped a lot here in that no internal personnel were ever needed to help with
+provisioning.
 
-I've previously worked at companies where provisioning a job queue is a multi-month process involving endless meetings, territorial ops people, mountains of paperwork, and by the end of the whole ordeal, you have exactly one installation and have no answer to working with staging or development environments.
+This practice is good because it keeps engineer momentum up and the cost of
+prototypes down. Hopefully it's fairly standard practice in many newer
+companies these days, but it's an easy thing to get wrong. I've previously
+worked at companies where provisioning a job queue is a multi-month process
+involving endless meetings, territorial ops people, and mountains of paperwork.
 
 ### Total Ownership (#total-ownership)
 
