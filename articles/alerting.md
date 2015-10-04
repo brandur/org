@@ -40,7 +40,7 @@ putting alerts into production for various services.
 ### Design for Granularity (#granularity)
 
 There's nothing worse than waking up in the middle of the night and discovering
-that an alert has gone of that doesn't have an obvious remediation because it
+that an alert has gone off that doesn't have an obvious remediation because it
 could mean that any number of things have gone wrong. This inevitably leads to
 a drawn out investigation that's further slowed by the operator being
 half-asleep.
@@ -111,7 +111,7 @@ involved.
 
 ### Safe at Rest (#safe-at-rest)
 
-One tempting mistake is a well-trafficked production environment is to build an
+One tempting mistake in a well-trafficked production environment is to build an
 alarm off of the ambient load in the system. For example, given a service
 designed to persist auditing events into a long-term archive we might alert on
 the fact that an event was persisted in the last five minutes. This often won't
