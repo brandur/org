@@ -8,8 +8,7 @@
       #lead
         a href="/" Home
       h1 Runs
-    - tally = @distance_by_year[Time.now.year] || 0.0
-    p #{tally.round(1)} km ran in #{Time.now.year}, for a projected total of #{(tally / Time.now.yday.to_f * 365).round(1)} km.
+    p #{@tally} km ran in #{Time.now.year}, for a projected total of #{@estimate} km (or #{@estimate_last_30_days} km based on the last 30 days of activity).
     #data-distance-by-year
     h2 Latest Runs
     - @runs.each do |month, month_runs|
