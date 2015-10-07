@@ -20,11 +20,16 @@ module Org::Helpers
       distance_by_year
     end
 
+    # Sums the distance of the given set of runs (note that the result is in
+    # meters).
+    def distance_sum(runs)
+      runs.inject(0.0) { |sum, run| sum + run[:metadata][:distance].to_f }
+    end
+
     # Estimates what the annual distance total will be given all the runs in
     # the current year.
     def estimate(runs)
-      distance = current_year(runs).
-        inject(0.0) { |sum, run| sum + run[:metadata][:distance].to_f }
+      distance = distance_sum(current_year(runs))
       in_km(distance / Time.now.yday.to_f * 365).round(1)
     end
 
@@ -37,11 +42,8 @@ module Org::Helpers
         partition { |run|
           Time.parse(run[:metadata][:occurred_at_local]) >= last_month
         }
-      distance_sum = -> (runs) {
-        runs.inject(0.0) { |sum, run| sum + run[:metadata][:distance].to_f }
-      }
-      distance_last_30 = distance_sum.(last_30)
-      distance_other = distance_sum.(other)
+      distance_last_30 = distance_sum(last_30)
+      distance_other = distance_sum(other)
 
       remaining_days = 365.0 - Time.now.yday.to_f
       distance_estimate = distance_last_30 / 30.0 * remaining_days
