@@ -37,9 +37,9 @@ I'm writing, but nowhere close to this frequency. (0/1)
 
 > _Medidate_ four times a week.
 
-## Work
-
 Abject failure. Averaging zero times a week. (0/1)
+
+## Work
 
 > Ship a sustainable real-time API (i.e. event stream).
 
