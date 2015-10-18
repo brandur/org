@@ -4,7 +4,8 @@ published_at: 2015-10-18T19:28:34Z
 ---
 
 As we're nearing the end of the year, it's time for a quick revisit to my
-assembled resolutions for 2015. Verdict: not good.
+assembled [resolutions for 2015](/fragments/2015-resolutions). Verdict: not
+good.
 
 ## Personal
 
