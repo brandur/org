@@ -59,9 +59,9 @@ module Org
           raise "No YAML front matter for #{f}."
         end
       }.
-      sort_by { |f| f[:published_at] }.
-      select { |f| f[:published_at] <= Time.now.getutc }.
-      reverse
+        sort_by { |f| f[:published_at] }.
+        select { |f| f[:published_at] <= Time.now.getutc }.
+        reverse
 
       # take advantage of knowing about ordered hashes in Ruby to make sure
       # that these stay in the right order
