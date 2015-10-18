@@ -17,9 +17,9 @@ tough to reach. (0/1)
 > _Lose_ 16 lbs. (8 lbs. by the end of June) &mdash; this one's a classic.
 
 I don't have easy access to a scale right now, but I'm nowhere near down 16
-lbs. Probably closer to 5 lbs. More recently exercise combined with healthier
-eating at Stripe may still give me a shot at this one, but the magnitude will
-still be a stretch. (0/1)
+lbs. Probably closer to 5 lbs. My more recent exercise trajectory combined with
+healthier eating at Stripe may still give me a shot at this one, but the
+magnitude will still be a stretch. (0/1)
 
 > _Play_ a rendition of [_Together We Will Live Forever_ on the
 > guitar](https://www.youtube.com/watch?v=VH7pp2BXGC0) (even if it's a poor
