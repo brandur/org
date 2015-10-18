@@ -69,6 +69,7 @@ I didn't make it on any surfing vacations so far. (0/1)
 A major rally is going to be needed to recover most of these (if it's even
 possible at all). I'm going to retarget my running for my 2014 goal of 1600 km
 because I never hit that, and if I do hit that number at this point I'll
-consider myself to be doing well. For both writing articles and meditation, I'm
-going to cheat a little and still give them to myself if I can get the habits
-started at this point and keep them up through the end of the year.
+consider myself to be doing well (I'm sitting at just under 1200 km right now).
+For both writing articles and meditation, I'm going to cheat a little and still
+give them to myself if I can get the habits started at this point and keep them
+up through the end of the year.
