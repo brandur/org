@@ -3,7 +3,7 @@ title: CloudFlare Universal SSL
 published_at: 2014-11-12T04:56:26Z
 ---
 
-I recently activated [CloudFlare's free Universal SSL](http://blog.cloudflare.com/introducing-universal-ssl/) for a few of my apps (including this one), and I must say that I'm impressed. The product works exactly as advertised in that it gets you instant SSL with minimal configuration and no cert wrangling.
+I recently activated [CloudFlare's free Universal SSL](http://blog.cloudflare.com/introducing-universal-ssl/) for a few of my apps (including this one), and I'm impressed. The product works exactly as advertised in that it gets you instant SSL with minimal configuration and no cert wrangling.
 
 Although I was finally in a position where I could do a fair job managing my own SSL configuration using free certs signed by StartCom, I'd still occasionally forget to renew certs and that would result in embarassing downtime. No more!
 
