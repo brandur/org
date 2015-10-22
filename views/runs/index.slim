@@ -16,7 +16,7 @@
       ul.list
         - month_runs.each do |run|
           li
-            | #{in_km(run[:metadata][:distance].to_f).round(1)} km @ #{pace(run)}/km
+            | #{in_km(run[:metadata][:distance].to_f).round(1)} km (#{run[:metadata][:total_elevation_gain].to_f.round(0)} m elevation) @ #{pace(run)}/km
             - if run[:metadata][:location_city]
               | , #{run[:metadata][:location_city]}
             span.meta
