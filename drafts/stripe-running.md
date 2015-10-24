@@ -14,7 +14,7 @@ terrain.
 
 !fig src="/assets/stripe-running/triple-peaks.png" caption="The daunting Tripe Peaks run in San Francisco."
 
-## A Quantitative Analysis
+## Analysis
 
 Between the new social pressure and the new available routes, over the last
 month I've certainly _felt_ like I was running more, but it would be nice to
@@ -58,7 +58,7 @@ amazing ability to cast loosely formatted strings like `September 9, 2015` and
 `30 days` into concrete times and durations that we can work with in our
 calculations.
 
-I worked at Heroku before Stripe. For this period, I'll measure backwards from
+Before Stripe I worked at Heroku. For this period, I'll measure backwards from
 the date of my last run while working there:
 
 ``` sql
@@ -75,11 +75,11 @@ for roughly a month:
 # EXECUTE running_totals('October 22, 2015', '30 days');
  distance | elevation
 ----------+-----------
- 167695.2 |    4067.9
+ 181319.3 |    4468.6
 ```
 
 An incredible difference of 173 km vs 114 km, or an almost 50% increase! The
-real win though is in elevation where I've managed to accumulate over 4 km of
+real win though is in elevation where I've managed to accumulate 4.5 km of
 vertical gain in 30 days. This represents my graduation from flat runs along
 San Francisco's waterfront to the hilly regions closer to Stripe.
 
