@@ -5,12 +5,12 @@ assemble regularly and go out and tackle runs around San Francisco's Mission
 district where the Stripe office is located.
 
 By the time I joined, the club already had a couple of well-established
-traditional loops which included some real gargantuans. Probably the most
-notable is the (internally) renowned "Triple Peaks", a journey south from the
-office, up Bernal Heights, west through Glen Canyon Park, and a final ascent up
-Twin Peaks. My usual routes around Heroku's office in SOMA included pretty
-healthy total distances, but nowhere near this level of ascents or variation in
-terrain.
+traditional loops which included some real beasts. Probably the most notable is
+the (internally) renowned "Triple Peaks", a journey south from the office, up
+Bernal Heights, west through Glen Canyon Park, and with a final ascent up Twin
+Peaks before returning through the Castro and the Mission. My usual routes
+around Heroku's office in SOMA included pretty healthy total distances, but
+nowhere near this level of elevation gain or variation in terrain.
 
 !fig src="/assets/stripe-running/triple-peaks.png" caption="The daunting Tripe Peaks run in San Francisco."
 
@@ -22,17 +22,15 @@ know for sure. Let's try to use Postgres to crunch some data and get a
 definitive answer.
 
 In order to do a comparison, I want to run the same query that aggregates my
-distance from two different points in time: once for my time here and once for
-my previous life. A great fit for this operation is a Postgres prepared
-statement which through the use of the `PREPARE` command creates a server-side
-object that's parsed and pre-analyzed for execution. As soon as an `EXECUTE` is
-run against it, the planner comes into play and the statement gets run. I've
-personally always tangentially associated prepared statements with heavy
-enterprise DB libraries and have been relunctant to use them, but we'll show
-here just how simple their syntax is and thus easily suitable for use in
-one-off query situations.
+distance from two different points in time: once for my time at Stripe and once
+for my previous life. A great fit for this operation is a Postgres prepared
+statement; an underused and surprising simple to operate tool that should be
+part of every Postgres user's kit. It works through the use of the `PREPARE ...
+AS` command to create a server-side object that's parsed and pre-analyzed for
+execution, and then following up with an `EXECUTE` command which runs the
+planner and executes the statement.
 
-I'm using a database created for my [Black Swan project][black-swan], which
+I'll be using a database created for my [Black Swan project][black-swan], which
 periodically scrapes my social media services. I routinely log all my runs with
 Strava, and the data here is being pulled from their API specifically.
 
@@ -58,8 +56,8 @@ amazing ability to cast loosely formatted strings like `September 9, 2015` and
 `30 days` into concrete times and durations that we can work with in our
 calculations.
 
-Before Stripe I worked at Heroku. For this period, I'll measure backwards from
-the date of my last run while working there:
+For the period before Stripe, I'll use the date of my final run while working
+my last job and measure 30 days from there into the past:
 
 ``` sql
 # EXECUTE running_totals('September 9, 2015', '30 days');
@@ -68,19 +66,21 @@ the date of my last run while working there:
  113854.1 |       0.0
 ```
 
-For Stripe, I'll measure from today given that I've only been at the company
-for roughly a month:
+For Stripe, I'll measure from today for the same period:
 
 ``` sql
-# EXECUTE running_totals('October 22, 2015', '30 days');
+# EXECUTE running_totals('October 24, 2015', '30 days');
  distance | elevation
 ----------+-----------
- 181319.3 |    4468.6
+ 219835.5 |    5176.1
 ```
 
-An incredible difference of 173 km vs 114 km, or an almost 50% increase! The
-real win though is in elevation where I've managed to accumulate 4.5 km of
-vertical gain in 30 days. This represents my graduation from flat runs along
-San Francisco's waterfront to the hilly regions closer to Stripe.
+A pretty encouraging difference of 220 km vs 114 km, or an almost 100%
+increase! But aside from just distance, we also see a pretty nice improvement
+in the elevation numbers where I've managed to accumulate over 5 km of vertical
+gain in 30 days. This represents my graduation from flat runs along San
+Francisco's waterfront to the hilly regions closer to the Mission. Hopefully
+these numbers won't prove to be a statistical anomaly as I leave my honeymoon
+phase at the company.
 
 [black-swan]: https://github.com/brandur/blackswan

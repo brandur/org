@@ -5,7 +5,7 @@ module Org
 Crunching running data with prepared statements in Postgres.
       eos
       location:     "San Francisco",
-      published_at: Time.parse("2015-10-22T16:55:32Z"),
+      published_at: Time.parse("2015-10-24T20:55:32Z"),
       signature:    true,
       title:        "Running at Stripe",
     } do
