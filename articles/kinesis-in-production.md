@@ -12,7 +12,7 @@ Kinesis has a well-written [developer guide](http://docs.aws.amazon.com/kinesis/
 
 Probably of most paramount concern is how Kinesis performs in production. One thing to keep in mind when looking at these numbers is that Kinesis' durability characteristic is highly relevant. When injecting a record to a stream, that record is synchronously replicated to three different availability zones in the region to help guarantee that you'll get it out of the other side. There is a performance cost associated with this level of reliability, and comparing the numbers below to a single-node system like Redis (for example), would be nonsense.
 
-First off, we have put latency on the side of our producer. These metrics are generated from one of six different producer notes running within the same AWS region as the Kinesis stream. All of these use the bulk put records API, and include a variable payload roughly in the range of 1 to 10 events. The Kinesis API operates over HTTP, and our code re-uses an already open connection to perform our operations whenever possible.
+First off, we have put latency on the side of our producer. These metrics are generated from one of six different producer nodes running within the same AWS region as the Kinesis stream. All of these use the bulk put records API, and include a variable payload roughly in the range of 1 to 10 events. The Kinesis API operates over HTTP, and our code re-uses an already open connection to perform our operations whenever possible.
 
 As seen in the chart below, P50 manages to stay right around the 35 ms mark very consistently. P95 is usually right around 100 ms and P99 closer to 200 ms, but we don't see 300 ms broken under these metrics.
 
