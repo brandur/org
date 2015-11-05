@@ -358,18 +358,14 @@ place to be an engineer while it did.
 [bazooka]: http://gotocon.com/dl/goto-zurich-2013/slides/AlexanderSimmerl_and_MattProud_BuildingAnInHouseHeroku.pdf
 [degges-12factor]: http://www.rdegges.com/heroku-isnt-for-idiots/
 [empire]: https://github.com/remind101/empire
-[farina]: https://github.com/fdr
 [ghi]: https://github.com/stephencelis/ghi
 [heroku-api]: https://devcenter.heroku.com/articles/platform-api-reference
 [hub]: https://github.com/github/hub
 [maciek]: https://twitter.com/uhoh_itsmaciek
-[mmcgrana]: https://github.com/mmcgrana
-[mfine]: https://github.com/mfine
 [pliny]: https://github.com/interagent/pliny
 [postgres-queues]: /postgres-queues
 [slack-distractor]: http://www.guilded.co/blog/2015/08/29/slack-the-ultimate-distractor.html
 [twelve-factor]: http://12factor.net/
-[wiggins]: https://github.com/adamwiggins
 [wiggins-values]: https://gist.github.com/adamwiggins/5687294
 
 [1] Thank-you [Maciek][maciek] in particular for stepping in and helping out
