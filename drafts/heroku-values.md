@@ -349,7 +349,7 @@ self-initiative of each engineer on the team to fill in the blanks. There
 wasn't the time or the interest for micromanagement.
 
 We eventually moved to a place where a virtuous manager was one who didn't
-commite code, wasn't on the pager rotation, and never looked at a support
+commit code, wasn't on the pager rotation, and never looked at a support
 ticket (i.e. probably the situation that most big organizations have). But
 although technical management wasn't an idea that lasted, it was a very good
 place to be an engineer while it did.
