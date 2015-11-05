@@ -6,7 +6,7 @@ In retrospect, some of my favorite practices and ideas from almost four years at
       eos
       image:        "/assets/heroku-values/heroku-values.jpg",
       location:     "San Francisco",
-      published_at: Time.parse("2015-09-14T22:18:58Z"),
+      published_at: Time.parse("2015-11-05T06:20:16Z"),
       signature:    true,
       title:        "My Heroku Values",
     } do
