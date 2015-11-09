@@ -58,7 +58,7 @@ few that struck me:
   so loudly throughout the Bond series. The action is fun, but the lifestyle
   aspect of the movies is one of the things that makes Bond what it is.
 * Andrew Scott's casting as C. He doesn't fit into the movie, and there's a
-  reasonable chance that his an inclusion was purely pandering to the masses of
+  reasonable chance that his inclusion was purely pandering to the masses of
   _Sherlock_ fans (a series where he plays Moriarty).
 
 But at least the new Seamaster 300 was nice. It's not clear right now whether
