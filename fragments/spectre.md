@@ -35,7 +35,7 @@ There is nothing so large as acting, dialog, or effects that prevent _Spectre_
 from being good, but rather a lot of smaller contributing factors. Here are a
 few that struck me:
 
-* Making Oberhauser as Bond's adopted brother totally unnecessary. Although
+* Making Oberhauser as Bond's adopted brother was totally unnecessary. Although
   probably a step to make things more personal, it made the whole premise a
   little too unbelievable.
 * The Craig franchise's need for antagonist inflation, with each new villain
