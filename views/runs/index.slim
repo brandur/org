@@ -8,27 +8,71 @@
       #lead
         a href="/" Home
       h1 Runs
-    p #{@tally} km ran in #{Time.now.year}, for a projected total of #{@estimate} km (or #{@estimate_last_30_days} km based on the last 30 days of activity).
+    .runs-content
+      p #{@tally} km ran in #{Time.now.year}, for a projected total of #{@estimate} km (or #{@estimate_last_30_days} km based on the last 30 days of activity).
+    #data-distance-last-year.chart
     #data-distance-by-year
-    h2 Latest Runs
-    - @runs.each do |month, month_runs|
-      h3= Date::MONTHNAMES[month]
-      ul.list
-        - month_runs.each do |run|
-          li
-            | <span class="distance">#{in_km(run[:metadata][:distance].to_f).round(1)} km</span> <span class="elevation">(#{run[:metadata][:total_elevation_gain].to_f.round(0)} m elevation)</span> @ #{pace(run)}/km
-            - if run[:metadata][:location_city]
-              | , #{run[:metadata][:location_city]}
-            span.meta
-              |  
-              = Time.parse(run[:metadata][:occurred_at_local]).strftime("%B %e, %Y")
+    .runs-content
+      h2 Latest Runs
+      - @runs.each do |month, month_runs|
+        h3= Date::MONTHNAMES[month]
+        ul.list
+          - month_runs.each do |run|
+            li
+              | <span class="distance">#{in_km(run[:metadata][:distance].to_f).round(1)} km</span> <span class="elevation">(#{run[:metadata][:total_elevation_gain].to_f.round(0)} m elevation)</span> @ #{pace(run)}/km
+              - if run[:metadata][:location_city]
+                | , #{run[:metadata][:location_city]}
+              span.meta
+                |  
+                = Time.parse(run[:metadata][:occurred_at_local]).strftime("%B %e, %Y")
 == render :slim, :"_footer", layout: false
 
 javascript:
-  var years = #{MultiJson.encode(@distance_by_year.keys)}
-  var kilometers = #{MultiJson.encode(@distance_by_year.values)}
+  // last year
+  var last_year_dates = #{{MultiJson.encode(@distance_last_year.keys)}}
+  var last_year_distances = #{{MultiJson.encode(@distance_last_year.values)}}
+
+  // by year
+  var by_year_years = #{{MultiJson.encode(@distance_by_year.keys)}}
+  var by_year_distances = #{{MultiJson.encode(@distance_by_year.values)}}
 coffee:
   $ ->
+    new Highcharts.Chart
+      chart:
+        renderTo: 'data-distance-last-year'
+        defaultSeriesType: 'column'
+      plotOptions:
+        series:
+          animation: false
+      title:
+        text: null
+      xAxis:
+        categories: last_year_dates,
+        labels:
+          rotation: -45
+          align: 'right'
+          step: 30
+      yAxis:
+        labels:
+          formatter: ->
+            this.value + ' km'
+          enabled: false
+        min: 0
+        title:
+          text: null
+      tooltip:
+        formatter: ->
+          this.y.toFixed(1) + ' km '+ ' on ' + this.x
+      series: [
+        {
+          name: 'distance'
+          data: last_year_distances
+          color: '#333'
+
+          borderWidth: 0
+          shadow: false
+        }
+      ]
     new Highcharts.Chart
       chart:
         renderTo: 'data-distance-by-year'
@@ -39,7 +83,7 @@ coffee:
       title:
         text: null
       xAxis:
-        categories: years,
+        categories: by_year_years,
         labels:
           rotation: -45
           align: 'right'
@@ -55,5 +99,5 @@ coffee:
         formatter: ->
           this.y.toFixed(1) + ' km '+ ' in ' + this.x
       series: [
-        { name: 'distance', data: kilometers, color: '#333' },
+        { name: 'distance', data: by_year_distances, color: '#333' },
       ]

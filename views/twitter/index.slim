@@ -8,10 +8,11 @@
       #lead
         a href="/" Home
       h1 Twitter
-    - if params[:with_replies] != "true"
-      p #{number_with_delimiter(@tweet_count)} tweets, and <a href="/twitter?with_replies=true">#{number_with_delimiter(@tweet_count_with_replies)} including replies</a>.
-    - else
-      p <a href="/twitter">#{number_with_delimiter(@tweet_count)} tweets</a>, and #{number_with_delimiter(@tweet_count_with_replies)} including replies.
+    .twitter-content
+      - if params[:with_replies] != "true"
+        p #{number_with_delimiter(@tweet_count)} tweets, and <a href="/twitter?with_replies=true">#{number_with_delimiter(@tweet_count_with_replies)} including replies</a>.
+      - else
+        p <a href="/twitter">#{number_with_delimiter(@tweet_count)} tweets</a>, and #{number_with_delimiter(@tweet_count_with_replies)} including replies.
     #data-tweets-by-month.chart
     #toc
       ul
@@ -22,7 +23,7 @@
               - tweets_by_month.each do |month, _|
                 li
                   a href="#month-#{year}-#{month}"= month_name(month)
-    #twitter-content
+    .twitter-content
       - @tweets.each do |year, tweets_by_month|
         div class="year" id="year-#{year}"
           h2= year

@@ -19,6 +19,7 @@ module Org
         last_modified(run[:occurred_at])
       end
       @distance_by_year = distance_by_year(@runs)
+      @distance_last_year = distance_last_year(@runs)
       @tally = (@distance_by_year[Time.now.year] || 0.0).round(1)
       @estimate = estimate(@runs)
       @estimate_last_30_days = estimate_last_30_days(@runs)
