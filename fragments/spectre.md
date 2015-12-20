@@ -36,8 +36,8 @@ from being good, but rather a lot of smaller contributing factors. Here are a
 few that struck me:
 
 * Making Oberhauser as Bond's adopted brother was totally unnecessary. Although
-  probably a step to make things more personal, it made the whole premise a
-  little too unbelievable.
+  probably a step to make things more personal, it made the whole premise too
+  unbelievable.
 * The Craig franchise's need for antagonist inflation, with each new villain
   required to be more evil and less empathetic than the last. Audiences would
   be fine to just see each movie stand on its own legs.
@@ -52,14 +52,14 @@ few that struck me:
   exception of the explanation of the Nine Eyes surveillance system itself).
   Like many other modern movies, they should have just left computers out if
   it.
-* Scenes in Q-branch are a little too cute, especially with the culmination of
-  the theft of the DB10.
+* Scenes in Q-branch are too cute, especially with the culmination of the theft
+  of the DB10.
 * Despite the long runtime, no time was slotted in for the "play" that's spoken
   so loudly throughout the Bond series. The action is fun, but the lifestyle
   aspect of the movies is one of the things that makes Bond what it is.
 * Andrew Scott's casting as C. He doesn't fit into the movie, and there's a
   reasonable chance that his inclusion was purely pandering to the masses of
-  _Sherlock_ fans (a series where he plays Moriarty).
+  _Sherlock_ fans (for the unitiated, a series where he plays Moriarty).
 
 But at least the new Seamaster 300 was nice. It's not clear right now whether
 this will be the last movie that Craig stars in, but whether it is or not, I'll

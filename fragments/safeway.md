@@ -34,7 +34,7 @@ Stores don't seem to invoke the police in these types of situations; instead
 being content with ejecting the thief with minimal disruption to the other
 clientele and keeping the store's inventory mostly intact. I imagine that this
 is because the failure of the local justice system is assumed, but I've never
-been able to find out for sure.
+found out for sure.
 
 Living in the city desensitizes you to bad behavior of all kinds. There was a
 time in my life where witnessing this kind of incident would have made me edgy,
