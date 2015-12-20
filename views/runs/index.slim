@@ -11,7 +11,7 @@
     .runs-content
       p #{@tally} km ran in #{Time.now.year}, for a projected total of #{@estimate} km (or #{@estimate_last_30_days} km based on the last 30 days of activity).
     #data-distance-last-year.chart
-    #data-distance-by-year
+    #data-distance-by-year.chart
     .runs-content
       h2 Latest Runs
       - @runs.each do |month, month_runs|
