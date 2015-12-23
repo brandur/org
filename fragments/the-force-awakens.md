@@ -41,7 +41,7 @@ first five minutes:
   universe so easy to steal?
 * Out of all the places in the universe, Anakin's lightsaber just happens to be
   located on the same planet that Han Solo drags everyone to for a bar visit.
-  Coincidences abound in this galaxy far far away.
+  Thank-you, _the Force_.
 * Upon seeing that Finn has a lightsaber, a stormtrooper decides to abandon his
   blaster and fight him hand-to-hand with some kind of riot gear. This is
   in-line with what we know about the stormtroopers' traditional sense of honor
