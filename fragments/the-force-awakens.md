@@ -56,7 +56,7 @@ first five minutes:
   First Order's hands, inexplicably bailed out of his mission to retrieve it
   and returned to base. Lucky for the Resistance, Rey and Finn picked up the
   slack for him.  Finn is awarded a _cool jacket_ for his trouble.
-* It's sure lucky for the Resistance that every storm trooper is fully aware of
+* It's sure lucky for the Resistance that every stormtrooper is fully aware of
   the Starkiller's weaknesses and how to destroy it. Find one defector and a
   dozen or so X-wings, and you too can take down a Starkiller.
 * Kylo Ren may have doubts about whether he's living up to Vader's reputation,
@@ -88,7 +88,7 @@ books. Many others guess Luke's daughter. But given that she's almost certainly
 related to _somebody_, and that somebody was selected by the writers throwing
 darts at a board while doing tequila shots, the real answer is "who cares".
 
-The real mystery in the film is how it's sitting at 8.8 on IMDB and a 95% on
+The actual mystery of the film is how it's sitting at 8.8 on IMDB and a 95% on
 Rotten Tomatoes even though it's only nominally better than "The Phantom
 Menace". Hopefully this is just an aberration caused by the early visiting
 hordes of diehard fans, and that time will lead to an appropriate correction.
