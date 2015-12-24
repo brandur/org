@@ -13,6 +13,6 @@ I suspect that Starbucks' popularity is the same today as it's always been:
 sweet drinks under the guise of luxury items. Around the Bay Area, you won't
 find a single serious coffee drinker who frequents Starbucks, but a venti
 double-shot vanilla caffè macchiato is sure easier to justify to yourself than
-its closest relative: the milkshake of the same flavor.
+its closest culinary relative: the milkshake of the same flavor.
 
 [starbucks-reserve]: http://roastery.starbucks.com/reserve/
