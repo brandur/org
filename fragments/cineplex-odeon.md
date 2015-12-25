@@ -34,7 +34,8 @@ Canadian ads. You can invent your own reasoning for this, but I suspect that
 it's due to increased competitive pressure from other American companies which
 haven't yet experienced anywhere near the same level of consolidation that
 we've seen in the Canadian market. Like with banks and telcos, theatres are yet
-another example of a practical monopoly in Canada.
+another example of an industry in Canada that's a monopoly in everything but
+name.
 
 For the little difference it'll make, in the future I'll personally try to
 abstain from going to movies at non-independent venues in Canada.
