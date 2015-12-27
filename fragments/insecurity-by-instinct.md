@@ -5,7 +5,7 @@ published_at: 2015-12-25T01:09:44Z
 
 After two years of good luck, I dropped my iPhone 6 on the sidewalk and the
 screen artfully shattered into a complex web of a million pieces. Naturally
-this happened two days before my trip home for the holiday reak. In a rush to
+this happened two days before my trip home for the holiday break. In a rush to
 get it back to normal for the multi-week trip, I went to a local repair shop in
 SF operating out of a small office in SOMA overlooking the freeway who could
 repair the screen same day.
@@ -24,8 +24,8 @@ way to compromise a user's security is to just to ask them to do it (nicely of
 course).
 
 _(To their credit, they still fixed the phone, and did a reasonable job of
-accommodating a paranoid nutcase like myself who'd obviously just taken off
-their tinfoil because it wouldn't fit through the door of the building.)_
+accommodating a paranoid nutcase like myself who'd obviously just removed their
+tinfoil because it wouldn't fit through the door of the building.)_
 
 [1] Note even to mention access to the SIM card that they probably left in
 their phone and which may be set as a recovery number on a number of their
