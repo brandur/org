@@ -23,7 +23,7 @@ locations, action scenes, expensive suits, and even a secret desert lair for
 the bad guy (one of many homages to the original series of movies); but the
 whole thing failed to come together into a compelling whole. _Spectre_ was
 entertaining to watch, but wasn't an attention grabber, and left me largely
-unenthused for the duration of its considerable 148 minute runtime.
+unenthused for the duration of its considerable 148-minute runtime.
 
 The trajectory toward mediocrity of the Daniel Craig reboot franchise may be
 one of the most disappointing developments in recent movie history. While it
