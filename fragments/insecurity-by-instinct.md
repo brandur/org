@@ -4,10 +4,10 @@ published_at: 2015-12-25T01:09:44Z
 ---
 
 After two years of good luck, I dropped my iPhone 6 on the sidewalk and the
-screen artfully shattered into a complex web of a million pieces. Naturally
-this happened two days before my trip home for the holiday break. In a rush to
-get it back to normal for the multi-week trip, I went to a local repair shop in
-SF operating out of a small office in SOMA overlooking the freeway who could
+screen artfully shattered into a complex web of a million pieces. Naturally,
+two days before my trip home for the holiday break. In a rush to get it back to
+normal for coming the multi-week trip, I went to a local repair shop in SF
+operating out of a small office in SOMA overlooking the freeway who could
 repair the screen same day.
 
 While filling out a form containing my contact information, I came across a
