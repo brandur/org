@@ -75,7 +75,10 @@ module Org::Helpers
       distance_other = distance_sum(other)
 
       remaining_days = 365.0 - Time.now.yday.to_f
-      distance_estimate = distance_last_30 / 30.0 * remaining_days
+
+      # use min of 30 and yday in case we're less than 30 days into the year
+      distance_estimate = distance_last_30 / [30.0, Time.now.yday.to_f].min *
+        remaining_days
 
       distance = distance_other + distance_last_30 + distance_estimate
       in_km(distance).round(1)
