@@ -41,9 +41,9 @@ What's concerning is just how few San Franciscos there are in North America.
 Despite [ever-climbing commute times][commute] and the [recent surge in
 popularity of urban living][millenials], we build our cities today just like we
 always have: with more and bigger roads, and new communities as low density and
-far out as cities will allow. The next generation of would-be urban dwellers
-will again be pushed out to the fringe communities because that's what they can
-afford, and the more accessible inner cities will continue to be the
+far out as municipalities will allow. The next generation of would-be urban
+dwellers will again be pushed out to the fringe communities because that's what
+they can afford, and the more accessible inner cities will continue to be the
 playgrounds of the rich and the fortunate.
 
 > Sometimes I wonder if the world's so small <br>
