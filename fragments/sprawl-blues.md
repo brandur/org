@@ -6,7 +6,7 @@ published_at: 2016-01-03T22:18:36Z
 I happened to come across an article about [life in LA][los-angeles-post]
 written by someone who's lived in the large cities of Japan and China. She
 figures her commute time is close to four hours a day and is saddened when
-comparing that to life in Asia where her commutes were a tiny fraction of that
+comparing that to life in Asia where her commutes were a tiny fraction of that,
 _on foot_.
 
 Now that I work in San Francisco I can't help but get hit by the same feeling
