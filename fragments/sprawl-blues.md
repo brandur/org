@@ -33,7 +33,7 @@ an hour a day of commute time is practically closer to double that.
 
 San Francisco has spoiled me in that I can live comfortably without a car and
 can reach most places I care to go on foot in a shorter period of time than
-what my friends back home can do in their cars. If I hop on a bike or jump in
+what my friends back home can do on four wheels. If I hop on a bike or jump in
 an Uber, those times are boiled down even further, and a lot of hot spots are
 left only minutes away [1].
 
