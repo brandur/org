@@ -5,8 +5,8 @@ published_at: 2015-12-07T17:34:10Z
 
 The NYT reports today on the continued prosperity of Starbucks which continues
 to outpace the market with a year over year 50%+ stock growth. They attribute
-this Starbucks' introduction of [reserve coffees][starbucks-reserve], served at
-select flagship stores around the world, which allow Starbucks to keep pace
+this to Starbucks' introduction of [reserve coffees][starbucks-reserve], served
+at select flagship stores around the world, which allow Starbucks to keep pace
 with the increasingly sophisticated palette of the coffee aficionado.
 
 I suspect that Starbucks' popularity is the same today as it's always been:
