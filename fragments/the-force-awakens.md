@@ -82,7 +82,7 @@ first five minutes:
   island looking at the ocean and waiting for someone to hand him a lightsaber.
   At least he's got a cool new beard though.
 
-We get to end the movie with a nice game of _guess Rey's heritage_. I'm hoping
+We get to end the movie with a nice game of "guess Rey's heritage". I'm hoping
 a secret second twin of Han and Leia in a homage to Jacen and Jaina in the
 books. Many others guess Luke's daughter. But given that she's almost certainly
 related to _somebody_, and that somebody was selected by the writers throwing
@@ -91,6 +91,6 @@ darts at a board while doing tequila shots, the real answer is "who cares".
 The actual mystery of the film is how it's sitting at 8.8 on IMDB and a 95% on
 Rotten Tomatoes even though it's only nominally better than "The Phantom
 Menace". Hopefully this is just an aberration caused by the early visiting
-hordes of diehard fans, and that time will lead to an appropriate correction.
+hordes of diehard fans, and that time will show an appropriate correction.
 
 [esquire-into-darkness]: http://www.esquire.com/entertainment/movies/a22647/star-trek-into-darkness-review/
