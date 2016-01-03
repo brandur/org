@@ -56,8 +56,8 @@ playgrounds of the rich and the fortunate.
 >
 > &mdash; _Arcade Fire_
 
-[1] Although to be clear this only works for inhabitants of the city itself,
-people commuting in from the suburban towns of the Bay Area face commute times
+[1] Although to be clear this only works for inhabitants of the city itself.
+People commuting in from the suburban towns of the Bay Area face commute times
 as bad as anywhere else.
 
 [commute]: http://www.theatlantic.com/business/archive/2015/08/rush-hour-traffic-commute/402418/
