@@ -17,9 +17,9 @@ holidays, many trips are 20-30 minutes by car while driving off-hours under
 good weather conditions. Trips to a non-adjacent quadrant can balloon up to 45
 minutes. Walking in most areas is of course completely untenable; the closest
 convenience store to my parents' home in Deer Run is 20 minutes away at a brisk
-pace and the closest train station is almost 90 minutes out. And Calgary is
-only a city of 1.1M; not even a drop in the bucket compared to the LA metro
-area's 18+M.
+pace, Starbucks is 35 minutes, and the closest train station is almost 90
+minutes out. And Calgary is only a city of 1.1M; not even a drop in the bucket
+compared to the LA metro area's 18+M.
 
 One thing that is especially striking here is how people here lie to themselves
 and others to make their transport situation seem more tolerable. When you hear
