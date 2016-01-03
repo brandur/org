@@ -46,8 +46,8 @@ going anywhere but up:
 
 There's also the problem that _A Dance with Dragons_ seemed to introduce more
 exposition rather than help prepare any of the books' many divergent storylines
-to be tied up. It seems to be a real possibility that the series will have to
-expand beyond the originally planned seven books.
+to be tied up. It's now a real possibility that the series will have to expand
+beyond the originally planned seven books.
 
 Personally, especially after the test of endurance that was _A Feast for
 Crows_, I'm more excited for the new TV season anyway. Season six premieres on
