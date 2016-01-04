@@ -10,7 +10,7 @@ the AWS static hosting offering.
 
 A common technique for static website builders like Hugo to generate "pretty"
 URIs (i.e. `/about` instead of `/about.html` is to generate a folder
-(`/about`), put a default file in it (`index.html`) and rely on a frontend web
+(`/about`), put a default file in it (`index.html`), and rely on a frontend web
 server to detect and serve it implicitly without incoming users being any the
 wiser. Amazon was obviously aware of this, and their static website hosting for
 S3 allows you to specify an "index document" which will be served when a
