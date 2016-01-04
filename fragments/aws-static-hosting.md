@@ -9,7 +9,7 @@ improvements since its release, there are still some key features missing from
 the AWS static hosting offering.
 
 A common technique for static website builders like Hugo to generate "pretty"
-URIs (i.e. `/about` instead of `/about.html` is to generate a folder
+URIs (i.e. `/about` instead of `/about.html`) is to generate a folder
 (`/about`), put a default file in it (`index.html`), and rely on a frontend web
 server to detect and serve it implicitly without incoming users being any the
 wiser. Amazon was obviously aware of this, and their static website hosting for
