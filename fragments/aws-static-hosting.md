@@ -16,11 +16,11 @@ wiser. Amazon was obviously aware of this, and their static website hosting for
 S3 allows you to specify an "index document" which will be served when a
 directory is accessed.
 
-So everything's fine right? Well, no. The problem beings with [S3 not
+So everything's fine right? Well, no. The problems begin with [S3 not
 supporting HTTPS access on its static website endpoints][s3-endpoints]; a
 decision that makes things awkward for would-be customers, but presumably one
-that was made with difficulty for reasons probably related to limitations in
-internal architecture.
+that was made with difficulty for reasons related to limitations in internal
+architecture.
 
 Luckily, Amazon gives you a way to serve files in S3 over HTTPS through the use
 of CloudFront, their global CDN service that can be easily linked to a bucket.
