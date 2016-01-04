@@ -34,7 +34,7 @@ allowed any special treatment (so `/about` cannot go to `/about/index.html`).
 So with S3 you can have index documents but no HTTPS, and with CloudFront you
 can have HTTPS but no index documents; not the end of the world (determined
 customers can give up the pretty URIs), but a sad state of affairs nonetheless
-for a product that's ostensibly mature.
+for a product that's ostensibly in a mature state.
 
 [cloudfront-root]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DefaultRootObject.html
 [s3-endpoints]: https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteEndpoints.html
