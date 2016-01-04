@@ -37,7 +37,7 @@ customers can give up the pretty URIs), but a sad state of affairs nonetheless
 for a product that's ostensibly in a mature state.
 
 [1] Note that S3 does allow access over HTTPS through domains that look like
-`*.s3.amazonaws.com`, but these domains don't have the features of a static
+`*.s3.amazonaws.com`, but these domains don't get the features of an S3 static
 website (index documents for example).
 
 [cloudfront-root]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DefaultRootObject.html
