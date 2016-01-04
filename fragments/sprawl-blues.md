@@ -13,8 +13,8 @@ Now that I work in San Francisco I can't help but get hit by the same feeling
 when visiting Calgary, a city which had an almost unlimited capacity to sprawl
 due to its location on the open plains of Alberta, and which has taken the
 opportunity to its fullest. When going to see my friends while in town for the
-holidays, many trips are 20-30 minutes by car while driving off-hours under
-good weather conditions. Trips to a non-adjacent quadrant can balloon up to 45
+holidays, many trips are 20-30 minutes by car while driving off-hours in good
+weather conditions. Trips to a non-adjacent quadrant can balloon up to 45
 minutes. Walking in most areas is of course completely untenable; the local
 convenience store around my parents' home in Deer Run is 20 minutes away at a
 brisk pace, Starbucks is 35 minutes, and the closest train station is almost 90
