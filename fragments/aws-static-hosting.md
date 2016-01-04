@@ -17,7 +17,7 @@ S3 allows you to specify an "index document" which will be served when a
 directory is accessed.
 
 So everything's fine right? Well, no. The problems begin with [S3 not
-supporting HTTPS access on its static website endpoints][s3-endpoints]; a
+supporting HTTPS access on its static website endpoints][s3-endpoints] [1]; a
 decision that makes things awkward for would-be customers, but presumably one
 that was made with difficulty for reasons related to limitations in internal
 architecture.
@@ -35,6 +35,10 @@ So with S3 you can have index documents but no HTTPS, and with CloudFront you
 can have HTTPS but no index documents; not the end of the world (determined
 customers can give up the pretty URIs), but a sad state of affairs nonetheless
 for a product that's ostensibly in a mature state.
+
+[1] Note that S3 does allow access over HTTPS through domains that look like
+`*.s3.amazonaws.com`, but these domains don't have the features of a static
+website (index documents for example).
 
 [cloudfront-root]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DefaultRootObject.html
 [s3-endpoints]: https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteEndpoints.html
