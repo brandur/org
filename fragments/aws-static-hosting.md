@@ -3,6 +3,9 @@ title: AWS Static Hosting
 published_at: 2016-01-04T09:18:18Z
 ---
 
+**Addendum &mdash;** I've published a [second post][second] containing a
+workaround for the problems described in this document.
+
 While working on a tiny project today to demonstrate publishing a static
 website through to S3, I was surprised to find that despite almost nonstop
 improvements since its release, there are still some key features missing from
@@ -41,4 +44,5 @@ for a product that's ostensibly in a mature state.
 website (index documents for example).
 
 [cloudfront-root]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DefaultRootObject.html
+[second]: /fragments/aws-static-hosting-workaround
 [s3-endpoints]: https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteEndpoints.html
