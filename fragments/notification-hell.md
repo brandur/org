@@ -42,7 +42,7 @@ few advantages:
    faster) feedback from a larger group of people.
 2. If we consider that either type of interrupt may come with some kind of work
    required to respond (e.g. "why did this request fail?"), the average size of
-   the the work item coming through Slack is probably smaller. Larger work
+   the work item coming through Slack is probably smaller. Larger work
    items tend to still come through more official channels like an email or a
    meeting (but by no means is this always the case).
 
@@ -60,7 +60,7 @@ But for counterpoint, we should also look at some places where e-mail shines:
    works for them.
 
 All things considered though, Slack has a _huge_ downside that vastly
-outweights any possible benefits to productivity: it's always on. E-mail might
+outweighs any possible benefits to productivity: it's always on. E-mail might
 be disruptive, but you get to use it on your own terms. During a normal
 workday, I might check it once an hour and clear out any incoming interrupts en
 masse by batching all that work together. But with Slack, those same
