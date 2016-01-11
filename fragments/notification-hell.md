@@ -62,14 +62,14 @@ But for counterpoint, we should also look at some places where e-mail shines:
    allowing those users to effectively triage incoming items in a way that
    works for them.
 
-All things considered though, Slack has a _huge_ downside that vastly
-outweighs any possible benefits to productivity: it's always on. E-mail might
-be disruptive, but you get to use it on your own terms. During a normal
-workday, I might check it once an hour and clear out any incoming interrupts en
-masse by batching all that work together. But with Slack, those same
-interrupts will come in piecemeal at regular intervals, and worse yet, their
-senders will expect an immediate response; an easy recipe for never being
-focused enough to get through any significant work (more on this phenomena
+But all things considered, Slack has a _huge_ downside that vastly outweighs
+any possible benefits to productivity: it's always on. E-mail might be
+disruptive, but you get to use it on your own terms. During a normal workday, I
+might check it once an hour and clear out any incoming interrupts en masse by
+batching all that work together. But with Slack, those same interrupts will
+come in piecemeal at regular intervals, and worse yet, their senders will
+expect an immediate response; an easy recipe for never being focused enough to
+get through any significant work (more on this phenomena
 [here][slack-distractor]).
 
 The bottom line is that there's no way that we can in good conscience describe
