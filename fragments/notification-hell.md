@@ -30,9 +30,12 @@ e-mail; even describing its use as literally "transformative":
 
 I like Slack as a product (maybe even moreso than most having endured long
 periods of using Campfire and HipChat), but this is where this type of glowing
-endorsements really lose me.
+endorsements really lose me. Slack is an incredibly functional, refined, and
+feature-rich chat program -- maybe the best of its class ever written -- but
+it's a chat program, and not substantially different from IRC which had its
+first implementation written in 1988.
 
-I'll give the major proponents the benefit of the doubt in that it that when
+I'll give its major proponents the benefit of the doubt in that it that when
 comparing a Slack interrupt to an e-mail interrupt, the Slack interrupt has a
 few advantages:
 
