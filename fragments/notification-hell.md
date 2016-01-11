@@ -59,7 +59,7 @@ But for counterpoint, we should also look at some places where e-mail shines:
    you care about (after the first message).
 3. Its use is dictated by the user (list subscriptions, tags, and filters)
    rather than the provider (channels, bots), and this has huge benefits in
-   allowing those users to effectively triage incoming items in a way that
+   allowing those users to effectively manage incoming items in a way that
    works for them.
 
 But all things considered, Slack has a _huge_ downside that vastly outweighs
