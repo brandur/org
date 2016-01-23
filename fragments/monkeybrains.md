@@ -26,11 +26,11 @@ ready to go. As he left, he promised to add a ticket into their system for
 follow-up, and to do everything in their power for me, a little like a doctor
 might in hushed tones after telling someone that they were terminally ill.
 
-As I was leaving the house this morning I got a response on my support ticket:
-they'd been able to use equipment at their office to remotely reconfigure my
-antenna to a new access point and that my connection was now looking great. A
-quick check on Speedtest confirmed that my connection was back up to speeds of
-almost 65 mbit/s symmetrical [2].
+As I was leaving the house this morning I got a surprising response on my
+support ticket: they'd been able to use equipment at their office to remotely
+reconfigure my antenna to a new access point and that my connection was now
+looking great. A quick check on Speedtest confirmed that my connection was back
+up to speeds of almost 65 mbit/s symmetrical [2].
 
 I don't understand it, but I'm not questioning things too much. MonkeyBrains
 works in mysterious ways.
