@@ -40,9 +40,9 @@ year and a half that I've been with them [3] and would very much recommend the
 service. I may be one of the only people in all of North America who gets a 50+
 mbit/s connection for $35/month without hidden fees.
 
-[1] <a href="https://drop.brandur.org/monkey-brains-degraded.png">Degraded speedtest</a>.
+[1] <a href="https://drop.brandur.org/monkey-brains-degraded.png">Degraded speedtest</a>. 4.28/4.78 mbit/s.
 
-[2] <a href="https://drop.brandur.org/monkey-brains-optimal.png">Optimal speedtest</a>.
+[2] <a href="https://drop.brandur.org/monkey-brains-optimal.png">Optimal speedtest</a>. 63.35/53.92 mbit/s.
 
 [3] The only exception being the time they knocked out my Internet for a few
 days without telling me so that they could install a line for my neighbor.
