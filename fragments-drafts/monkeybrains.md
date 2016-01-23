@@ -9,10 +9,10 @@ casualty was my Internet connection which depends on an open view between an
 antenna mounted on my roof and an access point installed a block away. A
 building across the street had added two more floors and built right into its
 line-of-sight. My previously fast Internet connection quickly degraded to a 4
-mbit/s link most closely related to the dial-up that I'd used back in the 90s.
-To make matters worse, a new building is also going up right next door,
-obscuring at least another 90 degrees of viewing angle and further reducing
-options for reorienting the antenna.
+mbit/s link most closely related to a dial-up link from the 90s [1]. To make
+matters worse, a new building is also going up right next door, obscuring at
+least another 90 degrees of viewing angle and further reducing options for
+reorienting the antenna.
 
 A technician from the company stopped by and proceeded to pace sullenly across
 my roof as he examined my new circumstances. It was overwhelmingly obvious
@@ -29,7 +29,10 @@ As I was leaving the house this morning I got a response on my support ticket:
 they'd been able to use more sophisticated equipment at the office to remotely
 reconfigure my antenna to a new access point and that my connection was now
 looking great. A quick check on Speedtest confirmed that my connection was back
-up to speeds of about 50 mbit/s symmetrical.
+up to speeds of almost 65 mbit/s symmetrical [2].
 
 I don't understand it, but I'm not questioning things too much. MonkeyBrains
 works in mysterious ways.
+
+[1] Speedtest: https://drop.brandur.org/monkey-brains-degraded.png
+[2] Speedtest: https://drop.brandur.org/monkey-brains-optimal.png
