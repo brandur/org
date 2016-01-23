@@ -16,7 +16,7 @@ recently went up right next door, obscuring at least another 90 degrees and
 further reducing options for potential new targets for the antenna.
 
 A technician stopped by and proceeded to pace sullenly across my roof as he
-examined my new circumstances. It was overwhelmingly obvious inside the first
+examined my new circumstances. It was overwhelmingly clear inside the first
 five seconds that prospects were grim. For the next half-hour he alternated
 between walking back and forth on the roof checking sight lines, dialing back
 into headquarters to have energetic conversations about local access points
