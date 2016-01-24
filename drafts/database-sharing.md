@@ -1,11 +1,3 @@
-> Web APIs were inconvenient, thought Joe. Fetching an up-to-date e-mail address of a single user required provisioning an API key provisioned with special privileges for acessing sensitive data, a process that involved following instructions in a long document. Even once you had that, getting the up-to-date e-mail addresses of a thousand different users generally required a new request for each one &mdash; an incredibly inefficient process! In SQL, that was all possible given only a single query.
->
-> Pulling up a console, he keyed an operator command that would get him the credentials for the system's master database. Then, opening the code of his own service, he entered a few lines that would allow it to connect to that database and query against it directly. He tenatively pushed the change up to a staging environment to see what would happen. Success! This little trick was going to save him hours worth of work. It was amazing that no one had thought of it before.
->
-> Things moved quickly from there. A few months later, he'd fully baked that foreign database connection into his service and was using it for dozens of lookups. The company's entire dataset was available at his fingertips, and accessing any of it was just a single SQL query away. The setup was robustly engineered too; by bootstrapping his project with a second database schema, he'd been able to build out a test suite that verified operation based on the contents of the other database. He was a rockstar.
->
-> Two years later, a variety of interesting failures, cross-team contention during development, and bad production incidents eventually led to the decision to reverse Joe's changes. Adherence to the bad design had ballooned to the extent that doing so was only possible at considerable expense; the project would be a multi-engineer effort over two full quarters.
-
 > For every complex problem there is an answer that is clear, simple, and
 > wrong.
 >
