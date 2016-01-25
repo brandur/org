@@ -3,7 +3,8 @@ title: The Cubano
 published_at: 2014-11-27T05:11:21Z
 ---
 
-I've recently been working on some cocktails that include egg white and came across a good one while surfing the expanses of the World Wide Web.
+I've recently been working on some cocktails that include egg white and came
+across a good one while surfing the expanses of the World Wide Web.
 
 The _Cubano_:
 

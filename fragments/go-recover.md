@@ -3,7 +3,10 @@ title: Global Recovery in Go With Defer
 published_at: 2014-09-21T17:53:09Z
 ---
 
-Having spent the last few weeks trying to become literate in Golang, I can confidently say that all of my favorite tricks in the language [involved the `defer` statement](https://golang.org/doc/effective_go.html#defer). Here's one that I gleaned from the source code of hk:
+Having spent the last few weeks trying to become literate in Golang, I can
+confidently say that all of my favorite tricks in the language [involved the
+`defer` statement](https://golang.org/doc/effective_go.html#defer). Here's one
+that I gleaned from the source code of hk:
 
 ``` go
 package main
@@ -51,6 +54,9 @@ $ cat log
 2014/09/21 11:13:11 Unhandled error: This unhandled error will be handled
 ```
 
-In this simplified example above, we use a combination of `defer` and `recover()` to handle any exception that might have been thrown with `panic()`, log some information about it, and exit the program cleanly.
+In this simplified example above, we use a combination of `defer` and
+`recover()` to handle any exception that might have been thrown with `panic()`,
+log some information about it, and exit the program cleanly.
 
-hk takes this a step futher by sending the error up to Rollbar so that all of its unexpected crashes can be examined in aggregate.
+hk takes this a step futher by sending the error up to Rollbar so that all of
+its unexpected crashes can be examined in aggregate.

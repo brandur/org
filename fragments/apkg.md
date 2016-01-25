@@ -3,9 +3,15 @@ title: Anki's .apkg
 published_at: 2014-10-26T16:40:00Z
 ---
 
-I was examining Anki today to get a feel for how difficult it would be to export notes from [my facts project](https://github.com/brandur/facts-canonical) to Anki's file format. Although a number of sources loosely describe Anki as using SQLite databases for storage, I had trouble finding a precise specification, so hopefully my findings will save someone else some time down the line.
+I was examining Anki today to get a feel for how difficult it would be to
+export notes from [my facts
+project](https://github.com/brandur/facts-canonical) to Anki's file format.
+Although a number of sources loosely describe Anki as using SQLite databases
+for storage, I had trouble finding a precise specification, so hopefully my
+findings will save someone else some time down the line.
 
-Anki's `.apkg` format is a zip file containing an SQLite database and support files:
+Anki's `.apkg` format is a zip file containing an SQLite database and support
+files:
 
 ```
 $ unzip chemistry.apkg -d chemistry
@@ -20,7 +26,8 @@ sqlite> .tables
 cards   col     graves  notes   revlog
 ```
 
-Things don't get easier from there though. The author(s) are from the terse school of software:
+Things don't get easier from there though. The author(s) are from the terse
+school of software:
 
 ```
 sqlite> .schema notes
