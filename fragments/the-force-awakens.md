@@ -68,11 +68,10 @@ first five minutes:
 * One Stormtrooper captain (Phasma) has the knowhow to permanently disable the
   Starkiller's shields in a way that apparently can't be undone. Even the
   Death Star II needed an army of stone-wielding anthromorphic raccoons and
-  some log traps to finish that job.
+  some log traps to finish the job.
 * And on that subject, Captain Phasma may be the single most extraneous lauded
   character of the modern age (or at least since Boba Fett). She has cool
-  armor, but literally contributes nothing throughout the entire duration of
-  the movie.
+  armor, but contributes nothing throughout the entire duration of the movie.
 * A guy who's never held a lightsaber before (Finn) can hold his own against a
   Sith. What happened to Force push/pull/throw/steal/fistbump/anything?
 * A girl who learnt that she was force sensitive the day before (Rey) can
@@ -80,7 +79,7 @@ first five minutes:
 * After forcing the universe's most powerful forces to go on a treasure hunt
   costing hundreds of lives to find him, Luke's just been hanging out on a nice
   island looking at the ocean and waiting for someone to hand him a lightsaber.
-  At least he's got a cool new beard though.
+  At least he's got a cool new beard.
 
 We get to end the movie with a nice game of "guess Rey's heritage". I'm hoping
 a secret second twin of Han and Leia in a homage to Jacen and Jaina in the
