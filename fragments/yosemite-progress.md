@@ -22,14 +22,14 @@ it another one of my systems, I noticed that a couple "2 seconds remaining"
 screens that lasted longer than ten minutes. In fact, it was rare to see any
 screen that wasn't off by less than an order of magnitude.
 
-It's telling that we still can't progres bars right even on one of the world's
-most modern operating systems. Back when I built Windows apps, we'd often run
-into situations where performing the calculations to have an accurate status
-bar would be almost as expensive as just doing the work, so we'd favor speed
-over correctness. Some of the code was downright dirty; for example, making a
-rough estimate that routing points would take 40 times longer to load than the
-routes themselves. As you may imagine, this resulted in some interesting
-experiences for users with outlying data sets.
+It's telling that we still can't get progress bars right even on one of the
+world's most modern operating systems. Back when I built Windows apps, we'd
+often run into situations where performing the calculations to have an accurate
+status bar would be almost as expensive as just doing the work, so we'd favor
+speed over correctness. Some of the code was downright dirty; for example,
+making a rough estimate that routing points would take 40 times longer to load
+than the routes themselves. As you may imagine, this resulted in some
+interesting experiences for users with outlying data sets.
 
 Anyway, the lesson from these is clear: progress bars are often wrong.
 Especially where Yosemite is considered, just wait no matter what the progress
