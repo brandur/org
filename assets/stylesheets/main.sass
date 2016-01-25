@@ -26,7 +26,6 @@ body
   background: #fff
   color: $primary
   font-family: $serif
-  font-size: 16px
   line-height: 1.7em
 
 code
@@ -47,25 +46,29 @@ h1, h2, h3, h4
     text-decoration: none
 
 h1
-  font-size: 100px
+  font-size: 6.25rem
   letter-spacing: -6px
   line-height: 1.0em
   margin: 20px 0 30px 0
 
 h1.generic
-  font-size: 50px
+  font-size: 3.15rem
 
 h2
-  font-size: 25px
+  font-size: 1.55rem
   margin: 30px 0 -10px 0
 
 h3
-  font-size: 20px
+  font-size: 1.25rem
   margin: 30px 0 -15px 0
 
 h4
-  font-size: 17px
+  font-size: 1.05rem
   margin: 30px 0 -15px 0
+
+html
+  // Root font size. All other sizes with "rem" are relative to this.
+  font-size: 16px
 
 img
   display: block
@@ -82,7 +85,7 @@ p
 pre
   background: #efefef
   font-family: Monaco, "Lucida Console", "Bitstream Vera Sans Mono", Courier, monospace
-  font-size: 12px
+  font-size: 0.75rem
   line-height: 1.4em
   overflow: auto
   padding: 40px 0 40px 40px
@@ -100,18 +103,18 @@ strong
   font-weight: bold
 
 sub
-  font-size: 14px
+  font-size: 0.85rem
   vertical-align: sub
 
 sup
-  font-size: 14px
+  font-size: 0.85rem
   vertical-align: super
 
 table
   border: 1px solid $tertiary
   border-collapse: collapse
   font-family: $sans_serif
-  font-size: 14px
+  font-size: 0.85rem
   line-height: 1.4em
   margin: 30px 0
   width: 100%
@@ -160,7 +163,7 @@ ol, ul
   width: 80%
 
 .hook
-  font-size: 22px
+  font-size: 1.4rem
   font-style: italic
   line-height: 1.6em
   margin: 30px 0
@@ -190,7 +193,7 @@ ol, ul
   a
     color: #000
     font-family: $sans_serif
-    font-size: 26px
+    font-size: 1.55rem
     font-weight: bold
     line-height: 1.2em
     text-decoration: none
@@ -205,7 +208,7 @@ ol, ul
   .meta
     color: $secondary
     font-family: $sans_serif
-    font-size: 12px
+    font-size: 0.75rem
     font-style: italic
     margin: 0 0 0 10px
 
@@ -254,7 +257,7 @@ ol, ul
   #lead
     color: $secondary
     font-family: $sans_serif
-    font-size: 13px
+    font-size: 0.75rem
     font-weight: bold
     margin: 30px 0
     text-transform: uppercase
@@ -269,14 +272,14 @@ ol, ul
 #toc
   float: right
   font-family: $sans_serif
-  font-size: 13px
+  font-size: 0.8rem
   line-height: 1.5em
   margin: 0 0 0 30px
   width: 200px
 
   h2
     font-family: $sans_serif
-    font-size: 12px
+    font-size: 0.75rem
     margin: 10px 0
     text-transform: uppercase
 
@@ -291,7 +294,7 @@ ol, ul
       padding-left: 10px
 
       ol
-        font-size: 11px
+        font-size: 0.7rem
         list-style-type: lower-alpha
 
         li
@@ -306,7 +309,7 @@ ol, ul
 
 #footnotes
   border-top: 1px solid $tertiary
-  font-size: 14px
+  font-size: 0.85rem
   line-height: 1.6em
   margin: 30px auto
   width: 90%
@@ -331,7 +334,7 @@ article
       overflow: hidden
 
     figcaption
-      font-size: 14px
+      font-size: 0.85rem
       font-style: italic
       line-height: 1.5em
       position: absolute
@@ -357,7 +360,7 @@ article
     text-align: center
 
   .info
-    font-size: 14px
+    font-size: 0.85rem
     font-style: italic
     line-height: 1.5em
     text-align: left
@@ -370,7 +373,7 @@ footer
 
   nav
     border-top: 1px solid $tertiary
-    font-size: 11px
+    font-size: 0.7rem
     padding: 25px 20px
     text-align: center
     text-transform: uppercase
@@ -387,7 +390,7 @@ footer
 
 @media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
   .hook
-    font-size: 18px
+    font-size: 1.15rem
 
   #toc
     float: none
@@ -416,7 +419,7 @@ footer
     -webkit-hyphens: auto
 
   h1
-    font-size: 80px
+    font-size: 5rem
 
   pre
     overflow: auto
@@ -480,7 +483,6 @@ footer
 //        width: auto
 //
 //  body
-//    //font-size: 17px
 //
 //  p
 //    // so much space! allow code content to just expand across the screen
@@ -493,4 +495,4 @@ footer
 //  footer
 //
 //    nav
-//      font-size: 12px
+//      font-size: 0.75rem
