@@ -63,7 +63,7 @@ first five minutes:
   but he's doing a magnificent job of following in Hayden Christensen's
   footsteps of being a whiny, angsty teenager.
 * Han spends about three and a half seconds figuring out how to bypass the
-  Starkiller's shield to get the Falcon in. Obviously built by the same
+  Starkiller's shield to get the Falcon in. It's obviously built by the same
   contractors as both Death Stars.
 * One Stormtrooper captain (Phasma) has the knowhow to permanently disable the
   Starkiller's shields in a way that apparently can't be undone. Even the
