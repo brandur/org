@@ -24,7 +24,8 @@ with his colleagues, and staring forlornly at adjacent buildings. By the end of
 it I had a mental shopping list of alternate service providers prepared and
 ready to go. As he left, he promised to add a ticket into their system for
 follow-up, and to do everything in their power for me, a little like a doctor
-might in hushed tones after telling someone that they were terminally ill.
+might in confidential tones after telling someone that they were terminally
+ill.
 
 As I was leaving the house this morning I got a surprising response on my
 support ticket: they'd been able to use equipment at their office to remotely
