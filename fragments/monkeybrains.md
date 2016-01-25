@@ -10,10 +10,10 @@ casualty was my Internet connection, a point-to-point radio service depends on
 an open view between an antenna mounted on my roof and an access point
 installed a block away. A building across the street had added two more floors
 and built right into its line-of-sight. Within the span of a week my previously
-fast Internet connection degraded to a 4 mbit/s link most closely related to a
-dial-up link from the 90s [1]. To make matters worse, a new building also
-recently went up right next door, obscuring at least another 90 degrees and
-further reducing options for potential new targets for the antenna.
+fast Internet had degraded to a 4 mbit/s link most closely related to a dial-up
+link from the 90s [1]. To make matters worse, a new building also recently went
+up right next door, obscuring at least another 90 degrees and further reducing
+options for potential new targets for the antenna.
 
 A technician stopped by and proceeded to pace sullenly across my roof as he
 examined my new circumstances. It was overwhelmingly clear inside the first
@@ -30,8 +30,8 @@ ill.
 As I was leaving the house this morning I got a surprising response on my
 support ticket: they'd been able to use equipment at their office to remotely
 reconfigure my antenna to a new access point and that my connection was now
-looking great. A quick check on Speedtest confirmed that my connection was back
-up to speeds of almost 65 mbit/s symmetrical [2].
+looking great. A quick check on Speedtest confirmed that it was indeed back up
+to speeds of almost 65 mbit/s symmetrical [2].
 
 I don't understand it, but I'm not questioning things too much. MonkeyBrains
 works in mysterious ways.
