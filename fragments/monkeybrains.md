@@ -5,7 +5,7 @@ image: https://c2.staticflickr.com/2/1590/24197211299_21c6c7413a_b.jpg
 #image: https://c2.staticflickr.com/2/1511/24456650802_996f3d74e3_b.jpg
 ---
 
-One worst part of living in SOMA is the endless construction. Its latest
+One "worst part" of living in SOMA is the endless construction. Its latest
 casualty was my Internet connection, a point-to-point radio service depends on
 an open view between an antenna mounted on my roof and an access point
 installed a block away. A building across the street had added two more floors
