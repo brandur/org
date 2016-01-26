@@ -29,8 +29,8 @@ Python and Ruby.
 Finding that perfect balance between functionality and simplicity is incredibly
 difficult, and nobody's gotten it right so far [1]. As developers, all that we
 can do is endeavor to build tools that are powerful, composable, and
-practically effective, while rejecting overdesign and complexity in all their
-forms.
+practically effective, while rejecting overdesign and complexity as best as we
+can.
 
 [1] Go's probably gotten the closest so far, but even there they managed to
 botch very important things like their HTTP handler signature despite having a
