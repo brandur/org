@@ -4,7 +4,7 @@
 > &mdash; H. L. Mencken
 
 Sharing a database between components is a technique where this concept is
-especially relevant, but it may not be intuitve as to why that is. Engineers
+especially relevant, but it may not be intuitive as to why that is. Engineers
 who've been around the block would probably acknowledge this as a design smell,
 but possibly without being able to articulate its precise problems.
 
@@ -22,15 +22,24 @@ We certainly know that the technique has a number of advantages:
    in one place and there's no risk of divergence of any kind.
 
 Despite the obvious upsides, this is still a model that needs to be avoided in
-the long run by any company that's building out an internal service-based
-architecture. Let's take a look at a few of the problems that will eventually
-start to fall out of it.
+the long run by any company that's interested in maintaining steady state
+facility without the overhead of expensive processes. Let's take a look at a
+few of the problems that will eventually start to fall out of it.
 
 ## Problems (#problems)
 
 ### Immutable Schema (#immutable-schema)
 
+Libraries that perform dynamic loading of fields on database objects become
+dependent on the current version of the schema and make fields very difficult
+to remove.
+
 ### Unstable APIs (#unstable-apis)
+
+One of the central tenants of OOP is _encapsulation_ which dictates that data
+and any functions that manipulate it should be bound together behind an
+interface that keeps the implementation safe. This idea applies just as well to
+services running with databases.
 
 Stability.
 
@@ -48,6 +57,13 @@ Operations.
 
 Everything from number of connections allowed to delay in WAL application.
 
+I wrote on article [on queuing problems in Postgres database](/postgres-queues)
+that describes a production problem that was ultimately caused by another team
+that decided to start reading from our database. This is an example of a major
+real-world manifestation that had a costly impact on business, was difficult to
+track down, and very expensive to fix.
+
 ## What You Should Do Instead (#alternatives)
 
-## Solutions (#solutions)
+HTTP APIs, Thrift, whatever, it all works. If you really need the query
+flexibility of SQL, try something like GraphQL.
