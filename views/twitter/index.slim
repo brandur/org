@@ -1,12 +1,12 @@
 - if pjax?
   title= @title
 .flag
+.top-nav
+  == render :slim, :"_nav", layout: false
 .top-spacing
 .twitter
   .content
     #title
-      #lead
-        a href="/" Home
       h1 Twitter
     .twitter-content
       - if params[:with_replies] != "true"

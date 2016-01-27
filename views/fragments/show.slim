@@ -1,14 +1,14 @@
 - if pjax?
   title= @title
 .flag
+.top-nav
+  == render :slim, :"_nav", layout: false
 .top-spacing
 .fragments
   .content
     - if @fragment[:image]
       img#mood src=@fragment[:image]
     #title
-      #lead
-        a href="/fragments" Fragments
       h1= @fragment[:title]
       .meta
         = @fragment[:published_at].strftime("%B %e, %Y")

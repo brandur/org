@@ -6,11 +6,11 @@
   .vista-overlay
     .vista-overlay-inner
       #title
-        #lead
-          a href="/articles" Articles
         h1= @title
 - else
   .flag
+  .top-nav
+    == render :slim, :"_nav", layout: false
   .top-spacing
 .signature
   .content

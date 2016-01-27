@@ -1,12 +1,12 @@
 - if pjax?
   title= @title
 .flag
+.top-nav
+  == render :slim, :"_nav", layout: false
 .top-spacing
 .reading
   .content
     #title
-      #lead
-        a href="/" Home
       h1 Reading
     p #{number_with_delimiter(@books_count)} books.
     #charts

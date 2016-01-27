@@ -4,26 +4,7 @@ footer
   /#social
     a href="https://twitter.com/brandur"
       img src="/assets/twitter.png" alt="Twitter"
-  nav
-    ul
-      li
-        a href="/" data-pjax="#container" Home
-      li
-        a href="/articles" data-pjax="#container" Articles
-      li
-        a href="/fragments" data-pjax="#container" Fragments
-      li
-        a href="/photos" data-pjax="#container" Photos
-      li
-        a href="/runs" data-pjax="#container" Runs
-      li
-        a href="/talks" data-pjax="#container" Talks
-      li
-        a href="/twitter" Twitter
-      li
-        a href="/reading" Reading
-      li
-        a href="/about" About
-    .clear
+  == render :slim, :"_nav", layout: false
+  .clear
   /#copy
     | Made by Brandur. This project is <a href="https://github.com/brandur/org">open source</a>.

@@ -1,11 +1,11 @@
 - if pjax?
   title= @title
 .flag
+.top-nav
+  == render :slim, :"_nav", layout: false
 .top-spacing
 .content
   #title
-    #lead
-      a href="/" Home
     h1 Talks
   ul.list
     li

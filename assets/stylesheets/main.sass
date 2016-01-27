@@ -76,6 +76,29 @@ img
   margin: 20px 0
   max-width: 100%
 
+nav
+  font-family: $sans_serif
+  font-size: 0.7rem
+  font-weight: bold
+  text-transform: uppercase
+
+  a
+    color: $primary
+    text-decoration: none
+
+    &:hover
+      color: $primary
+
+  ul
+    display: inline-block
+    line-height: 1em
+    list-style-type: none
+    margin: 10px 16px
+
+    li
+      float: left
+      margin: 6px 7px
+
 p
   hyphens: auto
   -moz-hyphens: auto
@@ -213,6 +236,9 @@ ol, ul
     margin: 0 0 0 10px
 
 .top-spacing
+  height: 80px
+
+.top-spacing-index
   height: 50px
 
 .vista
@@ -245,29 +271,9 @@ ol, ul
     margin: 2% 15%
     position: absolute
 
-    h1, .hook, #lead a
+    h1, .hook a
       color: #fff
       text-shadow: 0 0 2px #000
-
-    #lead a:hover
-      text-shadow: 0 0 2px #fff
-
-#title
-
-  #lead
-    color: $secondary
-    font-family: $sans_serif
-    font-size: 0.75rem
-    font-weight: bold
-    margin: 30px 0
-    text-transform: uppercase
-
-    a
-      color: $secondary
-      text-decoration: none
-
-      &:hover
-        color: $primary
 
 #toc
   float: right
@@ -366,31 +372,24 @@ article
     text-align: left
 
 footer
-  border-bottom: 5px solid #000
   margin: 50px 0 0 0
   overflow: hidden
   width: 100%
 
   nav
     border-top: 1px solid $tertiary
-    font-size: 0.7rem
     padding: 25px 20px
     text-align: center
-    text-transform: uppercase
-
-    ul
-      display: inline-block
-      line-height: 1em
-      list-style-type: none
-      margin: 0 auto
-
-      li
-        float: left
-        margin: 6px 5px
 
 @media handheld, only screen and (max-width: 767px), only screen and (max-device-width: 767px)
   .hook
     font-size: 1.15rem
+
+  .top-nav
+    display: none
+
+  .top-spacing, .top-spacing-index
+    height: 50px
 
   #toc
     float: none
@@ -440,14 +439,6 @@ footer
       h1
         color: #000
         text-shadow: 0 0 0 #000
-
-      #lead a
-        color: $secondary
-        text-shadow: 0 0 0 #fff
-
-        &:hover
-          color: $primary
-          text-shadow: 0 0 0 #fff
 
   #container
     max-width: 100%
