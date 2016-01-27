@@ -54,6 +54,7 @@ module Org
             published_at:     meta["published_at"],
             slug:             File.basename(f).chomp(".md"),
             title:            meta["title"],
+            word_count:       $2.split.size,
           }
         else
           raise "No YAML front matter for #{f}."

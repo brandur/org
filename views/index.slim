@@ -13,9 +13,23 @@
         - @essays.each do |essay|
           li
             a href="/#{essay[:slug]}" data-pjax="#container"= essay[:title]
-            p= essay[:hook]
+            p
+              == essay[:hook]
+              /span.meta= essay[:published_at].strftime("%B %e, %Y")
+      p.older
+        em Older articles are <a href="/articles">available here</a>.
       .divider-short
-      p Older articles are <a href="/articles">available here</a>.
+      h1
+        a href="/fragments" Stories
+      ul
+        - @fragments.each do |fragment|
+          li
+            a href="/fragments/#{fragment[:slug]}" data-pjax="#container"= fragment[:title]
+            p
+              | #{fragment[:word_count]} words. 
+              span.meta= fragment[:published_at].strftime("%B %e, %Y")
+      p.older
+        em Older fragments are <a href="/fragments">available here</a>.
   section.photos
     .content
       h1
