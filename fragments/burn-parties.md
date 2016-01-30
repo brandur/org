@@ -24,4 +24,4 @@ effort that's gone into its removal.
 
 The effigy is then sacrificed to the open flame.
 
-[1] A bonfire is ideal, but you're probably in San Francisco after all.
+[1] A bonfire is ideal, but after all, you're probably in San Francisco.
