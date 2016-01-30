@@ -23,7 +23,7 @@ solutions, this leads to an inevitable fracturing of techniques that will never
 be resolved. The generation of popular dynamic languages like Ruby, JavaScript,
 and Python thought that they were solving the mistakes of their predecessors by
 being largely "batteries included", but they didn't go far enough. They also
-got their interfaces wrong, best demonstrated by the HTTP libraries of both
+got their interfaces wrong; best demonstrated by the HTTP libraries of both
 Python and Ruby.
 
 Finding that perfect balance between functionality and simplicity is incredibly
