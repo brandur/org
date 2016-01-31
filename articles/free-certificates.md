@@ -164,6 +164,10 @@ the trick for most people:
   [CloudFlare][cloudflare].
 * Otherwise, you should use [Let's Encrypt][lets-encrypt].
 
+For example, this site runs on Heroku. I have my domain terminated by
+CloudFront at "https://brandur.org", and CloudFront securely transports content
+from my HTTPS Heroku address at "https://brandur-org-next.herokuapp.com".
+
 That's it! Now please go out and secure your web properties.
 
 [acm]: https://aws.amazon.com/certificate-manager/
