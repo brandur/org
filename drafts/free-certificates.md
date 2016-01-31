@@ -164,6 +164,8 @@ the trick for most people:
   [CloudFlare][cloudflare].
 * Otherwise, you should use [Let's Encrypt][lets-encrypt].
 
+That's it! Now please go out and secure your web properties.
+
 [acm]: https://aws.amazon.com/certificate-manager/
 [acme]: https://github.com/ietf-wg-acme/acme/blob/master/draft-ietf-acme-acme.md
 [caniuse]: http://caniuse.com/#feat=sni

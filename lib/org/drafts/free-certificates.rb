@@ -2,7 +2,7 @@ module Org
   class Articles
     article "/free-certificates", {
       hook:         <<-eos,
-Getting a certificate that was signed by an authority used to be difficult and expensive, but not anymore! We've entered the golden age of web security. Read this for options for getting certificates issued for free.
+Getting a certificate that most browsers would accept used to be difficult and expensive, but not anymore! We're entering a golden age of web encryption. Read this for options for getting certificates issued for free.
       eos
       location:     "Vancouver",
       published_at: Time.parse("2016-01-31T17:48:53Z"),
