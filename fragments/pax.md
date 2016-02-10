@@ -24,12 +24,12 @@ long. As an SXSW participant for the last few years, I thought I knew what a
 lineup looked like. Oh to be so naive.
 
 The lineups don't end at the convention center's doors either. The very worst
-lineups are to be found at PAX afterparties where lineups need not be
-constrained by mere buildings. I walked by one venue that was hosting an event
-for the _The Evil Within_, and the lineup was three quarters of the way around
-a _full city block_. I doubt most of them made it in, but at the rate it was
-moving, its length would more accurately be measured in days than hours.
-First-hand reports of the party (published the next day) were lackluster.
+of them are to be found at PAX afterparties where they need not be constrained
+by mere buildings. I walked by one venue that was hosting an event for the _The
+Evil Within_, and the lineup was three quarters of the way around a _full city
+block_. I doubt most of them made it in, but at the rate it was moving, its
+length would more accurately be measured in days than hours. First-hand reports
+of the party (published the next day) were lackluster.
 
 To support this brave new world, PAX organizers have made sure to stay on the
 forefront of innovation in lineup science. It's the first place I've ever
