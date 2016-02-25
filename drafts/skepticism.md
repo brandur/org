@@ -40,8 +40,10 @@ in the way that their originators would have you believe. I'm also purposely
 being a little hard on all these companies to make the point; if you were to
 ask candidly if there were downsides to any of these technologies, they
 wouldn't lie to you, but the default is to leave that part of the story
-unspoken. It's also worth nothing that I'm 100% guilty of making these sorts of
-claims myself.
+unspoken.
+
+It's also worth nothing that I'm 100% guilty of making these sorts of claims
+myself.
 
 ## The Dirt
 
