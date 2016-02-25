@@ -5,13 +5,14 @@ in hiring developers, ...) are nothing but silly myths with little basis in
 reality. It's not the first talk to make these sorts of points, and it
 certainly won't be the last.
 
-## We're fine. We're all fine here now. How are you?
-
 This got me thinking that it might be worthwhile to briefly consider how
 healthy skepticism, a useful tool in all parts of life, can and should also be
-applied when thinking about new technologies and technical architecture. If we
-were to believe everything we read on engineering blogs and saw in conference
-talks, we'd come away with the impression that:
+applied when thinking about new technologies and technical architecture.
+
+## We're fine. We're all fine here now. How are you?
+
+If we were to believe everything we read on engineering blogs and saw in
+conference talks, we'd come away with the impression that:
 
 * Building and maintaining a home-built language and VM gets you a huge
   performance boost and is a magnificent idea (Hack and HHVM at Facebook).
