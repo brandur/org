@@ -2,7 +2,8 @@ I just watched a tech talk on the use of subject of Haskell in production. It
 went through the effort of pointing out in excruciating detail how most of the
 the language's traditional pain points (e.g. high barrier to entry, difficulty
 in hiring developers, ...) are nothing but silly myths with little basis in
-reality.
+reality. It's not the first talk to make these sorts of points, and it
+certainly won't be the last.
 
 ## We're fine. We're all fine here now. How are you?
 
