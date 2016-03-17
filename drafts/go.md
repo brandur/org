@@ -16,7 +16,16 @@ makes the whole process fun and I get things right the first time.
 
 Speed is absolutely critical, not just for the runtime, but _for the
 tooling_. Being able to compile and run your entire test suite in under a
-second (without tricks like Zeus that come with side effects).
+second [1] changes the entire development experience.
+
+### Deployment
+
+If every language was as easy to deploy as Go, Heroku would never have been
+invented.
+
+Deploying a Go program is orders of magnitude easier than most other modern
+stacks. No Bundler. No weird environment problems. Just a static binary.
+Deployment takes seconds and is as pain free as you'll ever see it.
 
 ## Other
 
@@ -80,9 +89,14 @@ hard to love:
   yet though is that the encouraged patterns of passing errors around through
   returns can occasionally make it very difficult to identify the original site
   of a problem.
+* **Debugging:** gdb does work with Go, but it's an experience that's so rough
+  that you'll find yourself resorting to print-debugging just to avoid the
+  hassle.
 * **Noisy diffs:** The downside of gofmt is the possibility of noisy diffs. If
   someone adds a new field with a long name to a large struct, all the spacing
-  changes and you end up with a huge block of red and a slow review.
+  changes and you end up with a huge block of red and a slow review (`?w=1` on
+  GitHub to hide whitespace changes helps mitigate this problem, but is not the
+  default).
 * **Quirky syntax:** Go is littered with quirky syntax that's fine once you
   know it, but is unnecessarily obtuse. Some examples:
     1. Interfaces are always references.
@@ -100,5 +114,8 @@ hard to love:
   an error is nil) is an atrocity. I've been using the [testify require
   package][testify] to ease this problem, but there should be answer in the
   standard library.
+
+[1] Without tricks like Zeus that come with considerable gotchas and side
+    effects.
 
 [testify]: https://github.com/stretchr/testify#require-package
