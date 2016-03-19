@@ -56,6 +56,11 @@ Deployment takes seconds and is as pain free as you'll ever see it.
   that unusual for newer languages these days, but it's becoming increasingly
   harder to justify languages like Ruby and Python that insist that having a
   standard library written in C is just fine.
+* **Nice documentation features:** Go has some neat innovations in
+  documentation that solve real problems that are observable in almost every
+  other language and framework. For example, [testable
+  examples][testable-examples] mean that examples in documentation get run with
+  the test suite so that they don't fall out of date.
 
 ### The Surprisingly Good
 
@@ -84,11 +89,11 @@ hard to love:
   matter how valid, is met with a barrage of a "you're doing it wrongs".
   Previously this level of zealotry had been reserved for holy crusades and
   text editors.
-* **Error handling:** I like that generally my programs don't crash, but
-  dealing with errors requires an incredible level of micro-management. Worse
-  yet though is that the encouraged patterns of passing errors around through
-  returns can occasionally make it very difficult to identify the original site
-  of a problem.
+* **Error handling:** Passing errors around and avoiding panics mean that
+  generally my programs don't crash, but dealing with errors requires an
+  incredible level of micro-management. Worse yet though is that the encouraged
+  patterns of passing errors around through returns can occasionally make it
+  very difficult to identify the original site of a problem.
 * **Debugging:** gdb does work with Go, but it's an experience that's so rough
   that you'll find yourself resorting to print-debugging just to avoid the
   hassle.
@@ -96,7 +101,7 @@ hard to love:
   someone adds a new field with a long name to a large struct, all the spacing
   changes and you end up with a huge block of red and a slow review (`?w=1` on
   GitHub to hide whitespace changes helps mitigate this problem, but is not the
-  default).
+  default and doesn't allow comments to be added).
 * **Quirky syntax:** Go is littered with quirky syntax that's fine once you
   know it, but is unnecessarily obtuse. Some examples:
     1. Interfaces are always references.
@@ -105,17 +110,25 @@ hard to love:
     4. `select` blocks with a `default` case become non-blocking.
     5. You check if a key exists in a map by using a rare second return value
        of a normal lookup with square brackets.
+    6. Comparing interfaces to `nil` is apparently not kosher and can lead to
+       some strange bugs.
+* **JSON:** Is [as slow as reported][slow-json] due to its extensive use of
+  reflection. This wouldn't seem like it should be a problem, but can lead to
+  bottlenecks in otherwise fast programs.
 
 ### The Ugly
 
 * **Assertions:** Although mostly palatable, the omission of a collection of
   meaningful assert functions (and the corresponding expectation that a
   custom-tailored message should be written every time you want to check that
-  an error is nil) is an atrocity. I've been using the [testify require
-  package][testify] to ease this problem, but there should be answer in the
-  standard library.
+  an error is nil) isn't great to say the least. The verbosity of tests acts as
+  a deterrent to writing tests in any project. I've been using the [testify
+  require package][testify] to ease this problem, but there should be answer in
+  the standard library.
 
 [1] Without tricks like Zeus that come with considerable gotchas and side
     effects.
 
+[slow-json]: https://github.com/golang/go/issues/5683
+[testable-examples]: https://blog.golang.org/examples
 [testify]: https://github.com/stretchr/testify#require-package
