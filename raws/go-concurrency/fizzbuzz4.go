@@ -8,22 +8,25 @@ type Result struct {
 }
 
 func fizzbuzz(out chan Result, die chan bool) {
+outerLoop:
 	for num := 0; ; num++ {
-		select {
-		case <-die:
-			break
-		default:
-		}
+		var res Result
 
 		switch {
 		case num%3 == 0 && num%5 == 0:
-			out <- Result{num, "FizzBuzz"}
+			res = Result{num, "FizzBuzz"}
 		case num%3 == 0:
-			out <- Result{num, "Fizz"}
+			res = Result{num, "Fizz"}
 		case num%5 == 0:
-			out <- Result{num, "Buzz"}
+			res = Result{num, "Buzz"}
 		default:
-			out <- Result{num, fmt.Sprintf("%d", num)}
+			res = Result{num, fmt.Sprintf("%d", num)}
+		}
+
+		select {
+		case <-die:
+			break outerLoop
+		case out <- res:
 		}
 	}
 }
@@ -31,7 +34,6 @@ func fizzbuzz(out chan Result, die chan bool) {
 func main() {
 	out := make(chan Result)
 	die := make(chan bool)
-	//die := make(chan bool, 1)
 
 	go fizzbuzz(out, die)
 	defer func() {
