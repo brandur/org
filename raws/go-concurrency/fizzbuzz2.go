@@ -38,9 +38,7 @@ func main() {
 		die <- true
 	}()
 
-	for {
-		res := <-out
-
+	for res := range out {
 		if res.num >= 100 {
 			break
 		}

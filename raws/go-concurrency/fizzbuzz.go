@@ -27,9 +27,7 @@ func main() {
 
 	go fizzbuzz(out)
 
-	for {
-		res := <-out
-
+	for res := range out {
 		if res.num >= 100 {
 			break
 		}
