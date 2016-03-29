@@ -2,58 +2,59 @@ package main
 
 import "fmt"
 
-func fizzbuzz(in chan int, out chan string, die chan bool) {
-outerLoop:
-	for {
-		var num int
-		select {
-		case <-die:
-			break outerLoop
-		case num = <-in:
-		}
+type Result struct {
+	num     int
+	display string
+}
 
+func fizzbuzz(out chan Result, die chan bool) {
+outerLoop:
+	for num := 0; ; num++ {
 		switch {
 		case num%3 == 0 && num%5 == 0:
 			select {
 			case <-die:
 				break outerLoop
-			case out <- "FizzBuzz":
+			case out <- Result{num, "FizzBuzz"}:
 			}
 		case num%3 == 0:
 			select {
 			case <-die:
 				break outerLoop
-			case out <- "Fizz":
+			case out <- Result{num, "Fizz"}:
 			}
 		case num%5 == 0:
 			select {
 			case <-die:
 				break outerLoop
-			case out <- "Buzz":
+			case out <- Result{num, "Buzz"}:
 			}
 		default:
 			select {
 			case <-die:
 				break outerLoop
-			case out <- fmt.Sprintf("%d", num):
+			case out <- Result{num, fmt.Sprintf("%d", num)}:
 			}
 		}
 	}
 }
 
 func main() {
+	out := make(chan Result)
 	die := make(chan bool)
-	in := make(chan int)
-	out := make(chan string)
 
-	go fizzbuzz(in, out, die)
+	go fizzbuzz(out, die)
 	defer func() {
 		die <- true
 	}()
 
-	for i := 0; i < 100; i++ {
-		in <- i
-		display := <-out
-		fmt.Println(display)
+	for {
+		res := <-out
+
+		if res.num >= 100 {
+			break
+		}
+
+		fmt.Println(res.display)
 	}
 }

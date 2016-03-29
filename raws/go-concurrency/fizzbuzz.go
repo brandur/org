@@ -2,33 +2,38 @@ package main
 
 import "fmt"
 
-func fizzbuzz(in chan int, out chan string) {
-	for {
-		var num int
-		num = <-in
+type Result struct {
+	num int
+	display string
+}
 
+func fizzbuzz(out chan Result) {
+	for num := 0; ; num++ {
 		switch {
 		case num%3 == 0 && num%5 == 0:
-			out <- "FizzBuzz"
+			out <- Result{num, "FizzBuzz"}
 		case num%3 == 0:
-			out <- "Fizz"
+			out <- Result{num, "Fizz"}
 		case num%5 == 0:
-			out <- "Buzz"
+			out <- Result{num, "Buzz"}
 		default:
-			out <- fmt.Sprintf("%d", num)
+			out <- Result{num, fmt.Sprintf("%d", num)}
 		}
 	}
 }
 
 func main() {
-	in := make(chan int)
-	out := make(chan string)
+	out := make(chan Result)
 
-	go fizzbuzz(in, out)
+	go fizzbuzz(out)
 
-	for i := 0; i < 100; i++ {
-		in <- i
-		display := <-out
-		fmt.Println(display)
+	for {
+		res := <-out
+
+		if res.num >= 100 {
+			break
+		}
+
+		fmt.Println(res.display)
 	}
 }
