@@ -11,7 +11,7 @@ type Result struct {
 }
 
 func fizzbuzz(out chan Result, done chan struct{}) {
-	for num := 0; ; num++ {
+	for num := 1; ; num++ {
 		select {
 		case <-done:
 			break

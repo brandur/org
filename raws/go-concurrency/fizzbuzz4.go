@@ -12,7 +12,7 @@ type Result struct {
 
 func fizzbuzz(out chan Result, done chan struct{}) {
 outerLoop:
-	for num := 0; ; num++ {
+	for num := 1; ; num++ {
 		var res Result
 
 		switch {

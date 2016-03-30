@@ -8,7 +8,7 @@ type Result struct {
 }
 
 func fizzbuzz(out chan Result) {
-	for num := 0; ; num++ {
+	for num := 1; ; num++ {
 		switch {
 		case num%3 == 0 && num%5 == 0:
 			out <- Result{num, "FizzBuzz"}
