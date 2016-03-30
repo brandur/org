@@ -47,6 +47,6 @@ func main() {
 		fmt.Println(res.display)
 	}
 
-	defer close(done)
+	close(done)
 	time.Sleep(1 * time.Second)
 }
