@@ -1,16 +1,16 @@
 
 
-## Building
+## Building (#building)
 
-## AWS Services
+## AWS Service Setup (#aws)
 
-### S3
+### S3 (#s3)
 
-### IAM
+### IAM (#iam)
 
-#### Create User
+#### Create User (#create-iam-user)
 
-#### Create Policy
+#### Create Policy (#create-iam-policy)
 
 ``` json
 {
@@ -30,9 +30,9 @@
 }
 ```
 
-### DNS
+### Route53 (or Any DNS) (#dns)
 
-### CloudFront
+### CloudFront (#cloudfront)
 
 CloudFront is Amazon's CDN service. We'll be using it along with AWS
 Certificate Manager (ACM) to distribute our content to Amazon edge locations
@@ -50,18 +50,22 @@ can be left default, but you should make a few changes:
 * Under "Alternate Domain Names (CNAMEs)" add the custom domain you'd like to
   host.
 
-### AWS Certificate Manager
+### AWS Certificate Manager (#acm)
 
-## Automating Contribution
+## Automating Contribution (#automating)
 
-### GitHub
+### GitHub (#github)
 
-### Travis
+### Travis (#travis)
 
 ```
 travis encrypt AWS_ACCESS_KEY=access-key-from-iam-step-above
 travis encrypt AWS_SECRET_KEY=secret-key-from-iam-step-above
 ```
+
+After encrypting your AWS keys, add those values to your `.travis.yml`. Because
+the keys are encrypted, it's safe to push them to GitHub. Use the `env` section
+of the file so that `Makefile` can find them:
 
 ``` yaml
 env:
@@ -74,3 +78,10 @@ env:
     # $AWS_SECRET_ACCESS_KEY (use the encrypted result from the command above)
     - secure: svmpm...
 ```
+
+Note that the plaintext values of these secure keys are only available to
+builds that are happening on the master branch of your repository. If someone
+forks your repository and builds their own branch, these values will not be
+available and upload to S3 will occur. However, once you accept a pull request
+into master, a build on those changes will happen and the results will be
+available live.
