@@ -8,9 +8,9 @@ opportunity to assemble a pretty serious project in the language from scratch.
 I took notes throughout the process so as not to lose my (relatively) fresh
 outlook on the language.
 
-## The Important Things
+## The Important Things (#important)
 
-### Simple, but Verbose
+### Simple, but Verbose (#verbose)
 
 Building new programs requires typing **a lot**. The language is incredibly
 verbose and has few shortcuts. The upside is that once you have typed out
@@ -24,7 +24,7 @@ every developer ends up baking into their code to reduce line count, and in
 many cases that's significant cognitive overhead. In Go that problem doesn't
 exist to anywhere near the same extent.
 
-### Concurrency
+### Concurrency (#concurrency)
 
 After spending some time with them, I'm firmly convinced that green threads
 (Goroutines) and channels is the only way that concurrency should be exposed.
@@ -47,7 +47,7 @@ opted to give users access to every type of primitive under the sun, and in the
 long run that tyranny of choice leads to an ecosystem of mixed ideas and no
 clear way forward.
 
-### Speed
+### Speed (#speed)
 
 Speed is absolutely critical, not just for the runtime, but _for the
 tooling_. Being able to compile and run your entire test suite in under a
@@ -63,7 +63,7 @@ ignoring the development cycle [2].
 But Go is also fast at runtime too. It's nice to be able to write code in a
 high-level language and be able to trust that it will run quickly.
 
-### Deployment
+### Deployment (#deployment)
 
 If every language was as easy to deploy as Go, Docker would never have been
 invented (maybe a slight exaggeration, but the need for it wouldn't have been
@@ -77,9 +77,9 @@ with `$PATH` or rbenv or anything else. Copy the executable to
 `/usr/local/bin`, inject it straight into my Crontab, and you're done.
 `killall` even works; incredible.
 
-## Other
+## Other Notes (#other)
 
-### The Good
+### The Good (#good)
 
 There's a lot to like about Go:
 
@@ -121,7 +121,7 @@ There's a lot to like about Go:
   that examples in documentation get run with the test suite so that they don't
   fall out of date.
 
-### The Surprisingly Good
+### The Surprisingly Good (#surprisingly-good)
 
 There were a lot of facets of Go that I read or heard about before trying and
 which I was pretty sure that I wouldn't like. However, after using the language
@@ -143,7 +143,7 @@ a while I quickly started warming up to them:
   the language for certain things difficult, I was amazed after having built a
   multi-thousand LOC program to realize that I hadn't wanted for them once.
 
-### The Bad
+### The Bad (#bad)
 
 I really did make an effort, but even so, some parts of the language are hard
 to love:
@@ -184,7 +184,7 @@ to love:
   reflection. This wouldn't seem like it should be a problem, but can lead to
   surprising bottlenecks in otherwise fast programs.
 
-### The Ugly
+### The Ugly (#ugly)
 
 There are very few parts of the language that are unapologetically bad, but
 that said:
@@ -200,7 +200,7 @@ that said:
   the [testify require package][testify] to ease this problem, but there should
   be answer in the standard library.
 
-## Summary
+## Summary (#summary)
 
 Overall, I never quite reached the level of feverish passion for Go that many
 others have, but I consider it a thoroughly solid language that's pleasant to
