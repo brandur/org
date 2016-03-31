@@ -1,8 +1,8 @@
 Despite having worked for so many years with colleagues who were major
 proponents (or even contributors) to Go/Golang, I'd somehow gone this long
 without having ever written a production grade service in the language, having
-mostly dabbled with toy projects, small scripts, and minor contributions to
-existing software. That all changed in the last few weeks, where I had the
+only dabbled so far with toy projects, small scripts, and minor contributions
+to existing software. That all changed in the last few weeks, where I had the
 opportunity to assemble a pretty serious project in the language from scratch.
 
 I took notes throughout the process so as not to lose my (relatively) fresh
