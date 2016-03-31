@@ -1,9 +1,9 @@
 Despite having worked for so many years with colleagues who were major
-proponents (or even contributors) to Go, I'd somehow gone this long without
-having ever written a production grade service in the language, having mostly
-dabbled with toy projects, small scripts, and minor contributions to existing
-software. That all changed in the last few weeks, where I had the opportunity
-to assemble a pretty serious project in the language from scratch.
+proponents (or even contributors) to Go/Golang, I'd somehow gone this long
+without having ever written a production grade service in the language, having
+mostly dabbled with toy projects, small scripts, and minor contributions to
+existing software. That all changed in the last few weeks, where I had the
+opportunity to assemble a pretty serious project in the language from scratch.
 
 I took notes throughout the process so as not to lose my (relatively) fresh
 outlook on the language.
@@ -199,6 +199,13 @@ that said:
   non-existent/poor/incomplete test suites are a dime a dozen. I've been using
   the [testify require package][testify] to ease this problem, but there should
   be answer in the standard library.
+
+Overall, although I don't that I've reached quite the same level of feverish
+passion for Go as many others, I consider it a thoroughly solid and pleasant
+language to work with. Furthermore, it may have reached the best compromise
+that we've seen so far of a language that imposes constraints that are strong
+enough to detect large classes of problems during compilation, but is still
+fluid enough to work with that it's easy to learn and fast to develop.
 
 [1] Without tricks like Zeus that come with considerable gotchas and side
     effects.
