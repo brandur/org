@@ -200,6 +200,8 @@ that said:
   the [testify require package][testify] to ease this problem, but there should
   be answer in the standard library.
 
+## Summary
+
 Overall, I never quite reached the level of feverish passion for Go that many
 others have, but I consider it a thoroughly solid language that's pleasant to
 work with. Furthermore, it may have reached the best compromise that we've seen
