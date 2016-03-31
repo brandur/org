@@ -113,7 +113,7 @@ hard to love:
   depressing. Every critique of the language or suggestion for improvement, no
   matter how valid, is met with a barrage of a "you're doing it wrongs".
   Previously this level of zealotry had been reserved for holy crusades and
-  text editors.
+  text editors [2].
 * **Error handling:** Passing errors around and avoiding panics mean that
   generally my programs don't crash, but dealing with errors requires an
   incredible level of micro-management. Worse yet though is that the encouraged
@@ -155,6 +155,14 @@ hard to love:
 [1] Without tricks like Zeus that come with considerable gotchas and side
     effects.
 
+[2] The best single example of this that I've found so far is [a request for a
+    non-zero exit code in Golint][golint]. The community articulates the
+    problem and shows an obvious demand and willingness to help. Meanwhile the
+    member of Go core can't manage to build even a single cohesive
+    counterargument, but even so, the issue along with all its ideas and
+    suggestions are summarily rejected.
+
+[golint]: https://github.com/golang/lint/issues/65
 [slow-json]: https://github.com/golang/go/issues/5683
 [testable-examples]: https://blog.golang.org/examples
 [testify]: https://github.com/stretchr/testify#require-package
