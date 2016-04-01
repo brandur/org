@@ -99,6 +99,10 @@ to set up your DNS.
 
 ### Route53 (or Any Other DNS) (#dns)
 
+Use Route53 or any other DNS provide of your choice to CNAME your custom domain
+to the domain name of your new CloudFront distribution (once again, those look
+lik `da48dchlilyg8.cloudfront.net`). 
+
 ### IAM (#iam)
 
 Now that the basic static site is working, it's time to lock down the
@@ -211,12 +215,14 @@ builds that are happening on the master branch of your repository. If someone
 forks your repository and builds their own branch, these values will not be
 available and upload to S3 will occur.
 
+[See a complete Travis configuration here][travis-yml].
+
 ### GitHub (#github)
 
 Once you accept a pull request into master, a build on those changes will
 happen and the results will be available live.
 
-[See a complete Travis configuration here][travis-yml].
+## Summary (#summary)
 
 [aws-cli]: https://aws.amazon.com/cli/
 [aws-console]: https://aws.amazon.com/console/
