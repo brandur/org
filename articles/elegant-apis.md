@@ -20,7 +20,7 @@ More complex rules can be mixed into the object as well. This will validate that
 
 ```
 {
-  "pattern": "^[a-z][a-z0-9-]{3,30}$",
+  "pattern": "^[a-z][a-z0-9-]{2,30}$",
   "type": "string"
 }
 ```
@@ -33,7 +33,7 @@ While the above lets us validate a single value, it's more interesting to valida
 {
   "properties": {
     "name": {
-      "pattern": "^[a-z][a-z0-9-]{3,30}$",
+      "pattern": "^[a-z][a-z0-9-]{2,30}$",
       "type": "string"
     }
   },
@@ -52,7 +52,7 @@ A very common convention in cases like this is to define subschemas under `defin
 {
   "definitions": {
     "name": {
-      "pattern": "^[a-z][a-z0-9-]{3,30}$",
+      "pattern": "^[a-z][a-z0-9-]{2,30}$",
       "type": "string"
     }
   },
@@ -108,7 +108,7 @@ Now, remember how I told you that schemas nest? They do, and we've already seen 
           "type": "array"
         },
         "name": {
-          "pattern": "^[a-z][a-z0-9-]{3,30}$",
+          "pattern": "^[a-z][a-z0-9-]{2,30}$",
           "type": "string"
         }
       },
