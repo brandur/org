@@ -165,8 +165,9 @@ to love:
 * **Noisy diffs:** The downside of gofmt is the possibility of noisy diffs. If
   someone adds a new field with a long name to a large struct, all the spacing
   changes and you end up with a huge block of red and a slow review [4].
-* **Quirky syntax:** Go is littered with quirky syntax that's fine once you
-  know it, but is unnecessarily opaque. Some examples:
+* **Quirky syntax and semantics:** Go is littered with quirky language syntax
+  and semantics that's fine once you know it, but is unnecessarily opaque. Some
+  examples:
     1. The distinction between `new`, `make`, and initialization with composite
        literals.
     2. Interfaces are always references.
