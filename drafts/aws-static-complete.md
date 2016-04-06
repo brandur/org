@@ -6,11 +6,15 @@ host your content.
 
 Until now I would have recommended a CloudFlare/other host hybrid so that you
 could get free HTTPS support for a custom domain with automatic certificate
-renewal, but the advent of AWS Certificate Manager (ACM) has changed that. By composing a few 
+renewal, but the advent of AWS Certificate Manager (ACM) has changed that. By
+composing a few basic Amazon services, we get a static that's almost totally
+operations-free and infinitely scalable. We'll also tack on a Travis/GitHub
+based CI process that will make deployment a completely invisible process and
+get you a great Git branch/GitHub pull request-based workflow.
 
 Keep in mind that although this article walks through setting up a static site
 step-by-step, you can [look at the full source code][singularity] of a sample
-project at any time.
+project at any time to dig into how things work.
 
 ## Building (#building)
 
@@ -140,6 +144,9 @@ Use Route53 or any other DNS provide of your choice to CNAME your custom domain
 to the domain name of your new CloudFront distribution (once again, those look
 like `da48dchlilyg8.cloudfront.net`). 
 
+You should now be able to visit your custom domain and see the fruit of your
+efforts!
+
 ### IAM (#iam)
 
 Now that the basic static site is working, it's time to lock down the
@@ -194,7 +201,7 @@ static site, but won't be able to probe any further into your Amazon account.
 
 By putting file sychronization to our S3 bucket into a Make task, we've made
 deployments pretty easy, but we can do even better. By running that same task
-in a Travis build for the project, we can make sure that anytime new code gets
+in a Travis build for the project, we'll make sure that anytime new code gets
 merged into master, our static site will update accordingly with complete
 autonomy.
 
@@ -255,10 +262,23 @@ available and upload to S3 will occur.
 
 ### GitHub (#github)
 
-Once you accept a pull request into master, a build on those changes will
-happen and the results will be available live.
+Now that CI configuration is in place, you can push to a GitHub repository and
+activate Travis for it.
+
+Builds that occur on the master branch will automatically deploy their results
+to S3 and they'll be available immediately. Pull requests still get a build and
+have a test suite run, but because configured secrets are not available on
+non-master branches, the deploy phase gets skipped, but you need only merge
+them to master to have it run.
 
 ## Summary (#summary)
+
+In short, we now have a set of static assets in S3 that are distributed around
+the globe by CloudFront, TLS termination with an evergreen certificate, nearly
+unlimited scalability, and a deployment process that's so dead easy that within
+five years you'll probably have forgotten how it works. And despite all of
+this, unless you're running a _hugely_ successful site, costs will probably run
+in the low single digits of dollars a month.
 
 [acm-console]: https://console.aws.amazon.com/acm/home
 [aws-cli]: https://aws.amazon.com/cli/
