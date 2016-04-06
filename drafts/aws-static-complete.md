@@ -125,7 +125,7 @@ distribution. If it asks you to choose between **Web** and **RTMP**, choose
 **Web**. Most options can be left default, but you should make a few changes:
 
 * Under **Origin Domain Name** select your S3 bucket.
-* Under **Viewer Protocol Policy** choose **Redirect HTTP to HTTPS"** As the
+* Under **Viewer Protocol Policy** choose **Redirect HTTP to HTTPS** As the
   name suggests, this will allow HTTP connections initially, but then force
   users onto HTTPS.
 * Under **Alternate Domain Names (CNAMEs)** add the custom domain you'd like to
