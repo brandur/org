@@ -6,17 +6,18 @@ host your content.
 
 Until now I would have recommended a CloudFlare/other host hybrid so that you
 could get free HTTPS support for a custom domain with automatic certificate
-renewal, but the advent of AWS Certificate Manager (ACM) has changed that. By
-composing a few basic Amazon services, we get a static that's almost totally
-operations-free and infinitely scalable. We'll also tack on a Travis/GitHub
-based CI process that will make deployment a completely invisible process and
-get you a great Git branch/GitHub pull request-based workflow.
+renewal, but the advent of AWS Certificate Manager (ACM) was the last missing
+piece in the all-Amazon stack. By composing a few of their services, we get a
+static site that's almost totally operations-free and nearly infinitely
+scalable. We'll also tack on a Travis/GitHub based CI process that will make
+deployment an invisible process and get you a great Git branch/GitHub pull
+request-based workflow.
 
 Keep in mind that although this article walks through setting up a static site
 step-by-step, you can [look at the full source code][singularity] of a sample
 project at any time to dig into how things work.
 
-## Building (#building)
+## Building the Site (#building)
 
 I'll leave getting a static site built as an exercise to the reader. There are
 _hundreds_ of static site frameworks out there and plenty of good choices.
@@ -26,12 +27,13 @@ script takes about the same amount of time as getting on-boarded with any of
 the major site generation frameworks. This isn't as much a critique of them as
 it is a nod to the inevitability of any general-purpose project to expand in
 features until it takes a lot of documentation and false starts to get up to
-speed. Writing your own script is a greater maintenance burden over the long
-run, but this is offset by the greater flexibility that it gets you.
+speed. Writing your own script is a greater maintenance burden on you over the
+long run, but this is offset by the greater flexibility that it gets you.
 
 The [singularity][singularity] example site uses a Go build script and a small
-standard library-based web server with fswatch (which watches for file changes)
-to get a nice development workflow that's fast and easy.
+standard library-based web server with fswatch (a small cross-plaform program
+that watches a filesystem for changes) to get a nice development workflow
+that's fast and easy.
 
 ## AWS Service Setup (#aws)
 
@@ -271,14 +273,56 @@ have a test suite run, but because configured secrets are not available on
 non-master branches, the deploy phase gets skipped, but you need only merge
 them to master to have it run.
 
+### AWS Lambda (#lambda)
+
+One final (and optional) step in the process is to set up an AWS lambda script
+that will be triggered by a periodic cron and which will tell Travis to rebuild
+your repository. If you tell Travis to notify you on build failures in
+`.travis.yml`:
+
+``` yaml
+notifications:
+  email:
+    on_success: never
+```
+
+Then you'll get an e-mail if that build ever fails. In case your content
+repository isn't seeing very regular contributions, this will act as a canary
+to tell you when if your build starts failing for any reason. Say that your IAM
+credentials are accidentally invalidated for example.
+
+First, you'll need to acquire your Travis API token. Get it using their CLI:
+
+    gem install travis
+    travis login --org
+    travis token
+
+Go to the [Lambda console][lambda-console] and select **Create a Lambda
+function**. When prompted to select a blueprint, click the **Skip** button at
+the bottom of the page. Give the new function a name and copy in the [script
+found here][rebuild-script]. Change the configuration section at the top to
+include your GitHub repository's name and the Travis API token acquired above.
+Under **Role** choose **Basic execution handler**. Click through to the next
+page and create the function. Use the **Test** button to make sure it works.
+
+Now create a scheduled event so that the script will run periodically. Click
+the **Event sources** tab and then **Add event source**. Choose an **Event
+source type** of **CloudWatch Events - Schedule**. For **Schedule expression**
+put in something like **rate(1 day)**. Note that Travis will rate limit you,
+and you really don't need to be rebuilding very often, so a daily schedule is
+reasonable.
+
+Now you're all set. AWS will handle triggering rebuilds and if one fails Travis
+will notify you by e-mail.
+
 ## Summary (#summary)
 
 In short, we now have a set of static assets in S3 that are distributed around
 the globe by CloudFront, TLS termination with an evergreen certificate, nearly
-unlimited scalability, and a deployment process that's so dead easy that within
-five years you'll probably have forgotten how it works. And despite all of
-this, unless you're running a _hugely_ successful site, costs will probably run
-in the low single digits of dollars a month.
+unlimited scalability, and a deployment process that's so easy that within five
+years you'll probably have forgotten how it works. And despite all of this,
+unless you're running a _hugely_ successful site, costs will probably run in
+the low single digits of dollars a month.
 
 [acm-console]: https://console.aws.amazon.com/acm/home
 [aws-cli]: https://aws.amazon.com/cli/
@@ -286,5 +330,7 @@ in the low single digits of dollars a month.
 [cloudfront-console]: https://console.aws.amazon.com/cloudfront/home
 [encrypted-variables]: https://docs.travis-ci.com/user/environment-variables/#Encrypted-Variables
 [iam-console]: https://console.aws.amazon.com/iam/home
+[lambda-console]: https://console.aws.amazon.com/lambda/home
+[rebuild-script]: https://github.com/brandur/singularity/blob/master/scripts/lambda/index.js
 [singularity]: https://github.com/brandur/singularity
 [travis-yml]: https://github.com/brandur/singularity/blob/master/.travis.yml
