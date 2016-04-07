@@ -167,8 +167,8 @@ to love:
   someone adds a new field with a long name to a large struct, all the spacing
   changes and you end up with a huge block of red and a slow review [4].
 * **Quirky syntax and semantics:** Go is littered with quirky language syntax
-  and semantics that's fine once you know it, but is unnecessarily opaque. Some
-  examples:
+  and semantics that are fine once you know them, but are unnecessarily opaque.
+  Some examples:
     1. The distinction between `new`, `make`, and initialization with composite
        literals.
     2. Interfaces are always references.
