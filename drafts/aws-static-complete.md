@@ -31,9 +31,9 @@ speed. Writing your own script is a greater maintenance burden on you over the
 long run, but this is offset by the greater flexibility that it gets you.
 
 The [singularity][singularity] example site uses a Go build script and a small
-standard library-based web server with fswatch (a small cross-plaform program
-that watches a filesystem for changes) to get a nice development workflow
-that's fast and easy.
+standard library-based web server with **fswatch** (a small cross-plaform
+program that watches a filesystem for changes) to get a nice development
+workflow that's fast and easy.
 
 ## AWS Service Setup (#aws)
 
