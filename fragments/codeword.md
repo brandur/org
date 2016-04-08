@@ -6,8 +6,9 @@ published_at: 2016-04-07T08:44:20Z
 Those of you tuned into San Francisco will already know that last year jwz
 (owner of DNA Lounge and ex-Netscape hacker) opened a new venue down on 5th and
 Folsom called Codeword. Reading [his posts][codeword1] on [the
-subject][codeword2] are fascinating. Unfortunately, the operation doesn't seem
-to be doing very well:
+subject][codeword2] are fascinating.
+
+Unfortunately, the operation doesn't seem to be doing very well:
 
 > Business at the new restaurant has been terrible. Business at the new club
 > has been beyond terrible. Like, the attendance on many nights has been so low
