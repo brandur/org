@@ -304,17 +304,6 @@ First, you'll need to acquire your Travis API token. Get it using their CLI:
     travis login --org
     travis token
 
-CLI:
-
-    curl https://raw.githubusercontent.com/brandur/singularity/master/scripts/lambda/index.js > index.js
-
-    # EDIT index.js and configure a repository and token
-
-    zip index.zip index.js
-
-    export AWS_ACCOUNT_ID=551639669466
-    aws lambda create-function --function PeriodicTravisRebuild --runtime nodejs --role arn:aws:iam::$AWS_ACCOUNT_ID:role/lambda_basic_execution --handler index.handler --zip-file fileb://index.zip
-
 Go to the [Lambda console][lambda-console] and select **Create a Lambda
 function**. When prompted to select a blueprint, click the **Skip** button at
 the bottom of the page. Give the new function a name and copy in the [script
