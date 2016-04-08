@@ -111,9 +111,13 @@ After the certificate is issued, Amazon will automatically take care of its
 renewal to keep your site accessible with perfect autonomy. You can even have
 it issue you a wildcard certificate, and all for free!
 
-Go to the [ACM control panel][acm-console] and choose **Request a
-Certificate**. Follow the prompts through and verify your domain when they send
-you an e-mail.
+Issue this command to request a certificate (and you can use a wildcard if you
+want):
+
+    aws acm request-certificate --domain-name singularity.brandur.org
+
+AWS will email the domain's administrator to request approval to issue the
+certificate. Make sure to track down that email and accept the request.
 
 ### CloudFront (#cloudfront)
 
@@ -122,9 +126,10 @@ to Amazon edge locations across the world so that it's fast anywhere, and to
 terminate TLS connections to our custom domain name (with a little help from
 ACM).
 
-Go to the [CloudFront control panel][cloudfront-console] and create a new
-distribution. If it asks you to choose between **Web** and **RTMP**, choose
-**Web**. Most options can be left default, but you should make a few changes:
+Using the CLI here is a bit of a pain, so go to the [CloudFront control
+panel][cloudfront-console] and create a new distribution. If it asks you to
+choose between **Web** and **RTMP**, choose **Web**. Most options can be left
+default, but you should make a few changes:
 
 * Under **Origin Domain Name** select your S3 bucket.
 * Under **Viewer Protocol Policy** choose **Redirect HTTP to HTTPS** As the
@@ -156,18 +161,18 @@ deployment flow so that you're not using your root IAM credentials to deploy.
 
 #### Create User (#create-iam-user)
 
-Go to the [IAM web console][iam-console], and create a new user. Put in a new
-name for the user and leave the "Generate an access key for each user" option
-checked. On the next page, copy out the new AWS access key and secret key;
-we'll need them for the next section.
+Issue these commands to create a new IAM user:
+
+    aws iam create-user --user-name singularity-user
+    aws iam create-access-key --user-name singularity-user
+
+Note that the second command will produce an **access key** and a **secret
+key**. Make note of these.
 
 #### Create Policy (#create-iam-policy)
 
-Now create a new policy (also from the IAM web console). When prompted, choose
-the **Create Your Own Policy** option. Put in a name that you can remember and
-then the following JSON blob as the policy document. You will need to change
-the "Resource" field to contain the name of the S3 bucket that you created
-above.
+Save the following policy snippet to a local file called `policy.json`. **Make
+sure to replace the S3 bucket name with the one you used above.**
 
 ``` json
 {
@@ -187,10 +192,12 @@ above.
 }
 ```
 
-After the policy's been created, look at your policies index and select it,
-then under the submenu of the **Policy Actions** button, select **Attach**.
-Find the user that you created in the previous step and assign the policy to
-them.
+Now create the policy and attach it to your IAM user:
+
+    aws iam create-policy --policy-name singularity-policy --policy-document file://policy.json
+
+    # replace --policy-arn with the ARN produced from the command above
+    aws iam attach-user-policy --user-name singularity-user --policy-arn arn:aws:iam::551639669466:policy/singularity-policy
 
 The policy and user combination that you've just created scopes access to just
 the S3 bucket containing your static site. If the worst should happen and this
@@ -273,7 +280,7 @@ have a test suite run, but because configured secrets are not available on
 non-master branches, the deploy phase gets skipped, but you need only merge
 them to master to have it run.
 
-### AWS Lambda (#lambda)
+### Periodic Rebuilds With Lambda (#lambda)
 
 One final (and optional) step in the process is to set up an AWS lambda script
 that will be triggered by a periodic cron and which will tell Travis to rebuild
@@ -296,6 +303,17 @@ First, you'll need to acquire your Travis API token. Get it using their CLI:
     gem install travis
     travis login --org
     travis token
+
+CLI:
+
+    curl https://raw.githubusercontent.com/brandur/singularity/master/scripts/lambda/index.js > index.js
+
+    # EDIT index.js and configure a repository and token
+
+    zip index.zip index.js
+
+    export AWS_ACCOUNT_ID=551639669466
+    aws lambda create-function --function PeriodicTravisRebuild --runtime nodejs --role arn:aws:iam::$AWS_ACCOUNT_ID:role/lambda_basic_execution --handler index.handler --zip-file fileb://index.zip
 
 Go to the [Lambda console][lambda-console] and select **Create a Lambda
 function**. When prompted to select a blueprint, click the **Skip** button at
@@ -324,12 +342,10 @@ years you'll probably have forgotten how it works. And despite all of this,
 unless you're running a _hugely_ successful site, costs will probably run in
 the low single digits of dollars a month.
 
-[acm-console]: https://console.aws.amazon.com/acm/home
 [aws-cli]: https://aws.amazon.com/cli/
 [aws-console]: https://aws.amazon.com/console/
 [cloudfront-console]: https://console.aws.amazon.com/cloudfront/home
 [encrypted-variables]: https://docs.travis-ci.com/user/environment-variables/#Encrypted-Variables
-[iam-console]: https://console.aws.amazon.com/iam/home
 [lambda-console]: https://console.aws.amazon.com/lambda/home
 [rebuild-script]: https://github.com/brandur/singularity/blob/master/scripts/lambda/index.js
 [singularity]: https://github.com/brandur/singularity
