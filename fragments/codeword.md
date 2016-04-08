@@ -23,22 +23,22 @@ Guild is easily my favorite regular event in SF, and parties like
 possible within the legal framework of California [2].
 
 All of that said, the choice to open a new club on 5th is a little astonishing.
-I _live on this block_, and can attest firsthand that this area is the pinnacle
-of cultural wasteland [1]. Although the population density is much higher than
-most of SF given that we have far more residential high-rises than the norm,
-the residents are generally well-to-do white collar workers who decided to stay
-in SF instead of going out to the suburbs. They're at home watching _The Food
-Network_, not out clubbing.
+I _live_ on the block, and can attest firsthand that this area is a cultural
+wasteland as far as SF is concerned [1]. Although the population density is
+quite high due to the unusual number of residential high-rises in the area, the
+norm, the residents are generally well-to-do white collar workers who decided
+to stay in SF instead of going out to the suburbs. They're at home watching
+_The Food Network_, not out clubbing.
 
 The immediate location isn't doing the place any favors either. As noted in his
 posts, construction is incessant and likely to be a near-permanent fixture.
-Folsom Street itself is one half of split highway through the heart of SF and
-its high speed traffic makes being anywhere near the street incredibly
-unpleasant (unlike the DNA Lounge's much calmer 11th St). There are no other
-interesting establishments within a block or more, with anything commercial
-being either a gas station, sex shop, auto mechanic, or convenience store. It's
-also _just_ far enough away from Moscone and Westfield that conference goers
-and shoppers will never see it.
+Folsom St itself is one half of split highway through the heart of SF and its
+high speed traffic makes being anywhere near the street incredibly unpleasant
+(unlike the DNA Lounge's much calmer 11th St). There are no other interesting
+establishments within a block or more, with anything commercial being either a
+gas station, sex shop, auto mechanic, or convenience store. It's also _just_
+far enough away from Moscone and Westfield that conference goers and shoppers
+will never see it.
 
 All I can think to suggest is that he try to pick up some of the daytime
 "cafe people with laptops" crowd. Although certainly not the most lucrative
