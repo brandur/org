@@ -8,7 +8,7 @@ Until now I would have recommended a CloudFlare/other host hybrid so that you
 could get free HTTPS support for a custom domain with automatic certificate
 renewal, but the advent of AWS Certificate Manager (ACM) was the last missing
 piece in the all-Amazon stack. By composing a few services, we'll get a static
-site with some pretty nice features:
+site with some pretty amazing features:
 
 * Approximately unlimited scalability.
 * As close to an operations-free experience as you're ever likely to find.
