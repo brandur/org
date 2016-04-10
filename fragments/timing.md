@@ -1,5 +1,5 @@
 ---
-title: Timing
+title: Timing the Guitar
 published_at: 2016-04-05T02:26:11Z
 ---
 
