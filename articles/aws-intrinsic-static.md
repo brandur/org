@@ -51,7 +51,8 @@ $ aws configure
 ```
 
 Running `aws configure` will ask for an AWS access key and secret key which you
-can get by logging into the [AWS Console][aws-console].
+can get by logging into the [AWS Console][aws-console]. You may also want to
+configure a default region because some of the commands below will require one.
 
 ### S3 (#s3)
 
@@ -335,7 +336,7 @@ the globe by CloudFront, TLS termination with an evergreen certificate, nearly
 unlimited scalability, and a deployment process based on pull requests that's
 so easy that within five years you'll probably have forgotten how it works. And
 despite all of this, unless you're running a _hugely_ successful site, costs
-will probably run in the low single digits of dollars a month.
+will probably run in the low single digits of dollars a month (or less).
 
 [aws-cli]: https://aws.amazon.com/cli/
 [aws-console]: https://aws.amazon.com/console/
