@@ -28,17 +28,17 @@ Some of the highlights that stood out to me:
   agents for log ingestion and the like at a logic layer higher than Puppet is
   a very useful abstraction.
 * Let's also not discount the backing of a company like Google is a major asset
-  to confidence in the project's longevity (compare that to Mesos for example).
+  to confidence in its longevity (compare that to Mesos for example).
 
 And some more tepid commentary:
 
 * It's an open question to how difficult it is to operate the system. i.e.
   Theoretically it's trivial, but given 500 deployed nodes, how may full-time
   engineers will it take in practice to babysit it?
-* The project's documentation is nicely complete, but it and the project's
-  branding feel very rough around the edges. This might seem like a worthless
-  point, but given how sophisticated the project is already, confusion might be
-  one of the biggest blockers to the project's success right now.
+* Its documentation is nicely complete, but it and the project's branding feel
+  very rough around the edges. This might seem like an inconsequential point,
+  but given how sophisticated Kubernetes is already, confusion might be one of
+  the biggest blockers to the project's success right now.
 * GCE still needs its own RDS. I want to have at least the option for easy
   access to a ready-made database.
 
