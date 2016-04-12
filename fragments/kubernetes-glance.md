@@ -46,7 +46,7 @@ There's a lot of companies out there that find PaaS like Heroku too
 restricting, but by going to IaaS have ended up building and maintaining their
 own platform to make it palatable; a _very_ steep price to pay. The industry
 needs a platform that's easy to use, powerful enough to be universally
-applicable, and open enough many organizations across many disciplines are
+applicable, and open enough that many organizations across many disciplines are
 willing to use it.
 
 The next step for me is to actually try this thing out.
