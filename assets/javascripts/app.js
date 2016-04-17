@@ -3,4 +3,5 @@
 //= require retina
 //= require highcharts
 //= require highcharts_theme
+//= require highlight.pack
 //= require main

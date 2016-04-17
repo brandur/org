@@ -68,7 +68,7 @@ $ aws s3 mb s3://$S3_BUCKET
 Next up, let's create a `Makefile` with a `deploy` target which will upload the
 results of your build above:
 
-``` make
+``` makefile
 # Makefile
 
 deploy:
@@ -224,7 +224,7 @@ We start by giving installing AWS CLI into the build's container and running
 our Make task as the build's main target. That's accomplished by putting this
 into `.travis.yml`:
 
-``` yaml
+``` yml
 # travis.yml
 
 # magic word to use faster/newer container-based architecture
