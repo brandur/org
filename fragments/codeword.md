@@ -26,9 +26,9 @@ All of that said, the choice to open a new club on 5th is a little astonishing.
 I _live_ on the block, and can attest firsthand that this area is a cultural
 wasteland as far as SF is concerned [1]. Although the population density is
 quite high due to the unusual number of residential high-rises in the area, the
-norm, the residents are generally well-to-do white collar workers who decided
-to stay in SF instead of going out to the suburbs. They're at home watching
-_The Food Network_, not out clubbing.
+residents are generally well-to-do white collar workers who decided to stay in
+SF instead of going out to the suburbs. They're at home watching _The Food
+Network_, not out clubbing.
 
 The immediate location isn't doing the place any favors either. As noted in his
 posts, construction is incessant and likely to be a near-permanent fixture.
