@@ -50,7 +50,7 @@ clear way forward.
 
 ### Speed (#speed)
 
-Speed is absolutely critical, not just for the runtime, but _for the
+Speed is absolutely critical, and not just for the runtime, but _for the
 tooling_. Being able to compile and run your entire test suite in under a
 second [1] changes the entire development experience in such a fundamental way
 that it's hard to adequately describe. After working with a Go project for a
