@@ -197,7 +197,7 @@ that said:
   an error is nil) isn't great to say the least.
   
   The real problem though is that the unnecessary verbosity of tests acts as a
-  natural deterrent to writing tests, and projects with
+  natural deterrent to writing them, and projects with
   non-existent/poor/incomplete test suites are a dime a dozen. I've been using
   the [testify require package][testify] to ease this problem, but there should
   be answer in the standard library.
