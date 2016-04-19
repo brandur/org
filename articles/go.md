@@ -27,8 +27,8 @@ exist to anywhere near the same extent.
 ### Concurrency (#concurrency)
 
 After spending some time with them, I'm firmly convinced that green threads
-(Goroutines) and channels is the only way that concurrency should be exposed to
-developers.
+(Goroutines) and channels are the only way that concurrency should be exposed
+to developers.
 
 When working in languages like Ruby (to pick an example of one that I'm very
 familiar with), even with experience, doing any work with concurrency is
