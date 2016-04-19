@@ -209,8 +209,8 @@ others have, but I consider it a thoroughly solid language that's pleasant to
 work with. Furthermore, it may have reached the best compromise that we've seen
 so far in the landscape of contemporary languages in that it imposes
 constraints that are strong enough to detect large classes of problems during
-compilation, but is still fluid enough to work with that it's easy to learn and
-fast to develop.
+compilation, but is still fluid enough to work with that it's easy to learn,
+and fast to develop.
 
 [1] Without tricks like Zeus that come with considerable gotchas and side
     effects.
