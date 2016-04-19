@@ -55,7 +55,7 @@ tooling_. Being able to compile and run your entire test suite in under a
 second [1] changes the entire development experience in such a fundamental way
 that it's hard to adequately describe. After working with a Go project for a
 while, going back to 10+ second iteration loops in languages like Ruby feels
-like trying to run a marathon through a bog.
+like trying to run a marathon while waist deep in a bog.
 
 This is still a key place where Go stands apart even from other modern
 languages which tend to focus on runtime speed or sophisticated features while
