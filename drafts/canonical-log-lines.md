@@ -30,7 +30,7 @@ Some interesting things about a request that can be logged:
 * Rate limiting information wuch as whether rate limiting occurred, what their
   total limit is, and how much of it is remaining.
 
-In practice, this might look something like the following:
+The Ruby code for that might look like:
 
 ``` ruby
 log.info "CANONICAL-LOG-LINE",
@@ -77,6 +77,9 @@ log.info "CANONICAL-LOG-LINE",
   rate_limit_remaining: rate_limit.remaining,
   rate_limit_reset:     rate_limit.reset
 ```
+
+Middleware makes a pretty good home for this pattern, where a log line is
+emitted after calling into `app.call(env)`.
 
 Need to pass information out through the stack.
 
