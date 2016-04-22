@@ -40,7 +40,7 @@ The vast majority of Mongo nodes ended up holding volumous, but low-quality data
 
 ### Look For Junk (#junk)
 
-### 
+### Trim the Fat (#fat)
 
 ## What You'll Miss (#miss)
 
