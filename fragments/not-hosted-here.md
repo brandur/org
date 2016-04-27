@@ -62,11 +62,12 @@ as well.
 
 They found and stole ours. Now the best part of the story: it turns out that
 Atlassian may make mediocre products, but they have even poorer security; they
-were storing their passwords using a reversible scheme. The hackers turned
-around and started re-using the passwords they'd stolen against other internal
-systems. Although almost everyone with access to a production system had unique
-passwords through 1Password, there was a weak link. Luckily, two-factor
-measures blocked further access, but it was uncomfortably close. It wouldn't be
-unfair to say that NHH had taken us to the brink.
+seemed to be storing their passwords with a weak hashing scheme, which allowed
+them to be reversed. The hackers turned around and started re-using the
+passwords they'd stolen against other internal systems. Although almost
+everyone with access to a production system had unique passwords through
+1Password, there was a weak link. Luckily, two-factor measures blocked further
+access, but it was uncomfortably close. It wouldn't be unfair to say that NHH
+had taken us to the brink.
 
 [not-invented-here]: https://en.wikipedia.org/wiki/Not_invented_here
