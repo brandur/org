@@ -23,6 +23,12 @@ venture to guess that more people can than they think.
 
 ## Scability: A Blessing and a Curse (#scalability)
 
+Being able to scale to infinity is a powerful tool, but one which is ripe for
+abuse. It's easy to lead yourself to believe that it'll be useful to have hot
+access to some particularly volumous data set. When you realize later that
+maybe that's not the case, it can often be less effort to just add more nodes
+to continue scaling the storage systems rather than just fix the problem.
+
 In the example above, out of roughly 700 GB that were pruned from the database,
 about 615 GB of it was a vast collection of tuples that we called "events",
 they represented a change that had occurred in some kind of domain object and
@@ -35,12 +41,6 @@ Not only should we have not had 600+ GB of this data in our primary database,
 we should have had exactly 0 bytes worth of it.
 
 The vast majority of Mongo nodes ended up holding volumous, but low-quality data.
-
-## Strategies (#strategies)
-
-### Look For Junk (#junk)
-
-### Trim the Fat (#fat)
 
 ## What You'll Miss (#miss)
 
@@ -62,6 +62,12 @@ just across throughout entire tables, but also across _the entire database_.
 Your database guarantees consistency so that you don't have to.
 
 Lock down every goddamn field.
+
+## Strategies (#strategies)
+
+### Look For Junk (#junk)
+
+### Consider Archiving (#archive)
 
 [1] The Heroku Postgres systems would have to start growing our EBS volumes,
     which was also somewhat undesirable.

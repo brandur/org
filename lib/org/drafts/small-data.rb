@@ -2,7 +2,7 @@ module Org
   class Articles
     article "/small-data", {
       hook:         <<-eos,
-Everyone thinks that they're Google.
+Because everyone thinks that they're Google.
       eos
       location:     "San Francisco",
       published_at: Time.parse("2016-04-22T21:41:42Z"),
