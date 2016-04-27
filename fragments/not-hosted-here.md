@@ -65,8 +65,8 @@ Atlassian may have poor products, but they have even poorer security; they were
 storing their passwords using a reversible scheme. The hackers turned around
 and started re-using the passwords they'd stolen against other internal
 systems. Although almost everyone with access to a production system had unique
-passwords through 1Password, one guy didn't. Luckily, two-factor measures
-blocked further access, but it was uncomfortably close. It wouldn't be unfair
-to say that NHH had taken us to the brink.
+passwords through 1Password, there was a weak link. Luckily, two-factor
+measures blocked further access, but it was uncomfortably close. It wouldn't be
+unfair to say that NHH had taken us to the brink.
 
 [not-invented-here]: https://en.wikipedia.org/wiki/Not_invented_here
