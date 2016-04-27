@@ -4,4 +4,5 @@ $(document).ready ->
   hljs.initHighlightingOnLoad()
 
 $(document).on 'pjax:end', ->
-  hljs.initHighlightingOnLoad()
+  $('pre code').each (i, block) ->
+    hljs.highlightBlock(block)
