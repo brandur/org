@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type Result struct {
-	num int
+	num     int
 	display string
 }
 
