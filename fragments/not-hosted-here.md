@@ -45,29 +45,4 @@ problems might include chronic unreliability, degraded performance as services
 are slow to be scaled up with usage, and frequent service outages for offline
 maintenance.
 
-## A Worst Case
-
-My favorite NHH story is one where the security team at a company I used to
-work for insisted that the company's group chat must be hosted internally, a
-move which was billed as for compliance reasons, but which actually stemmed
-from a combination of paranoia and a desire to exercise power. So we all moved
-off of Slack and onto HipChat, which offered a self-hosted version. A few
-months later, hackers discovered a HipChat vulnerability and steal a significant
-fraction of Atlassian's user database. Better yet, it turns out that all
-self-hosted copies of the service were also vulnerable, but of course couldn't
-be patched as quickly because that needed coordination with their
-administrators. NHH policies allowed the hackers a considerable window to go
-and find these self-hosted HipChat versions and take their password databases
-as well.
-
-They found and stole ours. Now the best part of the story: it turns out that
-Atlassian may make mediocre products, but they have even poorer security; they
-seemed to be storing their passwords with a weak hashing scheme, which allowed
-them to be reversed. The hackers turned around and started re-using the
-passwords they'd stolen against other internal systems. Although almost
-everyone with access to a production system had unique passwords through
-1Password, there was a weak link. Luckily, two-factor measures blocked further
-access, but it was uncomfortably close. It wouldn't be unfair to say that NHH
-had taken us to the brink.
-
 [not-invented-here]: https://en.wikipedia.org/wiki/Not_invented_here
