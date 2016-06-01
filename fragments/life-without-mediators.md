@@ -18,9 +18,9 @@ in PORO classes that read like lists of instructions, and control the
 interaction between primitive types like database models.
 
 It's an interesting experience now developing in the largest Ruby codebase I've
-ever seen, and one where the use of a pattern like mediators never developed.
-Domain logic can be, and therefore is, implemented in any number of different
-places:
+ever seen (~1M lines of code), and one where the use of a pattern like
+mediators never developed. Domain logic can be, and therefore is, implemented
+in any number of different places:
 
 * In models.
 * In API endpoints.
