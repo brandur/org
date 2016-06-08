@@ -30,4 +30,4 @@ week.
 
 I doubt I can keep up this sort of dietary micro-management over a longer time
 horizon, but I'm hoping that it can build some good habits given only a few
-weeks of improved practices.
+weeks of improved practices. Time will tell.
