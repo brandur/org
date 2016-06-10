@@ -126,6 +126,9 @@ https://news.ycombinator.com/item?id=11857674
 
 http://cryto.net/~joepie91/blog/2015/07/19/why-you-should-never-ever-ever-use-mongodb/
 
+Analytics failure:
+https://www.linkedin.com/pulse/mongodb-32-now-powered-postgresql-john-de-goes
+
 [1] Okay, this is embellished for dramatic effect. Sometimes a resource failure
     will take a system down, but in my experience, these incidents are dwarfed
     by those incited by user error.
