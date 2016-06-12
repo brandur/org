@@ -26,7 +26,8 @@ and transportation around town) which is rated at ~300 Cal. Other exercise
 comes from an hour on a stationary bike (~800 Cal), runs of 6 to 13 km on
 varying terrain (600 to 1300 Cal), or the occasional tennis match (~60 minutes
 at 400 to 650 Cal depending on doubles or singles). On any given day I'll
-usually do one or two of these activities.
+usually do one or two of these activities, and logged a total of eight for the
+week.
 
 Overall, I came out short of my goal, but not overwhelmingly so. This was also
 reflected in my weight, which stayed roughly stable at 176 lbs. with some
