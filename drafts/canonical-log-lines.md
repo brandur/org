@@ -1,16 +1,14 @@
 
 
-## Noisy Logging
+## Noisy Logging & Operational Introspection (#noisy)
 
 Very useful when debugging.
-
-## Operational Introspection
 
 Although great for debugging certain problems, makes day-to-day checks a little more challenging.
 
 Also, makes running certain types of analytical queries require some extreme Splunk-fu.
 
-## The Canonical Line
+## The Canonical Line (#canonical-line)
 
 Some interesting things about a request that can be logged:
 
@@ -83,7 +81,7 @@ emitted after calling into `app.call(env)`.
 
 Need to pass information out through the stack.
 
-## Warehousing
+## Warehousing (#warehousing)
 
 Cheap to store long-term.
 
