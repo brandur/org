@@ -43,11 +43,13 @@ Some other observations:
 * The nicest part about counting caloric intake from food is that it keeps me
   honest. An uncomfortable amount of my total consumption was coming from
   snacking and drinks which I normally justify to myself in isolation
-  throughout the day in a tyranny of small decisions that was having a profound
-  impact on my diet.
+  throughout the day in a series of [tyrannical small decisions][tyranny] that
+  was having a profound impact on my diet.
 * Water and coffee, at zero Calories each, are my best friends. The instinct to
   snack often has nothing to do with hunger and can be satiated with one of
   these two drinks.
 * When I'm thirsty I crave for any drink under the sun that _isn't_ water
   (soda, juices, Gatorade, etc.), but given some discipline, water quenches my
   thirst _every_ time.
+
+[tyranny]: https://en.wikipedia.org/wiki/Tyranny_of_small_decisions
