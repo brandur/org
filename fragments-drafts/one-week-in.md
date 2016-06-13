@@ -38,9 +38,9 @@ Some other observations:
 
 * A 1,200 Calorie target is, shall we say, optimistic. Without offset from
   daily exercise, even a single large but not-totally-unhealthy meal can bring
-  you brushing up against this limit. Given no exercise, it may get you three
-  meals as long as they're on the _very_ lean side (i.e. garden salads with a
-  little protein in them).
+  you brushing up against it. Given no exercise, it may get you three meals as
+  long as they're on the _very_ lean side (i.e. garden salads with a little
+  protein in them).
 * Days with major overruns are perfectly correlated with days that I go out for
   brunch or to the bar. Once the drinks are flowing and given some baseline of
   peer pressure, I don't want to stop no matter how careful I'd been about diet
