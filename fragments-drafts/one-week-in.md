@@ -54,7 +54,7 @@ Some other observations:
 * Alcoholic beverages have a terribly disproportionate energy content. One
   ounce of common liquors like vodka or rum averages somewhere on the order of
   65 to 100 Calories, so even an energy economic drink like a 1.5 oz. vodka
-  soda still nets your 100+. From there, things get much, much worse (say in
+  soda still nets you 100+. From there, things get much, much worse (say in
   your typical sugar-centric cocktail or large portion of beer for example).
 
 [tyranny]: https://en.wikipedia.org/wiki/Tyranny_of_small_decisions
