@@ -51,5 +51,10 @@ Some other observations:
 * When I'm thirsty I crave for any drink under the sun that _isn't_ water
   (soda, juices, Gatorade, etc.), but given some discipline, water quenches my
   thirst _every_ time.
+* Alcoholic beverages have a terribly disproportionate energy content. One
+  ounce of common liquors like vodka or rum averages somewhere on the order of
+  65 to 100 Calories, so even an energy economic drink like a 1.5 oz. vodka
+  soda still nets your 100+. From there, things get much, much worse (say in
+  your typical sugar-centric cocktail or large portion of beer for example).
 
 [tyranny]: https://en.wikipedia.org/wiki/Tyranny_of_small_decisions
