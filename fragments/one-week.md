@@ -1,6 +1,6 @@
 ---
-title: One Week In
-published_at: 2016-06-08T05:28:46Z
+title: One Week of Nutritional Rigor
+published_at: 2016-06-13T16:02:34Z
 ---
 
 I wrote previously that as an experiment, I'm engaging in a [Calorie
