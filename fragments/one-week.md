@@ -31,7 +31,7 @@ for the week.
 
 Overall, I came out short of my goal, but not overwhelmingly so. My weight did
 drop three pounds to 173 lbs., but given its frequent fluctuations, I'm not
-convinced at the finality of the number. I'm going to continue the experiment
+convinced of the finality of the number. I'm going to continue the experiment
 for a few more weeks to see if I can hit my Calorie target.
 
 Some other observations:
