@@ -18,16 +18,16 @@ Calories a day (i.e. consumed minus burnt by exercise). The results:
 | June 10 | 3,923   | 1,257    | +1,466                         |
 | June 11 | 3,531   | 1,614    | +717                           |
 | June 12 | 3,244   | 303      | +1,741                         |
-| June 13 | 750     | 1279     | -1,729                         |
-| Total   |         |          | **+657**                       |
+| June 13 | 1,025   | 1,829    | -2,004                         |
+| Total   |         |          | **+382**                       |
 
 I log about a base level of about an hour of fast walking every day (my commute
-and transportation around town) which is rated at ~300 Cal. Other exercise
-comes from an hour on a stationary bike (~800 Cal), runs of 6 to 13 km on
-varying terrain (600 to 1300 Cal), or the occasional tennis match (~60 minutes
-at 400 to 650 Cal depending on doubles or singles). On any given day I'll
-usually do one or two of these activities, and logged a total of eight for the
-week.
+and transportation around town) which is rated at ~300 Cal. Other (more
+serious) exercise comes from an hour on a stationary bike (~800 Cal), runs of 6
+to 13 km on varying terrain (600 to 1300 Cal), or the occasional tennis match
+(~60 minutes at 400 to 650 Cal depending on doubles or singles). On any given
+day I'll usually do one or two of these activities, and logged a total of nine
+for the week.
 
 Overall, I came out short of my goal, but not overwhelmingly so. This was also
 reflected in my weight, which stayed roughly stable at 176 lbs. with some
