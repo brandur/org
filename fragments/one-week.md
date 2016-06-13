@@ -29,10 +29,10 @@ to 13 km on varying terrain (600 to 1300 Cal), or the occasional tennis match
 day I'll usually do one or two of these activities, and logged a total of nine
 for the week.
 
-Overall, I came out short of my goal, but not overwhelmingly so. This was also
-reflected in my weight, which stayed roughly stable at 176 lbs. with some
-fluctuations during the week. I'm going to continue the experiment for a few
-more weeks to see if I can hit my target.
+Overall, I came out short of my goal, but not overwhelmingly so. My weight did
+drop three pounds to 173 lbs., but given its frequent fluctuations, I'm not
+convinced at the finality of the number. I'm going to continue the experiment
+for a few more weeks to see if I can hit my Calorie target.
 
 Some other observations:
 
