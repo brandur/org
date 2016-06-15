@@ -32,7 +32,7 @@ documents, you're left with inconsistent data.
 
 In the optimal system, you have an automated process that attempts to identify
 this class of failure and clean them up by reverting data to a consistent
-state. But here in the real world with deadlines and scarce engineering time,
+state. But here in the real world, with deadlines and scarce engineering time,
 you'll almost certainly have a human operator that dives in and _manually_
 repairs that bad data. Remember that the process could have been cut off
 between _any_ two Mongo commits, so you could be left with an innumerable
@@ -59,14 +59,16 @@ to operate on multiple documents, and not having strong atomicity guarantees is
 going to bring you into a world of contention, failure, and pain.
 
 So how do you deal with this in a Mongo-based production system? _You implement
-locking yourself_. Yes, you read that right. Instead of having your mature data
-store take care of this tremendously difficult problem for you, you pull it
-into your own almost certainly buggy application-level code. And don't think
-for a minute that you're going to build in the incredibly sophisticated
-optimistic locking features you get with any modern RDMS; no, to simplify the
-complicated problem and save time, you're going to build a pessimistic locking
-scheme. That means that simultaneous accesses on the same resource will block
-on each other to modify data, and make your system irreparably slower.
+locking yourself_.
+
+Yes, you read that right. Instead of having your mature data store take care of
+this tremendously difficult problem for you, you pull it into your own
+almost-certainly-buggy application-level code. And don't think for a minute
+that you're going to build in the incredibly sophisticated optimistic locking
+features you get with any modern RDMS; no, to simplify the complicated problem
+and save time, you're going to build a pessimistic locking scheme. That means
+that simultaneous accesses on the same resource will block on each other to
+modify data, and make your system irreparably slower.
 
 ### No Constraints
 
