@@ -24,7 +24,7 @@ Calories a day (i.e. consumed minus burnt by exercise). The results:
 I log about a base level of about an hour of fast walking every day (my commute
 and transportation around town) which is rated at ~300 Cal. Other (more
 serious) exercise comes from an hour on a stationary bike (~800 Cal), runs of 6
-to 13 km on varying terrain (600 to 1300 Cal), or the occasional tennis match
+to 13 km on varying terrain (600 to 1,300 Cal), or the occasional tennis match
 (~60 minutes at 400 to 650 Cal depending on doubles or singles). On any given
 day I'll usually do one or two of these activities, and logged a total of nine
 for the week.
