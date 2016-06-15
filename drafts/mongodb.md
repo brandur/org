@@ -94,33 +94,46 @@ Junk data.
 
 ### Well, if nothing else, at least it's HA!
 
-Even if a replica set is theoretically HA, it's never a disk failure on network
-partitioning that takes you down [1]. It's MongoDB providing you with every footgun
-under the sun.
+Everyone imagines that the major dangers to the availability of a data store
+are disk failures and network partitions.
 
-I've seen easily as much downtime 
+_Sometimes_ those things do cause problems. However, here's what you actually
+need to worry about in real life:
+
+* Operator error in which somebody accidentally mangles some piece of critical
+  data and brings an online system to its knees.
+* Overly expensive migrations locking schema/data or eating all available
+  resources.
+* Poorly vetted deploys in which new code expects a certain schema or data
+  before it's actually updated, and which cause a failure once they go out.
+* Long-lived transactions or other jobs that appropriate resources from other
+  online operations.
+
+In practice, an HA data store helps you a bit, but not as much as you'd think.
+I've seen as much or more downtime on a large Mongo system as I have on a
+Postgres system of similar scale.
 
 ## Summary
 
 If you're already on MongoDB, it may be very difficult to migrate off of and
 staying on it might be the right choice for your organization. I can relate.
 But if you're not in that situation, and are considering using MongoDB in a new
-project, please reconsider. I would strongly argue that using Mongo for any new
-system is _never_ the right choice.
+project, please, please, _please_ reconsider. MongoDB for any new system is
+_never_ the right choice.
 
-Do you need document-style storage (i.e. nested JSON structures)? You probably
-don't, but if you really really do, you should use the `jsonb` type in Postgres
-instead of Mongo. You'll get the flexibility that you're after [2], but also an
-ACID-compliant system and the ability to introduce constraints [3].
+**Do you need document-style storage (i.e. nested JSON structures)?** You
+probably don't, but if you really _really_ do, you should use the `jsonb` type
+in Postgres instead of Mongo. You'll get the flexibility that you're after [2],
+but also an ACID-compliant system and the ability to introduce constraints [3].
 
-Do you need incredible scalability that Postgres can't possibly provide? Unless
-you're Google or Facebook, you probably don't, but if you really really do, you
-should store your core data (users, apps, payment methods, servers, etc.) in
-Postgres, and move those data sets that need super scalability out into
-separate scalable systems _as late as you possibly can_. The chances are that
-you'll never even get to that point, and if you do, you may still have to deal
-with some of the same problems that are listed here, but at least you'll have a
-stable core.
+**Do you need incredible scalability that Postgres can't possibly provide?**
+Unless you're Google or Facebook, you probably don't, but if you really
+_really_ do, you should store your core data (users, apps, payment methods,
+servers, etc.) in Postgres, and move those data sets that need super
+scalability out into separate scalable systems _as late as you possibly can_.
+The chances are that you'll never even get to that point, and if you do, you
+may still have to deal with some of the same problems that are listed here, but
+at least you'll have a stable core.
 
 ## References
 
