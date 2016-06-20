@@ -1,6 +1,6 @@
 ---
 title: Week Two
-published_at: 2016-06-14T04:03:31Z
+published_at: 2016-06-20T16:30:25Z
 ---
 
 I previously wrote about my results after [one week](/fragments/one-week) of
