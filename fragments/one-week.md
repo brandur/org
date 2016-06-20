@@ -10,16 +10,16 @@ I weigh 176 lbs. and was trying for an aggressive loss of 2 lbs. per week.
 Based on these parameters, my fitness tracker suggested a goal of 1,200 net
 Calories a day (i.e. consumed minus burnt by exercise). The results:
 
-| Day     | Food    | Exercise | Net Relative to 1,200 Cal Goal |
-| :-----: | :-----: | :------: | :----------------------------: |
-| June 06 | 3,225   | 303      | +1,722                         |
-| June 07 | 1,451   | 2,060    | -1,809                         |
-| June 08 | 2,213   | 2,464    | -1,451                         |
-| June 09 | 3,923   | 1,257    | +1,466                         |
-| June 10 | 3,531   | 1,614    | +717                           |
-| June 11 | 3,244   | 303      | +1,741                         |
-| June 12 | 1,025   | 1,829    | -2,004                         |
-| Total   |         |          | **+382**                       |
+| Day       | Food    | Exercise | Net Relative to 1,200 Cal Goal |
+| :-------: | :-----: | :------: | :----------------------------: |
+| June 06   | 3,225   | 303      | +1,722                         |
+| June 07   | 1,451   | 2,060    | -1,809                         |
+| June 08   | 2,213   | 2,464    | -1,451                         |
+| June 09   | 3,923   | 1,257    | +1,466                         |
+| June 10   | 3,531   | 1,614    | +717                           |
+| June 11   | 3,244   | 303      | +1,741                         |
+| June 12   | 1,025   | 1,829    | -2,004                         |
+| **Total** |         |          | **+382**                       |
 
 I log about a base level of about an hour of fast walking every day (my commute
 and transportation around town) which is rated at ~300 Cal. Other (more
