@@ -14,12 +14,23 @@ above average exercise and paying a closer eye to nutrition. Here's week two:
 | June 16 | 2,372   | 1,338    | -166                           |
 | June 17 | 2,155   | 1,201    | -246                           |
 | June 18 | 2,673   | 1,447    | +26                            |
-| June 19 | 1,134   | 2,411    | -2,477                         |
-| Total   |         |          | **-4,109**                     |
+| June 19 | 3,030   | 2,460    | -630                           |
+| Total   |         |          | **-2,262**                     |
 
 I had eleven major exercise events for the week (i.e. sustained high heartrate
 for 45 minutes to an hour).
 
-I started the week at 173 lbs. and ended at 170 lbs., staying roughly on the
-same trend as I saw last week. Given that the results so far have been good,
-I'm going to continue the experiment another week.
+I started the week at 173 lbs. and ended at 172 lbs. The latter number has been
+fluctuating between 170 and 172, so I'm showing roughly the same downward trend
+as last week. Weigh-in this morning would probably have been more positive if
+it hadn't been for the comprehensive spread of snacks at last night's Warriors
+viewing.
+
+I also got through the whole week without drinking a single soda product (not
+even of the diet variety). A small win, but something that I haven't done in
+years. I also cut sports drinks like Gatorade. I thought about trying to kill
+beer next, but in its case I think I'd prefer a strategy of moderation over
+abstinence.
+
+I'm continuing to find the experiment beneficial, and will see it through until
+at least week three.
