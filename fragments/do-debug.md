@@ -18,9 +18,9 @@ And [John Carmack's response][do-debug]:
 
 Only one of these people is right.
 
-If you haven't taken the time to learn how to use a properly tool so that it
-becomes an effective part of workflow, that's fine. It's a personal choice.
-But it's intellectual bankruptcy to try and spread this dubious practice by
+If you haven't taken the time to learn how to properly use a tool so that it
+becomes an effective part of workflow, that's fine. It's a personal choice. But
+it's intellectual bankruptcy to try and spread this dubious practice by
 implying that it has any sort of legitimacy.
 
 It's not desirable or practical to break out a debugger at every turn, but it's
