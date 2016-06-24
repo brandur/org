@@ -222,7 +222,8 @@ and fast to develop.
     problem and shows an obvious demand and willingness to help. Meanwhile the
     member of Go core can't manage to build even a single cohesive
     counterargument, but even so, the issue along with all its ideas and
-    suggestions are summarily rejected.
+    suggestions are summarily rejected. It is not until the issue is reopened
+    that the suggestion is taken more seriously and subsequently implemented.
 
 [4] `?w=1` on GitHub to hide whitespace changes helps mitigate this problem,
     but isn't the default, and doesn't allow comments to be added.
