@@ -37,7 +37,7 @@ module Org
         }, pretty: true)
       else
         events = DB[:events].reverse_order(:occurred_at)
-        @essays = Articles.articles[0, 5]
+        @essays = Articles.articles.values[0, 5]
         @fragments = Fragments.fragments.values[0, 5]
         # 27 = 9 * 3 columns
         @photos = events.filter(type: "flickr").

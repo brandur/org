@@ -19,17 +19,11 @@ module Org
       @title = "Articles"
       @viewport_width = "600"
       @articles = Articles.articles.values
-      @articles.select! { |a| a[:published_at] <= Time.now.getutc }
-      @articles.sort_by! { |a| a[:published_at] }
-      @articles.reverse!
       slim :"articles/index", layout: !pjax?
     end
 
     get "/articles.atom" do
       @articles = Articles.articles.values
-      @articles.select! { |a| a[:published_at] <= Time.now.getutc }
-      @articles.sort_by! { |a| a[:published_at] }
-      @articles.reverse!
       builder :"articles/index"
     end
 
@@ -43,8 +37,8 @@ module Org
       @content = render_markdown(@article[:content])
       @toc = build_toc(@content)
       if Config.production?
-        last_modified(article[:last_modified_at])
-        etag(Digest::SHA1.hexdigest(content))
+        last_modified(@article[:last_modified_at])
+        etag(Digest::SHA1.hexdigest(@content))
       end
       slim :"articles/signature", layout: !pjax?
     end
