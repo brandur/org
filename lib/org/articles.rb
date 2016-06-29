@@ -2,8 +2,6 @@ require 'digest/md5'
 
 module Org
   class Articles < Sinatra::Base
-    @@articles = {}
-
     helpers Helpers::Common
     helpers Helpers::Markdown
     helpers Helpers::TOC
