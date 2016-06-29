@@ -2,7 +2,7 @@
 hook: Stubbing distributed services with Sinatra-based services stubs and enabling
   stronger constraints with JSON Schema.
 location: San Francisco
-published_at: 2014-04-30 16:23:22.000000000 Z
+published_at: 2014-04-30T16:23:22Z
 title: Testing Distributed Services with JSON Schema
 ---
 

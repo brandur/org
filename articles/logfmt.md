@@ -2,7 +2,7 @@
 hook: A logging format used inside companies such as Heroku and Stripe which is optimal
   for easy development, consistency, and good legibility for humans and computers.
 location: San Francisco
-published_at: 2013-10-28 16:28:04.000000000 Z
+published_at: 2013-10-28T16:28:04Z
 title: logfmt
 ---
 

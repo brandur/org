@@ -1,7 +1,7 @@
 ---
 hook: When the use of an anti-pattern is considered beneficial.
 location: San Francisco
-published_at: 2014-02-06 15:31:37.000000000 Z
+published_at: 2014-02-06T15:31:37Z
 title: Healthy Anti-patterns
 ---
 

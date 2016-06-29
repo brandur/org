@@ -2,7 +2,7 @@
 hook: A simple pattern for tracing requests across a service-oriented architecture
   by injecting a UUID into the events that they produce.
 location: San Francisco
-published_at: 2013-06-02 17:21:43.000000000 Z
+published_at: 2013-06-02T17:21:43Z
 title: Tracing Request IDs
 ---
 

@@ -2,7 +2,7 @@
 hook: A set of patterns to make APIs more accessible to developers; lowering the barrier
   of entry for new users, and easing the maintenance of consuming applications.
 location: San Francisco
-published_at: 2013-09-01 15:59:44.000000000 Z
+published_at: 2013-09-01T15:59:44Z
 title: Developer Accessible APIs
 ---
 

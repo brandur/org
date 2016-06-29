@@ -2,7 +2,7 @@
 hook: A quick tour through some of the fundamentals of JSON Schema and Hyper-schema,
   and how they can be applied to building APIs.
 location: Berlin
-published_at: 2014-05-27 13:39:13.000000000 Z
+published_at: 2014-05-27T13:39:13Z
 title: Elegant APIs with JSON Schema
 ---
 

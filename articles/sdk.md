@@ -2,7 +2,7 @@
 hook: When building an app against a web API, do you pull in their SDK or just make
   raw HTTP calls? Here are a few reasons that I avoid SDKs when I can.
 location: San Francisco
-published_at: 2014-02-03 14:46:52.000000000 Z
+published_at: 2014-02-03T14:46:52Z
 title: Why I Don't Want Your SDK in Production
 hn_link: https://news.ycombinator.com/item?id=7177887
 ---

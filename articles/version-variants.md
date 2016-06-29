@@ -2,7 +2,7 @@
 hook: A simple mechanism for managing changes to a web API and to help cheapen the
   disposal of prototypes.
 location: San Francisco
-published_at: 2015-02-17 22:13:48.000000000 Z
+published_at: 2015-02-17T22:13:48Z
 title: Version Variants
 ---
 

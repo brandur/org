@@ -2,7 +2,7 @@
 hook: Some of my favorite practices and ideas from almost four years at Heroku.
 image: "/assets/heroku-values/heroku-values.jpg"
 location: San Francisco
-published_at: 2015-11-05 06:20:16.000000000 Z
+published_at: 2015-11-05T06:20:16Z
 title: My Heroku Values
 ---
 

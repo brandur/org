@@ -2,7 +2,7 @@
 hook: Building a static site on AWS with a global CDN, free HTTPS with automatic certificate
   renewal, and a CI-based deployment process powered by GitHub pull requests.
 location: San Francisco
-published_at: 2016-04-09 02:11:19.000000000 Z
+published_at: 2016-04-09T02:11:19Z
 title: The Intrinsic Static Site
 ---
 

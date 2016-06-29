@@ -2,7 +2,7 @@
 hook: A set of general guidelines to consider when designing a alerts for a production
   system.
 location: Leipzig (finished in San Francisco)
-published_at: 2015-08-18 11:28:48.000000000 Z
+published_at: 2015-08-18T11:28:48Z
 title: Designing Alerts
 ---
 

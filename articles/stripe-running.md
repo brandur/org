@@ -1,7 +1,7 @@
 ---
 hook: Crunching running data with prepared statements in Postgres.
 location: San Francisco
-published_at: 2015-10-24 20:55:32.000000000 Z
+published_at: 2015-10-24T20:55:32Z
 title: Running at Stripe
 ---
 

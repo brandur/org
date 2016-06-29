@@ -2,7 +2,7 @@
 hook: How we build minimal, platform deployable, Rack service stubs to take the pain
   out of developing applications that depend on an extensive service-oriented architecture.
 location: San Francisco
-published_at: 2013-06-03 17:22:11.000000000 Z
+published_at: 2013-06-03T17:22:11Z
 title: SOA and Service Stubs
 ---
 

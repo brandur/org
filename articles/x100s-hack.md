@@ -2,7 +2,7 @@
 hook: If you find that the price tag for a Fuji-official adapter ring for the X100S
   is a little hard to swallow, this 5-minute hack will save you 90%.
 location: San Francisco
-published_at: 2014-08-03 16:50:19.000000000 Z
+published_at: 2014-08-03T16:50:19Z
 title: A Cheap X100S Filter Ring Hack
 ---
 

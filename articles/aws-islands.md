@@ -3,7 +3,7 @@ hook: |-
   The case for a concerted effort to build a powerful, but streamlined, platform
   on AWS.
 location: San Francisco
-published_at: 2016-06-15 15:24:53.000000000 Z
+published_at: 2016-06-15T15:24:53Z
 title: AWS Islands
 ---
 

@@ -1,7 +1,7 @@
 ---
 hook: Splitting and merging in action.
 location: San Francisco
-published_at: 2015-03-19 07:27:45.000000000 Z
+published_at: 2015-03-19T07:27:45Z
 title: Kinesis Shard Splitting & Merging by Example
 ---
 

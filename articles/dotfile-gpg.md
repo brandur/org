@@ -2,7 +2,7 @@
 hook: Learn how to start encrypting dotfile secrets with GPG, and some techniques
   for getting those encrypted files integrated with your toolchain.
 location: San Francisco
-published_at: 2014-11-10 23:46:34.000000000 Z
+published_at: 2014-11-10T23:46:34Z
 title: Dotfile Secrets and GPG
 ---
 

@@ -2,7 +2,7 @@
 hook: Quantitative easing explained in a pragmatic way (and with an example).
 image: "/assets/qe/qe2.jpg"
 location: San Francisco
-published_at: 2014-01-31 06:15:17.000000000 Z
+published_at: 2014-01-31T06:15:17Z
 title: Quantitative Easing for Hackers
 attributions: Header image by <strong><a href="http://www.flickr.com/photos/gammaman/6242455757/">Eli
   Christman</a></strong>. Licensed under Creative Commons BY 2.0.

@@ -1,7 +1,7 @@
 ---
 hook: Because everyone thinks that they're Google.
 location: San Francisco
-published_at: 2016-04-22 21:41:42.000000000 Z
+published_at: 2016-04-22T21:41:42Z
 title: In Defense of Small Data
 ---
 

@@ -2,7 +2,7 @@
 hook: Understanding the benefits of Golang's restrictive (but simple) import and package
   management system.
 location: San Francisco
-published_at: 2014-10-20 00:54:44.000000000 Z
+published_at: 2014-10-20T00:54:44Z
 title: Package Management in Go
 ---
 

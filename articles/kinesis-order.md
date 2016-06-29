@@ -1,7 +1,7 @@
 ---
 hook: On guaranteeing order with the bulk put API of an event stream.
 location: San Francisco
-published_at: 2015-03-05 01:13:46.000000000 Z
+published_at: 2015-03-05T01:13:46Z
 title: Guaranteeing Order with Kinesis Bulk Puts
 ---
 

@@ -1,7 +1,7 @@
 ---
 hook: In search for (and the discovery of) an alternative to BreakTime.
 location: San Francisco
-published_at: 2014-02-02 18:15:28.000000000 Z
+published_at: 2014-02-02T18:15:28Z
 title: BreakTime Classic
 ---
 

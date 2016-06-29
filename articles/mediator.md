@@ -1,7 +1,7 @@
 ---
 hook: Interactors by a different name.
 location: San Francisco
-published_at: 2014-03-11 15:25:07.000000000 Z
+published_at: 2014-03-11T15:25:07Z
 title: The Mediator Pattern
 ---
 

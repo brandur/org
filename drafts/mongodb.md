@@ -1,7 +1,7 @@
 ---
 hook: Why MongoDB is never the right choice.
 location: San Francisco
-published_at: 2016-06-08 03:57:09.000000000 Z
+published_at: 2016-06-08T03:57:09Z
 title: MongoDB
 ---
 

@@ -2,7 +2,7 @@
 hook: Using backslash commands in psql to navigate and describe object hierarchy in
   Postgres and Redshift.
 location: San Francisco
-published_at: 2015-10-26 16:08:30.000000000 Z
+published_at: 2015-10-26T16:08:30Z
 title: Exploring Object Hierarchies in Psql
 ---
 

@@ -1,7 +1,7 @@
 ---
 hook: Useful distinction or new buzzword? Comments on 200-500 line services.
 location: San Francisco
-published_at: 2014-04-01 12:37:17.000000000 Z
+published_at: 2014-04-01T12:37:17Z
 title: Microservices
 ---
 

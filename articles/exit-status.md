@@ -1,7 +1,7 @@
 ---
 hook: An exercise of discovery around how to extend the shell's API.
 location: San Francisco
-published_at: 2014-09-28 00:50:23.000000000 Z
+published_at: 2014-09-28T00:50:23Z
 title: Command Exit Status
 ---
 

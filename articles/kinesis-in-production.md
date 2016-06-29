@@ -2,7 +2,7 @@
 hook: A short write-up on findings, limitations, and opinion on Kinesis after a month
   in production.
 location: San Francisco
-published_at: 2015-05-03 17:35:37.000000000 Z
+published_at: 2015-05-03T17:35:37Z
 title: A Month of Kinesis in Production
 ---
 

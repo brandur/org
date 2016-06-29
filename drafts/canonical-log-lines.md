@@ -2,7 +2,7 @@
 hook: Using canonical log lines for powerful and succinct introspection into an online
   system.
 location: San Francisco
-published_at: 2016-04-14 17:03:10.000000000 Z
+published_at: 2016-04-14T17:03:10Z
 title: Canonical Log Lines
 ---
 

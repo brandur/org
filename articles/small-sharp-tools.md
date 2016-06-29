@@ -2,7 +2,7 @@
 hook: A few words on the Unix philosophy of building small programs that do one thing
   well, and compose for comprehensive functionality.
 location: San Francisco
-published_at: 2014-12-12 17:20:30.000000000 Z
+published_at: 2014-12-12T17:20:30Z
 title: Small, Sharp Tools
 ---
 
