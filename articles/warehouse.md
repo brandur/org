@@ -1,3 +1,11 @@
+---
+hook: Data warehouses aren't just for the enterprise! Let's examine a few of their
+  basic characteristics, and build some examples with Go/Ruby and Postgres.
+location: San Francisco
+published_at: 2014-09-05 16:25:04.000000000 Z
+title: The Humble Data Warehouse
+---
+
 Data warehouse. The term immediately brings heavy enterprise into mind, complete with business intelligence, heavy XML-based ETL instructions, and "N-dimensional" data processing technology like the [OLAP hypercube](http://en.wikipedia.org/wiki/OLAP_cube).
 
 A few months back, a colleague of mine [built an app](https://github.com/mfine/prism) that pulls commit data from within the Heroku organization down from the GitHub API. Over the course of a few days (pesky rate limiting), it backfilled the entire commit history of every project that the company ever created into a Postgres database, then left a scheduled process running to periodically update itself with new data.

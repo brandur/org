@@ -1,3 +1,11 @@
+---
+hook: Some of my favorite practices and ideas from almost four years at Heroku.
+image: "/assets/heroku-values/heroku-values.jpg"
+location: San Francisco
+published_at: 2015-11-05 06:20:16.000000000 Z
+title: My Heroku Values
+---
+
 In the spirit of [Adam Wiggins' inspiring list of Heroku
 values][wiggins-values] which was published when he left the company that he
 co-founded, I wanted to publish a list of my own now that I've transitioned

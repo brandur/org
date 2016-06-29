@@ -1,3 +1,10 @@
+---
+hook: On guaranteeing order with the bulk put API of an event stream.
+location: San Francisco
+published_at: 2015-03-05 01:13:46.000000000 Z
+title: Guaranteeing Order with Kinesis Bulk Puts
+---
+
 Playing with Kinesis recently, we came across a problem of how to guarantee order when posting a set of records to its bulk API. This article summarizes it and talks about how although we never directly solved the problem that we thought we had, we were able to use a slightly altered approach to have the system meet some of the characteristics that we wanted to see.
 
 The basic primitive to send a record into the Kinesis API is [`PutRecord`](http://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecord.html) which allows a producer to put a single record into the stream. The API has an optional request parameter called `SequenceNumberForOrdering` that allows a consumer to pass in a previously-generated sequence number to guarantee that no matter what sequence number is generated for the record, it will be larger than the one you had before.

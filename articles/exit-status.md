@@ -1,3 +1,10 @@
+---
+hook: An exercise of discovery around how to extend the shell's API.
+location: San Francisco
+published_at: 2014-09-28 00:50:23.000000000 Z
+title: Command Exit Status
+---
+
 During a [recent discussion on two factor authentication](https://github.com/heroku/hk/issues/171), the topic of command exit statuses came up. For the shell-uninitiated, an exit status is an integer between 0 and 255 returned when a program exits, usually readable by running `echo $?`. This is in effect one of the key pieces of the API which shells use to communicate with the programs that they run.
 
 First though, a little background: when building out hk, a strong philosophy was adopted around most commands being non-interactive by default (with a few well-known exceptions like `hk login`). This is a nice characteristic when attempting to compose hk directives into something like a shell script; at no point will a command unexpectedly prompt for user input and possibly ruin automation.

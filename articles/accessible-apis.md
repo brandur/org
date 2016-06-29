@@ -1,3 +1,11 @@
+---
+hook: A set of patterns to make APIs more accessible to developers; lowering the barrier
+  of entry for new users, and easing the maintenance of consuming applications.
+location: San Francisco
+published_at: 2013-09-01 15:59:44.000000000 Z
+title: Developer Accessible APIs
+---
+
 Many providers get users started off on their API by pointing them to an
 extensive set of documents, designed to help build a conceptual model for those
 users to leverage later when they start to build something with it. Because

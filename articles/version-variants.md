@@ -1,3 +1,11 @@
+---
+hook: A simple mechanism for managing changes to a web API and to help cheapen the
+  disposal of prototypes.
+location: San Francisco
+published_at: 2015-02-17 22:13:48.000000000 Z
+title: Version Variants
+---
+
 An old problem with APIs of all kinds is that they're difficult to change. Although an API can be expanded without too much trouble, it becomes costly to remove any fields that may have been present previously in case some consumer has come to be dependent on them. As companies like Twitter found out, breaking API consumers on a consistent basis is the fastest way to foster a disparaging development community and a long-lasting infamy as an unreliable provider.
 
 Modern web pundits might tell you to solve this problem with Hypermedia, but although this type of RESTful technique might provide some protection against the relocation of resources, it can do little to protect against the removal of fields on a resource or the removal of entire resource types.

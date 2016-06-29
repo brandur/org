@@ -1,3 +1,11 @@
+---
+hook: A short write-up on findings, limitations, and opinion on Kinesis after a month
+  in production.
+location: San Francisco
+published_at: 2015-05-03 17:35:37.000000000 Z
+title: A Month of Kinesis in Production
+---
+
 We've been powering a production component with Kinesis for a little over a month now so it seems like as good of a time as ever to put together a few thoughts on how it's worked out. My goal here is to put together a few short objective observations on how it's performed, followed by what I perceive as the product's major limitations, and then a short opinion as to whether I'd use it again. Keep in mind though that while we're putting a bit of load on our stream, we haven't come close to pushing the product to its limits (well, except for one limit, see below), so if you're planning on pushing a cluster to the 100s of GBs or TBs scale, the findings here may not be sufficient to make an informed decision on the product.
 
 First off, a little background: [Kinesis](http://aws.amazon.com/kinesis/) is Amazon's solution for real-time data processing that's been designed from the get go for horizontal scalability, reliability, and low latency. It's a data store that can have records produced into it on one end, and consumed from it on the other. This may sound a little like a queue, but it differs from a queue in that every injected event is designed to be consumed as many times as necessary, allowing many consumers to read the stream simultaneously and in isolation from each other. To achieve this, records are persistent for a period of time (currently a 24 hour sliding window) so that any individual consumers can go offline and still come back and consume the stream from where they left off.

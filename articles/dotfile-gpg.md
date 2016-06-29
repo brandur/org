@@ -1,3 +1,11 @@
+---
+hook: Learn how to start encrypting dotfile secrets with GPG, and some techniques
+  for getting those encrypted files integrated with your toolchain.
+location: San Francisco
+published_at: 2014-11-10 23:46:34.000000000 Z
+title: Dotfile Secrets and GPG
+---
+
 A recent [scare installing Yosemite](/fragments/yosemite-progress), was a nice reminder to check the state of affairs of my backups. I do a decent job for most of my important data, but one weak point were my dot files, which I'd traditionally spread around as little as possible because the standard usage of so many programs had led me to storing a lot of plain text passwords and keys spread out all over the place.
 
 This put me on the path toward the complete eradication of any secrets on disk in my dotfiles with the eventual goal of being able to back them up to the cloud, and feel comfortable about doing so. As it turns out, this is a more difficult prospect than you might imagine: although we have a pretty obvious tool to help with this in [the form of GnuPG](https://wiki.archlinux.org/index.php/GnuPG), integration across the system is spotty and varies widely in terms of design and setup difficulty. For better or for worse most Unix programs are best adapted for reading secrets out of plain text files, and as part of getting a complete GPG setup you'll have to fight this natural order of things.

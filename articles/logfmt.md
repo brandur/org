@@ -1,3 +1,11 @@
+---
+hook: A logging format used inside companies such as Heroku and Stripe which is optimal
+  for easy development, consistency, and good legibility for humans and computers.
+location: San Francisco
+published_at: 2013-10-28 16:28:04.000000000 Z
+title: logfmt
+---
+
 If you've ever run an app on Heroku, you may have come across log messages produced by the Heroku router and wondered about their unusual formatting:
 
     at=info method=GET path=/ host=mutelight.org fwd="124.133.52.161"

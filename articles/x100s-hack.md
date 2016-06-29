@@ -1,3 +1,11 @@
+---
+hook: If you find that the price tag for a Fuji-official adapter ring for the X100S
+  is a little hard to swallow, this 5-minute hack will save you 90%.
+location: San Francisco
+published_at: 2014-08-03 16:50:19.000000000 Z
+title: A Cheap X100S Filter Ring Hack
+---
+
 The [official Fujifilm X100/X100S 49 mm adapter ring](http://www.amazon.com/Fujifilm-AR-X100-Adapter-Ring-49mm/dp/B004MME69S) which allows you to mount extra filters onto your lens will run you about $40, which is a little steep considering that its entire role in life is to act as an expensive spacer.
 
 This [X100 review](http://zackarias.com/for-photographers/gear-gadgets/fuji-x100-review/) pointed me in the direction of an inexpensive alternative hack that is both cheap *and* fun. All you'll need is a single $4 [49 mm UV filter](http://www.amazon.com/Tiffen-49mm-UV-Protection-Filter/dp/B00004ZCJF/ref=sr_1_1?ie=UTF8&qid=1407084409&sr=8-1&keywords=tiffen+49+mm+uv), a somewhat heavy metal implement like a hammer, and whichever accessory you actually want to mount on your lens.

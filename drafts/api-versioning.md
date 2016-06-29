@@ -1,3 +1,9 @@
+---
+hook: ''
+published_at: 2013-09-01 15:59:44.000000000 Z
+title: API Versioning
+---
+
 ## Web API Versioning Schemes
 
 ### Broad Versioning

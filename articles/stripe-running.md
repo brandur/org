@@ -1,3 +1,10 @@
+---
+hook: Crunching running data with prepared statements in Postgres.
+location: San Francisco
+published_at: 2015-10-24 20:55:32.000000000 Z
+title: Running at Stripe
+---
+
 One pleasant surprise of Stripe's internal culture was the existence of a
 number of a recreational clubs (mostly manifested as internal Slack channels)
 -- and specifically one for running. At least some part of the group would

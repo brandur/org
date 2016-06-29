@@ -1,3 +1,10 @@
+---
+hook: In search for (and the discovery of) an alternative to BreakTime.
+location: San Francisco
+published_at: 2014-02-02 18:15:28.000000000 Z
+title: BreakTime Classic
+---
+
 A few years ago I took the plunge and started using BreakTime.app. For those not familiar with it, BreakTime is a small application designed to periodically force you to take a break from what you're doing on your PC. It starts a timer (configurable, but ~20 minutes), and when that expires you're shown a full-screen modal that forces you to take a break for the duration of another timer (~2 minutes). In an age of non-ergonomic Apple keyboards and eye-straining glossy displays, the importance of getting some brief respite from the hours spent in front of a glowing screen can't be overstated. My eyes certainly thanked me when I started using it.
 
 BreakTime is a great concept, but its propensity to obscure the top right quadrant of my screen while I was trying to type commit messages, finally drove me crazy enough to start looking for alternatives.

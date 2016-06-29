@@ -1,3 +1,11 @@
+---
+hook: Implementing rate limiting using Generic Cell Rate Algorithm (GCRA), a sliding
+  window algorithm without a drip process.
+location: San Francisco
+published_at: 2015-09-18 16:42:18.000000000 Z
+title: Rate Limiting, Cells, and GCRA
+---
+
 Rate limiting is a mechanism that many developers (especially those running
 services) may find themselves looking into at some point in their careers. It's
 useful for a variety of purposes, some of which might be:

@@ -1,3 +1,10 @@
+---
+hook: Useful distinction or new buzzword? Comments on 200-500 line services.
+location: San Francisco
+published_at: 2014-04-01 12:37:17.000000000 Z
+title: Microservices
+---
+
 A recent article by James Lewis and Martin Fowler has kicked off a discussion about "microservices" and SOA in general; one of the few topics in the API community besides Hypermedia that's pretty much guaranteed to generate some healthy debate. The [original body of work](http://martinfowler.com/articles/microservices.html) defines the characteristics of a microservice:
 
 * Services are out-of-process components that can be deployed and operated independently.

@@ -1,3 +1,11 @@
+---
+hook: Stubbing distributed services with Sinatra-based services stubs and enabling
+  stronger constraints with JSON Schema.
+location: San Francisco
+published_at: 2014-04-30 16:23:22.000000000 Z
+title: Testing Distributed Services with JSON Schema
+---
+
 A while back I wrote about [how we use service stubs](/service-stubs) to make a distributed architecture less painful to work with, and more recently we wrote about [how we're using JSON Schema](https://blog.heroku.com/archives/2014/1/8/json_schema_for_heroku_platform_api) to describe the new Heroku platform API (actually it's a JSON Hyper-Schema, but I'll use the two terms interchangeably in this document).
 
 More recently, we've started to adapt the interfaces of other internal components to be fronted by a JSON Schema definition as well. This document describes a simple technique for augmenting the accuracy of service stubs by taking advantage of the JSON Schemas of other components, allowing errors to be caught more quickly and more easily than would otherwise be possible.

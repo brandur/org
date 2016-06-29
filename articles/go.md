@@ -1,3 +1,11 @@
+---
+hook: Notes on the language after spending a few weeks building a large project in
+  it.
+location: San Francisco
+published_at: 2016-03-31 20:37:11.000000000 Z
+title: Notes on Go
+---
+
 Despite having worked for so many years with colleagues who were major
 proponents (or even contributors) to Go/Golang, I'd somehow gone this long
 without having ever written a production grade service in the language, having

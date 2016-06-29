@@ -1,3 +1,10 @@
+---
+hook: Because everyone thinks that they're Google.
+location: San Francisco
+published_at: 2016-04-22 21:41:42.000000000 Z
+title: In Defense of Small Data
+---
+
 About a year ago at Heroku, we saw that our main database was approaching the 1
 TB horizon. Postgres doesn't have any hard limits around how much data it can
 handle, but tables beyond a certain size do start to become slow and unwieldy

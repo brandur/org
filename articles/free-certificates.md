@@ -1,3 +1,12 @@
+---
+hook: Getting a certificate that most browsers would accept used to be difficult and
+  expensive, but that's changing as we enter a relative golden age of web encryption.
+  Read this for options for getting certificates issued for free.
+location: Vancouver
+published_at: 2016-01-31 17:48:53.000000000 Z
+title: A Guide to Free CA-Signed Certificates
+---
+
 Securing a website used to be an expensive process. Although certificates have
 been slowly getting cheaper, they've still on par with the cost of the domain
 name that they're protecting, and getting one issued was often complex and

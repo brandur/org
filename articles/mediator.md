@@ -1,3 +1,10 @@
+---
+hook: Interactors by a different name.
+location: San Francisco
+published_at: 2014-03-11 15:25:07.000000000 Z
+title: The Mediator Pattern
+---
+
 Grouper published a post last week [about how they use interactors](http://eng.joingrouper.com/blog/2014/03/03/rails-the-missing-parts-interactors) in their Rails app to help keep their ActiveRecord models as lean as possible. Somewhat amusingly, while doing a major refactor of the Heroku API, we'd independently arrived at a nearly identical pattern after learning the hard way that callbacks and large models are the inviting pool whose frothy water conceals treacherous rocks.
 
 The main difference was in appellation: we called the resulting PORO's "mediators", a [design pattern](http://en.wikipedia.org/wiki/Mediator_pattern) that defines how a set of objects interact. I'm not one to quarrel over naming, but I'll use the term "mediator" throughout this article because that's how I'm used to thinking about this pattern.

@@ -1,3 +1,15 @@
+---
+hook: How the page almost transitioned successfully to the digital world, but is in
+  decline in the modern context of new media. The lessons that we can learn from this
+  age-old design element, and why we should hope for its re-emergence.
+image: "/assets/page/page.jpg"
+location: San Francisco
+published_at: 2014-01-26 18:56:46.000000000 Z
+title: Lamenting the Death of the Page
+attributions: Header image by <strong><a href="https://www.flickr.com/photos/67499195@N00/717747166">Andreas
+  Levers</a></strong>. Licensed under Creative Commons BY-NC 2.0.
+---
+
 Against all odds, a very useful usability pattern emerged from the constraints of the physical world around the time when written language was just taking shape: the page. Its size and form have changed throughout history to arrive at common formats that that we'd recognize today: US Letter measuring 8.5" x 11", or the 4.25" x 6.75" size typically used for mass market paperbacks.
 
 It's survived all the way to the present day in our printed mediums as an easily portable unit of text, but it provides major usability benefits as well. The edges of a page provide convenient points of reference for readers to track their position within a larger document, and often the width of pages are optimized to fit a highly readable 50 to 60 characters per line (although too wide for modern uses, even the 8.5" x 11" US Letter was well-suited in this respect back in the day of the typewriter).
