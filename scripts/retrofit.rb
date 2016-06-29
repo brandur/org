@@ -26,7 +26,7 @@ def retrofit(dir)
 
     meta[:attributions] = meta[:attributions].strip if meta[:attributions]
     meta[:hook] = meta[:hook].strip
-    meta[:published_at] = meta[:published_at].iso8601
+    meta[:published_at] = meta[:published_at].getutc
 
     meta.delete(:signature)
 
