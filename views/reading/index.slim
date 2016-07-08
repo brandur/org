@@ -10,7 +10,7 @@
       h1 Reading
     p #{number_with_delimiter(@books_count)} books.
     #charts
-      #data-books-by-year.chart
+      #data-readings-by-year.chart
       #data-pages-by-year.chart
       .clear
     #toc
@@ -53,7 +53,7 @@ coffee:
   $ ->
     new Highcharts.Chart
       chart:
-        renderTo: 'data-books-by-year'
+        renderTo: 'data-readings-by-year'
         defaultSeriesType: 'bar'
       plotOptions:
         series:
