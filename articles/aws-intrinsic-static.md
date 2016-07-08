@@ -254,8 +254,8 @@ IAM credentials for deployment that you generated above:
 
 ```
 $ gem install travis
-$ travis encrypt AWS_ACCESS_KEY=access-key-from-iam-step-above
-$ travis encrypt AWS_SECRET_KEY=secret-key-from-iam-step-above
+$ travis encrypt AWS_ACCESS_KEY_ID=access-key-from-iam-step-above
+$ travis encrypt AWS_SECRET_ACCESS_KEY=secret-key-from-iam-step-above
 ```
 
 After encrypting your AWS keys, add those values to your `.travis.yml`. under
@@ -328,10 +328,10 @@ your GitHub repository's name and the Travis API token acquired above. Under
 create the function. Use the **Test** button to make sure it works.
 
 Now create a scheduled event so that the script will run periodically. Click
-the **Event sources** tab and then **Add event source**. Choose an **Event
-source type** of **CloudWatch Events - Schedule**. For **Schedule expression**
-put in something like **rate(1 day)**. Note that Travis will rate limit you,
-and you really don't need to be rebuilding very often, so a daily schedule is a
+the **Triggers** tab and then **Add trigger**. Click the dotted grey box and
+choose **CloudWatch Events - Schedule**. For **Schedule expression** put in
+something like **rate(1 day)**. Note that Travis will rate limit you, and you
+really don't need to be rebuilding very often, so a daily schedule is a
 reasonable choice.
 
 Now you're all set. AWS will handle triggering rebuilds, and if one fails,
