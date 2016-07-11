@@ -16,7 +16,7 @@ xml.feed "xml:lang" => "en-US", :xmlns => "http://www.w3.org/2005/Atom" do
       xml.id "tag:brandur.org,#{fragment[:published_at].strftime('%F')}:fragments/#{fragment[:slug]}"
       xml.author do
         xml.name "Brandur Leach"
-        xml.uri "http://brandur.org"
+        xml.uri "https://brandur.org"
       end
     end
   end
