@@ -1,19 +1,9 @@
 # org
 
-A basic Ruby app that drives my [personal website](http://brandur.org).
+This is a defunct project that served my [personal site](http://brandur.org).
+I've since moved everything over to a static site whose sources are located at
+[brandur/sorg][sorg] (see a [justification piece][justification] that I wrote
+on the subject).
 
-Metrics require a [Black Swan](https://github.com/brandur/black-swan) installation to pull data.
-
-## Deploy
-
-```
-heroku create org
-heroku config:set BLACK_SWAN_DATABASE_URL=postgres://
-heroku config:set RACK_ENV=production
-git push heroku master
-```
-
-```
-heroku git:remote -a brandur-org-next-staging -r staging
-heroku git:remote -a brandur-org-next -r production
-```
+[justification]: https://brandur.org/fragments/going-static
+[sorg]: https://github.com/brandur/sorg
