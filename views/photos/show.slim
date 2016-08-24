@@ -1,9 +1,0 @@
-- if pjax?
-  title= @title
-.flag
-.top-nav
-  == render :slim, :"_nav", layout: false
-.top-spacing
-.photo
-  img src="/photos/large/#{@photo[:slug]}.jpg"
-== render :slim, :"_footer", layout: false
